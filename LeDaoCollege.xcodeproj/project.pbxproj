@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2613780E2322448300228261 /* LDSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2613780D2322448300228261 /* LDSearchViewController.m */; };
 		2613781123225DA300228261 /* LDSearchHistoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2613781023225DA300228261 /* LDSearchHistoryView.m */; };
+		265BE25E232684EA0093E60A /* LDAlterNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 265BE25D232684EA0093E60A /* LDAlterNameViewController.m */; };
 		265CB9392320A2F400883FE2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 265CB9382320A2F400883FE2 /* AppDelegate.m */; };
 		265CB93C2320A2F400883FE2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 265CB93B2320A2F400883FE2 /* ViewController.m */; };
 		265CB93F2320A2F400883FE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 265CB93D2320A2F400883FE2 /* Main.storyboard */; };
@@ -75,6 +76,8 @@
 		2613780D2322448300228261 /* LDSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDSearchViewController.m; sourceTree = "<group>"; };
 		2613780F23225DA300228261 /* LDSearchHistoryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDSearchHistoryView.h; sourceTree = "<group>"; };
 		2613781023225DA300228261 /* LDSearchHistoryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDSearchHistoryView.m; sourceTree = "<group>"; };
+		265BE25C232684EA0093E60A /* LDAlterNameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDAlterNameViewController.h; sourceTree = "<group>"; };
+		265BE25D232684EA0093E60A /* LDAlterNameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDAlterNameViewController.m; sourceTree = "<group>"; };
 		265CB9342320A2F400883FE2 /* LeDaoCollege.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeDaoCollege.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		265CB9372320A2F400883FE2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		265CB9382320A2F400883FE2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -284,6 +287,8 @@
 				26CBF8872323E127005139EF /* LDCustormHistoryViewController.m */,
 				268EEDEE2325EDFC0014F971 /* LDConfigTableViewController.h */,
 				268EEDEF2325EDFC0014F971 /* LDConfigTableViewController.m */,
+				265BE25C232684EA0093E60A /* LDAlterNameViewController.h */,
+				265BE25D232684EA0093E60A /* LDAlterNameViewController.m */,
 			);
 			path = ViewControl;
 			sourceTree = "<group>";
@@ -731,6 +736,7 @@
 				26F558142325F6A8006D826D /* HNAlertView.m in Sources */,
 				2613780E2322448300228261 /* LDSearchViewController.m in Sources */,
 				26F5581D23263E48006D826D /* LDNameCell.m in Sources */,
+				265BE25E232684EA0093E60A /* LDAlterNameViewController.m in Sources */,
 				265CB9812320AAA600883FE2 /* View+MASAdditions.m in Sources */,
 				26CBF8792323BC6E005139EF /* PinYinForObjc.m in Sources */,
 				265CB97E2320AAA600883FE2 /* MASConstraintMaker.m in Sources */,

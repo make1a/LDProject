@@ -13,6 +13,7 @@
 #import "LDHeadImageCell.h"
 #import "HNAlertView.h"
 #import "LDNameCell.h"
+#import "LDAlterNameViewController.h"
 @interface LDConfigTableViewController () <UIImagePickerControllerDelegate>
 @property (nonatomic,strong)UIButton * logoutButton;
 @end
@@ -99,6 +100,12 @@
         case 0:
         {
             [self showSelectPhotoViewAction];
+        }
+            break;
+        case 1:
+        {
+            LDAlterNameViewController *vc = [LDAlterNameViewController new];
+            [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         case 2:
