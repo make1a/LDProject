@@ -37,6 +37,11 @@
 		26869C4723210879001DEDBA /* LDLiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26869C4623210879001DEDBA /* LDLiveViewController.m */; };
 		268A9BBF2320D82B00B4D756 /* LDNormalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 268A9BBD2320D82B00B4D756 /* LDNormalTableViewCell.m */; };
 		268A9BC32320DF4300B4D756 /* LDMainContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 268A9BC22320DF4300B4D756 /* LDMainContainerView.m */; };
+		268EEDF02325EDFC0014F971 /* LDConfigTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 268EEDEF2325EDFC0014F971 /* LDConfigTableViewController.m */; };
+		268EEDF72325F1640014F971 /* DatePickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 268EEDF32325F1630014F971 /* DatePickerCell.m */; };
+		268EEDF82325F1640014F971 /* PickerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 268EEDF52325F1630014F971 /* PickerViewCell.m */; };
+		268EEDF92325F1640014F971 /* ClickPickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 268EEDF62325F1640014F971 /* ClickPickerCell.m */; };
+		268EEDFC2325F2670014F971 /* LDHeadImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 268EEDFB2325F2670014F971 /* LDHeadImageCell.m */; };
 		26C2D0112320E61900906324 /* LDNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26C2D0102320E61900906324 /* LDNewsTableViewCell.m */; };
 		26CBF86F2323BC6E005139EF /* HCSortString.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CBF85A2323BC6E005139EF /* HCSortString.m */; };
 		26CBF8702323BC6E005139EF /* UIAlertController+HCAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CBF85B2323BC6E005139EF /* UIAlertController+HCAdd.m */; };
@@ -57,6 +62,10 @@
 		26CBF88E23252566005139EF /* LDLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CBF88D23252566005139EF /* LDLoginViewController.m */; };
 		26CBF8912325275C005139EF /* LoginEnableButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CBF88F2325275C005139EF /* LoginEnableButton.m */; };
 		26CBF89423252A98005139EF /* JKCountDownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CBF89323252A97005139EF /* JKCountDownButton.m */; };
+		26F558142325F6A8006D826D /* HNAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F558132325F6A8006D826D /* HNAlertView.m */; };
+		26F558172325F7B4006D826D /* HNTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F558152325F7B4006D826D /* HNTools.m */; };
+		26F5581A2325F953006D826D /* UIView+HNExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F558182325F953006D826D /* UIView+HNExtension.m */; };
+		26F5581D23263E48006D826D /* LDNameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F5581C23263E48006D826D /* LDNameCell.m */; };
 		5EBFFAD28375ED4CCCBD420A /* libPods-LeDaoCollege.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 51F34611335481E74543E6CB /* libPods-LeDaoCollege.a */; };
 /* End PBXBuildFile section */
 
@@ -127,6 +136,16 @@
 		268A9BBD2320D82B00B4D756 /* LDNormalTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDNormalTableViewCell.m; sourceTree = "<group>"; };
 		268A9BC12320DF4300B4D756 /* LDMainContainerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDMainContainerView.h; sourceTree = "<group>"; };
 		268A9BC22320DF4300B4D756 /* LDMainContainerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDMainContainerView.m; sourceTree = "<group>"; };
+		268EEDEE2325EDFC0014F971 /* LDConfigTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDConfigTableViewController.h; sourceTree = "<group>"; };
+		268EEDEF2325EDFC0014F971 /* LDConfigTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDConfigTableViewController.m; sourceTree = "<group>"; };
+		268EEDF12325F1630014F971 /* ClickPickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickPickerCell.h; sourceTree = "<group>"; };
+		268EEDF22325F1630014F971 /* DatePickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerCell.h; sourceTree = "<group>"; };
+		268EEDF32325F1630014F971 /* DatePickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerCell.m; sourceTree = "<group>"; };
+		268EEDF42325F1630014F971 /* PickerViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerViewCell.h; sourceTree = "<group>"; };
+		268EEDF52325F1630014F971 /* PickerViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerViewCell.m; sourceTree = "<group>"; };
+		268EEDF62325F1640014F971 /* ClickPickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickPickerCell.m; sourceTree = "<group>"; };
+		268EEDFA2325F2670014F971 /* LDHeadImageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDHeadImageCell.h; sourceTree = "<group>"; };
+		268EEDFB2325F2670014F971 /* LDHeadImageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDHeadImageCell.m; sourceTree = "<group>"; };
 		26C2D00F2320E61900906324 /* LDNewsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDNewsTableViewCell.h; sourceTree = "<group>"; };
 		26C2D0102320E61900906324 /* LDNewsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDNewsTableViewCell.m; sourceTree = "<group>"; };
 		26CBF8592323BC6E005139EF /* UIAlertController+HCAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+HCAdd.h"; sourceTree = "<group>"; };
@@ -166,6 +185,14 @@
 		26CBF8902325275C005139EF /* LoginEnableButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginEnableButton.h; sourceTree = "<group>"; };
 		26CBF89223252A97005139EF /* JKCountDownButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKCountDownButton.h; sourceTree = "<group>"; };
 		26CBF89323252A97005139EF /* JKCountDownButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKCountDownButton.m; sourceTree = "<group>"; };
+		26F558122325F6A8006D826D /* HNAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAlertView.h; sourceTree = "<group>"; };
+		26F558132325F6A8006D826D /* HNAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAlertView.m; sourceTree = "<group>"; };
+		26F558152325F7B4006D826D /* HNTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNTools.m; sourceTree = "<group>"; };
+		26F558162325F7B4006D826D /* HNTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNTools.h; sourceTree = "<group>"; };
+		26F558182325F953006D826D /* UIView+HNExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+HNExtension.m"; sourceTree = "<group>"; };
+		26F558192325F953006D826D /* UIView+HNExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+HNExtension.h"; sourceTree = "<group>"; };
+		26F5581B23263E48006D826D /* LDNameCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDNameCell.h; sourceTree = "<group>"; };
+		26F5581C23263E48006D826D /* LDNameCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDNameCell.m; sourceTree = "<group>"; };
 		51F34611335481E74543E6CB /* libPods-LeDaoCollege.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LeDaoCollege.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFEFE78EDB4F924076740AF8 /* Pods-LeDaoCollege.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeDaoCollege.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LeDaoCollege/Pods-LeDaoCollege.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -255,6 +282,8 @@
 				26CBF8842323E0FB005139EF /* LDTextViewViewController.m */,
 				26CBF8862323E127005139EF /* LDCustormHistoryViewController.h */,
 				26CBF8872323E127005139EF /* LDCustormHistoryViewController.m */,
+				268EEDEE2325EDFC0014F971 /* LDConfigTableViewController.h */,
+				268EEDEF2325EDFC0014F971 /* LDConfigTableViewController.m */,
 			);
 			path = ViewControl;
 			sourceTree = "<group>";
@@ -269,10 +298,20 @@
 		265CB9512320A37100883FE2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				268EEDF12325F1630014F971 /* ClickPickerCell.h */,
+				268EEDF62325F1640014F971 /* ClickPickerCell.m */,
+				268EEDF22325F1630014F971 /* DatePickerCell.h */,
+				268EEDF32325F1630014F971 /* DatePickerCell.m */,
+				268EEDF42325F1630014F971 /* PickerViewCell.h */,
+				268EEDF52325F1630014F971 /* PickerViewCell.m */,
 				268A9BBC2320D82B00B4D756 /* LDNormalTableViewCell.h */,
 				268A9BBD2320D82B00B4D756 /* LDNormalTableViewCell.m */,
 				26CBF8802323D4A8005139EF /* LDBusinessCardView.h */,
 				26CBF8812323D4A8005139EF /* LDBusinessCardView.m */,
+				268EEDFA2325F2670014F971 /* LDHeadImageCell.h */,
+				268EEDFB2325F2670014F971 /* LDHeadImageCell.m */,
+				26F5581B23263E48006D826D /* LDNameCell.h */,
+				26F5581C23263E48006D826D /* LDNameCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -362,9 +401,10 @@
 		265CB95A2320A93D00883FE2 /* GlobalTool */ = {
 			isa = PBXGroup;
 			children = (
+				26F558112325F694006D826D /* AlterView */,
+				265CB9602320AAA600883FE2 /* Masonry */,
 				265CB98E2320AB3000883FE2 /* MBProgressHUD+PX.h */,
 				265CB98D2320AB3000883FE2 /* MBProgressHUD+PX.m */,
-				265CB9602320AAA600883FE2 /* Masonry */,
 				265CB95D2320A96100883FE2 /* PrefixHeader.pch */,
 				265CB95B2320A96000883FE2 /* Marcros.h */,
 				265CB95C2320A96000883FE2 /* MYConstansManager.h */,
@@ -485,6 +525,19 @@
 				26CBF88F2325275C005139EF /* LoginEnableButton.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		26F558112325F694006D826D /* AlterView */ = {
+			isa = PBXGroup;
+			children = (
+				26F558192325F953006D826D /* UIView+HNExtension.h */,
+				26F558182325F953006D826D /* UIView+HNExtension.m */,
+				26F558162325F7B4006D826D /* HNTools.h */,
+				26F558152325F7B4006D826D /* HNTools.m */,
+				26F558122325F6A8006D826D /* HNAlertView.h */,
+				26F558132325F6A8006D826D /* HNAlertView.m */,
+			);
+			path = AlterView;
 			sourceTree = "<group>";
 		};
 		9CF121A53BFA2761DD3BE88F /* Frameworks */ = {
@@ -649,26 +702,35 @@
 				26CBF87F2323D2F4005139EF /* LDCustomerDetailViewController.m in Sources */,
 				265CB99C2320B2DF00883FE2 /* LDStoreViewController.m in Sources */,
 				265CB9832320AAA600883FE2 /* MASViewConstraint.m in Sources */,
+				26F558172325F7B4006D826D /* HNTools.m in Sources */,
 				265CB9842320AAA600883FE2 /* MASViewAttribute.m in Sources */,
 				265CB9932320AE6700883FE2 /* LDTabBarController.m in Sources */,
+				268EEDF82325F1640014F971 /* PickerViewCell.m in Sources */,
 				26CBF8712323BC6E005139EF /* NSString+PinYin4Cocoa.m in Sources */,
 				268A9BC32320DF4300B4D756 /* LDMainContainerView.m in Sources */,
 				26CBF8752323BC6E005139EF /* HanyuPinyinOutputFormat.m in Sources */,
+				268EEDFC2325F2670014F971 /* LDHeadImageCell.m in Sources */,
 				26CBF88E23252566005139EF /* LDLoginViewController.m in Sources */,
 				26CBF8912325275C005139EF /* LoginEnableButton.m in Sources */,
 				265CB95F2320A96100883FE2 /* MYConstansManager.m in Sources */,
 				265CB93C2320A2F400883FE2 /* ViewController.m in Sources */,
 				265CB9802320AAA600883FE2 /* NSArray+MASAdditions.m in Sources */,
+				268EEDF92325F1640014F971 /* ClickPickerCell.m in Sources */,
 				265CB97C2320AAA600883FE2 /* ViewController+MASAdditions.m in Sources */,
 				26869C4723210879001DEDBA /* LDLiveViewController.m in Sources */,
 				268A9BBF2320D82B00B4D756 /* LDNormalTableViewCell.m in Sources */,
+				26F5581A2325F953006D826D /* UIView+HNExtension.m in Sources */,
+				268EEDF02325EDFC0014F971 /* LDConfigTableViewController.m in Sources */,
+				268EEDF72325F1640014F971 /* DatePickerCell.m in Sources */,
 				265CB97D2320AAA600883FE2 /* MASCompositeConstraint.m in Sources */,
 				26CBF8822323D4A8005139EF /* LDBusinessCardView.m in Sources */,
 				265CB9472320A2F500883FE2 /* main.m in Sources */,
 				26CBF8882323E127005139EF /* LDCustormHistoryViewController.m in Sources */,
 				26CBF8762323BC6E005139EF /* ZYPinYinSearch.m in Sources */,
 				26CBF8702323BC6E005139EF /* UIAlertController+HCAdd.m in Sources */,
+				26F558142325F6A8006D826D /* HNAlertView.m in Sources */,
 				2613780E2322448300228261 /* LDSearchViewController.m in Sources */,
+				26F5581D23263E48006D826D /* LDNameCell.m in Sources */,
 				265CB9812320AAA600883FE2 /* View+MASAdditions.m in Sources */,
 				26CBF8792323BC6E005139EF /* PinYinForObjc.m in Sources */,
 				265CB97E2320AAA600883FE2 /* MASConstraintMaker.m in Sources */,

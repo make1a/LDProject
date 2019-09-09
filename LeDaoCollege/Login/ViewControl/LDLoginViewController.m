@@ -9,6 +9,8 @@
 #import "LDLoginViewController.h"
 #import "LoginEnableButton.h"
 #import "JKCountDownButton.h"
+#import "LDTabBarController.h"
+
 @interface LDLoginViewController ()
 @property (nonatomic,strong)UILabel * titleLabel;
 @property (nonatomic,strong)QMUITextField * nameTextField;
@@ -18,6 +20,7 @@
 @property (nonatomic,strong)QMUILabel * bottomLabel;
 @property (nonatomic,strong)UIButton * wxButton;
 @property (nonatomic,strong)UIButton * registerButton;
+
 @end
 
 @implementation LDLoginViewController
@@ -48,6 +51,16 @@
 }
 - (void)clickRegisterAction:(UIButton*)sender {
     
+}
+- (void)clickLoginAction:(UIButton *)sender{
+    [self loginApp];
+}
+#pragma  mark - Private
+//登陆
+- (void)loginApp {
+    LDTabBarController *rootViewController = [[LDTabBarController alloc] init];
+    AppDelegate  *delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
+    delegate.window.rootViewController = rootViewController;
 }
 #pragma  mark - Layout
 - (void)masLayoutsuviews{
@@ -135,6 +148,7 @@
         _loginButton = [[LoginEnableButton alloc]initAndNotifyTextFields:@[self.nameTextField,self.pwdTextField]];
         [_loginButton setTitle:@"登录" forState:UIControlStateNormal];
         _loginButton.backgroundColor = [UIColor blueColor];
+        [_loginButton addTarget:self action:@selector(clickLoginAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _loginButton;
 }

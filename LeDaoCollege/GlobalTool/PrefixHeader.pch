@@ -24,6 +24,8 @@
 #import <YYModel.h>
 #import <CYLTabBarController.h>
 #import <QMUIKit.h>
+#import "AppDelegate.h"
+#import "HNTools.h"
 #endif
 #endif /* PrefixHeader_pch */
 

@@ -9,7 +9,7 @@
 #import "LDMineViewController.h"
 #import "LDNormalTableViewCell.h"
 #import "LDCustomerManagerViewController.h"
-
+#import "LDConfigTableViewController.h"
 @interface LDMineViewController () <UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong)UITableView * tableView;
 @property (nonatomic,strong)NSArray * titlesArray;
@@ -48,12 +48,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (indexPath.row) {
         case 0:
-            {
-                LDCustomerManagerViewController *vc = [LDCustomerManagerViewController new];
-                [self.navigationController pushViewController:vc animated:YES];
-            }
+        {
+            LDCustomerManagerViewController *vc = [LDCustomerManagerViewController new];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
             break;
-            
+        case 7 :{
+            LDConfigTableViewController *vc = [[LDConfigTableViewController alloc]initWithStyle:UITableViewStylePlain];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
         default:
             break;
     }
