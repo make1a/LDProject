@@ -9,6 +9,7 @@
 #import "LDAlterNameViewController.h"
 @interface LDAlterNameViewController ()
 @property (nonatomic,strong)QMUITextField * textfield;
+@property (nonatomic,strong)UIBarButtonItem * doneButton;
 @end
 
 @implementation LDAlterNameViewController
@@ -29,6 +30,11 @@
         }
         make.height.mas_equalTo(48);
     }];
+    
+    self.navigationItem.rightBarButtonItem = self.doneButton;
+}
+- (void)clickDoneAction:(UIBarButtonItem *)sender {
+    NSLog(@"完成");
 }
 #pragma  mark - GET SET
 - (QMUITextField *)textfield {
@@ -40,5 +46,11 @@
         
     }
     return _textfield;
+}
+- (UIBarButtonItem *)doneButton {
+    if (!_doneButton) {
+        _doneButton = [UIBarButtonItem qmui_itemWithTitle:@"完成" target:self action:@selector(clickDoneAction:)];
+    }
+    return _doneButton;
 }
 @end
