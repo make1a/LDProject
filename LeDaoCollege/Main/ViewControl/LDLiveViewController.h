@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LDLiveViewController : UIViewController
+@interface LDLiveViewController : QMUICommonViewController
 
 @end

@@ -3,10 +3,10 @@
 //  LeDaoCollege
 //
 //  Created by make on 2019/9/9.
-//  Copyright © 2019 Make. All rights reserved.
-//
+
 
 #import "LDAlterNameViewController.h"
+
 @interface LDAlterNameViewController ()
 @property (nonatomic,strong)QMUITextField * textfield;
 @property (nonatomic,strong)UIBarButtonItem * doneButton;
@@ -53,4 +53,5 @@
     }
     return _doneButton;
 }
+
 @end

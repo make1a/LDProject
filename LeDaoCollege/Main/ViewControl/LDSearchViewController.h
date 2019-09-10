@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LDSearchViewController : UIViewController
+@interface LDSearchViewController : QMUICommonViewController
 
 @end

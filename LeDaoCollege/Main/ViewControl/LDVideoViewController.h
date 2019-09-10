@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LDVideoViewController : UIViewController
+@interface LDVideoViewController : QMUICommonViewController
 
 @end

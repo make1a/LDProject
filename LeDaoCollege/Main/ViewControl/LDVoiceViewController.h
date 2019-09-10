@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LDVoiceViewController : UIViewController
+@interface LDVoiceViewController : QMUICommonViewController
 
 @end

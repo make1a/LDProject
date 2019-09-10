@@ -33,7 +33,7 @@
     return cell;
 }
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 100;
+    return PtHeight(95);
 }
 #pragma  mark - SDCyclesScrollview
 /** 点击图片回调 */
@@ -48,24 +48,26 @@
 #pragma mark - private method
 #pragma  mark - LayoutSubviews
 - (void)masLayoutSubviews {
-    [self.view addSubview:self.cycleScrollView];
-    [self.cycleScrollView reloadInputViews];
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_equalTo(self.view);
-        make.top.mas_equalTo(self.cycleScrollView.mas_bottom);
+        make.left.mas_equalTo(self.view).offset(PtWidth(20));
+        make.right.mas_equalTo(self.view).mas_offset(PtWidth(-20));
+        make.top.mas_equalTo(self.view);
         if (@available(iOS 11.0, *)) {
             make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom);
         } else {
             make.bottom.mas_equalTo(self.view);
         }
     }];
+    
+    self.tableView.tableHeaderView = self.cycleScrollView;
+    [self.cycleScrollView reloadInputViews];
 }
 #pragma mark - get and set
 - (SDCycleScrollView *)cycleScrollView {
     if (!_cycleScrollView) {
-        UIImage * placeholderImage = [UIImage imageNamed:@"shatan_bg"];
-        CGRect frame = CGRectMake(0, 0, SCREEN_WIDTH, 300);
+        UIImage * placeholderImage = [UIImage imageNamed:@"blank_common"];
+        CGRect frame = CGRectMake(PtWidth(20), 0, PtWidth(335), PtHeight(120));
         _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:frame delegate:self placeholderImage:placeholderImage];
         _cycleScrollView.imageURLStringsGroup = self.netImages;
         _cycleScrollView.backgroundColor = [UIColor redColor];
@@ -92,7 +94,8 @@
         _tableView = [[UITableView alloc]init];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        
+        _tableView.showsHorizontalScrollIndicator = NO;
+        _tableView.showsVerticalScrollIndicator = NO;
     }
     return _tableView;
 }

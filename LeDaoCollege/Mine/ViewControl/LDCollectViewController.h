@@ -1,8 +1,8 @@
 //
-//  LDMainContainerView.h
+//  LDCollectViewController.h
 //  LeDaoCollege
 //
-//  Created by Make on 2019/9/5.
+//  Created by make on 2019/9/10.
 //  Copyright © 2019 Make. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LDMainContainerView : UIView
+@interface LDCollectViewController : QMUICommonViewController
 
 @end
 

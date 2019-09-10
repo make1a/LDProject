@@ -10,6 +10,8 @@
 #import "LDNormalTableViewCell.h"
 #import "LDCustomerManagerViewController.h"
 #import "LDConfigTableViewController.h"
+#import "LDCollectViewController.h"
+
 @interface LDMineViewController () <UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong)UITableView * tableView;
 @property (nonatomic,strong)NSArray * titlesArray;
@@ -50,6 +52,12 @@
         case 0:
         {
             LDCustomerManagerViewController *vc = [LDCustomerManagerViewController new];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 1:
+        {
+            LDCollectViewController *vc = [LDCollectViewController new];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;

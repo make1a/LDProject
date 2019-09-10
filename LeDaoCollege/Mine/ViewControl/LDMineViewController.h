@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LDMineViewController : UIViewController
+@interface LDMineViewController : QMUICommonViewController
 
 @end
 

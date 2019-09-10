@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LDStoreViewController : UIViewController
+@interface LDStoreViewController : QMUICommonViewController
 
 @end
 
