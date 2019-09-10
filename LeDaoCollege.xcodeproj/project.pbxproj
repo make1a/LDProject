@@ -42,6 +42,7 @@
 		268EEDF82325F1640014F971 /* PickerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 268EEDF52325F1630014F971 /* PickerViewCell.m */; };
 		268EEDF92325F1640014F971 /* ClickPickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 268EEDF62325F1640014F971 /* ClickPickerCell.m */; };
 		268EEDFC2325F2670014F971 /* LDHeadImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 268EEDFB2325F2670014F971 /* LDHeadImageCell.m */; };
+		26BA0655232735E200992FFD /* LDAlterNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BA0654232735E200992FFD /* LDAlterNameViewController.m */; };
 		26C2D0112320E61900906324 /* LDNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26C2D0102320E61900906324 /* LDNewsTableViewCell.m */; };
 		26CBF86F2323BC6E005139EF /* HCSortString.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CBF85A2323BC6E005139EF /* HCSortString.m */; };
 		26CBF8702323BC6E005139EF /* UIAlertController+HCAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CBF85B2323BC6E005139EF /* UIAlertController+HCAdd.m */; };
@@ -146,6 +147,8 @@
 		268EEDF62325F1640014F971 /* ClickPickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickPickerCell.m; sourceTree = "<group>"; };
 		268EEDFA2325F2670014F971 /* LDHeadImageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDHeadImageCell.h; sourceTree = "<group>"; };
 		268EEDFB2325F2670014F971 /* LDHeadImageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDHeadImageCell.m; sourceTree = "<group>"; };
+		26BA0653232735E200992FFD /* LDAlterNameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDAlterNameViewController.h; sourceTree = "<group>"; };
+		26BA0654232735E200992FFD /* LDAlterNameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDAlterNameViewController.m; sourceTree = "<group>"; };
 		26C2D00F2320E61900906324 /* LDNewsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDNewsTableViewCell.h; sourceTree = "<group>"; };
 		26C2D0102320E61900906324 /* LDNewsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDNewsTableViewCell.m; sourceTree = "<group>"; };
 		26CBF8592323BC6E005139EF /* UIAlertController+HCAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+HCAdd.h"; sourceTree = "<group>"; };
@@ -284,6 +287,8 @@
 				26CBF8872323E127005139EF /* LDCustormHistoryViewController.m */,
 				268EEDEE2325EDFC0014F971 /* LDConfigTableViewController.h */,
 				268EEDEF2325EDFC0014F971 /* LDConfigTableViewController.m */,
+				26BA0653232735E200992FFD /* LDAlterNameViewController.h */,
+				26BA0654232735E200992FFD /* LDAlterNameViewController.m */,
 			);
 			path = ViewControl;
 			sourceTree = "<group>";
@@ -731,6 +736,7 @@
 				26F558142325F6A8006D826D /* HNAlertView.m in Sources */,
 				2613780E2322448300228261 /* LDSearchViewController.m in Sources */,
 				26F5581D23263E48006D826D /* LDNameCell.m in Sources */,
+				26BA0655232735E200992FFD /* LDAlterNameViewController.m in Sources */,
 				265CB9812320AAA600883FE2 /* View+MASAdditions.m in Sources */,
 				26CBF8792323BC6E005139EF /* PinYinForObjc.m in Sources */,
 				265CB97E2320AAA600883FE2 /* MASConstraintMaker.m in Sources */,
