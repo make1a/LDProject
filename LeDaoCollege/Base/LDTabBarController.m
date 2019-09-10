@@ -55,8 +55,8 @@
 - (NSArray *)tabBarItemsAttributesForController {
     NSDictionary *firstTabBarItemsAttributes = @{
                                                  CYLTabBarItemTitle : @"学院",
-                                                 CYLTabBarItemImage : @"",
-                                                 CYLTabBarItemSelectedImage : @"",
+                                                 CYLTabBarItemImage : @"ledao_tabbar_xueyuan_nor",
+                                                 CYLTabBarItemSelectedImage : @"ledao_tabbar_xueyuan_sele",
                                                  };
     NSDictionary *secondTabBarItemsAttributes = @{
                                                   CYLTabBarItemTitle : @"商城",

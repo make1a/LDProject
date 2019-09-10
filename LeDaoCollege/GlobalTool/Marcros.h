@@ -46,8 +46,9 @@
 #define Handle_width(w)  ((w)*SCREEN_SCALE)
 #define Handle_height(h) ((h)*SCREEN_SCALE)
 
-#define PtH(h) h/512.0*SCREEN_HEIGHT
-#define PtW(w) w/683.0*SCREEN_WIDTH
+#define PtHeight(h) h/667.0*SCREEN_HEIGHT
+#define PtWidth(w) w/375.0*SCREEN_WIDTH
+
 
 // 系统默认字体设置和自选字体设置
 #define SystemFontSize(fontsize) [UIFont systemFontOfSize:(fontsize)]

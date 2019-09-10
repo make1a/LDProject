@@ -7,9 +7,9 @@
 //
 
 #import "LDVoiceViewController.h"
-
+#import "LDTagView.h"
 @interface LDVoiceViewController ()
-
+@property (nonatomic,strong)LDTagView * tagView;
 @end
 
 @implementation LDVoiceViewController
@@ -17,6 +17,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.view addSubview:self.tagView];
 }
 #pragma mark - event response
 
@@ -24,9 +25,11 @@
 #pragma mark - private method
 #pragma mark - get and set
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
+- (LDTagView *)tagView {
+    if (!_tagView) {
+        _tagView = [[LDTagView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        _tagView.titles = @[@"Helps", @"Maintain", @"Liver", @"Health", @"Function", @"Supports", @"Healthy", @"Fat"];
+    }
+    return _tagView;
 }
-
 @end

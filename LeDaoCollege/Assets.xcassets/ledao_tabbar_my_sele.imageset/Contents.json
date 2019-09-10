@@ -2,12 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "shatan_bg.png",
+      "filename" : "ledao_tabbar_my_sele.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "shatan_bg@2x.png",
       "scale" : "2x"
     },
     {

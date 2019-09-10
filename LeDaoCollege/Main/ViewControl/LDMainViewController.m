@@ -40,14 +40,16 @@
 - (void)masLayoutSubviews{
     [self.view addSubview:self.searchButton];
     [self.searchButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_equalTo(self.view);
+        make.left.mas_equalTo(self.view).mas_offset(PtWidth(21));
+        make.right.mas_equalTo(self.view).mas_offset(PtWidth(-21));
+        
         if (@available(iOS 11.0, *)) {
             make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop);
         } else {
             make.top.mas_equalTo(self.view);
 
         }
-        make.height.mas_equalTo(48);
+        make.height.mas_equalTo(PtHeight(32));
     }];
 }
 #pragma  mark - Touch Action
@@ -122,9 +124,9 @@
     UIButton *menuItem = [magicView dequeueReusableItemWithIdentifier:itemIdentifier];
     if (!menuItem) {
         menuItem = [UIButton buttonWithType:UIButtonTypeCustom];
-        [menuItem setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [menuItem setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
-        menuItem.titleLabel.font = [UIFont systemFontOfSize:16];
+        [menuItem setTitleColor:UIColorFromHEXA(0x333333, 1) forState:UIControlStateNormal];
+        [menuItem setTitleColor:UIColorFromHEXA(0x00AD6F, 1) forState:UIControlStateSelected];
+        menuItem.titleLabel.font = [UIFont systemFontOfSize:15];
     }
     return menuItem;
 }
@@ -134,27 +136,29 @@
 - (VTMagicController *)magicController {
     if (!_magicController) {
         _magicController = [[VTMagicController alloc] init];
-        _magicController.magicView.navigationColor = [UIColor grayColor];
-        _magicController.magicView.navigationHeight = 44;
-        _magicController.magicView.againstStatusBar = YES;
+        _magicController.magicView.navigationColor = [UIColor whiteColor];
+        _magicController.magicView.navigationHeight = PtHeight(34);
         _magicController.magicView.sliderHidden = NO;
-        _magicController.magicView.sliderWidth = 35;
-        _magicController.magicView.sliderColor = [UIColor yellowColor];
+        _magicController.magicView.sliderWidth = PtWidth(20);
+        _magicController.magicView.sliderColor = UIColorFromHEXA(0xFF00AD6F, 1);
         _magicController.magicView.layoutStyle = VTLayoutStyleDivide;
         _magicController.magicView.switchStyle = VTSwitchStyleDefault;
         _magicController.magicView.itemSpacing = 20;
-        _magicController.magicView.againstStatusBar = NO;
-        _magicController.magicView.frame = CGRectMake(0,100, SCREEN_WIDTH, SCREEN_HEIGHT-144);
+        _magicController.magicView.frame = CGRectMake(0,PtHeight(91), SCREEN_WIDTH, SCREEN_HEIGHT-PtHeight(91)-TabBarHeight);
         _magicController.magicView.dataSource = self;
         _magicController.magicView.delegate = self;
         _magicController.magicView.needPreloading = NO;
+        _magicController.magicView.separatorHidden = YES;
     }
     return _magicController;
 }
+
 - (UIButton *)searchButton {
     if (!_searchButton) {
         _searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _searchButton.backgroundColor = [UIColor grayColor];
+        _searchButton.backgroundColor = [UIColor colorWithRed:238/255.0 green:238/255.0 blue:238/255.0 alpha:1.0];
+        _searchButton.layer.masksToBounds = YES;
+        _searchButton.layer.cornerRadius = PtHeight(32/2);
         [_searchButton setTitle:@"搜索" forState:UIControlStateNormal];
         [_searchButton addTarget:self action:@selector(clickSearchAction:) forControlEvents:UIControlEventTouchUpInside];
     }

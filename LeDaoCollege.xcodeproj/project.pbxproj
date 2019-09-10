@@ -9,10 +9,12 @@
 /* Begin PBXBuildFile section */
 		2613780E2322448300228261 /* LDSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2613780D2322448300228261 /* LDSearchViewController.m */; };
 		2613781123225DA300228261 /* LDSearchHistoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2613781023225DA300228261 /* LDSearchHistoryView.m */; };
+		2640F06A232771760015F7A6 /* LDTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2640F069232771760015F7A6 /* LDTagView.m */; };
+		2640F106232793950015F7A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2640F105232793950015F7A6 /* Assets.xcassets */; };
+		2640F1092327AB2D0015F7A6 /* LDVoiceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2640F1082327AB2D0015F7A6 /* LDVoiceCell.m */; };
 		265CB9392320A2F400883FE2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 265CB9382320A2F400883FE2 /* AppDelegate.m */; };
 		265CB93C2320A2F400883FE2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 265CB93B2320A2F400883FE2 /* ViewController.m */; };
 		265CB93F2320A2F400883FE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 265CB93D2320A2F400883FE2 /* Main.storyboard */; };
-		265CB9412320A2F500883FE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 265CB9402320A2F500883FE2 /* Assets.xcassets */; };
 		265CB9442320A2F500883FE2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 265CB9422320A2F500883FE2 /* LaunchScreen.storyboard */; };
 		265CB9472320A2F500883FE2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 265CB9462320A2F500883FE2 /* main.m */; };
 		265CB95F2320A96100883FE2 /* MYConstansManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 265CB95E2320A96100883FE2 /* MYConstansManager.m */; };
@@ -76,13 +78,17 @@
 		2613780D2322448300228261 /* LDSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDSearchViewController.m; sourceTree = "<group>"; };
 		2613780F23225DA300228261 /* LDSearchHistoryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDSearchHistoryView.h; sourceTree = "<group>"; };
 		2613781023225DA300228261 /* LDSearchHistoryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDSearchHistoryView.m; sourceTree = "<group>"; };
+		2640F068232771760015F7A6 /* LDTagView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDTagView.h; sourceTree = "<group>"; };
+		2640F069232771760015F7A6 /* LDTagView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDTagView.m; sourceTree = "<group>"; };
+		2640F105232793950015F7A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2640F1072327AB2D0015F7A6 /* LDVoiceCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDVoiceCell.h; sourceTree = "<group>"; };
+		2640F1082327AB2D0015F7A6 /* LDVoiceCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDVoiceCell.m; sourceTree = "<group>"; };
 		265CB9342320A2F400883FE2 /* LeDaoCollege.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeDaoCollege.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		265CB9372320A2F400883FE2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		265CB9382320A2F400883FE2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		265CB93A2320A2F400883FE2 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		265CB93B2320A2F400883FE2 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		265CB93E2320A2F400883FE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		265CB9402320A2F500883FE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		265CB9432320A2F500883FE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		265CB9452320A2F500883FE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		265CB9462320A2F500883FE2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -253,10 +259,10 @@
 				265CB93A2320A2F400883FE2 /* ViewController.h */,
 				265CB93B2320A2F400883FE2 /* ViewController.m */,
 				265CB93D2320A2F400883FE2 /* Main.storyboard */,
-				265CB9402320A2F500883FE2 /* Assets.xcassets */,
 				265CB9422320A2F500883FE2 /* LaunchScreen.storyboard */,
 				265CB9452320A2F500883FE2 /* Info.plist */,
 				265CB9462320A2F500883FE2 /* main.m */,
+				2640F105232793950015F7A6 /* Assets.xcassets */,
 			);
 			path = LeDaoCollege;
 			sourceTree = "<group>";
@@ -399,6 +405,10 @@
 				26C2D0102320E61900906324 /* LDNewsTableViewCell.m */,
 				2613780F23225DA300228261 /* LDSearchHistoryView.h */,
 				2613781023225DA300228261 /* LDSearchHistoryView.m */,
+				2640F068232771760015F7A6 /* LDTagView.h */,
+				2640F069232771760015F7A6 /* LDTagView.m */,
+				2640F1072327AB2D0015F7A6 /* LDVoiceCell.h */,
+				2640F1082327AB2D0015F7A6 /* LDVoiceCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -615,7 +625,7 @@
 			files = (
 				26CBF8722323BC6E005139EF /* unicode_to_hanyu_pinyin.txt in Resources */,
 				265CB9442320A2F500883FE2 /* LaunchScreen.storyboard in Resources */,
-				265CB9412320A2F500883FE2 /* Assets.xcassets in Resources */,
+				2640F106232793950015F7A6 /* Assets.xcassets in Resources */,
 				265CB93F2320A2F400883FE2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -700,9 +710,11 @@
 			files = (
 				26CBF8732323BC6E005139EF /* PinyinHelper.m in Sources */,
 				26CBF8782323BC6E005139EF /* PinyinFormatter.m in Sources */,
+				2640F1092327AB2D0015F7A6 /* LDVoiceCell.m in Sources */,
 				26C2D0112320E61900906324 /* LDNewsTableViewCell.m in Sources */,
 				265CB98F2320AB3000883FE2 /* MBProgressHUD+PX.m in Sources */,
 				26CBF87C2323BCC7005139EF /* LDCustomerManagerViewController.m in Sources */,
+				2640F06A232771760015F7A6 /* LDTagView.m in Sources */,
 				26CBF8742323BC6E005139EF /* ChineseInclude.m in Sources */,
 				26CBF87F2323D2F4005139EF /* LDCustomerDetailViewController.m in Sources */,
 				265CB99C2320B2DF00883FE2 /* LDStoreViewController.m in Sources */,

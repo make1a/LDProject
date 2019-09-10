@@ -1,31 +1,31 @@
 //
-//  LDNewsTableViewCell.m
+//  LDVoiceCell.m
 //  LeDaoCollege
 //
-//  Created by Make on 2019/9/5.
+//  Created by Make on 2019/9/10.
 //  Copyright © 2019 Make. All rights reserved.
 //
 
-#import "LDNewsTableViewCell.h"
+#import "LDVoiceCell.h"
 
-NSString *const kLDNewsTableViewCellIdentifier = @"kLDNewsTableViewCellIdentifier";
+NSString *const kLDVoiceCellIdentifier = @"kLDVoiceCellIdentifier";
 
-@implementation LDNewsTableViewCell
 
-#pragma  mark - Init
+@implementation LDVoiceCell
+
 + (instancetype)dequeueReusableWithTableView:(UITableView *)tableView
 {
-    LDNewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kLDNewsTableViewCellIdentifier];
+    LDVoiceCell *cell = [tableView dequeueReusableCellWithIdentifier:kLDVoiceCellIdentifier];
     if (cell == nil)
     {
-        cell = [[LDNewsTableViewCell alloc]init];
+        cell = [[LDVoiceCell alloc]init];
     }
     return cell;
 }
 
 - (instancetype)init
 {
-    self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kLDNewsTableViewCellIdentifier];
+    self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kLDVoiceCellIdentifier];
     if (self)
     {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -42,6 +42,7 @@ NSString *const kLDNewsTableViewCellIdentifier = @"kLDNewsTableViewCellIdentifie
     [self addSubview:self.bigImageVIew];
     [self addSubview:self.titleLabel];
     [self addSubview:self.timeLabel];
+    [self addSubview:self.playImageView];
     
     [self.bigImageVIew mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self);
@@ -60,6 +61,11 @@ NSString *const kLDNewsTableViewCellIdentifier = @"kLDNewsTableViewCellIdentifie
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(self.bigImageVIew);
         make.left.right.mas_equalTo(self.titleLabel);
+    }];
+    [self.playImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.bigImageVIew.mas_right).mas_offset(-10);
+        make.bottom.mas_equalTo(self.bigImageVIew.mas_bottom).mas_offset(-10);
+
     }];
 }
 
@@ -91,5 +97,12 @@ NSString *const kLDNewsTableViewCellIdentifier = @"kLDNewsTableViewCellIdentifie
         _timeLabel.font = [UIFont systemFontOfSize:PtHeight(12)];
     }
     return _timeLabel;
+}
+- (UIImageView *)playImageView {
+    if (!_playImageView) {
+        _playImageView = [[UIImageView alloc]init];
+        _playImageView.image = [UIImage imageNamed:@"play"];
+    }
+    return _playImageView;
 }
 @end
