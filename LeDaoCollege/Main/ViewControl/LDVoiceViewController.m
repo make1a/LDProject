@@ -20,7 +20,9 @@
     [self.view addSubview:self.tagView];
 }
 #pragma mark - event response
-
+- (void)didSelectTagAction{
+    
+}
 
 #pragma mark - private method
 #pragma mark - get and set
