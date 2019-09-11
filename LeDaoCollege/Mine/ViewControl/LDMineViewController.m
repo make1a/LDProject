@@ -11,7 +11,7 @@
 #import "LDCustomerManagerViewController.h"
 #import "LDConfigTableViewController.h"
 #import "LDCollectViewController.h"
-
+#import "LDOrderViewController.h"
 @interface LDMineViewController () <UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong)UITableView * tableView;
 @property (nonatomic,strong)NSArray * titlesArray;
@@ -58,6 +58,12 @@
         case 1:
         {
             LDCollectViewController *vc = [LDCollectViewController new];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 2:
+        {
+            LDOrderViewController *vc = [LDOrderViewController new];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;

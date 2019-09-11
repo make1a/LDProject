@@ -13,4 +13,7 @@
 @property(nonatomic, strong) QMUIFloatLayoutView *advertisingView;
 
 @property (nonatomic,strong) NSArray * titles;
+
+@property (nonatomic,copy)void (^didSelectButtonBlock)(NSInteger index);
+
 @end

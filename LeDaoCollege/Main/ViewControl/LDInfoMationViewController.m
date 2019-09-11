@@ -33,7 +33,7 @@
     return cell;
 }
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return PtHeight(95);
+    return PtHeight(80);
 }
 #pragma  mark - SDCyclesScrollview
 /** 点击图片回调 */
@@ -70,8 +70,9 @@
         CGRect frame = CGRectMake(PtWidth(20), 0, PtWidth(335), PtHeight(120));
         _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:frame delegate:self placeholderImage:placeholderImage];
         _cycleScrollView.imageURLStringsGroup = self.netImages;
-        _cycleScrollView.backgroundColor = [UIColor redColor];
         _cycleScrollView.showPageControl = YES;
+        _cycleScrollView.layer.masksToBounds = YES;
+        _cycleScrollView.layer.cornerRadius = 5;
     }
     return _cycleScrollView;
 }
@@ -94,6 +95,7 @@
         _tableView = [[UITableView alloc]init];
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        _tableView.backgroundColor = [UIColor clearColor];
         _tableView.showsHorizontalScrollIndicator = NO;
         _tableView.showsVerticalScrollIndicator = NO;
     }

@@ -26,7 +26,11 @@
     self.advertisingView.frame = CGRectMake(padding.left, padding.top, CGRectGetWidth(self.bounds) - UIEdgeInsetsGetHorizontalValue(padding), QMUIViewSelfSizingHeight);
 }
 #pragma  mark - Public
-
+- (void)clickButtonAction:(UIButton *)sender{
+    if (self.didSelectButtonBlock) {
+        self.didSelectButtonBlock(sender.tag-100);
+    }
+}
 #pragma mark - get and set
 - (void)setTitles:(NSArray *)titles {
     _titles = titles;
@@ -38,6 +42,8 @@
         [button setTitle:titles[i] forState:UIControlStateNormal];
         button.titleLabel.font = UIFontMake(14);
         button.contentEdgeInsets = UIEdgeInsetsMake(6, 20, 6, 20);
+        button.tag = 100+i;
+        [button addTarget:self action:@selector(clickButtonAction:) forControlEvents:UIControlEventTouchUpInside];
         [self.advertisingView addSubview:button];
     }
 }

@@ -29,7 +29,7 @@ NSString *const kLDNewsTableViewCellIdentifier = @"kLDNewsTableViewCellIdentifie
     if (self)
     {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        self.contentView.backgroundColor = [UIColor clearColor];
+        self.contentView.backgroundColor = [UIColor whiteColor];
         [self masLayoutSubview];
     }
     return self;
@@ -46,12 +46,12 @@ NSString *const kLDNewsTableViewCellIdentifier = @"kLDNewsTableViewCellIdentifie
     [self.bigImageVIew mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self);
         make.top.mas_equalTo(self).mas_offset(5);
-        make.width.mas_equalTo(PtWidth(150));
-        make.height.mas_equalTo(PtHeight(85));
+        make.width.mas_equalTo(PtWidth(113));
+        make.height.mas_equalTo(PtHeight(64));
     }];
     
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.bigImageVIew.mas_right).mas_offset(PtWidth(15));
+        make.left.mas_equalTo(self.bigImageVIew.mas_right).mas_offset(PtWidth(17));
         make.top.equalTo(self.bigImageVIew);
         make.right.mas_equalTo(self).mas_offset(PtWidth(-31));
         make.height.mas_equalTo(PtHeight(42));
@@ -69,7 +69,7 @@ NSString *const kLDNewsTableViewCellIdentifier = @"kLDNewsTableViewCellIdentifie
     if (!_bigImageVIew) {
         _bigImageVIew = [[UIImageView alloc]init];
         _bigImageVIew.layer.masksToBounds = YES;
-        _bigImageVIew.layer.cornerRadius = 5.f;
+        _bigImageVIew.layer.cornerRadius = 8.f;
         _bigImageVIew.image = [UIImage imageNamed:@"blank_common"];
     }
     return _bigImageVIew;

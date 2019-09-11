@@ -66,6 +66,10 @@
 		26CBF88E23252566005139EF /* LDLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CBF88D23252566005139EF /* LDLoginViewController.m */; };
 		26CBF8912325275C005139EF /* LoginEnableButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CBF88F2325275C005139EF /* LoginEnableButton.m */; };
 		26CBF89423252A98005139EF /* JKCountDownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CBF89323252A97005139EF /* JKCountDownButton.m */; };
+		26EC9E462328960300364943 /* LDOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26EC9E452328960300364943 /* LDOrderViewController.m */; };
+		26EC9E492328970200364943 /* LDUnfinishOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26EC9E482328970200364943 /* LDUnfinishOrderViewController.m */; };
+		26EC9E4C2328970F00364943 /* LDFinishOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26EC9E4B2328970F00364943 /* LDFinishOrderViewController.m */; };
+		26EC9E4F23289C5900364943 /* LDTimerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26EC9E4E23289C5900364943 /* LDTimerCell.m */; };
 		26F558142325F6A8006D826D /* HNAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F558132325F6A8006D826D /* HNAlertView.m */; };
 		26F558172325F7B4006D826D /* HNTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F558152325F7B4006D826D /* HNTools.m */; };
 		26F5581A2325F953006D826D /* UIView+HNExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F558182325F953006D826D /* UIView+HNExtension.m */; };
@@ -197,6 +201,14 @@
 		26CBF8902325275C005139EF /* LoginEnableButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginEnableButton.h; sourceTree = "<group>"; };
 		26CBF89223252A97005139EF /* JKCountDownButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKCountDownButton.h; sourceTree = "<group>"; };
 		26CBF89323252A97005139EF /* JKCountDownButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKCountDownButton.m; sourceTree = "<group>"; };
+		26EC9E442328960300364943 /* LDOrderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDOrderViewController.h; sourceTree = "<group>"; };
+		26EC9E452328960300364943 /* LDOrderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDOrderViewController.m; sourceTree = "<group>"; };
+		26EC9E472328970200364943 /* LDUnfinishOrderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDUnfinishOrderViewController.h; sourceTree = "<group>"; };
+		26EC9E482328970200364943 /* LDUnfinishOrderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDUnfinishOrderViewController.m; sourceTree = "<group>"; };
+		26EC9E4A2328970F00364943 /* LDFinishOrderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDFinishOrderViewController.h; sourceTree = "<group>"; };
+		26EC9E4B2328970F00364943 /* LDFinishOrderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDFinishOrderViewController.m; sourceTree = "<group>"; };
+		26EC9E4D23289C5900364943 /* LDTimerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDTimerCell.h; sourceTree = "<group>"; };
+		26EC9E4E23289C5900364943 /* LDTimerCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDTimerCell.m; sourceTree = "<group>"; };
 		26F558122325F6A8006D826D /* HNAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAlertView.h; sourceTree = "<group>"; };
 		26F558132325F6A8006D826D /* HNAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAlertView.m; sourceTree = "<group>"; };
 		26F558152325F7B4006D826D /* HNTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNTools.m; sourceTree = "<group>"; };
@@ -302,6 +314,12 @@
 				26BA0654232735E200992FFD /* LDAlterNameViewController.m */,
 				2658F0E02327D02300F4C37A /* LDCollectViewController.h */,
 				2658F0E12327D02300F4C37A /* LDCollectViewController.m */,
+				26EC9E442328960300364943 /* LDOrderViewController.h */,
+				26EC9E452328960300364943 /* LDOrderViewController.m */,
+				26EC9E472328970200364943 /* LDUnfinishOrderViewController.h */,
+				26EC9E482328970200364943 /* LDUnfinishOrderViewController.m */,
+				26EC9E4A2328970F00364943 /* LDFinishOrderViewController.h */,
+				26EC9E4B2328970F00364943 /* LDFinishOrderViewController.m */,
 			);
 			path = ViewControl;
 			sourceTree = "<group>";
@@ -330,6 +348,8 @@
 				268EEDFB2325F2670014F971 /* LDHeadImageCell.m */,
 				26F5581B23263E48006D826D /* LDNameCell.h */,
 				26F5581C23263E48006D826D /* LDNameCell.m */,
+				26EC9E4D23289C5900364943 /* LDTimerCell.h */,
+				26EC9E4E23289C5900364943 /* LDTimerCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -716,11 +736,14 @@
 				26CBF8732323BC6E005139EF /* PinyinHelper.m in Sources */,
 				26CBF8782323BC6E005139EF /* PinyinFormatter.m in Sources */,
 				2640F1092327AB2D0015F7A6 /* LDVoiceCell.m in Sources */,
+				26EC9E492328970200364943 /* LDUnfinishOrderViewController.m in Sources */,
 				26C2D0112320E61900906324 /* LDNewsTableViewCell.m in Sources */,
 				265CB98F2320AB3000883FE2 /* MBProgressHUD+PX.m in Sources */,
+				26EC9E462328960300364943 /* LDOrderViewController.m in Sources */,
 				26CBF87C2323BCC7005139EF /* LDCustomerManagerViewController.m in Sources */,
 				2640F06A232771760015F7A6 /* LDTagView.m in Sources */,
 				26CBF8742323BC6E005139EF /* ChineseInclude.m in Sources */,
+				26EC9E4C2328970F00364943 /* LDFinishOrderViewController.m in Sources */,
 				26CBF87F2323D2F4005139EF /* LDCustomerDetailViewController.m in Sources */,
 				265CB99C2320B2DF00883FE2 /* LDStoreViewController.m in Sources */,
 				265CB9832320AAA600883FE2 /* MASViewConstraint.m in Sources */,
@@ -752,6 +775,7 @@
 				26CBF8702323BC6E005139EF /* UIAlertController+HCAdd.m in Sources */,
 				26F558142325F6A8006D826D /* HNAlertView.m in Sources */,
 				2613780E2322448300228261 /* LDSearchViewController.m in Sources */,
+				26EC9E4F23289C5900364943 /* LDTimerCell.m in Sources */,
 				26F5581D23263E48006D826D /* LDNameCell.m in Sources */,
 				265BE25E232684EA0093E60A /* LDAlterNameViewController.m in Sources */,
 				26BA0655232735E200992FFD /* LDAlterNameViewController.m in Sources */,
