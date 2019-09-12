@@ -13,11 +13,14 @@ extern NSString *const kLDTimerCellIdentifier;
 @property (nonatomic,strong)QMUILabel * tagLabel;
 @property (nonatomic,strong)QMUILabel * safePriceLabel;
 @property (nonatomic,strong)QMUILabel * priceLabel;
+@property (nonatomic,strong)QMUILabel * timeLabel;
 /**
  本单创建时间戳
  */
 @property (nonatomic,assign)NSTimeInterval timeInterval;
 
+
+@property (nonatomic,copy)void (^timeOverBlock)(void);
 
 + (instancetype)dequeueReusableWithTableView:(UITableView *)tableView;
 

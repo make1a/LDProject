@@ -18,14 +18,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor redColor];
-    
+    [self configUI];
     //监听程序进入前台
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(applicationDidBecomeActive:)
                                                  name:UIApplicationDidBecomeActiveNotification
                                                object:nil];
 }
+- (void)configUI {
+    self.tableView.separatorInset = UIEdgeInsetsMake(0,0, 0, 0);
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    self.view.backgroundColor = [UIColor whiteColor];
+}
+
 #pragma mark - event response
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 10;
@@ -33,6 +38,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     LDTimerCell *cell = [LDTimerCell dequeueReusableWithTableView:tableView];
     cell.timeInterval = [NSDate date].timeIntervalSince1970 - 10*60;
+    cell.timeOverBlock = ^{ //时间到
+        
+    };
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

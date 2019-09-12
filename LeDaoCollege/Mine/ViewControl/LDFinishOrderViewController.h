@@ -8,6 +8,6 @@
 
 #import "QMUICommonViewController.h"
 
-@interface LDFinishOrderViewController : QMUICommonViewController
+@interface LDFinishOrderViewController : QMUICommonTableViewController
 
 @end

@@ -1,51 +1,39 @@
 //
-//  LDTimerCell.m
-//  LeDaoCollege
+//  LDFinishOrderCell.m
+//  
 //
-//  Created by Make on 2019/9/11.
-//  Copyright © 2019 Make. All rights reserved.
+//  Created by Make on 2019/9/12.
 //
 
-#import "LDTimerCell.h"
+#import "LDFinishOrderCell.h"
 
-NSString *const kLDTimerCellIdentifier = @"kLDTimerCellIdentifier";
-@interface LDTimerCell ()
-{
-    NSTimer   *_timer;
-    NSTimeInterval _second;
-}
-@end
+NSString *const kLDFinishOrderCellIdentifier = @"kLDFinishOrderCellIdentifier";
 
-@implementation LDTimerCell
+
+@implementation LDFinishOrderCell
 
 + (instancetype)dequeueReusableWithTableView:(UITableView *)tableView
 {
-    LDTimerCell *cell = [tableView dequeueReusableCellWithIdentifier:kLDTimerCellIdentifier];
+    LDFinishOrderCell *cell = [tableView dequeueReusableCellWithIdentifier:kLDFinishOrderCellIdentifier];
     if (cell == nil)
     {
-        cell = [[LDTimerCell alloc]init];
+        cell = [[LDFinishOrderCell alloc]init];
     }
     return cell;
 }
 
-- (instancetype)init{
-    self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kLDTimerCellIdentifier];
+- (instancetype)init
+{
+    self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kLDFinishOrderCellIdentifier];
     if (self)
     {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.contentView.backgroundColor = [UIColor clearColor];
-        [self configTimer];
         [self masLayoutSubview];
         self.imageView.image = [UIImage imageNamed:@"dog"];
         self.textLabel.text = @"makemake";
     }
     return self;
-}
-
-- (void)configTimer {
-    _timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerRun:) userInfo:nil repeats:YES];
-    //将定时器加入NSRunLoop，保证滑动表时，UI依然刷新
-    [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
 }
 
 - (void)masLayoutSubview
@@ -88,63 +76,6 @@ NSString *const kLDTimerCellIdentifier = @"kLDTimerCellIdentifier";
     }];
 }
 
-
-- (void)timerRun:(NSTimer *)timer {
-    if (_second > 0) {
-    self.timeLabel.text = [self timeToString];
-    }
-    else {
-        self.timeLabel.hidden = YES;
-        
-        if (_timer) {
-            [_timer invalidate];
-            _timer = nil;
-        }
-        //时间到
-        if (self.timeOverBlock) {
-            self.timeOverBlock();
-        }
-    }
-}
-
-//保证定时器被销毁
-- (void)removeFromSuperview {
-    if (_timer) {
-        [_timer invalidate];
-        _timer = nil;
-    }
-    [super removeFromSuperview];
-}
-
--(NSString *)timeToString{
-    //现在的时间
-    NSTimeInterval now = [NSDate date].timeIntervalSince1970;
-    NSTimeInterval sec = now - self.timeInterval;
-    NSTimeInterval vaildTime = 60 * 30;  //30分钟
-    _second = vaildTime - sec;
-    return  [self ll_timeWithSecond:_second];
-}
-
-//将秒数转换为字符串格式
-- (NSString *)ll_timeWithSecond:(NSInteger)second {
-    NSString *time;
-    if (second < 60) {
-        time = [NSString stringWithFormat:@"00:00:%02ld",(long)second];
-    }
-    else {
-        if (second < 3600) {
-            time = [NSString stringWithFormat:@"00:%02ld:%02ld",second/60,second%60];
-        }
-        else {
-            time = [NSString stringWithFormat:@"%02ld:%02ld:%02ld",second/3600,(second-second/3600*3600)/60,second%60];
-        }
-    }
-    return time;
-}
-
-- (void)dealloc {
-    NSLog(@"cell释放");
-}
 #pragma  mark - GET SET
 - (QMUILabel *)tagLabel {
     if (!_tagLabel) {

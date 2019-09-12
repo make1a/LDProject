@@ -22,7 +22,6 @@ NSString *const kLDNormalTableViewCell = @"LDNormalTableViewCell";
     return cell;
 }
 
-
 - (instancetype)init
 {
     self = [super initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:kLDNormalTableViewCell];

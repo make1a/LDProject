@@ -12,6 +12,7 @@
 #import "LDConfigTableViewController.h"
 #import "LDCollectViewController.h"
 #import "LDOrderViewController.h"
+#import "LDReadPDFViewController.h"
 @interface LDMineViewController () <UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong)UITableView * tableView;
 @property (nonatomic,strong)NSArray * titlesArray;
@@ -39,8 +40,9 @@
     return self.titlesArray.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     LDNormalTableViewCell *cell = [LDNormalTableViewCell dequeueReusableWithTableView:tableView];
+    cell.imageView.image = [UIImage imageNamed:@"订单"];
     cell.textLabel.text = self.titlesArray[indexPath.row];
     return cell;
 }
@@ -65,6 +67,14 @@
         {
             LDOrderViewController *vc = [LDOrderViewController new];
             [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 3:
+        {
+            LDReadPDFViewController *vc = [LDReadPDFViewController new];
+            vc.fileName = @"Reader.pdf";
+            [self.navigationController pushViewController:vc animated:YES];
+//            [self presentViewController:vc animated:YES completion:nil];
         }
             break;
         case 7 :{
