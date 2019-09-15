@@ -28,6 +28,11 @@
 
 #define _weakself __weak typeof(self) weakself = self
 
+//PDF管理文件的归档路径
+#define SavePDFDocumenToPlisttPath(name)     [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject]stringByAppendingString:[NSString stringWithFormat:@"/%@.plist",name]]
+//PDF Data 归档路径
+#define SavePDFDataPath(name)     [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject]stringByAppendingString:[NSString stringWithFormat:@"/%@.data",name]]
+
 // 颜色
 #define UIColorFromHEXA(hex,a) [UIColor colorWithRed:((hex & 0xFF0000) >> 16) / 255.0f green:((hex & 0xFF00) >> 8) / 255.0f blue:(hex & 0xFF) / 255.0f alpha:a]
 

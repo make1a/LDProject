@@ -9,22 +9,21 @@
 /* Begin PBXBuildFile section */
 		2613780E2322448300228261 /* LDSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2613780D2322448300228261 /* LDSearchViewController.m */; };
 		2613781123225DA300228261 /* LDSearchHistoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2613781023225DA300228261 /* LDSearchHistoryView.m */; };
-		262E49EF2329F2AF000A6B0B /* LDFinishOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 262E49ED2329F2AF000A6B0B /* LDFinishOrderCell.m */; };
-		262E4A00232A30C1000A6B0B /* BackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 262E49F1232A30C1000A6B0B /* BackViewController.m */; };
-		262E4A01232A30C1000A6B0B /* CGContextDrawPDFPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 262E49F2232A30C1000A6B0B /* CGContextDrawPDFPageController.m */; };
-		262E4A02232A30C1000A6B0B /* 001.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 262E49F3232A30C1000A6B0B /* 001.pdf */; };
 		262E4A03232A30C1000A6B0B /* 003.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 262E49F4232A30C1000A6B0B /* 003.pdf */; };
-		262E4A04232A30C1000A6B0B /* 002.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 262E49F6232A30C1000A6B0B /* 002.pdf */; };
-		262E4A05232A30C1000A6B0B /* CGContextDrawPDFListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 262E49F7232A30C1000A6B0B /* CGContextDrawPDFListViewController.m */; };
-		262E4A06232A30C1000A6B0B /* CGContextDrawPDFReaderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 262E49F8232A30C1000A6B0B /* CGContextDrawPDFReaderController.m */; };
-		262E4A07232A30C1000A6B0B /* CGContextDrawPDFPageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 262E49F9232A30C1000A6B0B /* CGContextDrawPDFPageModel.m */; };
-		262E4A08232A30C1000A6B0B /* CGContextDrawPDFView.m in Sources */ = {isa = PBXBuildFile; fileRef = 262E49FA232A30C1000A6B0B /* CGContextDrawPDFView.m */; };
 		262E4A0B232A3387000A6B0B /* LDReadPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 262E4A0A232A3387000A6B0B /* LDReadPDFViewController.m */; };
 		262E4A0D232A3681000A6B0B /* Reader.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 262E4A0C232A3680000A6B0B /* Reader.pdf */; };
 		2640F06A232771760015F7A6 /* LDTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2640F069232771760015F7A6 /* LDTagView.m */; };
 		2640F106232793950015F7A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2640F105232793950015F7A6 /* Assets.xcassets */; };
 		2640F1092327AB2D0015F7A6 /* LDVoiceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2640F1082327AB2D0015F7A6 /* LDVoiceCell.m */; };
 		2658F0E22327D02300F4C37A /* LDCollectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2658F0E12327D02300F4C37A /* LDCollectViewController.m */; };
+		2658F0E5232A918E00F4C37A /* LDFinishOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2658F0E3232A918D00F4C37A /* LDFinishOrderCell.m */; };
+		2658F0E8232A99DA00F4C37A /* LDCustomNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2658F0E7232A99DA00F4C37A /* LDCustomNavBar.m */; };
+		2658F0EB232A9D8F00F4C37A /* LDReadProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2658F0EA232A9D8F00F4C37A /* LDReadProgressView.m */; };
+		2658F0F1232BF3DD00F4C37A /* MKReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2658F0F0232BF3DD00F4C37A /* MKReaderViewController.m */; };
+		2658F0F4232BF5EA00F4C37A /* MKPdfViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2658F0F3232BF5EA00F4C37A /* MKPdfViewController.m */; };
+		2658F0F7232BF8F100F4C37A /* MKPdfDocumentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2658F0F6232BF8F100F4C37A /* MKPdfDocumentManager.m */; };
+		2658F0FA232C8F8700F4C37A /* MKDrawPDFView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2658F0F9232C8F8700F4C37A /* MKDrawPDFView.m */; };
+		2658F0FD232CAEBF00F4C37A /* MKIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2658F0FC232CAEBF00F4C37A /* MKIndexView.m */; };
 		265BE25E232684EA0093E60A /* LDAlterNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 265BE25D232684EA0093E60A /* LDAlterNameViewController.m */; };
 		265CB9392320A2F400883FE2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 265CB9382320A2F400883FE2 /* AppDelegate.m */; };
 		265CB93C2320A2F400883FE2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 265CB93B2320A2F400883FE2 /* ViewController.m */; };
@@ -95,23 +94,7 @@
 		2613780D2322448300228261 /* LDSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDSearchViewController.m; sourceTree = "<group>"; };
 		2613780F23225DA300228261 /* LDSearchHistoryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDSearchHistoryView.h; sourceTree = "<group>"; };
 		2613781023225DA300228261 /* LDSearchHistoryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDSearchHistoryView.m; sourceTree = "<group>"; };
-		262E49ED2329F2AF000A6B0B /* LDFinishOrderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LDFinishOrderCell.m; path = /Users/make/Desktop/LeDaoCollege/LeDaoCollege/Mine/View/LDFinishOrderCell.m; sourceTree = "<absolute>"; };
-		262E49EE2329F2AF000A6B0B /* LDFinishOrderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LDFinishOrderCell.h; path = /Users/make/Desktop/LeDaoCollege/LeDaoCollege/Mine/View/LDFinishOrderCell.h; sourceTree = "<absolute>"; };
-		262E49F1232A30C1000A6B0B /* BackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackViewController.m; sourceTree = "<group>"; };
-		262E49F2232A30C1000A6B0B /* CGContextDrawPDFPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGContextDrawPDFPageController.m; sourceTree = "<group>"; };
-		262E49F3232A30C1000A6B0B /* 001.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 001.pdf; sourceTree = "<group>"; };
 		262E49F4232A30C1000A6B0B /* 003.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 003.pdf; sourceTree = "<group>"; };
-		262E49F5232A30C1000A6B0B /* CGContextDrawPDFView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGContextDrawPDFView.h; sourceTree = "<group>"; };
-		262E49F6232A30C1000A6B0B /* 002.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 002.pdf; sourceTree = "<group>"; };
-		262E49F7232A30C1000A6B0B /* CGContextDrawPDFListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGContextDrawPDFListViewController.m; sourceTree = "<group>"; };
-		262E49F8232A30C1000A6B0B /* CGContextDrawPDFReaderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGContextDrawPDFReaderController.m; sourceTree = "<group>"; };
-		262E49F9232A30C1000A6B0B /* CGContextDrawPDFPageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGContextDrawPDFPageModel.m; sourceTree = "<group>"; };
-		262E49FA232A30C1000A6B0B /* CGContextDrawPDFView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGContextDrawPDFView.m; sourceTree = "<group>"; };
-		262E49FB232A30C1000A6B0B /* CGContextDrawPDFPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGContextDrawPDFPageController.h; sourceTree = "<group>"; };
-		262E49FC232A30C1000A6B0B /* BackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackViewController.h; sourceTree = "<group>"; };
-		262E49FD232A30C1000A6B0B /* CGContextDrawPDFListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGContextDrawPDFListViewController.h; sourceTree = "<group>"; };
-		262E49FE232A30C1000A6B0B /* CGContextDrawPDFReaderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGContextDrawPDFReaderController.h; sourceTree = "<group>"; };
-		262E49FF232A30C1000A6B0B /* CGContextDrawPDFPageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGContextDrawPDFPageModel.h; sourceTree = "<group>"; };
 		262E4A09232A3387000A6B0B /* LDReadPDFViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDReadPDFViewController.h; sourceTree = "<group>"; };
 		262E4A0A232A3387000A6B0B /* LDReadPDFViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDReadPDFViewController.m; sourceTree = "<group>"; };
 		262E4A0C232A3680000A6B0B /* Reader.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Reader.pdf; sourceTree = "<group>"; };
@@ -122,6 +105,22 @@
 		2640F1082327AB2D0015F7A6 /* LDVoiceCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDVoiceCell.m; sourceTree = "<group>"; };
 		2658F0E02327D02300F4C37A /* LDCollectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDCollectViewController.h; sourceTree = "<group>"; };
 		2658F0E12327D02300F4C37A /* LDCollectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDCollectViewController.m; sourceTree = "<group>"; };
+		2658F0E3232A918D00F4C37A /* LDFinishOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LDFinishOrderCell.m; path = "../../../../../../Library/Containers/com.tencent.xinWeChat/Data/Library/Application Support/com.tencent.xinWeChat/2.0b4.0.9/8845a0a40558d2b64cad9ce1811e04d0/Message/MessageTemp/9e20f478899dc29eb19741386f9343c8/File/LeDaoCollege/LeDaoCollege/Mine/View/LDFinishOrderCell.m"; sourceTree = "<group>"; };
+		2658F0E4232A918D00F4C37A /* LDFinishOrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LDFinishOrderCell.h; path = "../../../../../../Library/Containers/com.tencent.xinWeChat/Data/Library/Application Support/com.tencent.xinWeChat/2.0b4.0.9/8845a0a40558d2b64cad9ce1811e04d0/Message/MessageTemp/9e20f478899dc29eb19741386f9343c8/File/LeDaoCollege/LeDaoCollege/Mine/View/LDFinishOrderCell.h"; sourceTree = "<group>"; };
+		2658F0E6232A99DA00F4C37A /* LDCustomNavBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDCustomNavBar.h; sourceTree = "<group>"; };
+		2658F0E7232A99DA00F4C37A /* LDCustomNavBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDCustomNavBar.m; sourceTree = "<group>"; };
+		2658F0E9232A9D8E00F4C37A /* LDReadProgressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDReadProgressView.h; sourceTree = "<group>"; };
+		2658F0EA232A9D8F00F4C37A /* LDReadProgressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDReadProgressView.m; sourceTree = "<group>"; };
+		2658F0EF232BF3DD00F4C37A /* MKReaderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKReaderViewController.h; sourceTree = "<group>"; };
+		2658F0F0232BF3DD00F4C37A /* MKReaderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKReaderViewController.m; sourceTree = "<group>"; };
+		2658F0F2232BF5EA00F4C37A /* MKPdfViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKPdfViewController.h; sourceTree = "<group>"; };
+		2658F0F3232BF5EA00F4C37A /* MKPdfViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKPdfViewController.m; sourceTree = "<group>"; };
+		2658F0F5232BF8F000F4C37A /* MKPdfDocumentManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKPdfDocumentManager.h; sourceTree = "<group>"; };
+		2658F0F6232BF8F100F4C37A /* MKPdfDocumentManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKPdfDocumentManager.m; sourceTree = "<group>"; };
+		2658F0F8232C8F8700F4C37A /* MKDrawPDFView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKDrawPDFView.h; sourceTree = "<group>"; };
+		2658F0F9232C8F8700F4C37A /* MKDrawPDFView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKDrawPDFView.m; sourceTree = "<group>"; };
+		2658F0FB232CAEBF00F4C37A /* MKIndexView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKIndexView.h; sourceTree = "<group>"; };
+		2658F0FC232CAEBF00F4C37A /* MKIndexView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKIndexView.m; sourceTree = "<group>"; };
 		265BE25C232684EA0093E60A /* LDAlterNameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDAlterNameViewController.h; sourceTree = "<group>"; };
 		265BE25D232684EA0093E60A /* LDAlterNameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDAlterNameViewController.m; sourceTree = "<group>"; };
 		265CB9342320A2F400883FE2 /* LeDaoCollege.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeDaoCollege.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -274,26 +273,21 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		262E49F0232A30C1000A6B0B /* CGContext DrawPDFPage */ = {
+		2658F0EE232BF37900F4C37A /* MKPdfReader */ = {
 			isa = PBXGroup;
 			children = (
-				262E49F3232A30C1000A6B0B /* 001.pdf */,
-				262E49F6232A30C1000A6B0B /* 002.pdf */,
-				262E49F4232A30C1000A6B0B /* 003.pdf */,
-				262E49FC232A30C1000A6B0B /* BackViewController.h */,
-				262E49F1232A30C1000A6B0B /* BackViewController.m */,
-				262E49FD232A30C1000A6B0B /* CGContextDrawPDFListViewController.h */,
-				262E49F7232A30C1000A6B0B /* CGContextDrawPDFListViewController.m */,
-				262E49FB232A30C1000A6B0B /* CGContextDrawPDFPageController.h */,
-				262E49F2232A30C1000A6B0B /* CGContextDrawPDFPageController.m */,
-				262E49FF232A30C1000A6B0B /* CGContextDrawPDFPageModel.h */,
-				262E49F9232A30C1000A6B0B /* CGContextDrawPDFPageModel.m */,
-				262E49FE232A30C1000A6B0B /* CGContextDrawPDFReaderController.h */,
-				262E49F8232A30C1000A6B0B /* CGContextDrawPDFReaderController.m */,
-				262E49F5232A30C1000A6B0B /* CGContextDrawPDFView.h */,
-				262E49FA232A30C1000A6B0B /* CGContextDrawPDFView.m */,
+				2658F0EF232BF3DD00F4C37A /* MKReaderViewController.h */,
+				2658F0F0232BF3DD00F4C37A /* MKReaderViewController.m */,
+				2658F0F2232BF5EA00F4C37A /* MKPdfViewController.h */,
+				2658F0F3232BF5EA00F4C37A /* MKPdfViewController.m */,
+				2658F0F5232BF8F000F4C37A /* MKPdfDocumentManager.h */,
+				2658F0F6232BF8F100F4C37A /* MKPdfDocumentManager.m */,
+				2658F0F8232C8F8700F4C37A /* MKDrawPDFView.h */,
+				2658F0F9232C8F8700F4C37A /* MKDrawPDFView.m */,
+				2658F0FB232CAEBF00F4C37A /* MKIndexView.h */,
+				2658F0FC232CAEBF00F4C37A /* MKIndexView.m */,
 			);
-			path = "CGContext DrawPDFPage";
+			path = MKPdfReader;
 			sourceTree = "<group>";
 		};
 		265CB92B2320A2F400883FE2 = {
@@ -406,8 +400,12 @@
 				26F5581C23263E48006D826D /* LDNameCell.m */,
 				26EC9E4D23289C5900364943 /* LDTimerCell.h */,
 				26EC9E4E23289C5900364943 /* LDTimerCell.m */,
-				262E49EE2329F2AF000A6B0B /* LDFinishOrderCell.h */,
-				262E49ED2329F2AF000A6B0B /* LDFinishOrderCell.m */,
+				2658F0E4232A918D00F4C37A /* LDFinishOrderCell.h */,
+				2658F0E3232A918D00F4C37A /* LDFinishOrderCell.m */,
+				2658F0E6232A99DA00F4C37A /* LDCustomNavBar.h */,
+				2658F0E7232A99DA00F4C37A /* LDCustomNavBar.m */,
+				2658F0E9232A9D8E00F4C37A /* LDReadProgressView.h */,
+				2658F0EA232A9D8F00F4C37A /* LDReadProgressView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -555,8 +553,9 @@
 		26CBF8572323BC64005139EF /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				2658F0EE232BF37900F4C37A /* MKPdfReader */,
+				262E49F4232A30C1000A6B0B /* 003.pdf */,
 				262E4A0C232A3680000A6B0B /* Reader.pdf */,
-				262E49F0232A30C1000A6B0B /* CGContext DrawPDFPage */,
 				26CBF8582323BC6E005139EF /* HCSortString */,
 				26CBF85D2323BC6E005139EF /* PinYinSearchLib */,
 			);
@@ -709,9 +708,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				262E4A03232A30C1000A6B0B /* 003.pdf in Resources */,
-				262E4A02232A30C1000A6B0B /* 001.pdf in Resources */,
 				26CBF8722323BC6E005139EF /* unicode_to_hanyu_pinyin.txt in Resources */,
-				262E4A04232A30C1000A6B0B /* 002.pdf in Resources */,
 				265CB9442320A2F500883FE2 /* LaunchScreen.storyboard in Resources */,
 				262E4A0D232A3681000A6B0B /* Reader.pdf in Resources */,
 				2640F106232793950015F7A6 /* Assets.xcassets in Resources */,
@@ -800,20 +797,17 @@
 				26CBF8732323BC6E005139EF /* PinyinHelper.m in Sources */,
 				26CBF8782323BC6E005139EF /* PinyinFormatter.m in Sources */,
 				2640F1092327AB2D0015F7A6 /* LDVoiceCell.m in Sources */,
-				262E4A06232A30C1000A6B0B /* CGContextDrawPDFReaderController.m in Sources */,
 				26EC9E492328970200364943 /* LDUnfinishOrderViewController.m in Sources */,
 				26C2D0112320E61900906324 /* LDNewsTableViewCell.m in Sources */,
 				265CB98F2320AB3000883FE2 /* MBProgressHUD+PX.m in Sources */,
-				262E4A01232A30C1000A6B0B /* CGContextDrawPDFPageController.m in Sources */,
 				26EC9E462328960300364943 /* LDOrderViewController.m in Sources */,
-				262E4A05232A30C1000A6B0B /* CGContextDrawPDFListViewController.m in Sources */,
 				26CBF87C2323BCC7005139EF /* LDCustomerManagerViewController.m in Sources */,
 				2640F06A232771760015F7A6 /* LDTagView.m in Sources */,
 				26CBF8742323BC6E005139EF /* ChineseInclude.m in Sources */,
 				26EC9E4C2328970F00364943 /* LDFinishOrderViewController.m in Sources */,
 				26CBF87F2323D2F4005139EF /* LDCustomerDetailViewController.m in Sources */,
-				262E4A07232A30C1000A6B0B /* CGContextDrawPDFPageModel.m in Sources */,
 				265CB99C2320B2DF00883FE2 /* LDStoreViewController.m in Sources */,
+				2658F0F7232BF8F100F4C37A /* MKPdfDocumentManager.m in Sources */,
 				265CB9832320AAA600883FE2 /* MASViewConstraint.m in Sources */,
 				26F558172325F7B4006D826D /* HNTools.m in Sources */,
 				265CB9842320AAA600883FE2 /* MASViewAttribute.m in Sources */,
@@ -822,16 +816,18 @@
 				26CBF8712323BC6E005139EF /* NSString+PinYin4Cocoa.m in Sources */,
 				26CBF8752323BC6E005139EF /* HanyuPinyinOutputFormat.m in Sources */,
 				268EEDFC2325F2670014F971 /* LDHeadImageCell.m in Sources */,
+				2658F0EB232A9D8F00F4C37A /* LDReadProgressView.m in Sources */,
 				26CBF88E23252566005139EF /* LDLoginViewController.m in Sources */,
 				26CBF8912325275C005139EF /* LoginEnableButton.m in Sources */,
 				265CB95F2320A96100883FE2 /* MYConstansManager.m in Sources */,
 				265CB93C2320A2F400883FE2 /* ViewController.m in Sources */,
 				265CB9802320AAA600883FE2 /* NSArray+MASAdditions.m in Sources */,
 				268EEDF92325F1640014F971 /* ClickPickerCell.m in Sources */,
-				262E49EF2329F2AF000A6B0B /* LDFinishOrderCell.m in Sources */,
 				265CB97C2320AAA600883FE2 /* ViewController+MASAdditions.m in Sources */,
 				26869C4723210879001DEDBA /* LDLiveViewController.m in Sources */,
+				2658F0FA232C8F8700F4C37A /* MKDrawPDFView.m in Sources */,
 				268A9BBF2320D82B00B4D756 /* LDNormalTableViewCell.m in Sources */,
+				2658F0E5232A918E00F4C37A /* LDFinishOrderCell.m in Sources */,
 				26F5581A2325F953006D826D /* UIView+HNExtension.m in Sources */,
 				2658F0E22327D02300F4C37A /* LDCollectViewController.m in Sources */,
 				268EEDF02325EDFC0014F971 /* LDConfigTableViewController.m in Sources */,
@@ -843,12 +839,13 @@
 				26CBF8762323BC6E005139EF /* ZYPinYinSearch.m in Sources */,
 				26CBF8702323BC6E005139EF /* UIAlertController+HCAdd.m in Sources */,
 				26F558142325F6A8006D826D /* HNAlertView.m in Sources */,
+				2658F0F4232BF5EA00F4C37A /* MKPdfViewController.m in Sources */,
 				262E4A0B232A3387000A6B0B /* LDReadPDFViewController.m in Sources */,
-				262E4A00232A30C1000A6B0B /* BackViewController.m in Sources */,
+				2658F0E8232A99DA00F4C37A /* LDCustomNavBar.m in Sources */,
 				2613780E2322448300228261 /* LDSearchViewController.m in Sources */,
 				26EC9E4F23289C5900364943 /* LDTimerCell.m in Sources */,
-				262E4A08232A30C1000A6B0B /* CGContextDrawPDFView.m in Sources */,
 				26F5581D23263E48006D826D /* LDNameCell.m in Sources */,
+				2658F0FD232CAEBF00F4C37A /* MKIndexView.m in Sources */,
 				265BE25E232684EA0093E60A /* LDAlterNameViewController.m in Sources */,
 				26BA0655232735E200992FFD /* LDAlterNameViewController.m in Sources */,
 				265CB9812320AAA600883FE2 /* View+MASAdditions.m in Sources */,
@@ -858,6 +855,7 @@
 				265CB9822320AAA600883FE2 /* MASConstraint.m in Sources */,
 				26869C3B23210672001DEDBA /* LDInfoMationViewController.m in Sources */,
 				26CBF86F2323BC6E005139EF /* HCSortString.m in Sources */,
+				2658F0F1232BF3DD00F4C37A /* MKReaderViewController.m in Sources */,
 				265CB97B2320AAA600883FE2 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				26869C41232106F6001DEDBA /* LDVideoViewController.m in Sources */,
 				26CBF8772323BC6E005139EF /* ChineseToPinyinResource.m in Sources */,

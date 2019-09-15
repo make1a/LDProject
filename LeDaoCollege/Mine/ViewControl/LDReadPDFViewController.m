@@ -7,50 +7,76 @@
 //
 
 #import "LDReadPDFViewController.h"
+#import "LDCustomNavBar.h"
+#import "LDReadProgressView.h"
+
+
 
 @interface LDReadPDFViewController ()
-
+@property (nonatomic,strong)LDCustomNavBar * navBar;
+@property (nonatomic,strong)LDReadProgressView * progressView;
 @end
 
 @implementation LDReadPDFViewController
 #pragma mark - life cycle
 
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        
-    }
-    return self;
-}
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    self.navigationController.navigationBarHidden = NO;
 }
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(showBar) name:@"kNotificationShowBar" object:nil];
-    [self viewDidLayoutSubviews];
+    [self configPDF];
+    [self masLayoutsubview];
+    [self changePageAction];
 }
-
 #pragma mark - event response
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    NSLog(@"touch");
+}
+- (void)pagingAction:(UISlider *)slider {
 
-
+}
 #pragma mark - private method
+- (void)changePageAction {
+
+}
 - (void)showBar{
-    [self.navigationController setNavigationBarHidden:!self.navigationController.navigationBarHidden animated:YES];
-//    self.navigationController.navigationBarHidden = !self.navigationController.navigationBarHidden;
+    [UIView animateWithDuration:0.1 animations:^{
+        self.navBar.hidden = !self.navBar.hidden;
+    }];
+}
+- (void)configPDF{
+
+    
+}
+- (void)masLayoutsubview{
+    [self.view addSubview:self.navBar];
+    [self.view addSubview:self.progressView];
 }
 #pragma mark - get and set
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
+- (LDCustomNavBar *)navBar {
+    if (!_navBar) {
+        _navBar = [[LDCustomNavBar alloc]init];
+        _navBar.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        _navBar.hidden = YES;
+    }
+    return _navBar;
 }
 
+- (LDReadProgressView *)progressView {
+    if (!_progressView) {
+        _progressView = [[LDReadProgressView alloc]init];
+        _progressView.slider.value = 0;
+        
+        _progressView.slider.continuous = NO;
+        [_progressView.slider addTarget:self action:@selector(pagingAction:) forControlEvents:UIControlEventValueChanged];
+    }
+    return _progressView;
+}
 @end

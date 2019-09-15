@@ -12,7 +12,9 @@
 #import "LDConfigTableViewController.h"
 #import "LDCollectViewController.h"
 #import "LDOrderViewController.h"
-#import "LDReadPDFViewController.h"
+#import "MKPdfViewController.h"
+#import "MKReaderViewController.h"
+
 @interface LDMineViewController () <UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong)UITableView * tableView;
 @property (nonatomic,strong)NSArray * titlesArray;
@@ -71,10 +73,16 @@
             break;
         case 3:
         {
-            LDReadPDFViewController *vc = [LDReadPDFViewController new];
-            vc.fileName = @"Reader.pdf";
-            [self.navigationController pushViewController:vc animated:YES];
-//            [self presentViewController:vc animated:YES completion:nil];
+            MKPdfDocumentManager *doc = [MKPdfDocumentManager getToLocalWith:@"Reader"];
+            if (!doc) {
+                NSString *path = [[NSBundle mainBundle]pathForResource:@"Reader" ofType:@"pdf"];
+                NSURL *url = [NSURL fileURLWithPath:path];
+                doc = [[MKPdfDocumentManager alloc]initWithUrl:url];
+                doc.name = @"Reader";
+            }
+            MKReaderViewController *vc = [[MKReaderViewController alloc]init];
+            vc.pdfInfo = doc;
+            [self presentViewController:vc animated:YES completion:nil];
         }
             break;
         case 7 :{
