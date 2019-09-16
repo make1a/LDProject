@@ -55,19 +55,19 @@
 - (NSArray *)tabBarItemsAttributesForController {
     NSDictionary *firstTabBarItemsAttributes = @{
                                                  CYLTabBarItemTitle : @"学院",
-                                                 CYLTabBarItemImage : @"ledao_tabbar_xueyuan_nor",
-                                                 CYLTabBarItemSelectedImage : @"ledao_tabbar_xueyuan_sele",
+                                                 CYLTabBarItemImage : @"nav_button_xueyuan_default",
+                                                 CYLTabBarItemSelectedImage : @"nav_button_xueyuan_pre",
                                                  };
     NSDictionary *secondTabBarItemsAttributes = @{
                                                   CYLTabBarItemTitle : @"商城",
-                                                  CYLTabBarItemImage : @"",
-                                                  CYLTabBarItemSelectedImage : @"",
+                                                  CYLTabBarItemImage : @"nav_button_shangcheng_default",
+                                                  CYLTabBarItemSelectedImage : @"nav_button_shangcheng_pre",
                                                   };
     
     NSDictionary *thirdTabBarItemsAttributes = @{
                                                   CYLTabBarItemTitle : @"我的",
-                                                  CYLTabBarItemImage : @"",
-                                                  CYLTabBarItemSelectedImage : @"",
+                                                  CYLTabBarItemImage : @"nav_button_mine_default",
+                                                  CYLTabBarItemSelectedImage : @"nav_button_mine_pre",
                                                   };
     
     NSArray *tabBarItemsAttributes = @[

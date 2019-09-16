@@ -14,7 +14,7 @@
 #import "LDOrderViewController.h"
 #import "MKPdfViewController.h"
 #import "MKReaderViewController.h"
-
+#import "LDShoppingCartViewController.h"
 @interface LDMineViewController () <UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong)UITableView * tableView;
 @property (nonatomic,strong)NSArray * titlesArray;
@@ -73,16 +73,18 @@
             break;
         case 3:
         {
-            MKPdfDocumentManager *doc = [MKPdfDocumentManager getToLocalWith:@"Reader"];
-            if (!doc) {
-                NSString *path = [[NSBundle mainBundle]pathForResource:@"Reader" ofType:@"pdf"];
-                NSURL *url = [NSURL fileURLWithPath:path];
-                doc = [[MKPdfDocumentManager alloc]initWithUrl:url];
-                doc.name = @"Reader";
-            }
-            MKReaderViewController *vc = [[MKReaderViewController alloc]init];
-            vc.pdfInfo = doc;
-            [self presentViewController:vc animated:YES completion:nil];
+            LDShoppingCartViewController *vc = [LDShoppingCartViewController new];
+            [self.navigationController pushViewController:vc animated:YES];
+//            MKPdfDocumentManager *doc = [MKPdfDocumentManager getToLocalWith:@"Reader"];
+//            if (!doc) {
+//                NSString *path = [[NSBundle mainBundle]pathForResource:@"Reader" ofType:@"pdf"];
+//                NSURL *url = [NSURL fileURLWithPath:path];
+//                doc = [[MKPdfDocumentManager alloc]initWithUrl:url];
+//                doc.name = @"Reader";
+//            }
+//            MKReaderViewController *vc = [[MKReaderViewController alloc]init];
+//            vc.pdfInfo = doc;
+//            [self presentViewController:vc animated:YES completion:nil];
         }
             break;
         case 7 :{

@@ -26,6 +26,7 @@
 #import <QMUIKit.h>
 #import "AppDelegate.h"
 #import "HNTools.h"
+#import "UIView+CornerRadius.h"
 #endif
 #endif /* PrefixHeader_pch */
 

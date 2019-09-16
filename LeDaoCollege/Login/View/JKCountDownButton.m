@@ -60,6 +60,7 @@
     [[NSRunLoop currentRunLoop]addTimer:_timer forMode:NSRunLoopCommonModes];
 }
 - (void)timerStart {
+    self.backgroundColor = UIColorFromHEXA(0xFFB4ECD0, 1.0);
      double deltaTime = [[NSDate date] timeIntervalSinceDate:_startDate];
     
      _second = _totalSecond - (NSInteger)(deltaTime+0.5) ;
@@ -91,6 +92,7 @@
 
 - (void)stopCountDown{
     if (_timer) {
+        self.backgroundColor = UIColorFromHEXA(0xFF07C062, 1);
         if ([_timer respondsToSelector:@selector(isValid)])
         {
             if ([_timer isValid])
