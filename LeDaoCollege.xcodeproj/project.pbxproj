@@ -16,7 +16,6 @@
 		2640F106232793950015F7A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2640F105232793950015F7A6 /* Assets.xcassets */; };
 		2640F1092327AB2D0015F7A6 /* LDVoiceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2640F1082327AB2D0015F7A6 /* LDVoiceCell.m */; };
 		2658F0E22327D02300F4C37A /* LDCollectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2658F0E12327D02300F4C37A /* LDCollectViewController.m */; };
-		2658F0E5232A918E00F4C37A /* LDFinishOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2658F0E3232A918D00F4C37A /* LDFinishOrderCell.m */; };
 		2658F0E8232A99DA00F4C37A /* LDCustomNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2658F0E7232A99DA00F4C37A /* LDCustomNavBar.m */; };
 		2658F0EB232A9D8F00F4C37A /* LDReadProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2658F0EA232A9D8F00F4C37A /* LDReadProgressView.m */; };
 		2658F0F1232BF3DD00F4C37A /* MKReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2658F0F0232BF3DD00F4C37A /* MKReaderViewController.m */; };
@@ -56,6 +55,7 @@
 		268EEDF82325F1640014F971 /* PickerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 268EEDF52325F1630014F971 /* PickerViewCell.m */; };
 		268EEDF92325F1640014F971 /* ClickPickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 268EEDF62325F1640014F971 /* ClickPickerCell.m */; };
 		268EEDFC2325F2670014F971 /* LDHeadImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 268EEDFB2325F2670014F971 /* LDHeadImageCell.m */; };
+		26B70226232F250C00156116 /* LDFinishOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B70225232F250C00156116 /* LDFinishOrderCell.m */; };
 		26BA0655232735E200992FFD /* LDAlterNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BA0654232735E200992FFD /* LDAlterNameViewController.m */; };
 		26C2D0112320E61900906324 /* LDNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26C2D0102320E61900906324 /* LDNewsTableViewCell.m */; };
 		26CBF86F2323BC6E005139EF /* HCSortString.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CBF85A2323BC6E005139EF /* HCSortString.m */; };
@@ -105,8 +105,6 @@
 		2640F1082327AB2D0015F7A6 /* LDVoiceCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDVoiceCell.m; sourceTree = "<group>"; };
 		2658F0E02327D02300F4C37A /* LDCollectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDCollectViewController.h; sourceTree = "<group>"; };
 		2658F0E12327D02300F4C37A /* LDCollectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDCollectViewController.m; sourceTree = "<group>"; };
-		2658F0E3232A918D00F4C37A /* LDFinishOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LDFinishOrderCell.m; path = "../../../../../../Library/Containers/com.tencent.xinWeChat/Data/Library/Application Support/com.tencent.xinWeChat/2.0b4.0.9/8845a0a40558d2b64cad9ce1811e04d0/Message/MessageTemp/9e20f478899dc29eb19741386f9343c8/File/LeDaoCollege/LeDaoCollege/Mine/View/LDFinishOrderCell.m"; sourceTree = "<group>"; };
-		2658F0E4232A918D00F4C37A /* LDFinishOrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LDFinishOrderCell.h; path = "../../../../../../Library/Containers/com.tencent.xinWeChat/Data/Library/Application Support/com.tencent.xinWeChat/2.0b4.0.9/8845a0a40558d2b64cad9ce1811e04d0/Message/MessageTemp/9e20f478899dc29eb19741386f9343c8/File/LeDaoCollege/LeDaoCollege/Mine/View/LDFinishOrderCell.h"; sourceTree = "<group>"; };
 		2658F0E6232A99DA00F4C37A /* LDCustomNavBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDCustomNavBar.h; sourceTree = "<group>"; };
 		2658F0E7232A99DA00F4C37A /* LDCustomNavBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDCustomNavBar.m; sourceTree = "<group>"; };
 		2658F0E9232A9D8E00F4C37A /* LDReadProgressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDReadProgressView.h; sourceTree = "<group>"; };
@@ -191,6 +189,8 @@
 		268EEDF62325F1640014F971 /* ClickPickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickPickerCell.m; sourceTree = "<group>"; };
 		268EEDFA2325F2670014F971 /* LDHeadImageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDHeadImageCell.h; sourceTree = "<group>"; };
 		268EEDFB2325F2670014F971 /* LDHeadImageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDHeadImageCell.m; sourceTree = "<group>"; };
+		26B70224232F250C00156116 /* LDFinishOrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDFinishOrderCell.h; sourceTree = "<group>"; };
+		26B70225232F250C00156116 /* LDFinishOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDFinishOrderCell.m; sourceTree = "<group>"; };
 		26BA0653232735E200992FFD /* LDAlterNameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDAlterNameViewController.h; sourceTree = "<group>"; };
 		26BA0654232735E200992FFD /* LDAlterNameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDAlterNameViewController.m; sourceTree = "<group>"; };
 		26C2D00F2320E61900906324 /* LDNewsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDNewsTableViewCell.h; sourceTree = "<group>"; };
@@ -400,8 +400,8 @@
 				26F5581C23263E48006D826D /* LDNameCell.m */,
 				26EC9E4D23289C5900364943 /* LDTimerCell.h */,
 				26EC9E4E23289C5900364943 /* LDTimerCell.m */,
-				2658F0E4232A918D00F4C37A /* LDFinishOrderCell.h */,
-				2658F0E3232A918D00F4C37A /* LDFinishOrderCell.m */,
+				26B70224232F250C00156116 /* LDFinishOrderCell.h */,
+				26B70225232F250C00156116 /* LDFinishOrderCell.m */,
 				2658F0E6232A99DA00F4C37A /* LDCustomNavBar.h */,
 				2658F0E7232A99DA00F4C37A /* LDCustomNavBar.m */,
 				2658F0E9232A9D8E00F4C37A /* LDReadProgressView.h */,
@@ -802,6 +802,7 @@
 				265CB98F2320AB3000883FE2 /* MBProgressHUD+PX.m in Sources */,
 				26EC9E462328960300364943 /* LDOrderViewController.m in Sources */,
 				26CBF87C2323BCC7005139EF /* LDCustomerManagerViewController.m in Sources */,
+				26B70226232F250C00156116 /* LDFinishOrderCell.m in Sources */,
 				2640F06A232771760015F7A6 /* LDTagView.m in Sources */,
 				26CBF8742323BC6E005139EF /* ChineseInclude.m in Sources */,
 				26EC9E4C2328970F00364943 /* LDFinishOrderViewController.m in Sources */,
@@ -827,7 +828,6 @@
 				26869C4723210879001DEDBA /* LDLiveViewController.m in Sources */,
 				2658F0FA232C8F8700F4C37A /* MKDrawPDFView.m in Sources */,
 				268A9BBF2320D82B00B4D756 /* LDNormalTableViewCell.m in Sources */,
-				2658F0E5232A918E00F4C37A /* LDFinishOrderCell.m in Sources */,
 				26F5581A2325F953006D826D /* UIView+HNExtension.m in Sources */,
 				2658F0E22327D02300F4C37A /* LDCollectViewController.m in Sources */,
 				268EEDF02325EDFC0014F971 /* LDConfigTableViewController.m in Sources */,
