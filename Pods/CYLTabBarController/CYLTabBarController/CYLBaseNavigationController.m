@@ -23,4 +23,7 @@
     [super pushViewController:viewController animated:animated];
 }
 
+- (UIViewController *)childViewControllerForStatusBarHidden {
+    return self.topViewController;
+}
 @end

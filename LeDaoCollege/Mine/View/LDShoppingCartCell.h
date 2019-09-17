@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "LDShoppingCartModel.h"
 extern NSString *const kLDShoppingCartCellIdentifier;
-@interface LDShoppingCartCell : UITableViewCell
+@interface LDShoppingCartCell : QMUITableViewCell
 
 @property (nonatomic,strong)UIImageView * selectImageView;
+@property (nonatomic,strong)UIImageView * bigImageView;
+@property (nonatomic,strong)UILabel * titleLabel;
 @property (nonatomic,strong)QMUILabel * tagLabel;
 @property (nonatomic,strong)QMUILabel * cheapPriceLabel;
 @property (nonatomic,strong)QMUILabel * priceLabel;

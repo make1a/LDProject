@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIView (CornerRadius)
 - (void)setCornerRadius:(CGFloat)height;
+- (void)addGradViewWithSize:(CGSize)size;
 @end
 
 NS_ASSUME_NONNULL_END

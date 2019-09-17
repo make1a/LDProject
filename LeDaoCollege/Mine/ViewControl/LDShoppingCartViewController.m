@@ -10,8 +10,13 @@
 #import "LDShoppingCartCell.h"
 #import "LDShoppingCartModel.h"
 #import "LDShoppingCartPaymentView.h"
-@interface LDShoppingCartViewController ()
+@interface LDShoppingCartViewController ()<QMUITableViewDelegate,QMUITableViewDataSource>
+{
+    BOOL isTableViewDeleteModel; //是否处于删除模式 - 对应UIBarButtonItem的管理按钮
+}
 @property (nonatomic,strong)NSMutableArray * dataSource;
+@property (nonatomic,strong)QMUITableView * tableView;
+@property (nonatomic,strong)LDShoppingCartPaymentView * payView;
 @end
 
 @implementation LDShoppingCartViewController
@@ -19,11 +24,36 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    isTableViewDeleteModel = NO;
     [self creatNavButton];
+    [self masLayoutSubviews];
 }
 #pragma mark - event response
 - (void)configTablViewAction:(UIBarButtonItem *)sender {
-    NSLog(@"%@",sender.title);
+    if ([sender.title isEqualToString:@"管理"]) {
+        [sender setTitle:@"取消"];
+        self.payView.payButton.selected = YES;
+        isTableViewDeleteModel = YES;
+        
+    }else {
+        self.payView.payButton.selected = NO;
+        [sender setTitle:@"管理"];
+        isTableViewDeleteModel = NO;
+    }
+}
+- (void)clickSelectedAllAction:(UIButton *)sender {
+    sender.selected = !sender.selected;
+    for (LDShoppingCartModel *model in self.dataSource) {
+        model.isSelected = sender.isSelected;
+    }
+    [self.tableView reloadData];
+}
+- (void)clickPayOrDeleteAction:(UIButton *)sender {
+    if (isTableViewDeleteModel == NO) {
+        // 付款
+    }else {
+        // 删除
+    }
 }
 #pragma  mark - TableView
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -47,19 +77,24 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return PtHeight(80);
 }
-- (CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return PtHeight(50);
-}
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    LDShoppingCartPaymentView *view = [LDShoppingCartPaymentView new];
-    view.selectedAllButton.backgroundColor = [UIColor grayColor];
-    return view;
-}
+
 #pragma mark - private method
 - (void)creatNavButton{
     UIBarButtonItem *item = [UIBarButtonItem qmui_itemWithTitle:@"管理" target:self action:@selector(configTablViewAction:)];
     item.tintColor = UIColorFromHEXA(0x666666, 1);
     self.navigationItem.rightBarButtonItem = item;
+}
+- (void)masLayoutSubviews {
+    [self.view addSubview:self.tableView];
+    [self.view addSubview:self.payView];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.right.mas_equalTo(self.view);
+        make.bottom.mas_equalTo(self.view).mas_offset(-kTABBAR_HEIGHT);
+    }];
+    [self.payView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.left.right.mas_equalTo(self.view);
+        make.top.mas_equalTo(self.tableView.mas_bottom);
+    }];
 }
 #pragma mark - get and set
 - (NSMutableArray *)dataSource{
@@ -72,6 +107,22 @@
         }
     }
     return _dataSource;
+}
+- (QMUITableView *)tableView{
+    if (!_tableView) {
+        _tableView = [[QMUITableView alloc]init];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+    }
+    return _tableView;
+}
+- (LDShoppingCartPaymentView *)payView{
+    if (!_payView) {
+        _payView = [[LDShoppingCartPaymentView alloc]init];
+        [_payView.selectedAllButton addTarget:self action:@selector(clickSelectedAllAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_payView.payButton addTarget:self action:@selector(clickPayOrDeleteAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _payView;
 }
 
 - (void)didReceiveMemoryWarning

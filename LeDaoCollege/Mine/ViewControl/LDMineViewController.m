@@ -12,9 +12,9 @@
 #import "LDConfigTableViewController.h"
 #import "LDCollectViewController.h"
 #import "LDOrderViewController.h"
-#import "MKPdfViewController.h"
-#import "MKReaderViewController.h"
 #import "LDShoppingCartViewController.h"
+#import "LDBookRackViewController.h"
+#import "LDScoreViewController.h"
 @interface LDMineViewController () <UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong)UITableView * tableView;
 @property (nonatomic,strong)NSArray * titlesArray;
@@ -33,6 +33,9 @@
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
+}
+- (BOOL)prefersStatusBarHidden {
+    return NO;
 }
 #pragma  mark - tableView
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -75,16 +78,19 @@
         {
             LDShoppingCartViewController *vc = [LDShoppingCartViewController new];
             [self.navigationController pushViewController:vc animated:YES];
-//            MKPdfDocumentManager *doc = [MKPdfDocumentManager getToLocalWith:@"Reader"];
-//            if (!doc) {
-//                NSString *path = [[NSBundle mainBundle]pathForResource:@"Reader" ofType:@"pdf"];
-//                NSURL *url = [NSURL fileURLWithPath:path];
-//                doc = [[MKPdfDocumentManager alloc]initWithUrl:url];
-//                doc.name = @"Reader";
-//            }
-//            MKReaderViewController *vc = [[MKReaderViewController alloc]init];
-//            vc.pdfInfo = doc;
-//            [self presentViewController:vc animated:YES completion:nil];
+
+        }
+            break;
+        case 4:
+        {
+            LDBookRackViewController *vc = [LDBookRackViewController new];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 5:
+        {
+            LDScoreViewController *vc = [LDScoreViewController new];
+            [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         case 7 :{

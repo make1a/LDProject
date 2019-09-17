@@ -11,4 +11,6 @@
 @interface LDShoppingCartPaymentView : UIView
 @property (nonatomic,strong)UIButton * selectedAllButton;
 @property (nonatomic,strong)UILabel * titleLabel;
+@property (nonatomic,strong)UILabel * priceLabel;
+@property (nonatomic,strong)UIButton * payButton;
 @end

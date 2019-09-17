@@ -26,7 +26,9 @@
                                                                              titlePositionAdjustment: UIOffsetZero
                                                                                              context: nil];
     self.navigationController.navigationBar.hidden = YES;
-    return (self = (LDTabBarController *)tabBarController);
+    self = (LDTabBarController *)tabBarController;
+    [self setTintColor:UIColorFromHEXA(0xFF07C062, 1)];
+    return self;
 }
 
 - (NSArray *)viewControllers {
@@ -44,7 +46,6 @@
     CYLBaseNavigationController *thirdNavigationController = [[CYLBaseNavigationController alloc] initWithRootViewController:mineVC];
 //    thirdNavigationController.navigationBar.hidden = YES;
     [mineVC cyl_setHideNavigationBarSeparator:YES];
-    
     
     NSArray *viewControllers = @[firstNavigationController,
                                  secondNavigationController,

@@ -8,6 +8,6 @@
 
 #import "QMUICommonViewController.h"
 
-@interface LDShoppingCartViewController : QMUICommonTableViewController
+@interface LDShoppingCartViewController : QMUICommonViewController
 
 @end

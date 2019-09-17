@@ -184,25 +184,11 @@
         [_loginButton addTarget:self action:@selector(clickLoginAction:) forControlEvents:UIControlEventTouchUpInside];
         _loginButton.layer.masksToBounds = YES;
         _loginButton.layer.cornerRadius = PtHeight(20);
-        [self creatGradView];
+        [_loginButton addGradViewWithSize:CGSizeMake(300,PtHeight(40))];
     }
     return _loginButton;
 }
-- (void)creatGradView {
-    UIView *view = [[UIView alloc] init];
-    view.frame = CGRectMake(0,0,300,PtHeight(40));
-    view.backgroundColor = [UIColor colorWithRed:0/255.0 green:204/255.0 blue:144/255.0 alpha:1.0];
-    
-    CAGradientLayer *gl = [CAGradientLayer layer];
-    gl.frame = CGRectMake(0,0,300,PtHeight(40));
-    gl.startPoint = CGPointMake(0, 0);
-    gl.endPoint = CGPointMake(1, 1);
-    gl.colors = @[(__bridge id)[UIColor colorWithRed:8/255.0 green:231/255.0 blue:86/255.0 alpha:1.0].CGColor,(__bridge id)[UIColor colorWithRed:23/255.0 green:224/255.0 blue:146/255.0 alpha:1.0].CGColor];
-    gl.locations = @[@(0.0),@(1.0)];
-    
-    [_loginButton.layer addSublayer:gl];
-    view.layer.cornerRadius = PtHeight(20);
-}
+
 - (QMUILabel *)bottomLabel{
     if (!_bottomLabel) {
         _bottomLabel = [[QMUILabel alloc]init];
