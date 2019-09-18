@@ -14,7 +14,6 @@
 		262E4A0D232A3681000A6B0B /* Reader.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 262E4A0C232A3680000A6B0B /* Reader.pdf */; };
 		2640F06A232771760015F7A6 /* LDTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2640F069232771760015F7A6 /* LDTagView.m */; };
 		2640F106232793950015F7A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2640F105232793950015F7A6 /* Assets.xcassets */; };
-		2640F1092327AB2D0015F7A6 /* LDVoiceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2640F1082327AB2D0015F7A6 /* LDVoiceCell.m */; };
 		2658F0E22327D02300F4C37A /* LDCollectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2658F0E12327D02300F4C37A /* LDCollectViewController.m */; };
 		2658F0E8232A99DA00F4C37A /* LDCustomNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2658F0E7232A99DA00F4C37A /* LDCustomNavBar.m */; };
 		2658F0EB232A9D8F00F4C37A /* LDReadProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2658F0EA232A9D8F00F4C37A /* LDReadProgressView.m */; };
@@ -82,6 +81,12 @@
 		26CBF88E23252566005139EF /* LDLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CBF88D23252566005139EF /* LDLoginViewController.m */; };
 		26CBF8912325275C005139EF /* LoginEnableButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CBF88F2325275C005139EF /* LoginEnableButton.m */; };
 		26CBF89423252A98005139EF /* JKCountDownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CBF89323252A97005139EF /* JKCountDownButton.m */; };
+		26E8162A23321BD100CECCE3 /* LDVoiceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E8162923321BD100CECCE3 /* LDVoiceTableViewCell.m */; };
+		26E8162D23321FAC00CECCE3 /* LDVideoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E8162C23321FAC00CECCE3 /* LDVideoTableViewCell.m */; };
+		26E816302332267400CECCE3 /* LDMineCustomHead.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E8162F2332267400CECCE3 /* LDMineCustomHead.m */; };
+		26E816322332268800CECCE3 /* LDMineCustomHead.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26E816312332268800CECCE3 /* LDMineCustomHead.xib */; };
+		26E816352332395100CECCE3 /* LDNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E816342332395100CECCE3 /* LDNavigationController.m */; };
+		26E8164923324AF400CECCE3 /* QMUIConfigurationTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E8164823324AF300CECCE3 /* QMUIConfigurationTemplate.m */; };
 		26EC9E462328960300364943 /* LDOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26EC9E452328960300364943 /* LDOrderViewController.m */; };
 		26EC9E492328970200364943 /* LDUnfinishOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26EC9E482328970200364943 /* LDUnfinishOrderViewController.m */; };
 		26EC9E4C2328970F00364943 /* LDFinishOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26EC9E4B2328970F00364943 /* LDFinishOrderViewController.m */; };
@@ -119,8 +124,6 @@
 		2640F068232771760015F7A6 /* LDTagView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDTagView.h; sourceTree = "<group>"; };
 		2640F069232771760015F7A6 /* LDTagView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDTagView.m; sourceTree = "<group>"; };
 		2640F105232793950015F7A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2640F1072327AB2D0015F7A6 /* LDVoiceCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDVoiceCell.h; sourceTree = "<group>"; };
-		2640F1082327AB2D0015F7A6 /* LDVoiceCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDVoiceCell.m; sourceTree = "<group>"; };
 		2658F0E02327D02300F4C37A /* LDCollectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDCollectViewController.h; sourceTree = "<group>"; };
 		2658F0E12327D02300F4C37A /* LDCollectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDCollectViewController.m; sourceTree = "<group>"; };
 		2658F0E6232A99DA00F4C37A /* LDCustomNavBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDCustomNavBar.h; sourceTree = "<group>"; };
@@ -260,6 +263,17 @@
 		26CBF8902325275C005139EF /* LoginEnableButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginEnableButton.h; sourceTree = "<group>"; };
 		26CBF89223252A97005139EF /* JKCountDownButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKCountDownButton.h; sourceTree = "<group>"; };
 		26CBF89323252A97005139EF /* JKCountDownButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKCountDownButton.m; sourceTree = "<group>"; };
+		26E8162823321BD100CECCE3 /* LDVoiceTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDVoiceTableViewCell.h; sourceTree = "<group>"; };
+		26E8162923321BD100CECCE3 /* LDVoiceTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDVoiceTableViewCell.m; sourceTree = "<group>"; };
+		26E8162B23321FAC00CECCE3 /* LDVideoTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDVideoTableViewCell.h; sourceTree = "<group>"; };
+		26E8162C23321FAC00CECCE3 /* LDVideoTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDVideoTableViewCell.m; sourceTree = "<group>"; };
+		26E8162E2332267400CECCE3 /* LDMineCustomHead.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDMineCustomHead.h; sourceTree = "<group>"; };
+		26E8162F2332267400CECCE3 /* LDMineCustomHead.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDMineCustomHead.m; sourceTree = "<group>"; };
+		26E816312332268800CECCE3 /* LDMineCustomHead.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LDMineCustomHead.xib; sourceTree = "<group>"; };
+		26E816332332395100CECCE3 /* LDNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDNavigationController.h; sourceTree = "<group>"; };
+		26E816342332395100CECCE3 /* LDNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDNavigationController.m; sourceTree = "<group>"; };
+		26E8164723324AF300CECCE3 /* QMUIConfigurationTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMUIConfigurationTemplate.h; sourceTree = "<group>"; };
+		26E8164823324AF300CECCE3 /* QMUIConfigurationTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMUIConfigurationTemplate.m; sourceTree = "<group>"; };
 		26EC9E442328960300364943 /* LDOrderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDOrderViewController.h; sourceTree = "<group>"; };
 		26EC9E452328960300364943 /* LDOrderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDOrderViewController.m; sourceTree = "<group>"; };
 		26EC9E472328970200364943 /* LDUnfinishOrderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDUnfinishOrderViewController.h; sourceTree = "<group>"; };
@@ -362,6 +376,7 @@
 		265CB9362320A2F400883FE2 /* LeDaoCollege */ = {
 			isa = PBXGroup;
 			children = (
+				26E8164623324AF300CECCE3 /* QMUIConfigurationTemplate */,
 				26CBF88923252544005139EF /* Login */,
 				265CB9902320AE2400883FE2 /* Base */,
 				265CB95A2320A93D00883FE2 /* GlobalTool */,
@@ -486,6 +501,9 @@
 				26F3BB952330B67A001A645C /* LDScoreView.h */,
 				26F3BB962330B67A001A645C /* LDScoreView.m */,
 				26F3BB9C2330BD0E001A645C /* LDScoreViewXib.xib */,
+				26E8162E2332267400CECCE3 /* LDMineCustomHead.h */,
+				26E8162F2332267400CECCE3 /* LDMineCustomHead.m */,
+				26E816312332268800CECCE3 /* LDMineCustomHead.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -568,8 +586,10 @@
 				2613781023225DA300228261 /* LDSearchHistoryView.m */,
 				2640F068232771760015F7A6 /* LDTagView.h */,
 				2640F069232771760015F7A6 /* LDTagView.m */,
-				2640F1072327AB2D0015F7A6 /* LDVoiceCell.h */,
-				2640F1082327AB2D0015F7A6 /* LDVoiceCell.m */,
+				26E8162823321BD100CECCE3 /* LDVoiceTableViewCell.h */,
+				26E8162923321BD100CECCE3 /* LDVoiceTableViewCell.m */,
+				26E8162B23321FAC00CECCE3 /* LDVideoTableViewCell.h */,
+				26E8162C23321FAC00CECCE3 /* LDVideoTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -628,6 +648,8 @@
 			children = (
 				265CB9912320AE6700883FE2 /* LDTabBarController.h */,
 				265CB9922320AE6700883FE2 /* LDTabBarController.m */,
+				26E816332332395100CECCE3 /* LDNavigationController.h */,
+				26E816342332395100CECCE3 /* LDNavigationController.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -708,6 +730,15 @@
 				26CBF88F2325275C005139EF /* LoginEnableButton.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		26E8164623324AF300CECCE3 /* QMUIConfigurationTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				26E8164723324AF300CECCE3 /* QMUIConfigurationTemplate.h */,
+				26E8164823324AF300CECCE3 /* QMUIConfigurationTemplate.m */,
+			);
+			path = QMUIConfigurationTemplate;
 			sourceTree = "<group>";
 		};
 		26F558112325F694006D826D /* AlterView */ = {
@@ -798,6 +829,7 @@
 				262E4A0D232A3681000A6B0B /* Reader.pdf in Resources */,
 				26F3BB942330B44B001A645C /* LDScoreCell.xib in Resources */,
 				26F3BB8C2330AF83001A645C /* liwushuo.json in Resources */,
+				26E816322332268800CECCE3 /* LDMineCustomHead.xib in Resources */,
 				2640F106232793950015F7A6 /* Assets.xcassets in Resources */,
 				265CB93F2320A2F400883FE2 /* Main.storyboard in Resources */,
 			);
@@ -884,7 +916,6 @@
 				26CBF8732323BC6E005139EF /* PinyinHelper.m in Sources */,
 				26F3BB852330AEA3001A645C /* CollectionCategoryModel.m in Sources */,
 				26CBF8782323BC6E005139EF /* PinyinFormatter.m in Sources */,
-				2640F1092327AB2D0015F7A6 /* LDVoiceCell.m in Sources */,
 				26B70234232F828A00156116 /* LDShoppingCartModel.m in Sources */,
 				26EC9E492328970200364943 /* LDUnfinishOrderViewController.m in Sources */,
 				26C2D0112320E61900906324 /* LDNewsTableViewCell.m in Sources */,
@@ -915,6 +946,8 @@
 				26F3BB932330B44B001A645C /* LDScoreCell.m in Sources */,
 				26CBF8912325275C005139EF /* LoginEnableButton.m in Sources */,
 				265CB95F2320A96100883FE2 /* MYConstansManager.m in Sources */,
+				26E816302332267400CECCE3 /* LDMineCustomHead.m in Sources */,
+				26E8162D23321FAC00CECCE3 /* LDVideoTableViewCell.m in Sources */,
 				265CB93C2320A2F400883FE2 /* ViewController.m in Sources */,
 				265CB9802320AAA600883FE2 /* NSArray+MASAdditions.m in Sources */,
 				268EEDF92325F1640014F971 /* ClickPickerCell.m in Sources */,
@@ -945,6 +978,7 @@
 				26F3BB8A2330AEF1001A645C /* NSObject+Property.m in Sources */,
 				2658F0FD232CAEBF00F4C37A /* MKIndexView.m in Sources */,
 				265BE25E232684EA0093E60A /* LDAlterNameViewController.m in Sources */,
+				26E816352332395100CECCE3 /* LDNavigationController.m in Sources */,
 				26BA0655232735E200992FFD /* LDAlterNameViewController.m in Sources */,
 				265CB9812320AAA600883FE2 /* View+MASAdditions.m in Sources */,
 				26CBF8792323BC6E005139EF /* PinYinForObjc.m in Sources */,
@@ -958,11 +992,13 @@
 				2658F0F1232BF3DD00F4C37A /* MKReaderViewController.m in Sources */,
 				265CB97B2320AAA600883FE2 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				26F3BB822330AD93001A645C /* LeftTableViewCell.m in Sources */,
+				26E8164923324AF400CECCE3 /* QMUIConfigurationTemplate.m in Sources */,
 				26869C41232106F6001DEDBA /* LDVideoViewController.m in Sources */,
 				26CBF8772323BC6E005139EF /* ChineseToPinyinResource.m in Sources */,
 				265CB97F2320AAA600883FE2 /* MASLayoutConstraint.m in Sources */,
 				265CB9992320B2BC00883FE2 /* LDMainViewController.m in Sources */,
 				26869C3E232106A9001DEDBA /* LDVoiceViewController.m in Sources */,
+				26E8162A23321BD100CECCE3 /* LDVoiceTableViewCell.m in Sources */,
 				26CBF8852323E0FB005139EF /* LDTextViewViewController.m in Sources */,
 				2613781123225DA300228261 /* LDSearchHistoryView.m in Sources */,
 				265CB9962320B2AA00883FE2 /* LDMineViewController.m in Sources */,

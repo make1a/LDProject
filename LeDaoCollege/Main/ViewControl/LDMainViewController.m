@@ -140,10 +140,15 @@
     if (!_magicController) {
         _magicController = [[VTMagicController alloc] init];
         _magicController.magicView.navigationColor = [UIColor clearColor];
-        _magicController.magicView.navigationHeight = PtHeight(34);
+        _magicController.magicView.navigationHeight = PtHeight(35);
         _magicController.magicView.sliderHidden = NO;
+
+        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, PtWidth(20), 5)];
+        view.backgroundColor = [UIColor whiteColor];
+        [view setCornerRadius:5.0/2];
+        [_magicController.magicView setSliderView:view];
         _magicController.magicView.sliderWidth = PtWidth(20);
-        _magicController.magicView.sliderColor = UIColorFromHEXA(0xFF00AD6F, 1);
+        _magicController.magicView.sliderHeight = 5;
         _magicController.magicView.layoutStyle = VTLayoutStyleDivide;
         _magicController.magicView.switchStyle = VTSwitchStyleDefault;
         _magicController.magicView.itemSpacing = 20;
@@ -171,7 +176,7 @@
 - (UIView *)bgView {
     if (!_bgView) {
         _bgView = [[UIView alloc]init];
-        _bgView.backgroundColor = UIColorFromRGBA(99, 201, 148, 1);
+        _bgView.backgroundColor = [UIColor colorWithRed:105/255.0 green:182/255.0 blue:129/255.0 alpha:1.0];
         _bgView.frame = CGRectMake(0, 0, SCREEN_WIDTH, PtHeight(149));
     }
     return _bgView;

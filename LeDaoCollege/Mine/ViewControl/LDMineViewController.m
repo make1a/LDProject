@@ -14,24 +14,38 @@
 #import "LDOrderViewController.h"
 #import "LDShoppingCartViewController.h"
 #import "LDBookRackViewController.h"
+#import "LDMineCustomHead.h"
 #import "LDScoreViewController.h"
-@interface LDMineViewController () <UITableViewDelegate,UITableViewDataSource>
-@property (nonatomic,strong)UITableView * tableView;
+@interface LDMineViewController () <QMUITableViewDelegate,QMUITableViewDataSource>
+@property (nonatomic,strong)QMUITableView * tableView;
 @property (nonatomic,strong)NSArray * titlesArray;
+@property (nonatomic,strong)NSArray * imagesArray;
+@property (nonatomic,strong)LDMineCustomHead * headView;
 @end
 
 @implementation LDMineViewController
-
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.hidden = NO;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self masLayoutSubviews];
 }
 
 - (void)masLayoutSubviews{
+    [self.view addSubview:self.headView];
     [self.view addSubview:self.tableView];
     
+    self.headView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 193-151+self.headView.headHeight.constant);
+    
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
+        make.left.right.bottom.mas_equalTo(self.view);
+        make.top.mas_equalTo(self.headView.mas_bottom);
     }];
 }
 - (BOOL)prefersStatusBarHidden {
@@ -39,21 +53,25 @@
 }
 #pragma  mark - tableView
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return  1;
+    return  self.titlesArray.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.titlesArray.count;
+    return [self.titlesArray[section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     LDNormalTableViewCell *cell = [LDNormalTableViewCell dequeueReusableWithTableView:tableView];
-    cell.imageView.image = [UIImage imageNamed:@"订单"];
-    cell.textLabel.text = self.titlesArray[indexPath.row];
+    cell.imageView.image = [UIImage imageNamed:self.imagesArray[indexPath.section][indexPath.row]];
+    cell.textLabel.text = self.titlesArray[indexPath.section][indexPath.row];
     return cell;
 }
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    return  [UIView new];
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    return [UIView new];
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 10;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (indexPath.row) {
         case 0:
@@ -103,18 +121,31 @@
     }
 }
 #pragma  mark - GET && SET
-- (UITableView *)tableView {
+- (QMUITableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc]init];
+        _tableView = [[QMUITableView alloc]init];
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        _tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     }
     return _tableView;
 }
 - (NSArray *)titlesArray {
     if (!_titlesArray) {
-        _titlesArray = @[@"我的管理",@"我的收藏",@"我的订单",@"我的购物车",@"我的书架",@"我的积分",@"我的乐币",@"设置"];
+        _titlesArray = @[@[@"我的管理",@"我的收藏",@"我的订单",@"我的购物车",@"我的书架",@"我的积分",@"我的乐币"],@[@"设置"]];
     }
     return _titlesArray;
+}
+- (NSArray *)imagesArray {
+    if (!_imagesArray) {
+        _imagesArray = @[@[@"mine_manage_list",@"mine_collect_list",@"mine_list_daily",@"mine_shoppingcart_list",@"mine_shoppingcart_list",@"mine_integral_list",@"mine_coin_list"],@[@"mine_set_list"]];
+    }
+    return _imagesArray;
+}
+- (LDMineCustomHead *)headView {
+    if (!_headView) {
+        _headView = [[NSBundle mainBundle]loadNibNamed:@"LDMineCustomHead" owner:self options:nil].firstObject;
+    }
+    return _headView;
 }
 @end

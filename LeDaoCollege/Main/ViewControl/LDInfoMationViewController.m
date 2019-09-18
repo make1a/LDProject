@@ -17,6 +17,9 @@
 
 @implementation LDInfoMationViewController
 #pragma mark - life cycle
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];

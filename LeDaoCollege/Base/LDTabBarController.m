@@ -10,6 +10,7 @@
 #import "LDMainViewController.h"
 #import "LDStoreViewController.h"
 #import "LDMineViewController.h"
+#import "LDNavigationController.h"
 @interface LDTabBarController ()
 
 @end
@@ -25,26 +26,26 @@
                                                                                          imageInsets: UIEdgeInsetsZero
                                                                              titlePositionAdjustment: UIOffsetZero
                                                                                              context: nil];
-    self.navigationController.navigationBar.hidden = YES;
     self = (LDTabBarController *)tabBarController;
     [self setTintColor:UIColorFromHEXA(0xFF07C062, 1)];
+    
     return self;
 }
 
 - (NSArray *)viewControllers {
     UIViewController *homeVC = [[LDMainViewController alloc] init];
-    CYLBaseNavigationController *firstNavigationController = [[CYLBaseNavigationController alloc] initWithRootViewController:homeVC];
+    LDNavigationController *firstNavigationController = [[LDNavigationController alloc] initWithRootViewController:homeVC];
     firstNavigationController.navigationBar.hidden = YES;
     [homeVC cyl_setHideNavigationBarSeparator:YES];
     
     UIViewController *storeVC = [[LDStoreViewController alloc] init];
-    CYLBaseNavigationController *secondNavigationController = [[CYLBaseNavigationController alloc] initWithRootViewController:storeVC];
+    LDNavigationController *secondNavigationController = [[LDNavigationController alloc] initWithRootViewController:storeVC];
     secondNavigationController.navigationBar.hidden = YES;
     [storeVC cyl_setHideNavigationBarSeparator:YES];
     
     UIViewController *mineVC = [[LDMineViewController alloc] init];
-    CYLBaseNavigationController *thirdNavigationController = [[CYLBaseNavigationController alloc] initWithRootViewController:mineVC];
-//    thirdNavigationController.navigationBar.hidden = YES;
+    LDNavigationController *thirdNavigationController = [[LDNavigationController alloc] initWithRootViewController:mineVC];
+    thirdNavigationController.navigationBar.hidden = YES;
     [mineVC cyl_setHideNavigationBarSeparator:YES];
     
     NSArray *viewControllers = @[firstNavigationController,

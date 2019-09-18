@@ -16,4 +16,5 @@ extern NSString *const kLDNewsTableViewCellIdentifier;
 
 + (instancetype)dequeueReusableWithTableView:(UITableView *)tableView;
 
+- (void)masLayoutSubview;
 @end

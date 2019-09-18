@@ -35,13 +35,22 @@ NSString *const kLDNewsTableViewCellIdentifier = @"kLDNewsTableViewCellIdentifie
     return self;
 }
 
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.contentView.backgroundColor = [UIColor whiteColor];
+        [self masLayoutSubview];
+    }
+    return self;
+}
 
 #pragma  mark - masLayoutSuviews
 - (void)masLayoutSubview
 {
-    [self addSubview:self.bigImageVIew];
-    [self addSubview:self.titleLabel];
-    [self addSubview:self.timeLabel];
+    [self.contentView addSubview:self.bigImageVIew];
+    [self.contentView addSubview:self.titleLabel];
+    [self.contentView addSubview:self.timeLabel];
     
     [self.bigImageVIew mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self);
@@ -54,11 +63,10 @@ NSString *const kLDNewsTableViewCellIdentifier = @"kLDNewsTableViewCellIdentifie
         make.left.mas_equalTo(self.bigImageVIew.mas_right).mas_offset(PtWidth(17));
         make.top.equalTo(self.bigImageVIew);
         make.right.mas_equalTo(self).mas_offset(PtWidth(-31));
-        make.height.mas_equalTo(PtHeight(42));
     }];
     
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(self.bigImageVIew);
+        make.top.mas_equalTo(self.titleLabel.mas_bottom).offset(PtHeight(11));
         make.left.right.mas_equalTo(self.titleLabel);
     }];
 }
@@ -69,8 +77,8 @@ NSString *const kLDNewsTableViewCellIdentifier = @"kLDNewsTableViewCellIdentifie
     if (!_bigImageVIew) {
         _bigImageVIew = [[UIImageView alloc]init];
         _bigImageVIew.layer.masksToBounds = YES;
-        _bigImageVIew.layer.cornerRadius = 8.f;
-        _bigImageVIew.image = [UIImage imageNamed:@"blank_common"];
+        _bigImageVIew.layer.cornerRadius = 10.f;
+        _bigImageVIew.image = [UIImage imageNamed:@"dog"];
     }
     return _bigImageVIew;
 }
@@ -78,7 +86,7 @@ NSString *const kLDNewsTableViewCellIdentifier = @"kLDNewsTableViewCellIdentifie
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc]init];
         _titleLabel.text = @"makemakemakemakemakemakemakemake";
-        _titleLabel.numberOfLines = 2;
+        _titleLabel.numberOfLines = 1;
         _titleLabel.font = [UIFont systemFontOfSize:PtHeight(16)];
     }
     return _titleLabel;
@@ -88,7 +96,7 @@ NSString *const kLDNewsTableViewCellIdentifier = @"kLDNewsTableViewCellIdentifie
         _timeLabel = [[UILabel alloc]init];
         _timeLabel.textColor = [UIColor grayColor];
         _timeLabel.text = @"2018.18.18 18：30";
-        _timeLabel.font = [UIFont systemFontOfSize:PtHeight(12)];
+        _timeLabel.font = [UIFont systemFontOfSize:PtHeight(8)];
     }
     return _timeLabel;
 }

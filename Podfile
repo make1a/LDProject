@@ -14,5 +14,4 @@ target 'LeDaoCollege' do
     pod 'LookinServer', :configurations => ['Debug']
     pod 'VTMagic'
     pod 'IQKeyboardManager'
-#     pod 'WHC_KeyboardManager_oc'
 end

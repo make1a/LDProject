@@ -10,7 +10,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef enum : NSUInteger {
+    LDCurrentPageIsLogin = 0,
+    LDCurrentPageIsRegister,
+    LDCurrentPageIsBindPhone,
+} LDCurrentPageEnum;
+
 @interface LDLoginViewController : QMUICommonViewController
+@property (nonatomic,assign)LDCurrentPageEnum currentPageType;
 
 @end
 

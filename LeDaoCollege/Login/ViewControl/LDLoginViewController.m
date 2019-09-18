@@ -30,6 +30,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self masLayoutsuviews];
     [self countDownAction];
+    [self configUI];
 }
 - (void)countDownAction{
     [_vfButton countDownButtonHandler:^(JKCountDownButton*sender, NSInteger tag) {
@@ -38,7 +39,7 @@
         [sender startCountDownWithSecond:10];
         
         [sender countDownChanging:^NSString *(JKCountDownButton *countDownButton,NSUInteger second) {
-            NSString *title = [NSString stringWithFormat:@"剩余%zd秒",second];
+            NSString *title = [NSString stringWithFormat:@"%zds",second];
             return title;
         }];
         [sender countDownFinished:^NSString *(JKCountDownButton *countDownButton, NSUInteger second) {
@@ -50,10 +51,15 @@
     }];
 }
 - (void)clickRegisterAction:(UIButton*)sender {
-    
+    LDLoginViewController *vc = [LDLoginViewController new];
+    vc.currentPageType = LDCurrentPageIsRegister;
+    [self presentViewController:vc animated:YES completion:nil];
 }
 - (void)clickLoginAction:(UIButton *)sender{
     [self loginApp];
+}
+- (void)clickBackButton:(UIButton *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 #pragma  mark - Private
 //登陆
@@ -62,7 +68,42 @@
     AppDelegate  *delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
     delegate.window.rootViewController = rootViewController;
 }
-#pragma  mark - Layout
+#pragma  mark - LayoutUI
+- (void)configUI{
+    switch (self.currentPageType) {
+        case LDCurrentPageIsRegister:
+        {
+            UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            [backButton setImage:[UIImage imageNamed:@"nav_black"] forState:UIControlStateNormal];
+            [backButton addTarget:self action:@selector(clickBackButton:) forControlEvents:UIControlEventTouchUpInside];
+            [self.view addSubview:backButton];
+            backButton.frame = CGRectMake(15, kSTATUSBAR_HEIGHT+20, 20, 20);
+            
+            self.titleLabel.text  = @"加入乐道";
+            [self.loginButton setTitle:@"完成注册并登录" forState:UIControlStateNormal];
+            
+        }
+            break;
+        case LDCurrentPageIsBindPhone:
+        {
+            UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            [backButton setImage:[UIImage imageNamed:@"nav_black"] forState:UIControlStateNormal];
+            [backButton addTarget:self action:@selector(clickBackButton:) forControlEvents:UIControlEventTouchUpInside];
+            [self.view addSubview:backButton];
+            backButton.frame = CGRectMake(15, kSTATUSBAR_HEIGHT+20, 20, 20);
+            
+            self.titleLabel.text  = @"绑定手机号";
+            [self.loginButton setTitle:@"完成注册并登录" forState:UIControlStateNormal];
+        }
+            break;
+        default:
+        {
+            [self.loginButton setTitle:@"登录" forState:UIControlStateNormal];
+            self.titleLabel.text = @"手机短信登陆";
+        }
+            break;
+    }
+}
 - (void)masLayoutsuviews{
     [self.view addSubview:self.titleLabel];
     [self.view addSubview:self.nameTextField];
@@ -114,6 +155,8 @@
     [self creatLineView];
     
     [self.view addSubview:self.WXLoginButton];
+    
+    
 }
 - (void)creatLineView {
     UIView *leftLine = [[UIView alloc] init];
@@ -142,7 +185,7 @@
 - (UILabel *)titleLabel{
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc]init];
-        _titleLabel.text = @"手机短信登陆";
+        
         _titleLabel.font = [UIFont systemFontOfSize:25];
     }
     return _titleLabel;
@@ -169,7 +212,7 @@
     if (!_vfButton) {
         _vfButton = [JKCountDownButton buttonWithType:UIButtonTypeCustom];
         [_vfButton setTitle:@"获取验证码" forState:UIControlStateNormal];
-        [_vfButton setBackgroundColor:UIColorFromHEXA(0xFF07C062, 1)];
+        [_vfButton setBackgroundColor: MainThemeColor];
         _vfButton.layer.masksToBounds = YES;
         _vfButton.layer.cornerRadius = PtHeight(10);
         _vfButton.titleLabel.font = [UIFont systemFontOfSize:PtHeight(12)];
@@ -179,12 +222,11 @@
 - (LoginEnableButton *)loginButton {
     if (!_loginButton) {
         _loginButton = [[LoginEnableButton alloc]initAndNotifyTextFields:@[self.nameTextField,self.pwdTextField]];
-        [_loginButton setTitle:@"登录" forState:UIControlStateNormal];
-        _loginButton.backgroundColor = [UIColor blueColor];
+        
+        _loginButton.backgroundColor = MainThemeColor;
         [_loginButton addTarget:self action:@selector(clickLoginAction:) forControlEvents:UIControlEventTouchUpInside];
         _loginButton.layer.masksToBounds = YES;
         _loginButton.layer.cornerRadius = PtHeight(20);
-        [_loginButton addGradViewWithSize:CGSizeMake(300,PtHeight(40))];
     }
     return _loginButton;
 }
@@ -192,7 +234,7 @@
 - (QMUILabel *)bottomLabel{
     if (!_bottomLabel) {
         _bottomLabel = [[QMUILabel alloc]init];
-        _bottomLabel.text = @"微信登陆";
+        _bottomLabel.text = @"快速登录";
         _bottomLabel.qmui_borderPosition = QMUIViewBorderPositionLeft & QMUIViewBorderPositionRight;
     }
     return _bottomLabel;

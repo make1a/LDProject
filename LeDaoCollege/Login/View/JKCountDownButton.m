@@ -60,7 +60,7 @@
     [[NSRunLoop currentRunLoop]addTimer:_timer forMode:NSRunLoopCommonModes];
 }
 - (void)timerStart {
-    self.backgroundColor = UIColorFromHEXA(0xFFB4ECD0, 1.0);
+    self.backgroundColor = DisableMainThmeColor;
      double deltaTime = [[NSDate date] timeIntervalSinceDate:_startDate];
     
      _second = _totalSecond - (NSInteger)(deltaTime+0.5) ;
@@ -75,7 +75,7 @@
         if (_countDownChanging)
         {
             dispatch_async(dispatch_get_main_queue(), ^{
-                NSString *title = _countDownChanging(self,_second);
+                NSString *title = self->_countDownChanging(self,self->_second);
                 [self setTitle:title forState:UIControlStateNormal];
                 [self setTitle:title forState:UIControlStateDisabled];
             });
@@ -92,7 +92,7 @@
 
 - (void)stopCountDown{
     if (_timer) {
-        self.backgroundColor = UIColorFromHEXA(0xFF07C062, 1);
+        self.backgroundColor = MainThemeColor;
         if ([_timer respondsToSelector:@selector(isValid)])
         {
             if ([_timer isValid])
@@ -102,7 +102,7 @@
                 if (_countDownFinished)
                 {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        NSString *title = _countDownFinished(self,_totalSecond);
+                        NSString *title = self->_countDownFinished(self,self->_totalSecond);
                         [self setTitle:title forState:UIControlStateNormal];
                         [self setTitle:title forState:UIControlStateDisabled];
                     });

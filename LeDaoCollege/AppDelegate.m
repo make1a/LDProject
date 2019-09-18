@@ -23,10 +23,12 @@
     self.window = [[UIWindow alloc] init];
     self.window.frame = [UIScreen mainScreen].bounds;
     [self.window makeKeyAndVisible];
+    [[QMUIConfiguration sharedInstance]applyInitialTemplate];
 //    LDTabBarController *rootViewController = [[LDTabBarController alloc] init];
     LDLoginViewController *vc = [LDLoginViewController new];
     [self configIQKeyboard];
     [self.window setRootViewController:vc];
+    
     return YES;
 }
 

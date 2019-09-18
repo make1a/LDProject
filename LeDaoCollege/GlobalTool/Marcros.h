@@ -40,6 +40,9 @@
 
 #define rgba(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:a] //适配蓝湖
 
+// app主色调
+#define MainThemeColor [UIColor colorWithRed:105/255.0 green:182/255.0 blue:129/255.0 alpha:1.0]
+#define DisableMainThmeColor UIColorFromHEXA(0xC1E1CB, 1.0)
 #define SCREEN_WIDTH  ([[UIScreen mainScreen] bounds].size.width)
 #define SCREEN_HEIGHT ([[UIScreen mainScreen] bounds].size.height)
 
@@ -93,5 +96,25 @@
 #define BOTTOM_SPACE_HEIGHT (iPhoneX?34.0f:0.0f)
 
 
+
+#define UIColorGray1 UIColorMake(53, 60, 70)
+#define UIColorGray2 UIColorMake(73, 80, 90)
+#define UIColorGray3 UIColorMake(93, 100, 110)
+#define UIColorGray4 UIColorMake(113, 120, 130)
+#define UIColorGray5 UIColorMake(133, 140, 150)
+#define UIColorGray6 UIColorMake(153, 160, 170)
+#define UIColorGray7 UIColorMake(173, 180, 190)
+#define UIColorGray8 UIColorMake(196, 200, 208)
+#define UIColorGray9 UIColorMake(216, 220, 228)
+
+#define UIColorTheme1 UIColorMake(239, 83, 98) // Grapefruit
+#define UIColorTheme2 UIColorMake(254, 109, 75) // Bittersweet
+#define UIColorTheme3 UIColorMake(255, 207, 71) // Sunflower
+#define UIColorTheme4 UIColorMake(159, 214, 97) // Grass
+#define UIColorTheme5 UIColorMake(63, 208, 173) // Mint
+#define UIColorTheme6 UIColorMake(49, 189, 243) // Aqua
+#define UIColorTheme7 UIColorMake(90, 154, 239) // Blue Jeans
+#define UIColorTheme8 UIColorMake(172, 143, 239) // Lavender
+#define UIColorTheme9 UIColorMake(238, 133, 193) // Pink Rose
 
 #endif /* Marcros_h */
