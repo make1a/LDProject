@@ -28,14 +28,10 @@
     [super viewDidLoad];
     
     [self.navigationController.navigationBar addSubview:self.searchBar];
+    self.searchBar.frame = CGRectMake(70, 0, 280, PtHeight(32));
+    
     LDSearchHistoryView *historyView = [[LDSearchHistoryView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     [self.view addSubview:historyView];
-    
-    
-//    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)])
-//    {
-//        self.navigationController.interactivePopGestureRecognizer.delegate = self;
-//    }
 }
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
@@ -107,12 +103,12 @@
 - (QMUISearchBar *)searchBar {
     if (!_searchBar) {
         _searchBar = [[QMUISearchBar alloc]init];
-        _searchBar.frame = CGRectMake(PtWidth(30), 0, PtWidth(334-18), PtHeight(32));
         [_searchBar setCornerRadius:PtHeight(16)];
         _searchBar.searchBarStyle = UISearchBarStyleMinimal;
         _searchBar.backgroundColor = UIColorFromHEXA(0xF5F6FA, 1);
         _searchBar.placeholder = @"搜索";
         _searchBar.delegate = self;
+        [_searchBar qmui_styledAsQMUISearchBar];
     }
     return _searchBar;
 }

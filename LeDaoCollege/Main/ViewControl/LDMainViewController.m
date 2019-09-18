@@ -164,7 +164,7 @@
 - (UIButton *)searchButton {
     if (!_searchButton) {
         _searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _searchButton.backgroundColor = [UIColor colorWithRed:238/255.0 green:238/255.0 blue:238/255.0 alpha:1.0];
+        _searchButton.backgroundColor = UIColorFromHEXA(0xFBFBFB, 1);
         _searchButton.layer.masksToBounds = YES;
         _searchButton.layer.cornerRadius = PtHeight(32/2);
         [_searchButton setTitle:@"搜索" forState:UIControlStateNormal];
