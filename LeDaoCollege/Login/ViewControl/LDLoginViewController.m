@@ -81,7 +81,6 @@
             
             self.titleLabel.text  = @"加入乐道";
             [self.loginButton setTitle:@"完成注册并登录" forState:UIControlStateNormal];
-            
         }
             break;
         case LDCurrentPageIsBindPhone:

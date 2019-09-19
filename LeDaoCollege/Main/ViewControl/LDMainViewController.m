@@ -119,7 +119,6 @@
         }
             break;
     }
-    
 }
 
 - (nonnull UIButton *)magicView:(nonnull VTMagicView *)magicView menuItemAtIndex:(NSUInteger)itemIndex {
@@ -135,7 +134,6 @@
 }
 
 #pragma  mark - GET & SET
-
 - (VTMagicController *)magicController {
     if (!_magicController) {
         _magicController = [[VTMagicController alloc] init];

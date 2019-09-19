@@ -81,6 +81,9 @@
 		26CBF88E23252566005139EF /* LDLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CBF88D23252566005139EF /* LDLoginViewController.m */; };
 		26CBF8912325275C005139EF /* LoginEnableButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CBF88F2325275C005139EF /* LoginEnableButton.m */; };
 		26CBF89423252A98005139EF /* JKCountDownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CBF89323252A97005139EF /* JKCountDownButton.m */; };
+		26DD09842333600400E1B5E2 /* LDNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 26DD09832333600400E1B5E2 /* LDNoticeView.m */; };
+		26DD09862333602000E1B5E2 /* LDNoticeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26DD09852333602000E1B5E2 /* LDNoticeView.xib */; };
+		26DD0989233368A500E1B5E2 /* LDStoreSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26DD0988233368A500E1B5E2 /* LDStoreSearchViewController.m */; };
 		26E8162A23321BD100CECCE3 /* LDVoiceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E8162923321BD100CECCE3 /* LDVoiceTableViewCell.m */; };
 		26E8162D23321FAC00CECCE3 /* LDVideoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E8162C23321FAC00CECCE3 /* LDVideoTableViewCell.m */; };
 		26E816302332267400CECCE3 /* LDMineCustomHead.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E8162F2332267400CECCE3 /* LDMineCustomHead.m */; };
@@ -263,6 +266,11 @@
 		26CBF8902325275C005139EF /* LoginEnableButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginEnableButton.h; sourceTree = "<group>"; };
 		26CBF89223252A97005139EF /* JKCountDownButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKCountDownButton.h; sourceTree = "<group>"; };
 		26CBF89323252A97005139EF /* JKCountDownButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKCountDownButton.m; sourceTree = "<group>"; };
+		26DD09822333600400E1B5E2 /* LDNoticeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDNoticeView.h; sourceTree = "<group>"; };
+		26DD09832333600400E1B5E2 /* LDNoticeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDNoticeView.m; sourceTree = "<group>"; };
+		26DD09852333602000E1B5E2 /* LDNoticeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LDNoticeView.xib; sourceTree = "<group>"; };
+		26DD0987233368A500E1B5E2 /* LDStoreSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDStoreSearchViewController.h; sourceTree = "<group>"; };
+		26DD0988233368A500E1B5E2 /* LDStoreSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDStoreSearchViewController.m; sourceTree = "<group>"; };
 		26E8162823321BD100CECCE3 /* LDVoiceTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDVoiceTableViewCell.h; sourceTree = "<group>"; };
 		26E8162923321BD100CECCE3 /* LDVoiceTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDVoiceTableViewCell.m; sourceTree = "<group>"; };
 		26E8162B23321FAC00CECCE3 /* LDVideoTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDVideoTableViewCell.h; sourceTree = "<group>"; };
@@ -523,6 +531,8 @@
 			children = (
 				265CB99A2320B2DF00883FE2 /* LDStoreViewController.h */,
 				265CB99B2320B2DF00883FE2 /* LDStoreViewController.m */,
+				26DD0987233368A500E1B5E2 /* LDStoreSearchViewController.h */,
+				26DD0988233368A500E1B5E2 /* LDStoreSearchViewController.m */,
 			);
 			path = ViewControl;
 			sourceTree = "<group>";
@@ -590,6 +600,9 @@
 				26E8162923321BD100CECCE3 /* LDVoiceTableViewCell.m */,
 				26E8162B23321FAC00CECCE3 /* LDVideoTableViewCell.h */,
 				26E8162C23321FAC00CECCE3 /* LDVideoTableViewCell.m */,
+				26DD09822333600400E1B5E2 /* LDNoticeView.h */,
+				26DD09852333602000E1B5E2 /* LDNoticeView.xib */,
+				26DD09832333600400E1B5E2 /* LDNoticeView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -822,6 +835,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26DD09862333602000E1B5E2 /* LDNoticeView.xib in Resources */,
 				262E4A03232A30C1000A6B0B /* 003.pdf in Resources */,
 				26F3BB9D2330BD0E001A645C /* LDScoreViewXib.xib in Resources */,
 				26CBF8722323BC6E005139EF /* unicode_to_hanyu_pinyin.txt in Resources */,
@@ -987,6 +1001,7 @@
 				26F3BB762330AD09001A645C /* CollectionViewHeaderView.m in Sources */,
 				26CBF89423252A98005139EF /* JKCountDownButton.m in Sources */,
 				265CB9822320AAA600883FE2 /* MASConstraint.m in Sources */,
+				26DD09842333600400E1B5E2 /* LDNoticeView.m in Sources */,
 				26869C3B23210672001DEDBA /* LDInfoMationViewController.m in Sources */,
 				26CBF86F2323BC6E005139EF /* HCSortString.m in Sources */,
 				2658F0F1232BF3DD00F4C37A /* MKReaderViewController.m in Sources */,
@@ -1004,6 +1019,7 @@
 				265CB9962320B2AA00883FE2 /* LDMineViewController.m in Sources */,
 				26F3BB7F2330AD54001A645C /* LJCollectionViewFlowLayout.m in Sources */,
 				265CB9392320A2F400883FE2 /* AppDelegate.m in Sources */,
+				26DD0989233368A500E1B5E2 /* LDStoreSearchViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

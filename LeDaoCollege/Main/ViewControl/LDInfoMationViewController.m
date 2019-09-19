@@ -9,10 +9,12 @@
 #import "LDInfoMationViewController.h"
 #import "SDCycleScrollView.h"
 #import "LDNewsTableViewCell.h"
+
+
 @interface LDInfoMationViewController ()<SDCycleScrollViewDelegate,UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,strong)SDCycleScrollView* cycleScrollView;
 @property (nonatomic,strong)NSArray * netImages;
-@property (nonatomic,strong)UITableView * tableView;
+
 @end
 
 @implementation LDInfoMationViewController
@@ -38,6 +40,7 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return PtHeight(80);
 }
+
 #pragma  mark - SDCyclesScrollview
 /** 点击图片回调 */
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
@@ -48,6 +51,7 @@
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index {
     
 }
+
 #pragma mark - private method
 #pragma  mark - LayoutSubviews
 - (void)masLayoutSubviews {
@@ -62,9 +66,14 @@
             make.bottom.mas_equalTo(self.view);
         }
     }];
-    
-    self.tableView.tableHeaderView = self.cycleScrollView;
-    [self.cycleScrollView reloadInputViews];
+    if (!self.isSearchModel) {
+        self.tableView.tableHeaderView = self.cycleScrollView;
+        [self.cycleScrollView reloadInputViews];
+    }else {
+        [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.view);
+        }];
+    }
 }
 #pragma mark - get and set
 - (SDCycleScrollView *)cycleScrollView {

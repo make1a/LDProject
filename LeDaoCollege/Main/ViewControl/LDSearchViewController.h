@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <VTMagic/VTMagic.h>
 
-@interface LDSearchViewController : QMUICommonViewController
+@interface LDSearchViewController : QMUICommonViewController <UISearchBarDelegate,VTMagicViewDelegate,VTMagicViewDataSource>
 
+- (NSArray *)menueBarTitles;
 @end

@@ -21,8 +21,10 @@
 {
     [super viewDidLoad];
     
-    [self.view addSubview:self.cycleScrollView];
-    [self.cycleScrollView reloadInputViews];
+    if (!self.isSearchModel) {
+        [self.view addSubview:self.cycleScrollView];
+        [self.cycleScrollView reloadInputViews];
+    }
     
     CGFloat maxY = CGRectGetMaxY(self.cycleScrollView.frame)+10;
     self.emptyView = [[QMUIEmptyView alloc]initWithFrame:CGRectMake(0,maxY, SCREEN_WIDTH, SCREEN_HEIGHT-kTABBAR_HEIGHT-maxY-10)];

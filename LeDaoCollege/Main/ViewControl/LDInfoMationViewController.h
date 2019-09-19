@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface LDInfoMationViewController : UIViewController
 
+/**
+  作为搜索界面复用标示
+ */
+@property (nonatomic,assign)BOOL isSearchModel;
+
+@property (nonatomic,strong)UITableView * tableView;
 @end

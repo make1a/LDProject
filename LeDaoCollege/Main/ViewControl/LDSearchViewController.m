@@ -9,11 +9,19 @@
 #import "LDSearchViewController.h"
 #import "LDSearchHistoryView.h"
 
-@interface LDSearchViewController () <UISearchBarDelegate,UIGestureRecognizerDelegate>
+#import "LDInfoMationViewController.h"
+#import "LDVoiceViewController.h"
+#import "LDVideoViewController.h"
+#import "LDLiveViewController.h"
+#import "LDNoticeView.h"
+@interface LDSearchViewController () 
 @property(nonatomic, strong) NSArray<NSString *> *keywords;
 @property(nonatomic, strong) NSMutableArray<NSString *> *searchResultsKeywords;
 @property(nonatomic, strong) QMUISearchBar *searchBar;
-@property (nonatomic,strong) UITableView * tableView;
+@property (nonatomic, strong)VTMagicController *magicController;
+@property (nonatomic,strong)LDSearchHistoryView * historyView;
+@property (strong, nonatomic) LDNoticeView *noticeView;
+@property (nonatomic,strong)NSArray * menueBarTitles;
 @end
 
 @implementation LDSearchViewController
@@ -26,93 +34,205 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [self.navigationController.navigationBar addSubview:self.searchBar];
-    self.searchBar.frame = CGRectMake(70, 0, 280, PtHeight(32));
-    
-    LDSearchHistoryView *historyView = [[LDSearchHistoryView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-    [self.view addSubview:historyView];
+    self.view.backgroundColor = [UIColor whiteColor];
+
+    [self configMagicController];
+    [self addHistoryView];
+    [self addSearchBar];
+    [self showHistoryView:YES];
 }
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     [self.searchBar removeFromSuperview];
     self.navigationController.navigationBar.hidden = YES;
 }
+
+- (NSArray *)menueBarTitles {
+    return @[@"资讯",@"音频",@"视频",@"直播"];
+}
+#pragma mark - private method
+- (void)configMagicController{
+    [self addChildViewController:self.magicController];
+    [self.view addSubview:self.magicController.view];
+    [self.magicController.magicView reloadData];
+}
+- (void)addSearchBar{
+    [self.navigationController.navigationBar addSubview:self.searchBar];
+    self.searchBar.frame = CGRectMake((375-280)/2, 0, 280, PtHeight(32));
+    
+}
+- (void)addHistoryView {
+    [self.view addSubview:self.historyView];
+    
+}
+- (void)showHistoryView:(BOOL)isShow {
+    self.historyView.hidden = !isShow;
+}
 #pragma  mark - Touch Event
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self.searchBar.qmui_textField resignFirstResponder];
 }
-#pragma  mark - tableView
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (tableView == self.tableView) {
-        return self.keywords.count;
-    }
-    return self.searchResultsKeywords.count;
+#pragma mark - VTMagicViewDelegate
+- (NSArray<__kindof NSString *> *)menuTitlesForMagicView:(VTMagicView *)magicView{
+    return self.menueBarTitles;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *identifier = @"cell";
-    QMUITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    if (!cell) {
-        cell = [[QMUITableViewCell alloc] initForTableView:tableView withReuseIdentifier:identifier];
-    }
+- (void)magicView:(VTMagicView *)magicView didSelectItemAtIndex:(NSUInteger)itemIndex
+{
     
-    if (tableView == self.tableView) {
-        cell.textLabel.text = self.keywords[indexPath.row];
-    } else {
-        NSString *keyword = self.searchResultsKeywords[indexPath.row];
-        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:keyword attributes:@{NSForegroundColorAttributeName: [UIColor blackColor]}];
-        NSRange range = [keyword rangeOfString:self.searchBar.text];
-        if (range.location != NSNotFound) {
-            [attributedString addAttributes:@{NSForegroundColorAttributeName: [UIColor redColor]} range:range];
-        }
-        cell.textLabel.attributedText = attributedString;
-    }
-    
-    [cell updateCellAppearanceWithIndexPath:indexPath];
-    return cell;
 }
+
+// 设置菜单栏上面的每个按钮对应的VC
+- (UIViewController *)magicView:(VTMagicView *)magicView viewControllerAtPage:(NSUInteger)pageIndex
+{
+    switch (pageIndex) {
+        case 0:
+        {
+            static NSString *identifier = @"LDInfoMationViewController.identifier";
+            LDInfoMationViewController *vc = [magicView dequeueReusablePageWithIdentifier:identifier];
+            if (!vc)
+            {
+                vc = [[LDInfoMationViewController alloc] init];
+                vc.isSearchModel = YES;
+            }
+            return vc;
+        }
+            break;
+        case 1:
+        {
+            static NSString *identifier = @"LDVoiceViewController.identifier";
+            LDVoiceViewController *vc = [magicView dequeueReusablePageWithIdentifier:identifier];
+            if (!vc)
+            {
+                vc = [[LDVoiceViewController alloc] init];
+                vc.isSearchModel = YES;
+            }
+            return vc;
+        }
+            break;
+        case 2:
+        {
+            static NSString *identifier = @"LDVideoViewController.identifier";
+            LDVideoViewController *vc = [magicView dequeueReusablePageWithIdentifier:identifier];
+            if (!vc)
+            {
+                vc = [[LDVideoViewController alloc] init];
+                vc.isSearchModel = YES;
+            }
+            return vc;
+        }
+            break;
+        default:
+        {
+            static NSString *identifier = @"LDLiveViewController.identifier";
+            LDLiveViewController *vc = [magicView dequeueReusablePageWithIdentifier:identifier];
+            if (!vc)
+            {
+                vc = [[LDLiveViewController alloc] init];
+                vc.isSearchModel = YES;
+            }
+            return vc;
+        }
+            break;
+    }
+}
+
+- (nonnull UIButton *)magicView:(nonnull VTMagicView *)magicView menuItemAtIndex:(NSUInteger)itemIndex {
+    static NSString *itemIdentifier = @"itemIdentifier";
+    UIButton *menuItem = [magicView dequeueReusableItemWithIdentifier:itemIdentifier];
+    if (!menuItem) {
+        menuItem = [UIButton buttonWithType:UIButtonTypeCustom];
+        [menuItem setTitleColor:UIColorFromHEXA(0x666666, 1) forState:UIControlStateNormal];
+        [menuItem setTitleColor:UIColorFromRGBA(145, 226, 192, 1) forState:UIControlStateSelected];
+        menuItem.titleLabel.font = [UIFont systemFontOfSize:15];
+    }
+    return menuItem;
+}
+
 #pragma mark - <UISearchControllerDelegate>
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
-    DLog(@"searchBarShouldBeginEditing");
+    searchBar.showsCancelButton = YES;
     return YES;
 }
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
-    DLog(@"searchBarTextDidBeginEditing");
-}
-- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar{
-    DLog(@"searchBarShouldEndEditing");
-    
-    return YES;
-}
+
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
-    DLog(@"searchBarTextDidEndEditing");
+    
 }
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
-    DLog(@"textDidChange");
+    if (searchText.length == 0) {
+        [self showHistoryView:YES];
+        self.searchBar.showsCancelButton = NO;
+    }else {
+        searchBar.showsCancelButton = YES;
+        [self showHistoryView:NO];
+    }
 }
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-    [self.searchBar.qmui_textField resignFirstResponder];
+    searchBar.showsCancelButton = NO;
+    [self showHistoryView:YES];
+    searchBar.text = @"";
 }
-#pragma mark - event response
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
 
-
-#pragma mark - private method
+    LDInfoMationViewController *vc = self.magicController.currentViewController;
+    vc.tableView.tableHeaderView = self.noticeView;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        vc.tableView.tableHeaderView = nil;
+    });
+    
+}
 #pragma mark - get and set
 
 - (QMUISearchBar *)searchBar {
     if (!_searchBar) {
         _searchBar = [[QMUISearchBar alloc]init];
-        [_searchBar setCornerRadius:PtHeight(16)];
+        [_searchBar setCornerRadius:PtHeight(17)];
         _searchBar.searchBarStyle = UISearchBarStyleMinimal;
-        _searchBar.backgroundColor = UIColorFromHEXA(0xF5F6FA, 1);
+        _searchBar.backgroundColor = [UIColor clearColor];
         _searchBar.placeholder = @"搜索";
         _searchBar.delegate = self;
+        [UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[UISearchBar class]]].title = @"取消";
         [_searchBar qmui_styledAsQMUISearchBar];
     }
     return _searchBar;
 }
-
+- (VTMagicController *)magicController {
+    if (!_magicController) {
+        _magicController = [[VTMagicController alloc] init];
+        _magicController.magicView.navigationColor = [UIColor clearColor];
+        _magicController.magicView.navigationHeight = PtHeight(40);
+        _magicController.magicView.sliderHidden = NO;
+        
+        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, PtWidth(20), 5)];
+        view.backgroundColor = MainThemeColor;
+        [view setCornerRadius:5.0/2];
+        [_magicController.magicView setSliderView:view];
+        _magicController.magicView.sliderWidth = PtWidth(20);
+        _magicController.magicView.sliderHeight = 5;
+        _magicController.magicView.layoutStyle = VTLayoutStyleDivide;
+        _magicController.magicView.switchStyle = VTSwitchStyleDefault;
+        _magicController.magicView.itemSpacing = 20;
+        _magicController.magicView.frame = CGRectMake(0,kSTATUSBAR_NAVIGATION_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT-kSTATUSBAR_NAVIGATION_HEIGHT);
+        _magicController.magicView.dataSource = self;
+        _magicController.magicView.delegate = self;
+        _magicController.magicView.needPreloading = NO;
+        _magicController.magicView.separatorHidden = YES;
+    }
+    return _magicController;
+}
+- (LDSearchHistoryView *)historyView{
+    if (!_historyView) {
+        LDSearchHistoryView *historyView = [[LDSearchHistoryView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        _historyView = historyView;
+    }
+    return _historyView;
+}
+- (LDNoticeView *)noticeView {
+    if (!_noticeView) {
+        _noticeView = [[NSBundle mainBundle]loadNibNamed:@"LDNoticeView" owner:self options:nil].firstObject;
+    }
+    return _noticeView;
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

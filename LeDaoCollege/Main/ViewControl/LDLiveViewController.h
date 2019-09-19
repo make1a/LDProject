@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface LDLiveViewController : QMUICommonViewController
+/**
+ 作为搜索界面复用标示
+ */
+@property (nonatomic,assign)BOOL isSearchModel;
 
 @end

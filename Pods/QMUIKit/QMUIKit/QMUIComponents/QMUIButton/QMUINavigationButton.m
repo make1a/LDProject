@@ -579,13 +579,37 @@ QMUISynthesizeIdCopyProperty(tempRightBarButtonItems, setTempRightBarButtonItems
         
         // 强制修改 contentView 的 directionalLayoutMargins.leading，在使用自定义返回按钮时减小 8
         if (@available(iOS 11, *)) {
-            ExtendImplementationOfVoidMethodWithoutArguments([UINavigationBar class], @selector(layoutSubviews), ^(UINavigationBar *selfObject) {
-                UIView *contentView = selfObject.qmui_contentView;
-                if (contentView) {
-                    NSDirectionalEdgeInsets value = contentView.directionalLayoutMargins;
-                    value.leading = value.trailing - (selfObject.qmui_customizingBackBarButtonItem ? 8 : 0);
-                    contentView.directionalLayoutMargins = value;
-                }
+//            ExtendImplementationOfVoidMethodWithoutArguments([UINavigationBar class], @selector(layoutSubviews), ^(UINavigationBar *selfObject) {
+//                UIView *contentView = selfObject.qmui_contentView;
+//                if (contentView) {
+//                    NSDirectionalEdgeInsets value = contentView.directionalLayoutMargins;
+//                    value.leading = value.trailing - (selfObject.qmui_customizingBackBarButtonItem ? 8 : 0);
+//                    contentView.directionalLayoutMargins = value;
+//                }
+//            });
+            OverrideImplementation([UIView class], @selector(directionalLayoutMargins), ^id(__unsafe_unretained Class originClass, SEL originCMD, IMP (^originalIMPProvider)(void)) {
+                return ^NSDirectionalEdgeInsets(UIView *selfObject) {
+                    
+                    //call super
+                    NSDirectionalEdgeInsets (*originSelectorIMP)(id,SEL);
+                    originSelectorIMP = (NSDirectionalEdgeInsets (*)(id,SEL))originalIMPProvider();
+                    NSDirectionalEdgeInsets originResult = originSelectorIMP(selfObject,originCMD);
+                    
+                    //get navbar
+                    UINavigationBar *navBar = nil;
+                    if ([NSStringFromClass([selfObject class]) containsString:@"BarContenView"] && [selfObject.superview isKindOfClass:[UINavigationBar class]]) {
+                        navBar = (UINavigationBar *)selfObject.superview;
+                    }
+                    
+                    //change inset
+                    if (navBar.qmui_contentView && [selfObject isKindOfClass:[navBar.qmui_contentView class]]) {
+                        NSDirectionalEdgeInsets value = originResult;
+                        value.leading = value.trailing - (navBar.qmui_customizingBackBarButtonItem ? 8 : 0);
+                        return value;
+                    }
+                    return originResult;
+                };
+
             });
         }
     });

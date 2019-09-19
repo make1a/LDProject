@@ -13,7 +13,7 @@
 
 @interface LDVideoViewController ()<SDCycleScrollViewDelegate,UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,strong)LDTagView * tagView;
-@property (nonatomic,strong)UITableView * tableView;
+
 @property (nonatomic,strong)NSArray * netImages;
 @property (nonatomic,strong)SDCycleScrollView* cycleScrollView;
 @end
@@ -22,13 +22,18 @@
 #pragma mark - life cycle
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self isShowTagView:YES];
+    if (!self.isSearchModel) {
+        [self isShowTagView:YES];
+    }
 }
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self didSelectTagAction];
     [self configUI];
+    if (self.isSearchModel) {
+        [self isShowTagView:NO];
+    }
 }
 
 #pragma mark - event response
@@ -87,8 +92,14 @@
         }
     }];
     
-    self.tableView.tableHeaderView = self.cycleScrollView;
-    [self.cycleScrollView reloadInputViews];
+    if (!self.isSearchModel) {
+        self.tableView.tableHeaderView = self.cycleScrollView;
+        [self.cycleScrollView reloadInputViews];
+    }else {
+        [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.view);
+        }];
+    }
 }
 #pragma mark - get and set
 
