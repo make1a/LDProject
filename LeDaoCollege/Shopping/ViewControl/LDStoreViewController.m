@@ -11,17 +11,17 @@
 #import "SDCycleScrollView.h"
 #import "LDStoreSearchViewController.h"
 
-#import "LDInfoMationViewController.h"
-#import "LDVoiceViewController.h"
-#import "LDVideoViewController.h"
-#import "LDLiveViewController.h"
 
+#import "LDAllshoppingViewController.h"
+#import "LDToolBooksViewController.h"
+#import "LDSmallClassViewController.h"
 
+#import "LDShoppingHeadView.h"
 @interface LDStoreViewController ()<SDCycleScrollViewDelegate,VTMagicViewDelegate,VTMagicViewDataSource>
 @property (nonatomic, strong)VTMagicController *magicController;
 @property (nonatomic,strong)UIButton * searchButton;
 @property (nonatomic,strong)NSArray * netImages;
-@property (nonatomic,strong)SDCycleScrollView* cycleScrollView;
+@property (nonatomic,strong)LDShoppingHeadView * headView;
 @end
 
 @implementation LDStoreViewController
@@ -33,30 +33,42 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
     [self masLayoutSubviews];
     [self configMagicController];
 }
 #pragma  mark - ConfigUI
 - (void)configMagicController{
+    CGFloat maxY = CGRectGetMaxY(self.headView.frame)+10;
+    self.magicController.magicView.frame = CGRectMake(0,maxY, SCREEN_WIDTH, SCREEN_HEIGHT-maxY-TabBarHeight);
     [self addChildViewController:self.magicController];
     [self.view addSubview:self.magicController.view];
     [self.magicController.magicView reloadData];
 }
-- (void)masLayoutSubviews{
-    [self.view addSubview:self.searchButton];
-    [self.searchButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view).mas_offset(PtWidth(21));
-        make.right.mas_equalTo(self.view).mas_offset(PtWidth(-21));
-        
-        if (@available(iOS 11.0, *)) {
-            make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop).offset(10);
-        } else {
-            make.top.mas_equalTo(self.view);
 
-        }
-        make.height.mas_equalTo(PtHeight(32));
-    }];
-    
+- (void)masLayoutSubviews{
+//    [self.view addSubview:self.searchButton];
+//    [self.searchButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(self.view).mas_offset(PtWidth(21));
+//        make.right.mas_equalTo(self.view).mas_offset(PtWidth(-21));
+//
+//        if (@available(iOS 11.0, *)) {
+//            make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop).offset(10);
+//        } else {
+//            make.top.mas_equalTo(self.view);
+//
+//        }
+//        make.height.mas_equalTo(PtHeight(32));
+//    }];
+
+    [self.view addSubview:self.headView];
+    [self configCycleView];
+}
+- (void)configCycleView {
+    UIImage * placeholderImage = [UIImage imageNamed:@"seizeaseat_0"];
+    self.headView.cycleScrollView.placeholderImage = placeholderImage;
+    self.headView.cycleScrollView.imageURLStringsGroup = self.netImages;
+    self.headView.cycleScrollView.showPageControl = YES;
 }
 #pragma mark - event response
 - (void)clickSearchAction:(UIButton *)sender {
@@ -65,7 +77,7 @@
 }
 #pragma mark - VTMagicViewDelegate
 - (NSArray<__kindof NSString *> *)menuTitlesForMagicView:(VTMagicView *)magicView{
-    return @[@"资讯",@"音频",@"视频",@"直播"];
+    return @[@"全部商品",@"工具书",@"微课"];
 }
 
 - (void)magicView:(VTMagicView *)magicView didSelectItemAtIndex:(NSUInteger)itemIndex
@@ -79,46 +91,40 @@
     switch (pageIndex) {
         case 0:
         {
-            static NSString *identifier = @"LDInfoMationViewController.identifier";
-            LDInfoMationViewController *vc = [magicView dequeueReusablePageWithIdentifier:identifier];
+            static NSString *identifier = @"LDAllshoppingViewController.identifier";
+            LDAllshoppingViewController *vc = [magicView dequeueReusablePageWithIdentifier:identifier];
             if (!vc)
             {
-                vc = [[LDInfoMationViewController alloc] init];
+                vc = [[LDAllshoppingViewController alloc] init];
             }
             return vc;
         }
             break;
         case 1:
         {
-            static NSString *identifier = @"LDVoiceViewController.identifier";
-            LDVoiceViewController *vc = [magicView dequeueReusablePageWithIdentifier:identifier];
+            static NSString *identifier = @"LDToolBooksViewController.identifier";
+            LDToolBooksViewController *vc = [magicView dequeueReusablePageWithIdentifier:identifier];
             if (!vc)
             {
-                vc = [[LDVoiceViewController alloc] init];
+                vc = [[LDToolBooksViewController alloc] init];
             }
             return vc;
         }
             break;
         case 2:
         {
-            static NSString *identifier = @"LDVideoViewController.identifier";
-            LDVideoViewController *vc = [magicView dequeueReusablePageWithIdentifier:identifier];
+            static NSString *identifier = @"LDSmallClassViewController.identifier";
+            LDSmallClassViewController *vc = [magicView dequeueReusablePageWithIdentifier:identifier];
             if (!vc)
             {
-                vc = [[LDVideoViewController alloc] init];
+                vc = [[LDSmallClassViewController alloc] init];
             }
             return vc;
         }
             break;
         default:
         {
-            static NSString *identifier = @"LDLiveViewController.identifier";
-            LDLiveViewController *vc = [magicView dequeueReusablePageWithIdentifier:identifier];
-            if (!vc)
-            {
-                vc = [[LDLiveViewController alloc] init];
-            }
-            return vc;
+            return nil;
         }
             break;
     }
@@ -129,8 +135,8 @@
     UIButton *menuItem = [magicView dequeueReusableItemWithIdentifier:itemIdentifier];
     if (!menuItem) {
         menuItem = [UIButton buttonWithType:UIButtonTypeCustom];
-        [menuItem setTitleColor:UIColorFromRGBA(145, 226, 192, 1) forState:UIControlStateNormal];
-        [menuItem setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+        [menuItem setTitleColor:UIColorFromHEXA(0x666666, 1) forState:UIControlStateNormal];
+        [menuItem setTitleColor:MainThemeColor forState:UIControlStateSelected];
         menuItem.titleLabel.font = [UIFont systemFontOfSize:15];
     }
     return menuItem;
@@ -148,19 +154,6 @@
 #pragma mark - private method
 
 #pragma mark - get and set
-- (SDCycleScrollView *)cycleScrollView {
-    if (!_cycleScrollView) {
-        UIImage * placeholderImage = [UIImage imageNamed:@"blank_common"];
-        CGRect frame = CGRectMake(PtWidth(20), 0, PtWidth(335), PtHeight(120));
-        _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:frame delegate:self placeholderImage:placeholderImage];
-        _cycleScrollView.imageURLStringsGroup = self.netImages;
-        _cycleScrollView.showPageControl = YES;
-        _cycleScrollView.layer.masksToBounds = YES;
-        _cycleScrollView.layer.cornerRadius = 5;
-    }
-    return _cycleScrollView;
-}
-
 -(NSArray *)netImages{
     
     if (!_netImages) {
@@ -189,7 +182,6 @@
         _magicController.magicView.layoutStyle = VTLayoutStyleDivide;
         _magicController.magicView.switchStyle = VTSwitchStyleDefault;
         _magicController.magicView.itemSpacing = 20;
-        _magicController.magicView.frame = CGRectMake(0,PtHeight(91), SCREEN_WIDTH, SCREEN_HEIGHT-PtHeight(91)-TabBarHeight);
         _magicController.magicView.dataSource = self;
         _magicController.magicView.delegate = self;
         _magicController.magicView.needPreloading = NO;
@@ -208,6 +200,12 @@
         [_searchButton addTarget:self action:@selector(clickSearchAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _searchButton;
+}
+- (LDShoppingHeadView *)headView {
+    if (!_headView) {
+        _headView = [[NSBundle mainBundle]loadNibNamed:@"LDShoppingHeadView" owner:self options:nil].firstObject;
+    }
+    return _headView;
 }
 - (void)didReceiveMemoryWarning
 {

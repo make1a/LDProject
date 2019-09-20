@@ -54,6 +54,10 @@
 		268EEDF82325F1640014F971 /* PickerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 268EEDF52325F1630014F971 /* PickerViewCell.m */; };
 		268EEDF92325F1640014F971 /* ClickPickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 268EEDF62325F1640014F971 /* ClickPickerCell.m */; };
 		268EEDFC2325F2670014F971 /* LDHeadImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 268EEDFB2325F2670014F971 /* LDHeadImageCell.m */; };
+		26AAE4DD2334D8C700B9C5D3 /* LDShoppingDetailNameViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26AAE4DB2334D8C700B9C5D3 /* LDShoppingDetailNameViewCell.m */; };
+		26AAE4DE2334D8C700B9C5D3 /* LDShoppingDetailNameViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26AAE4DC2334D8C700B9C5D3 /* LDShoppingDetailNameViewCell.xib */; };
+		26AAE4E22334DD8B00B9C5D3 /* LDShoppingTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26AAE4E02334DD8B00B9C5D3 /* LDShoppingTitleCell.m */; };
+		26AAE4E32334DD8B00B9C5D3 /* LDShoppingTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26AAE4E12334DD8B00B9C5D3 /* LDShoppingTitleCell.xib */; };
 		26B70226232F250C00156116 /* LDFinishOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B70225232F250C00156116 /* LDFinishOrderCell.m */; };
 		26B7022B232F642500156116 /* UIView+CornerRadius.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B7022A232F642500156116 /* UIView+CornerRadius.m */; };
 		26B7022E232F735C00156116 /* LDShoppingCartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B7022D232F735C00156116 /* LDShoppingCartViewController.m */; };
@@ -62,6 +66,13 @@
 		26B70237232F858E00156116 /* LDShoppingCartPaymentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B70236232F858E00156116 /* LDShoppingCartPaymentView.m */; };
 		26BA0655232735E200992FFD /* LDAlterNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BA0654232735E200992FFD /* LDAlterNameViewController.m */; };
 		26C2D0112320E61900906324 /* LDNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26C2D0102320E61900906324 /* LDNewsTableViewCell.m */; };
+		26CB9A6B2334BA2D00DC12AD /* LDShoppingDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CB9A6A2334BA2D00DC12AD /* LDShoppingDetailViewController.m */; };
+		26CB9A6E2334C2E700DC12AD /* LDAllshoppingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CB9A6D2334C2E700DC12AD /* LDAllshoppingViewController.m */; };
+		26CB9A712334C31F00DC12AD /* LDToolBooksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CB9A702334C31F00DC12AD /* LDToolBooksViewController.m */; };
+		26CB9A742334C32C00DC12AD /* LDSmallClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CB9A732334C32C00DC12AD /* LDSmallClassViewController.m */; };
+		26CB9A772334C40100DC12AD /* LDShoppingHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CB9A762334C40100DC12AD /* LDShoppingHeadView.m */; };
+		26CB9A792334C40E00DC12AD /* LDShoppingHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26CB9A782334C40E00DC12AD /* LDShoppingHeadView.xib */; };
+		26CB9A7C2334CE2000DC12AD /* LDShoppingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CB9A7B2334CE2000DC12AD /* LDShoppingTableViewCell.m */; };
 		26CBF86F2323BC6E005139EF /* HCSortString.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CBF85A2323BC6E005139EF /* HCSortString.m */; };
 		26CBF8702323BC6E005139EF /* UIAlertController+HCAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CBF85B2323BC6E005139EF /* UIAlertController+HCAdd.m */; };
 		26CBF8712323BC6E005139EF /* NSString+PinYin4Cocoa.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CBF8612323BC6E005139EF /* NSString+PinYin4Cocoa.m */; };
@@ -213,6 +224,12 @@
 		268EEDF62325F1640014F971 /* ClickPickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickPickerCell.m; sourceTree = "<group>"; };
 		268EEDFA2325F2670014F971 /* LDHeadImageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDHeadImageCell.h; sourceTree = "<group>"; };
 		268EEDFB2325F2670014F971 /* LDHeadImageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDHeadImageCell.m; sourceTree = "<group>"; };
+		26AAE4DA2334D8C700B9C5D3 /* LDShoppingDetailNameViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDShoppingDetailNameViewCell.h; sourceTree = "<group>"; };
+		26AAE4DB2334D8C700B9C5D3 /* LDShoppingDetailNameViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDShoppingDetailNameViewCell.m; sourceTree = "<group>"; };
+		26AAE4DC2334D8C700B9C5D3 /* LDShoppingDetailNameViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LDShoppingDetailNameViewCell.xib; sourceTree = "<group>"; };
+		26AAE4DF2334DD8B00B9C5D3 /* LDShoppingTitleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDShoppingTitleCell.h; sourceTree = "<group>"; };
+		26AAE4E02334DD8B00B9C5D3 /* LDShoppingTitleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDShoppingTitleCell.m; sourceTree = "<group>"; };
+		26AAE4E12334DD8B00B9C5D3 /* LDShoppingTitleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LDShoppingTitleCell.xib; sourceTree = "<group>"; };
 		26B70224232F250C00156116 /* LDFinishOrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDFinishOrderCell.h; sourceTree = "<group>"; };
 		26B70225232F250C00156116 /* LDFinishOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDFinishOrderCell.m; sourceTree = "<group>"; };
 		26B70229232F642500156116 /* UIView+CornerRadius.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+CornerRadius.h"; sourceTree = "<group>"; };
@@ -229,6 +246,19 @@
 		26BA0654232735E200992FFD /* LDAlterNameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDAlterNameViewController.m; sourceTree = "<group>"; };
 		26C2D00F2320E61900906324 /* LDNewsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDNewsTableViewCell.h; sourceTree = "<group>"; };
 		26C2D0102320E61900906324 /* LDNewsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDNewsTableViewCell.m; sourceTree = "<group>"; };
+		26CB9A692334BA2D00DC12AD /* LDShoppingDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDShoppingDetailViewController.h; sourceTree = "<group>"; };
+		26CB9A6A2334BA2D00DC12AD /* LDShoppingDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDShoppingDetailViewController.m; sourceTree = "<group>"; };
+		26CB9A6C2334C2E700DC12AD /* LDAllshoppingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDAllshoppingViewController.h; sourceTree = "<group>"; };
+		26CB9A6D2334C2E700DC12AD /* LDAllshoppingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDAllshoppingViewController.m; sourceTree = "<group>"; };
+		26CB9A6F2334C31F00DC12AD /* LDToolBooksViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDToolBooksViewController.h; sourceTree = "<group>"; };
+		26CB9A702334C31F00DC12AD /* LDToolBooksViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDToolBooksViewController.m; sourceTree = "<group>"; };
+		26CB9A722334C32C00DC12AD /* LDSmallClassViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDSmallClassViewController.h; sourceTree = "<group>"; };
+		26CB9A732334C32C00DC12AD /* LDSmallClassViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDSmallClassViewController.m; sourceTree = "<group>"; };
+		26CB9A752334C40100DC12AD /* LDShoppingHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDShoppingHeadView.h; sourceTree = "<group>"; };
+		26CB9A762334C40100DC12AD /* LDShoppingHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDShoppingHeadView.m; sourceTree = "<group>"; };
+		26CB9A782334C40E00DC12AD /* LDShoppingHeadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LDShoppingHeadView.xib; sourceTree = "<group>"; };
+		26CB9A7A2334CE2000DC12AD /* LDShoppingTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDShoppingTableViewCell.h; sourceTree = "<group>"; };
+		26CB9A7B2334CE2000DC12AD /* LDShoppingTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDShoppingTableViewCell.m; sourceTree = "<group>"; };
 		26CBF8592323BC6E005139EF /* UIAlertController+HCAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+HCAdd.h"; sourceTree = "<group>"; };
 		26CBF85A2323BC6E005139EF /* HCSortString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCSortString.m; sourceTree = "<group>"; };
 		26CBF85B2323BC6E005139EF /* UIAlertController+HCAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+HCAdd.m"; sourceTree = "<group>"; };
@@ -533,6 +563,14 @@
 				265CB99B2320B2DF00883FE2 /* LDStoreViewController.m */,
 				26DD0987233368A500E1B5E2 /* LDStoreSearchViewController.h */,
 				26DD0988233368A500E1B5E2 /* LDStoreSearchViewController.m */,
+				26CB9A6C2334C2E700DC12AD /* LDAllshoppingViewController.h */,
+				26CB9A6D2334C2E700DC12AD /* LDAllshoppingViewController.m */,
+				26CB9A6F2334C31F00DC12AD /* LDToolBooksViewController.h */,
+				26CB9A702334C31F00DC12AD /* LDToolBooksViewController.m */,
+				26CB9A722334C32C00DC12AD /* LDSmallClassViewController.h */,
+				26CB9A732334C32C00DC12AD /* LDSmallClassViewController.m */,
+				26CB9A692334BA2D00DC12AD /* LDShoppingDetailViewController.h */,
+				26CB9A6A2334BA2D00DC12AD /* LDShoppingDetailViewController.m */,
 			);
 			path = ViewControl;
 			sourceTree = "<group>";
@@ -547,6 +585,17 @@
 		265CB9552320A37100883FE2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				26CB9A752334C40100DC12AD /* LDShoppingHeadView.h */,
+				26CB9A762334C40100DC12AD /* LDShoppingHeadView.m */,
+				26CB9A782334C40E00DC12AD /* LDShoppingHeadView.xib */,
+				26CB9A7A2334CE2000DC12AD /* LDShoppingTableViewCell.h */,
+				26CB9A7B2334CE2000DC12AD /* LDShoppingTableViewCell.m */,
+				26AAE4DA2334D8C700B9C5D3 /* LDShoppingDetailNameViewCell.h */,
+				26AAE4DB2334D8C700B9C5D3 /* LDShoppingDetailNameViewCell.m */,
+				26AAE4DC2334D8C700B9C5D3 /* LDShoppingDetailNameViewCell.xib */,
+				26AAE4DF2334DD8B00B9C5D3 /* LDShoppingTitleCell.h */,
+				26AAE4E02334DD8B00B9C5D3 /* LDShoppingTitleCell.m */,
+				26AAE4E12334DD8B00B9C5D3 /* LDShoppingTitleCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -839,6 +888,9 @@
 				262E4A03232A30C1000A6B0B /* 003.pdf in Resources */,
 				26F3BB9D2330BD0E001A645C /* LDScoreViewXib.xib in Resources */,
 				26CBF8722323BC6E005139EF /* unicode_to_hanyu_pinyin.txt in Resources */,
+				26AAE4E32334DD8B00B9C5D3 /* LDShoppingTitleCell.xib in Resources */,
+				26CB9A792334C40E00DC12AD /* LDShoppingHeadView.xib in Resources */,
+				26AAE4DE2334D8C700B9C5D3 /* LDShoppingDetailNameViewCell.xib in Resources */,
 				265CB9442320A2F500883FE2 /* LaunchScreen.storyboard in Resources */,
 				262E4A0D232A3681000A6B0B /* Reader.pdf in Resources */,
 				26F3BB942330B44B001A645C /* LDScoreCell.xib in Resources */,
@@ -960,10 +1012,12 @@
 				26F3BB932330B44B001A645C /* LDScoreCell.m in Sources */,
 				26CBF8912325275C005139EF /* LoginEnableButton.m in Sources */,
 				265CB95F2320A96100883FE2 /* MYConstansManager.m in Sources */,
+				26CB9A712334C31F00DC12AD /* LDToolBooksViewController.m in Sources */,
 				26E816302332267400CECCE3 /* LDMineCustomHead.m in Sources */,
 				26E8162D23321FAC00CECCE3 /* LDVideoTableViewCell.m in Sources */,
 				265CB93C2320A2F400883FE2 /* ViewController.m in Sources */,
 				265CB9802320AAA600883FE2 /* NSArray+MASAdditions.m in Sources */,
+				26CB9A7C2334CE2000DC12AD /* LDShoppingTableViewCell.m in Sources */,
 				268EEDF92325F1640014F971 /* ClickPickerCell.m in Sources */,
 				26B70237232F858E00156116 /* LDShoppingCartPaymentView.m in Sources */,
 				265CB97C2320AAA600883FE2 /* ViewController+MASAdditions.m in Sources */,
@@ -971,10 +1025,12 @@
 				2658F0FA232C8F8700F4C37A /* MKDrawPDFView.m in Sources */,
 				268A9BBF2320D82B00B4D756 /* LDNormalTableViewCell.m in Sources */,
 				26F5581A2325F953006D826D /* UIView+HNExtension.m in Sources */,
+				26CB9A6E2334C2E700DC12AD /* LDAllshoppingViewController.m in Sources */,
 				2658F0E22327D02300F4C37A /* LDCollectViewController.m in Sources */,
 				26B7022E232F735C00156116 /* LDShoppingCartViewController.m in Sources */,
 				268EEDF02325EDFC0014F971 /* LDConfigTableViewController.m in Sources */,
 				268EEDF72325F1640014F971 /* DatePickerCell.m in Sources */,
+				26CB9A742334C32C00DC12AD /* LDSmallClassViewController.m in Sources */,
 				265CB97D2320AAA600883FE2 /* MASCompositeConstraint.m in Sources */,
 				26B7022B232F642500156116 /* UIView+CornerRadius.m in Sources */,
 				26CBF8822323D4A8005139EF /* LDBusinessCardView.m in Sources */,
@@ -995,6 +1051,7 @@
 				26E816352332395100CECCE3 /* LDNavigationController.m in Sources */,
 				26BA0655232735E200992FFD /* LDAlterNameViewController.m in Sources */,
 				265CB9812320AAA600883FE2 /* View+MASAdditions.m in Sources */,
+				26AAE4DD2334D8C700B9C5D3 /* LDShoppingDetailNameViewCell.m in Sources */,
 				26CBF8792323BC6E005139EF /* PinYinForObjc.m in Sources */,
 				265CB97E2320AAA600883FE2 /* MASConstraintMaker.m in Sources */,
 				26F3BB732330ACF4001A645C /* LDBookRackViewController.m in Sources */,
@@ -1004,13 +1061,16 @@
 				26DD09842333600400E1B5E2 /* LDNoticeView.m in Sources */,
 				26869C3B23210672001DEDBA /* LDInfoMationViewController.m in Sources */,
 				26CBF86F2323BC6E005139EF /* HCSortString.m in Sources */,
+				26CB9A772334C40100DC12AD /* LDShoppingHeadView.m in Sources */,
 				2658F0F1232BF3DD00F4C37A /* MKReaderViewController.m in Sources */,
 				265CB97B2320AAA600883FE2 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				26F3BB822330AD93001A645C /* LeftTableViewCell.m in Sources */,
 				26E8164923324AF400CECCE3 /* QMUIConfigurationTemplate.m in Sources */,
 				26869C41232106F6001DEDBA /* LDVideoViewController.m in Sources */,
 				26CBF8772323BC6E005139EF /* ChineseToPinyinResource.m in Sources */,
+				26AAE4E22334DD8B00B9C5D3 /* LDShoppingTitleCell.m in Sources */,
 				265CB97F2320AAA600883FE2 /* MASLayoutConstraint.m in Sources */,
+				26CB9A6B2334BA2D00DC12AD /* LDShoppingDetailViewController.m in Sources */,
 				265CB9992320B2BC00883FE2 /* LDMainViewController.m in Sources */,
 				26869C3E232106A9001DEDBA /* LDVoiceViewController.m in Sources */,
 				26E8162A23321BD100CECCE3 /* LDVoiceTableViewCell.m in Sources */,
