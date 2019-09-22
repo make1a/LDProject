@@ -12,10 +12,12 @@
 #import "LDShoppingDetailViewController.h"
 #import "LDShoppingDetailNameViewCell.h"
 #import "LDShoppingTitleCell.h"
+#import "LDShoppingDetailFootView.h"
 @interface LDShoppingDetailViewController ()<SDCycleScrollViewDelegate,QMUITableViewDelegate,QMUITableViewDataSource>
 @property (nonatomic,strong)SDCycleScrollView* cycleScrollView;
 @property (nonatomic,strong)NSArray * netImages;
 @property (nonatomic,strong)QMUITableView * tableView;
+@property (nonatomic,strong)LDShoppingDetailFootView * footView;
 @end
 
 @implementation LDShoppingDetailViewController
@@ -32,8 +34,19 @@
     [super viewWillDisappear:animated];
 }
 - (void)masLayoutSubviews{
+    self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.tableView];
     self.tableView.tableHeaderView = self.cycleScrollView;
+    [self.view addSubview:self.footView];
+    [self.footView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.mas_equalTo(self.view);
+        make.top.mas_equalTo(self.tableView.mas_bottom);
+        if (@available(iOS 11.0, *)) {
+            make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom);
+        } else {
+            make.bottom.mas_equalTo(self.view.mas_bottom);
+        }
+    }];
 }
 #pragma  mark - TableView
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -112,7 +125,8 @@
 }
 - (QMUITableView *)tableView {
     if (!_tableView) {
-        _tableView = [[QMUITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, SCREEN_HEIGHT-PtHeight(50)) style:UITableViewStylePlain];
+        _tableView = [[QMUITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, SCREEN_HEIGHT-kTABBAR_HEIGHT) style:UITableViewStylePlain];
+
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.delegate = self;
         _tableView.dataSource = self;
@@ -123,5 +137,11 @@
         
     }
     return _tableView;
+}
+- (LDShoppingDetailFootView *)footView {
+    if (!_footView) {
+        _footView = [[NSBundle mainBundle]loadNibNamed:@"LDShoppingDetailFootView" owner:self options:nil].firstObject;
+    }
+    return _footView;
 }
 @end

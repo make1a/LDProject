@@ -92,6 +92,10 @@
 		26CBF88E23252566005139EF /* LDLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CBF88D23252566005139EF /* LDLoginViewController.m */; };
 		26CBF8912325275C005139EF /* LoginEnableButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CBF88F2325275C005139EF /* LoginEnableButton.m */; };
 		26CBF89423252A98005139EF /* JKCountDownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CBF89323252A97005139EF /* JKCountDownButton.m */; };
+		26D93F8023372E2700B31DAB /* LDShoppingImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26D93F7E23372E2700B31DAB /* LDShoppingImageCell.m */; };
+		26D93F8123372E2700B31DAB /* LDShoppingImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26D93F7F23372E2700B31DAB /* LDShoppingImageCell.xib */; };
+		26D93F8423372F1300B31DAB /* LDShoppingDetailFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = 26D93F8323372F1300B31DAB /* LDShoppingDetailFootView.m */; };
+		26D93F8623372F2B00B31DAB /* LDShoppingDetailFootView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26D93F8523372F2B00B31DAB /* LDShoppingDetailFootView.xib */; };
 		26DD09842333600400E1B5E2 /* LDNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 26DD09832333600400E1B5E2 /* LDNoticeView.m */; };
 		26DD09862333602000E1B5E2 /* LDNoticeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26DD09852333602000E1B5E2 /* LDNoticeView.xib */; };
 		26DD0989233368A500E1B5E2 /* LDStoreSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26DD0988233368A500E1B5E2 /* LDStoreSearchViewController.m */; };
@@ -296,6 +300,12 @@
 		26CBF8902325275C005139EF /* LoginEnableButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginEnableButton.h; sourceTree = "<group>"; };
 		26CBF89223252A97005139EF /* JKCountDownButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKCountDownButton.h; sourceTree = "<group>"; };
 		26CBF89323252A97005139EF /* JKCountDownButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKCountDownButton.m; sourceTree = "<group>"; };
+		26D93F7D23372E2700B31DAB /* LDShoppingImageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDShoppingImageCell.h; sourceTree = "<group>"; };
+		26D93F7E23372E2700B31DAB /* LDShoppingImageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDShoppingImageCell.m; sourceTree = "<group>"; };
+		26D93F7F23372E2700B31DAB /* LDShoppingImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LDShoppingImageCell.xib; sourceTree = "<group>"; };
+		26D93F8223372F1300B31DAB /* LDShoppingDetailFootView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDShoppingDetailFootView.h; sourceTree = "<group>"; };
+		26D93F8323372F1300B31DAB /* LDShoppingDetailFootView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDShoppingDetailFootView.m; sourceTree = "<group>"; };
+		26D93F8523372F2B00B31DAB /* LDShoppingDetailFootView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LDShoppingDetailFootView.xib; sourceTree = "<group>"; };
 		26DD09822333600400E1B5E2 /* LDNoticeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDNoticeView.h; sourceTree = "<group>"; };
 		26DD09832333600400E1B5E2 /* LDNoticeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDNoticeView.m; sourceTree = "<group>"; };
 		26DD09852333602000E1B5E2 /* LDNoticeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LDNoticeView.xib; sourceTree = "<group>"; };
@@ -596,6 +606,12 @@
 				26AAE4DF2334DD8B00B9C5D3 /* LDShoppingTitleCell.h */,
 				26AAE4E02334DD8B00B9C5D3 /* LDShoppingTitleCell.m */,
 				26AAE4E12334DD8B00B9C5D3 /* LDShoppingTitleCell.xib */,
+				26D93F7D23372E2700B31DAB /* LDShoppingImageCell.h */,
+				26D93F7E23372E2700B31DAB /* LDShoppingImageCell.m */,
+				26D93F7F23372E2700B31DAB /* LDShoppingImageCell.xib */,
+				26D93F8223372F1300B31DAB /* LDShoppingDetailFootView.h */,
+				26D93F8323372F1300B31DAB /* LDShoppingDetailFootView.m */,
+				26D93F8523372F2B00B31DAB /* LDShoppingDetailFootView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -888,12 +904,14 @@
 				262E4A03232A30C1000A6B0B /* 003.pdf in Resources */,
 				26F3BB9D2330BD0E001A645C /* LDScoreViewXib.xib in Resources */,
 				26CBF8722323BC6E005139EF /* unicode_to_hanyu_pinyin.txt in Resources */,
+				26D93F8123372E2700B31DAB /* LDShoppingImageCell.xib in Resources */,
 				26AAE4E32334DD8B00B9C5D3 /* LDShoppingTitleCell.xib in Resources */,
 				26CB9A792334C40E00DC12AD /* LDShoppingHeadView.xib in Resources */,
 				26AAE4DE2334D8C700B9C5D3 /* LDShoppingDetailNameViewCell.xib in Resources */,
 				265CB9442320A2F500883FE2 /* LaunchScreen.storyboard in Resources */,
 				262E4A0D232A3681000A6B0B /* Reader.pdf in Resources */,
 				26F3BB942330B44B001A645C /* LDScoreCell.xib in Resources */,
+				26D93F8623372F2B00B31DAB /* LDShoppingDetailFootView.xib in Resources */,
 				26F3BB8C2330AF83001A645C /* liwushuo.json in Resources */,
 				26E816322332268800CECCE3 /* LDMineCustomHead.xib in Resources */,
 				2640F106232793950015F7A6 /* Assets.xcassets in Resources */,
@@ -982,6 +1000,7 @@
 				26CBF8732323BC6E005139EF /* PinyinHelper.m in Sources */,
 				26F3BB852330AEA3001A645C /* CollectionCategoryModel.m in Sources */,
 				26CBF8782323BC6E005139EF /* PinyinFormatter.m in Sources */,
+				26D93F8023372E2700B31DAB /* LDShoppingImageCell.m in Sources */,
 				26B70234232F828A00156116 /* LDShoppingCartModel.m in Sources */,
 				26EC9E492328970200364943 /* LDUnfinishOrderViewController.m in Sources */,
 				26C2D0112320E61900906324 /* LDNewsTableViewCell.m in Sources */,
@@ -1027,6 +1046,7 @@
 				26F5581A2325F953006D826D /* UIView+HNExtension.m in Sources */,
 				26CB9A6E2334C2E700DC12AD /* LDAllshoppingViewController.m in Sources */,
 				2658F0E22327D02300F4C37A /* LDCollectViewController.m in Sources */,
+				26D93F8423372F1300B31DAB /* LDShoppingDetailFootView.m in Sources */,
 				26B7022E232F735C00156116 /* LDShoppingCartViewController.m in Sources */,
 				268EEDF02325EDFC0014F971 /* LDConfigTableViewController.m in Sources */,
 				268EEDF72325F1640014F971 /* DatePickerCell.m in Sources */,

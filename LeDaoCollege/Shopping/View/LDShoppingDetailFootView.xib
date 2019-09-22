@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="LDShoppingDetailFootView">
+            <rect key="frame" x="0.0" y="0.0" width="432" height="50"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pZ0-vl-8K1" customClass="QMUIButton">
+                    <rect key="frame" x="17" y="14.5" width="43.5" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="收藏" image="tab_collect_default">
+                        <color key="titleColor" systemColor="systemGrayColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kgk-hZ-tyu" customClass="QMUIButton">
+                    <rect key="frame" x="192" y="4" width="112" height="42"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="42" id="2SW-vk-jbe"/>
+                        <constraint firstAttribute="width" constant="112" id="2oK-nV-TfL"/>
+                    </constraints>
+                    <state key="normal" title="加入购物车" backgroundImage="left_button_icon">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pb8-2N-2IL" customClass="QMUIButton">
+                    <rect key="frame" x="303" y="4" width="112" height="42"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="112" id="7gA-TI-5uB"/>
+                        <constraint firstAttribute="height" constant="42" id="x3F-fP-3Re"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="立即购买" backgroundImage="right_button_icon">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Pb8-2N-2IL" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="BAL-68-Ggm"/>
+                <constraint firstItem="pZ0-vl-8K1" firstAttribute="leading" secondItem="pbv-g9-OCe" secondAttribute="leading" constant="17" id="LaY-XA-xlh"/>
+                <constraint firstItem="Kgk-hZ-tyu" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="bq2-Sg-uSi"/>
+                <constraint firstItem="pbv-g9-OCe" firstAttribute="trailing" secondItem="Pb8-2N-2IL" secondAttribute="trailing" constant="17" id="e2b-0P-DlK"/>
+                <constraint firstItem="Pb8-2N-2IL" firstAttribute="leading" secondItem="Kgk-hZ-tyu" secondAttribute="trailing" constant="-1" id="o7l-ME-dcd"/>
+                <constraint firstItem="pZ0-vl-8K1" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="wMB-Mu-cVL"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="pbv-g9-OCe"/>
+            <connections>
+                <outlet property="buyButton" destination="Pb8-2N-2IL" id="JxK-6W-AW3"/>
+                <outlet property="collectionButton" destination="pZ0-vl-8K1" id="6L9-c6-tRR"/>
+                <outlet property="shopCartButton" destination="Kgk-hZ-tyu" id="Nni-uW-Nr5"/>
+            </connections>
+            <point key="canvasLocation" x="-223.18840579710147" y="-85.044642857142847"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="left_button_icon" width="111.5" height="41.5"/>
+        <image name="right_button_icon" width="111.5" height="41.5"/>
+        <image name="tab_collect_default" width="20.5" height="20.5"/>
+    </resources>
+</document>
