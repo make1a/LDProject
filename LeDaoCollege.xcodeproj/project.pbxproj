@@ -66,6 +66,15 @@
 		26B70237232F858E00156116 /* LDShoppingCartPaymentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B70236232F858E00156116 /* LDShoppingCartPaymentView.m */; };
 		26BA0655232735E200992FFD /* LDAlterNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BA0654232735E200992FFD /* LDAlterNameViewController.m */; };
 		26C2D0112320E61900906324 /* LDNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26C2D0102320E61900906324 /* LDNewsTableViewCell.m */; };
+		26C8469D233895C900500B3F /* LDSmallClassDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26C8469C233895C900500B3F /* LDSmallClassDetailViewController.m */; };
+		26C846A02338976E00500B3F /* LDSmallClassDetailHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 26C8469F2338976E00500B3F /* LDSmallClassDetailHeadView.m */; };
+		26C846A22338990C00500B3F /* LDSmallClassDetailHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26C846A12338990C00500B3F /* LDSmallClassDetailHeadView.xib */; };
+		26C846A72338A93B00500B3F /* LDSmallClassDetailIntroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26C846A52338A93B00500B3F /* LDSmallClassDetailIntroCell.m */; };
+		26C846A82338A93B00500B3F /* LDSmallClassDetailIntroCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26C846A62338A93B00500B3F /* LDSmallClassDetailIntroCell.xib */; };
+		26C846AC2338B73F00500B3F /* LDSmallClassLessonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26C846AA2338B73F00500B3F /* LDSmallClassLessonCell.m */; };
+		26C846AD2338B73F00500B3F /* LDSmallClassLessonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26C846AB2338B73F00500B3F /* LDSmallClassLessonCell.xib */; };
+		26C846B12338CAEE00500B3F /* LDCommitBuyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26C846AF2338CAEE00500B3F /* LDCommitBuyViewController.m */; };
+		26C846B22338CAEE00500B3F /* LDCommitBuyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26C846B02338CAEE00500B3F /* LDCommitBuyViewController.xib */; };
 		26CB9A6B2334BA2D00DC12AD /* LDShoppingDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CB9A6A2334BA2D00DC12AD /* LDShoppingDetailViewController.m */; };
 		26CB9A6E2334C2E700DC12AD /* LDAllshoppingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CB9A6D2334C2E700DC12AD /* LDAllshoppingViewController.m */; };
 		26CB9A712334C31F00DC12AD /* LDToolBooksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CB9A702334C31F00DC12AD /* LDToolBooksViewController.m */; };
@@ -250,6 +259,20 @@
 		26BA0654232735E200992FFD /* LDAlterNameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDAlterNameViewController.m; sourceTree = "<group>"; };
 		26C2D00F2320E61900906324 /* LDNewsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDNewsTableViewCell.h; sourceTree = "<group>"; };
 		26C2D0102320E61900906324 /* LDNewsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDNewsTableViewCell.m; sourceTree = "<group>"; };
+		26C8469B233895C900500B3F /* LDSmallClassDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDSmallClassDetailViewController.h; sourceTree = "<group>"; };
+		26C8469C233895C900500B3F /* LDSmallClassDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDSmallClassDetailViewController.m; sourceTree = "<group>"; };
+		26C8469E2338976E00500B3F /* LDSmallClassDetailHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDSmallClassDetailHeadView.h; sourceTree = "<group>"; };
+		26C8469F2338976E00500B3F /* LDSmallClassDetailHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDSmallClassDetailHeadView.m; sourceTree = "<group>"; };
+		26C846A12338990C00500B3F /* LDSmallClassDetailHeadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LDSmallClassDetailHeadView.xib; sourceTree = "<group>"; };
+		26C846A42338A93B00500B3F /* LDSmallClassDetailIntroCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDSmallClassDetailIntroCell.h; sourceTree = "<group>"; };
+		26C846A52338A93B00500B3F /* LDSmallClassDetailIntroCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDSmallClassDetailIntroCell.m; sourceTree = "<group>"; };
+		26C846A62338A93B00500B3F /* LDSmallClassDetailIntroCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LDSmallClassDetailIntroCell.xib; sourceTree = "<group>"; };
+		26C846A92338B73F00500B3F /* LDSmallClassLessonCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDSmallClassLessonCell.h; sourceTree = "<group>"; };
+		26C846AA2338B73F00500B3F /* LDSmallClassLessonCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDSmallClassLessonCell.m; sourceTree = "<group>"; };
+		26C846AB2338B73F00500B3F /* LDSmallClassLessonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LDSmallClassLessonCell.xib; sourceTree = "<group>"; };
+		26C846AE2338CAEE00500B3F /* LDCommitBuyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDCommitBuyViewController.h; sourceTree = "<group>"; };
+		26C846AF2338CAEE00500B3F /* LDCommitBuyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDCommitBuyViewController.m; sourceTree = "<group>"; };
+		26C846B02338CAEE00500B3F /* LDCommitBuyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LDCommitBuyViewController.xib; sourceTree = "<group>"; };
 		26CB9A692334BA2D00DC12AD /* LDShoppingDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDShoppingDetailViewController.h; sourceTree = "<group>"; };
 		26CB9A6A2334BA2D00DC12AD /* LDShoppingDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDShoppingDetailViewController.m; sourceTree = "<group>"; };
 		26CB9A6C2334C2E700DC12AD /* LDAllshoppingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDAllshoppingViewController.h; sourceTree = "<group>"; };
@@ -581,6 +604,11 @@
 				26CB9A732334C32C00DC12AD /* LDSmallClassViewController.m */,
 				26CB9A692334BA2D00DC12AD /* LDShoppingDetailViewController.h */,
 				26CB9A6A2334BA2D00DC12AD /* LDShoppingDetailViewController.m */,
+				26C8469B233895C900500B3F /* LDSmallClassDetailViewController.h */,
+				26C8469C233895C900500B3F /* LDSmallClassDetailViewController.m */,
+				26C846AE2338CAEE00500B3F /* LDCommitBuyViewController.h */,
+				26C846AF2338CAEE00500B3F /* LDCommitBuyViewController.m */,
+				26C846B02338CAEE00500B3F /* LDCommitBuyViewController.xib */,
 			);
 			path = ViewControl;
 			sourceTree = "<group>";
@@ -612,6 +640,15 @@
 				26D93F8223372F1300B31DAB /* LDShoppingDetailFootView.h */,
 				26D93F8323372F1300B31DAB /* LDShoppingDetailFootView.m */,
 				26D93F8523372F2B00B31DAB /* LDShoppingDetailFootView.xib */,
+				26C8469E2338976E00500B3F /* LDSmallClassDetailHeadView.h */,
+				26C8469F2338976E00500B3F /* LDSmallClassDetailHeadView.m */,
+				26C846A12338990C00500B3F /* LDSmallClassDetailHeadView.xib */,
+				26C846A42338A93B00500B3F /* LDSmallClassDetailIntroCell.h */,
+				26C846A52338A93B00500B3F /* LDSmallClassDetailIntroCell.m */,
+				26C846A62338A93B00500B3F /* LDSmallClassDetailIntroCell.xib */,
+				26C846A92338B73F00500B3F /* LDSmallClassLessonCell.h */,
+				26C846AA2338B73F00500B3F /* LDSmallClassLessonCell.m */,
+				26C846AB2338B73F00500B3F /* LDSmallClassLessonCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -904,6 +941,7 @@
 				262E4A03232A30C1000A6B0B /* 003.pdf in Resources */,
 				26F3BB9D2330BD0E001A645C /* LDScoreViewXib.xib in Resources */,
 				26CBF8722323BC6E005139EF /* unicode_to_hanyu_pinyin.txt in Resources */,
+				26C846A82338A93B00500B3F /* LDSmallClassDetailIntroCell.xib in Resources */,
 				26D93F8123372E2700B31DAB /* LDShoppingImageCell.xib in Resources */,
 				26AAE4E32334DD8B00B9C5D3 /* LDShoppingTitleCell.xib in Resources */,
 				26CB9A792334C40E00DC12AD /* LDShoppingHeadView.xib in Resources */,
@@ -912,10 +950,13 @@
 				262E4A0D232A3681000A6B0B /* Reader.pdf in Resources */,
 				26F3BB942330B44B001A645C /* LDScoreCell.xib in Resources */,
 				26D93F8623372F2B00B31DAB /* LDShoppingDetailFootView.xib in Resources */,
+				26C846A22338990C00500B3F /* LDSmallClassDetailHeadView.xib in Resources */,
+				26C846B22338CAEE00500B3F /* LDCommitBuyViewController.xib in Resources */,
 				26F3BB8C2330AF83001A645C /* liwushuo.json in Resources */,
 				26E816322332268800CECCE3 /* LDMineCustomHead.xib in Resources */,
 				2640F106232793950015F7A6 /* Assets.xcassets in Resources */,
 				265CB93F2320A2F400883FE2 /* Main.storyboard in Resources */,
+				26C846AD2338B73F00500B3F /* LDSmallClassLessonCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -998,6 +1039,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				26CBF8732323BC6E005139EF /* PinyinHelper.m in Sources */,
+				26C846A02338976E00500B3F /* LDSmallClassDetailHeadView.m in Sources */,
 				26F3BB852330AEA3001A645C /* CollectionCategoryModel.m in Sources */,
 				26CBF8782323BC6E005139EF /* PinyinFormatter.m in Sources */,
 				26D93F8023372E2700B31DAB /* LDShoppingImageCell.m in Sources */,
@@ -1007,9 +1049,11 @@
 				265CB98F2320AB3000883FE2 /* MBProgressHUD+PX.m in Sources */,
 				26F3BB8F2330B26A001A645C /* LDScoreViewController.m in Sources */,
 				26EC9E462328960300364943 /* LDOrderViewController.m in Sources */,
+				26C846AC2338B73F00500B3F /* LDSmallClassLessonCell.m in Sources */,
 				26CBF87C2323BCC7005139EF /* LDCustomerManagerViewController.m in Sources */,
 				26B70226232F250C00156116 /* LDFinishOrderCell.m in Sources */,
 				2640F06A232771760015F7A6 /* LDTagView.m in Sources */,
+				26C846A72338A93B00500B3F /* LDSmallClassDetailIntroCell.m in Sources */,
 				26CBF8742323BC6E005139EF /* ChineseInclude.m in Sources */,
 				26F3BB7C2330AD0E001A645C /* CollectionViewCell.m in Sources */,
 				26EC9E4C2328970F00364943 /* LDFinishOrderViewController.m in Sources */,
@@ -1035,10 +1079,12 @@
 				26E816302332267400CECCE3 /* LDMineCustomHead.m in Sources */,
 				26E8162D23321FAC00CECCE3 /* LDVideoTableViewCell.m in Sources */,
 				265CB93C2320A2F400883FE2 /* ViewController.m in Sources */,
+				26C8469D233895C900500B3F /* LDSmallClassDetailViewController.m in Sources */,
 				265CB9802320AAA600883FE2 /* NSArray+MASAdditions.m in Sources */,
 				26CB9A7C2334CE2000DC12AD /* LDShoppingTableViewCell.m in Sources */,
 				268EEDF92325F1640014F971 /* ClickPickerCell.m in Sources */,
 				26B70237232F858E00156116 /* LDShoppingCartPaymentView.m in Sources */,
+				26C846B12338CAEE00500B3F /* LDCommitBuyViewController.m in Sources */,
 				265CB97C2320AAA600883FE2 /* ViewController+MASAdditions.m in Sources */,
 				26869C4723210879001DEDBA /* LDLiveViewController.m in Sources */,
 				2658F0FA232C8F8700F4C37A /* MKDrawPDFView.m in Sources */,

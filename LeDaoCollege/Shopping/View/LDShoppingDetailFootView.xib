@@ -14,13 +14,14 @@
             <rect key="frame" x="0.0" y="0.0" width="432" height="50"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pZ0-vl-8K1" customClass="QMUIButton">
-                    <rect key="frame" x="17" y="14.5" width="43.5" height="21"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pZ0-vl-8K1" customClass="QMUIButton">
+                    <rect key="frame" x="17" y="15" width="43.5" height="20"/>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                     <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <state key="normal" title="收藏" image="tab_collect_default">
                         <color key="titleColor" systemColor="systemGrayColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
+                    <state key="selected" title="收藏" image="tab_collect_selected-1"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kgk-hZ-tyu" customClass="QMUIButton">
                     <rect key="frame" x="192" y="4" width="112" height="42"/>
@@ -60,12 +61,13 @@
                 <outlet property="collectionButton" destination="pZ0-vl-8K1" id="6L9-c6-tRR"/>
                 <outlet property="shopCartButton" destination="Kgk-hZ-tyu" id="Nni-uW-Nr5"/>
             </connections>
-            <point key="canvasLocation" x="-223.18840579710147" y="-85.044642857142847"/>
+            <point key="canvasLocation" x="195.6521739130435" y="52.901785714285715"/>
         </view>
     </objects>
     <resources>
         <image name="left_button_icon" width="111.5" height="41.5"/>
         <image name="right_button_icon" width="111.5" height="41.5"/>
         <image name="tab_collect_default" width="20.5" height="20.5"/>
+        <image name="tab_collect_selected-1" width="20.5" height="20.5"/>
     </resources>
 </document>

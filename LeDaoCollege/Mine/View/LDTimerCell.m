@@ -146,6 +146,10 @@ NSString *const kLDTimerCellIdentifier = @"kLDTimerCellIdentifier";
     NSLog(@"cell释放");
 }
 #pragma  mark - GET SET
+- (void)setTimeInterval:(NSTimeInterval)timeInterval {
+    _timeInterval = timeInterval;
+    _second = timeInterval;
+}
 - (QMUILabel *)tagLabel {
     if (!_tagLabel) {
         _tagLabel = [[QMUILabel alloc]qmui_initWithFont:[UIFont systemFontOfSize:PtHeight(11)] textColor:UIColorFromHEXA(0xFF009E65, 1)];

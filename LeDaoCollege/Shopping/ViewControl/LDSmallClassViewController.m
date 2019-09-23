@@ -8,7 +8,7 @@
 
 #import "LDSmallClassViewController.h"
 #import "LDShoppingTableViewCell.h"
-
+#import "LDSmallClassDetailViewController.h"
 @interface LDSmallClassViewController ()
 
 @end
@@ -32,7 +32,8 @@
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-
+    LDSmallClassDetailViewController *vc = [LDSmallClassDetailViewController new];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return PtHeight(80);

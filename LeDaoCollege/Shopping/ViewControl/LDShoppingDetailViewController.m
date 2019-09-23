@@ -13,11 +13,13 @@
 #import "LDShoppingDetailNameViewCell.h"
 #import "LDShoppingTitleCell.h"
 #import "LDShoppingDetailFootView.h"
+#import "LDCommitBuyViewController.h"
 @interface LDShoppingDetailViewController ()<SDCycleScrollViewDelegate,QMUITableViewDelegate,QMUITableViewDataSource>
 @property (nonatomic,strong)SDCycleScrollView* cycleScrollView;
 @property (nonatomic,strong)NSArray * netImages;
 @property (nonatomic,strong)QMUITableView * tableView;
 @property (nonatomic,strong)LDShoppingDetailFootView * footView;
+@property (nonatomic,strong)UIButton * backButton;
 @end
 
 @implementation LDShoppingDetailViewController
@@ -29,6 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self masLayoutSubviews];
+    [self footerViewActions];
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -47,6 +50,31 @@
             make.bottom.mas_equalTo(self.view.mas_bottom);
         }
     }];
+    [self.view addSubview:self.backButton];
+    [self.backButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.view).mas_offset(17);
+        if (@available(iOS 11.0, *)) {
+            make.top.mas_equalTo(self.view.mas_safeAreaLayoutGuideTop).mas_offset(17);
+        } else {
+            make.top.mas_equalTo(self.view).mas_offset(17);
+        }
+    }];
+}
+#pragma  mark - Touch Event
+- (void)footerViewActions {
+    [self.footView.collectionButton addTarget:self action:@selector(clickCollectionAction:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)clickCollectionAction:(UIButton *)sender {
+    sender.selected = !sender.selected;
+    [QMUITips showSucceed:@"收藏成功"];
+}
+- (void)pushToBuyVC{
+    LDCommitBuyViewController *vc = [[LDCommitBuyViewController alloc]initWithNibName:@"LDCommitBuyViewController" bundle:[NSBundle mainBundle]];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+- (void)clickBackAction {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 #pragma  mark - TableView
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -141,7 +169,16 @@
 - (LDShoppingDetailFootView *)footView {
     if (!_footView) {
         _footView = [[NSBundle mainBundle]loadNibNamed:@"LDShoppingDetailFootView" owner:self options:nil].firstObject;
+        [_footView.buyButton addTarget:self action:@selector(pushToBuyVC) forControlEvents:UIControlEventTouchUpInside];
     }
     return _footView;
+}
+- (UIButton *)backButton {
+    if (!_backButton) {
+        _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_backButton setImage:[UIImage imageNamed:@"nav_black"] forState:UIControlStateNormal];
+        [_backButton addTarget:self action:@selector(clickBackAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _backButton;
 }
 @end
