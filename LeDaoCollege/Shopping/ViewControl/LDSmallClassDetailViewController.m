@@ -26,27 +26,13 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // 为了避免更改 navigationBar 显隐影响 scrollView 的滚动，这里屏蔽掉自动适应 contentInset
-    if (@available(iOS 11, *)) {
-        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-    } else {
-        self.automaticallyAdjustsScrollViewInsets = NO;
-    }
-
-    
     [self masLayoutSubViews];
-    [self configNavBarAnimation];
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     self.navigationController.navigationBar.hidden = YES;
 }
-- (void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-    self.tableView.contentInset = UIEdgeInsetsMake(self.qmui_navigationBarMaxYInViewCoordinator, 0, self.view.qmui_safeAreaInsets.bottom, 0);
-    self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
-    [self.tableView qmui_scrollToTopUponContentInsetTopChange];
-}
+
 - (void)masLayoutSubViews{
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.tableView];
@@ -63,28 +49,7 @@
         }
     }];
 }
-- (void)configNavBarAnimation {
-    self.navigationAnimator = [[QMUINavigationBarScrollingSnapAnimator alloc] init];
-    self.navigationAnimator.scrollView = self.tableView;
-    self.navigationAnimator.offsetYToStartAnimation = 44;
-    __weak __typeof(self)weakSelf = self;
-    self.navigationAnimator.animationBlock = ^(QMUINavigationBarScrollingSnapAnimator * _Nonnull animator, BOOL offsetYReached) {
-        __strong __typeof(weakSelf)strongSelf = weakSelf;
-        NSLog(@"导航栏%@, inset.top = %.2f, offset.y = %.2f", offsetYReached ? @"被隐藏了" : @"显示出来了", strongSelf.tableView.contentInset.top, strongSelf.tableView.contentOffset.y);
-        [strongSelf.navigationController setNavigationBarHidden:offsetYReached animated:YES];
-    };
-    
 
-}
-#pragma mark - <QMUINavigationControllerDelegate>
-
-- (BOOL)preferredNavigationBarHidden {
-    return self.navigationAnimator.offsetYReached;
-}
-
-- (BOOL)forceEnableInteractivePopGestureRecognizer {
-    return self.navigationAnimator.offsetYReached;
-}
 #pragma  mark - TableView
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 10;
@@ -101,12 +66,12 @@
         LDSmallClassDetailIntroCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LDSmallClassDetailIntroCell" forIndexPath:indexPath];
         return cell;
     }
-    
     LDSmallClassLessonCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LDSmallClassLessonCell" forIndexPath:indexPath];
     return cell;
     
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{

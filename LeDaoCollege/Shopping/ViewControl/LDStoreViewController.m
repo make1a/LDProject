@@ -19,7 +19,6 @@
 #import "LDShoppingHeadView.h"
 @interface LDStoreViewController ()<SDCycleScrollViewDelegate,VTMagicViewDelegate,VTMagicViewDataSource>
 @property (nonatomic, strong)VTMagicController *magicController;
-@property (nonatomic,strong)UIButton * searchButton;
 @property (nonatomic,strong)NSArray * netImages;
 @property (nonatomic,strong)LDShoppingHeadView * headView;
 @end
@@ -45,22 +44,7 @@
     [self.view addSubview:self.magicController.view];
     [self.magicController.magicView reloadData];
 }
-
 - (void)masLayoutSubviews{
-//    [self.view addSubview:self.searchButton];
-//    [self.searchButton mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.mas_equalTo(self.view).mas_offset(PtWidth(21));
-//        make.right.mas_equalTo(self.view).mas_offset(PtWidth(-21));
-//
-//        if (@available(iOS 11.0, *)) {
-//            make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop).offset(10);
-//        } else {
-//            make.top.mas_equalTo(self.view);
-//
-//        }
-//        make.height.mas_equalTo(PtHeight(32));
-//    }];
-
     [self.view addSubview:self.headView];
     [self configCycleView];
 }
@@ -189,21 +173,12 @@
     }
     return _magicController;
 }
-- (UIButton *)searchButton {
-    if (!_searchButton) {
-        _searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _searchButton.backgroundColor = UIColorFromHEXA(0xFBFBFB, 1);
-        _searchButton.layer.masksToBounds = YES;
-        _searchButton.layer.cornerRadius = PtHeight(32/2);
-        [_searchButton setTitle:@"搜索" forState:UIControlStateNormal];
-        [_searchButton setTitleColor:UIColorFromRGBA(165, 165, 165, 1) forState:UIControlStateNormal];
-        [_searchButton addTarget:self action:@selector(clickSearchAction:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _searchButton;
-}
+
 - (LDShoppingHeadView *)headView {
     if (!_headView) {
         _headView = [[NSBundle mainBundle]loadNibNamed:@"LDShoppingHeadView" owner:self options:nil].firstObject;
+        [_headView.searchButton addTarget:self action:@selector(clickSearchAction:) forControlEvents:UIControlEventTouchUpInside];
+
     }
     return _headView;
 }

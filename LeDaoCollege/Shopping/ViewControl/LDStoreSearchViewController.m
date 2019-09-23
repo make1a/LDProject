@@ -19,10 +19,17 @@
 @end
 
 @implementation LDStoreSearchViewController
-
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = !YES;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.hidden = YES;
 }
 - (NSArray *)menueBarTitles {
     return @[@"全部商品",@"工具书",@"微课"];
