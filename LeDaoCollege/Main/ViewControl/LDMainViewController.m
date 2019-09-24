@@ -28,10 +28,13 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.view addSubview:self.bgView];
-    [self configMagicController];
     self.view.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.bgView];
     [self masLayoutSubviews];
+}
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self configMagicController];
 }
 #pragma  mark - ConfigUI
 - (void)configMagicController{
