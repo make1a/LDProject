@@ -44,7 +44,7 @@
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 150;
+    return 95;
 }
 #pragma mark - private method
 //当程序从后台进入时，重新刷新tableView

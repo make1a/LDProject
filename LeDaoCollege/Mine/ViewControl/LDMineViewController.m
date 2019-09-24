@@ -16,6 +16,7 @@
 #import "LDBookRackViewController.h"
 #import "LDMineCustomHead.h"
 #import "LDScoreViewController.h"
+#import "LDCustomManagerListViewController.h"
 @interface LDMineViewController () <QMUITableViewDelegate,QMUITableViewDataSource>
 @property (nonatomic,strong)QMUITableView * tableView;
 @property (nonatomic,strong)NSArray * titlesArray;
@@ -76,7 +77,7 @@
     switch (indexPath.row) {
         case 0:
         {
-            LDCustomerManagerViewController *vc = [LDCustomerManagerViewController new];
+            LDCustomManagerListViewController *vc = [LDCustomManagerListViewController new];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;

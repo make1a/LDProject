@@ -28,6 +28,7 @@
 
 - (void)masLayoutSubviews{
     [self.view addSubview:self.cardView];
+    self.magicController.magicView.frame = CGRectMake(0,CGRectGetMaxY(self.cardView.frame)+10, SCREEN_WIDTH, SCREEN_HEIGHT-CGRectGetMaxY(self.cardView.frame));
     [self addChildViewController:self.magicController];
     [self.view addSubview:self.magicController.view];
     [self.magicController.magicView reloadData];
@@ -78,9 +79,9 @@
     UIButton *menuItem = [magicView dequeueReusableItemWithIdentifier:itemIdentifier];
     if (!menuItem) {
         menuItem = [UIButton buttonWithType:UIButtonTypeCustom];
-        [menuItem setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [menuItem setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
-        menuItem.titleLabel.font = [UIFont systemFontOfSize:16];
+        [menuItem setTitleColor:UIColorFromHEXA(0x666666, 1) forState:UIControlStateNormal];
+        [menuItem setTitleColor:MainThemeColor forState:UIControlStateSelected];
+        menuItem.titleLabel.font = [UIFont systemFontOfSize:15];
     }
     return menuItem;
 }
@@ -88,28 +89,32 @@
 #pragma  mark - GET & SET
 - (LDBusinessCardView *)cardView {
     if (!_cardView) {
-        _cardView = [[LDBusinessCardView alloc]initWithFrame:CGRectMake(12, kSTATUSBAR_NAVIGATION_HEIGHT+10, SCREEN_WIDTH-2*12, 300)];
+        _cardView = [[LDBusinessCardView alloc]initWithFrame:CGRectMake(0, kSTATUSBAR_NAVIGATION_HEIGHT+15, SCREEN_WIDTH, 151)];
     }
     return _cardView;
 }
 - (VTMagicController *)magicController {
     if (!_magicController) {
         _magicController = [[VTMagicController alloc] init];
-        _magicController.magicView.navigationColor = [UIColor grayColor];
-        _magicController.magicView.navigationHeight = 44;
-        _magicController.magicView.againstStatusBar = YES;
+        _magicController.magicView.navigationColor = [UIColor whiteColor];
+        _magicController.magicView.navigationHeight = PtHeight(35);
         _magicController.magicView.sliderHidden = NO;
-        _magicController.magicView.sliderWidth = 35;
-        _magicController.magicView.sliderColor = [UIColor yellowColor];
+        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, PtWidth(20), 5)];
+        view.backgroundColor = MainThemeColor;
+        [view setCornerRadius:5.0/2];
+        [_magicController.magicView setSliderView:view];
+        _magicController.magicView.sliderWidth = PtWidth(20);
+        _magicController.magicView.sliderHeight = 5;
         _magicController.magicView.layoutStyle = VTLayoutStyleDivide;
         _magicController.magicView.switchStyle = VTSwitchStyleDefault;
         _magicController.magicView.itemSpacing = 20;
-        _magicController.magicView.againstStatusBar = NO;
-        _magicController.magicView.frame = CGRectMake(0,CGRectGetMaxY(self.cardView.frame)+20, SCREEN_WIDTH, SCREEN_HEIGHT-CGRectGetMaxY(self.cardView.frame));
         _magicController.magicView.dataSource = self;
         _magicController.magicView.delegate = self;
         _magicController.magicView.needPreloading = NO;
+        _magicController.magicView.separatorHidden = YES;
     }
     return _magicController;
 }
+
+
 @end

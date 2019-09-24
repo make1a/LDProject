@@ -42,10 +42,10 @@
     self.searchButton.spacingBetweenImageAndTitle = 15;
     
     CGFloat y = self.searchButton.center.y - self.docButton.frame.size.height/2;
-    self.docButton.frame = CGRectMake(PtWidth(297), y, 17, 17);
-    [self.docButton sizeToFit];
+    self.docButton.frame = CGRectMake(PtWidth(297), y, 20, 20);
+//    [self.docButton sizeToFit];
     
-    self.carButton.frame = CGRectMake(PtWidth(342), y, 17, 17);
-    [self.carButton sizeToFit];
+    self.carButton.frame = CGRectMake(PtWidth(342), y, 20, 20);
+//    [self.carButton sizeToFit];
 }
 @end

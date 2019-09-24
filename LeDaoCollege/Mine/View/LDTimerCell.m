@@ -36,7 +36,7 @@ NSString *const kLDTimerCellIdentifier = @"kLDTimerCellIdentifier";
         self.contentView.backgroundColor = [UIColor clearColor];
         [self configTimer];
         [self masLayoutSubview];
-        self.imageView.image = [UIImage imageNamed:@"dog"];
+        self.imageView.image = [UIImage imageNamed:@"seizeaseat_0"];
         self.textLabel.text = @"makemake";
     }
     return self;
@@ -50,8 +50,9 @@ NSString *const kLDTimerCellIdentifier = @"kLDTimerCellIdentifier";
 
 - (void)masLayoutSubview
 {
+    [self.imageView setCornerRadius:10];
     [self.imageView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self).mas_offset(5);
+        make.left.mas_equalTo(self).mas_offset(17);
         make.top.mas_equalTo(self).mas_offset(5);
         make.width.mas_equalTo(PtWidth(112));
         make.height.mas_equalTo(PtHeight(64));
@@ -67,31 +68,35 @@ NSString *const kLDTimerCellIdentifier = @"kLDTimerCellIdentifier";
         make.left.mas_equalTo(self.imageView.mas_right).mas_offset(PtWidth(17));
         make.top.mas_equalTo(self.textLabel.mas_bottom).mas_offset(PtHeight(8));
         make.height.mas_equalTo(PtHeight(18));
+        make.width.mas_equalTo(PtWidth(50));
     }];
     
     [self.contentView addSubview:self.priceLabel];
-    [self.priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.textLabel);
-        make.bottom.mas_equalTo(self.contentView).mas_offset(-PtHeight(8));
-    }];
-    
     [self.contentView addSubview:self.safePriceLabel];
-    [self.safePriceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.priceLabel.mas_right).offset(5);
-        make.bottom.mas_equalTo(self.priceLabel);
+    
+    [self.priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.safePriceLabel.mas_right).offset(5);
+        make.bottom.mas_equalTo(self.safePriceLabel);
     }];
     
+    [self.safePriceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.textLabel);
+        make.top.mas_equalTo(self.tagLabel.mas_bottom).mas_offset(8);
+    }];
+
     [self.contentView addSubview:self.timeLabel];
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.safePriceLabel.mas_right).offset(5);
-        make.bottom.mas_equalTo(self.priceLabel);
+        make.left.mas_equalTo(self.tagLabel.mas_right).offset(8);
+        make.centerY.mas_equalTo(self.tagLabel);
+        make.width.mas_equalTo(PtWidth(115));
+        make.height.mas_equalTo(PtHeight(19));
     }];
 }
 
 
 - (void)timerRun:(NSTimer *)timer {
     if (_second > 0) {
-    self.timeLabel.text = [self timeToString];
+        self.timeLabel.text = [NSString stringWithFormat:@"剩余时间:%@",[self timeToString]];
     }
     else {
         self.timeLabel.hidden = YES;
@@ -152,11 +157,12 @@ NSString *const kLDTimerCellIdentifier = @"kLDTimerCellIdentifier";
 }
 - (QMUILabel *)tagLabel {
     if (!_tagLabel) {
-        _tagLabel = [[QMUILabel alloc]qmui_initWithFont:[UIFont systemFontOfSize:PtHeight(11)] textColor:UIColorFromHEXA(0xFF009E65, 1)];
+        _tagLabel = [[QMUILabel alloc]qmui_initWithFont:[UIFont systemFontOfSize:10] textColor:UIColorFromHEXA(0xFF009E65, 1)];
         _tagLabel.text = @"工具书";
         _tagLabel.layer.masksToBounds = YES;
         _tagLabel.layer.cornerRadius = PtHeight(18/2);
         _tagLabel.backgroundColor = [UIColor colorWithRed:214/255.0 green:242/255.0 blue:232/255.0 alpha:1.0];
+        _tagLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _tagLabel;
 }
@@ -170,12 +176,14 @@ NSString *const kLDTimerCellIdentifier = @"kLDTimerCellIdentifier";
         
         // 赋值
         _priceLabel.attributedText = attribtStr;
+        _priceLabel.textColor = UIColorFromHEXA(0x999999, 1);
+        _priceLabel.font = [UIFont systemFontOfSize:13];
     }
     return _priceLabel;
 }
 - (QMUILabel *)safePriceLabel {
     if (!_safePriceLabel) {
-        _safePriceLabel = [[QMUILabel alloc]qmui_initWithFont:[UIFont systemFontOfSize:PtHeight(13)] textColor:[UIColor redColor]];
+        _safePriceLabel = [[QMUILabel alloc]qmui_initWithFont:[UIFont systemFontOfSize:PtHeight(15)] textColor:[UIColor redColor]];
         _safePriceLabel.text = @"18.88";
     }
     return _safePriceLabel;
@@ -184,6 +192,11 @@ NSString *const kLDTimerCellIdentifier = @"kLDTimerCellIdentifier";
 {
     if (!_timeLabel) {
         _timeLabel = [[QMUILabel alloc]init];
+        [_timeLabel setCornerRadius:19/2.0];
+        _timeLabel.backgroundColor = UIColorFromHEXA(0xFEEAEA, 1);
+        _timeLabel.font = [UIFont systemFontOfSize:10];
+        _timeLabel.textColor = UIColorFromHEXA(0xF28484, 1);
+        _timeLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _timeLabel;
 }

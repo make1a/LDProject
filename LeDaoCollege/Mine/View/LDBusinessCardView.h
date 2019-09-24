@@ -11,7 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LDBusinessCardView : UIView
-
+@property (nonatomic,strong) UILabel * sexLabel;
+@property (nonatomic,strong) UILabel * birthDayLabel;
+@property (nonatomic,strong) UILabel * descLabel;
 @end
 
 NS_ASSUME_NONNULL_END

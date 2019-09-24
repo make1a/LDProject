@@ -21,12 +21,17 @@
 
 @implementation LDShoppingCartViewController
 #pragma mark - life cycle
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = NO;
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     isTableViewDeleteModel = NO;
     [self creatNavButton];
     [self masLayoutSubviews];
+    self.title = @"购物车";
 }
 #pragma mark - event response
 - (void)configTablViewAction:(UIBarButtonItem *)sender {

@@ -78,7 +78,7 @@ NSString *const kLDNewsTableViewCellIdentifier = @"kLDNewsTableViewCellIdentifie
         _bigImageVIew = [[UIImageView alloc]init];
         _bigImageVIew.layer.masksToBounds = YES;
         _bigImageVIew.layer.cornerRadius = 10.f;
-        _bigImageVIew.image = [UIImage imageNamed:@"dog"];
+        _bigImageVIew.image = [UIImage imageNamed:@"seizeaseat_0"];
     }
     return _bigImageVIew;
 }

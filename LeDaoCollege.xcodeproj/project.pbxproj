@@ -58,6 +58,12 @@
 		26AAE4DE2334D8C700B9C5D3 /* LDShoppingDetailNameViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26AAE4DC2334D8C700B9C5D3 /* LDShoppingDetailNameViewCell.xib */; };
 		26AAE4E22334DD8B00B9C5D3 /* LDShoppingTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26AAE4E02334DD8B00B9C5D3 /* LDShoppingTitleCell.m */; };
 		26AAE4E32334DD8B00B9C5D3 /* LDShoppingTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26AAE4E12334DD8B00B9C5D3 /* LDShoppingTitleCell.xib */; };
+		26B6CD5B233A07FA00E94520 /* LDEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B6CD5A233A07FA00E94520 /* LDEmptyView.m */; };
+		26B6CD5D233A080D00E94520 /* LDEmptyViewXIB.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26B6CD5C233A080D00E94520 /* LDEmptyViewXIB.xib */; };
+		26B6CD60233A13BF00E94520 /* LDCustomManagerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B6CD5F233A13BF00E94520 /* LDCustomManagerListViewController.m */; };
+		26B6CD64233A172C00E94520 /* LDEmptyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B6CD63233A172C00E94520 /* LDEmptyViewController.m */; };
+		26B6CD69233A1E0100E94520 /* LDCustomHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B6CD67233A1E0100E94520 /* LDCustomHistoryCell.m */; };
+		26B6CD6A233A1E0100E94520 /* LDCustomHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26B6CD68233A1E0100E94520 /* LDCustomHistoryCell.xib */; };
 		26B70226232F250C00156116 /* LDFinishOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B70225232F250C00156116 /* LDFinishOrderCell.m */; };
 		26B7022B232F642500156116 /* UIView+CornerRadius.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B7022A232F642500156116 /* UIView+CornerRadius.m */; };
 		26B7022E232F735C00156116 /* LDShoppingCartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B7022D232F735C00156116 /* LDShoppingCartViewController.m */; };
@@ -243,6 +249,16 @@
 		26AAE4DF2334DD8B00B9C5D3 /* LDShoppingTitleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDShoppingTitleCell.h; sourceTree = "<group>"; };
 		26AAE4E02334DD8B00B9C5D3 /* LDShoppingTitleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDShoppingTitleCell.m; sourceTree = "<group>"; };
 		26AAE4E12334DD8B00B9C5D3 /* LDShoppingTitleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LDShoppingTitleCell.xib; sourceTree = "<group>"; };
+		26B6CD59233A07FA00E94520 /* LDEmptyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDEmptyView.h; sourceTree = "<group>"; };
+		26B6CD5A233A07FA00E94520 /* LDEmptyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDEmptyView.m; sourceTree = "<group>"; };
+		26B6CD5C233A080D00E94520 /* LDEmptyViewXIB.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LDEmptyViewXIB.xib; sourceTree = "<group>"; };
+		26B6CD5E233A13BF00E94520 /* LDCustomManagerListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDCustomManagerListViewController.h; sourceTree = "<group>"; };
+		26B6CD5F233A13BF00E94520 /* LDCustomManagerListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDCustomManagerListViewController.m; sourceTree = "<group>"; };
+		26B6CD62233A172C00E94520 /* LDEmptyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDEmptyViewController.h; sourceTree = "<group>"; };
+		26B6CD63233A172C00E94520 /* LDEmptyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDEmptyViewController.m; sourceTree = "<group>"; };
+		26B6CD66233A1E0100E94520 /* LDCustomHistoryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDCustomHistoryCell.h; sourceTree = "<group>"; };
+		26B6CD67233A1E0100E94520 /* LDCustomHistoryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDCustomHistoryCell.m; sourceTree = "<group>"; };
+		26B6CD68233A1E0100E94520 /* LDCustomHistoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LDCustomHistoryCell.xib; sourceTree = "<group>"; };
 		26B70224232F250C00156116 /* LDFinishOrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDFinishOrderCell.h; sourceTree = "<group>"; };
 		26B70225232F250C00156116 /* LDFinishOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDFinishOrderCell.m; sourceTree = "<group>"; };
 		26B70229232F642500156116 /* UIView+CornerRadius.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+CornerRadius.h"; sourceTree = "<group>"; };
@@ -514,6 +530,10 @@
 				26F3BB8B2330AF82001A645C /* liwushuo.json */,
 				26F3BB8D2330B26A001A645C /* LDScoreViewController.h */,
 				26F3BB8E2330B26A001A645C /* LDScoreViewController.m */,
+				26B6CD5E233A13BF00E94520 /* LDCustomManagerListViewController.h */,
+				26B6CD5F233A13BF00E94520 /* LDCustomManagerListViewController.m */,
+				26B6CD62233A172C00E94520 /* LDEmptyViewController.h */,
+				26B6CD63233A172C00E94520 /* LDEmptyViewController.m */,
 			);
 			path = ViewControl;
 			sourceTree = "<group>";
@@ -532,6 +552,7 @@
 		265CB9512320A37100883FE2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				26B6CD65233A1DE700E94520 /* 客户管理 */,
 				268EEDF12325F1630014F971 /* ClickPickerCell.h */,
 				268EEDF62325F1640014F971 /* ClickPickerCell.m */,
 				268EEDF22325F1630014F971 /* DatePickerCell.h */,
@@ -765,8 +786,21 @@
 				265CB9922320AE6700883FE2 /* LDTabBarController.m */,
 				26E816332332395100CECCE3 /* LDNavigationController.h */,
 				26E816342332395100CECCE3 /* LDNavigationController.m */,
+				26B6CD59233A07FA00E94520 /* LDEmptyView.h */,
+				26B6CD5A233A07FA00E94520 /* LDEmptyView.m */,
+				26B6CD5C233A080D00E94520 /* LDEmptyViewXIB.xib */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		26B6CD65233A1DE700E94520 /* 客户管理 */ = {
+			isa = PBXGroup;
+			children = (
+				26B6CD66233A1E0100E94520 /* LDCustomHistoryCell.h */,
+				26B6CD67233A1E0100E94520 /* LDCustomHistoryCell.m */,
+				26B6CD68233A1E0100E94520 /* LDCustomHistoryCell.xib */,
+			);
+			path = "客户管理";
 			sourceTree = "<group>";
 		};
 		26CBF8572323BC64005139EF /* Tool */ = {
@@ -944,10 +978,12 @@
 				26C846A82338A93B00500B3F /* LDSmallClassDetailIntroCell.xib in Resources */,
 				26D93F8123372E2700B31DAB /* LDShoppingImageCell.xib in Resources */,
 				26AAE4E32334DD8B00B9C5D3 /* LDShoppingTitleCell.xib in Resources */,
+				26B6CD6A233A1E0100E94520 /* LDCustomHistoryCell.xib in Resources */,
 				26CB9A792334C40E00DC12AD /* LDShoppingHeadView.xib in Resources */,
 				26AAE4DE2334D8C700B9C5D3 /* LDShoppingDetailNameViewCell.xib in Resources */,
 				265CB9442320A2F500883FE2 /* LaunchScreen.storyboard in Resources */,
 				262E4A0D232A3681000A6B0B /* Reader.pdf in Resources */,
+				26B6CD5D233A080D00E94520 /* LDEmptyViewXIB.xib in Resources */,
 				26F3BB942330B44B001A645C /* LDScoreCell.xib in Resources */,
 				26D93F8623372F2B00B31DAB /* LDShoppingDetailFootView.xib in Resources */,
 				26C846A22338990C00500B3F /* LDSmallClassDetailHeadView.xib in Resources */,
@@ -1067,11 +1103,13 @@
 				26F3BB972330B67A001A645C /* LDScoreView.m in Sources */,
 				26B70231232F7C9E00156116 /* LDShoppingCartCell.m in Sources */,
 				268EEDF82325F1640014F971 /* PickerViewCell.m in Sources */,
+				26B6CD69233A1E0100E94520 /* LDCustomHistoryCell.m in Sources */,
 				26CBF8712323BC6E005139EF /* NSString+PinYin4Cocoa.m in Sources */,
 				26CBF8752323BC6E005139EF /* HanyuPinyinOutputFormat.m in Sources */,
 				268EEDFC2325F2670014F971 /* LDHeadImageCell.m in Sources */,
 				2658F0EB232A9D8F00F4C37A /* LDReadProgressView.m in Sources */,
 				26CBF88E23252566005139EF /* LDLoginViewController.m in Sources */,
+				26B6CD5B233A07FA00E94520 /* LDEmptyView.m in Sources */,
 				26F3BB932330B44B001A645C /* LDScoreCell.m in Sources */,
 				26CBF8912325275C005139EF /* LoginEnableButton.m in Sources */,
 				265CB95F2320A96100883FE2 /* MYConstansManager.m in Sources */,
@@ -1102,6 +1140,7 @@
 				26CBF8822323D4A8005139EF /* LDBusinessCardView.m in Sources */,
 				265CB9472320A2F500883FE2 /* main.m in Sources */,
 				26CBF8882323E127005139EF /* LDCustormHistoryViewController.m in Sources */,
+				26B6CD60233A13BF00E94520 /* LDCustomManagerListViewController.m in Sources */,
 				26CBF8762323BC6E005139EF /* ZYPinYinSearch.m in Sources */,
 				26CBF8702323BC6E005139EF /* UIAlertController+HCAdd.m in Sources */,
 				26F558142325F6A8006D826D /* HNAlertView.m in Sources */,
@@ -1144,6 +1183,7 @@
 				2613781123225DA300228261 /* LDSearchHistoryView.m in Sources */,
 				265CB9962320B2AA00883FE2 /* LDMineViewController.m in Sources */,
 				26F3BB7F2330AD54001A645C /* LJCollectionViewFlowLayout.m in Sources */,
+				26B6CD64233A172C00E94520 /* LDEmptyViewController.m in Sources */,
 				265CB9392320A2F400883FE2 /* AppDelegate.m in Sources */,
 				26DD0989233368A500E1B5E2 /* LDStoreSearchViewController.m in Sources */,
 			);

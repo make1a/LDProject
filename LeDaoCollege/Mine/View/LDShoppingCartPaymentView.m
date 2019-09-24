@@ -41,8 +41,10 @@
 - (UIButton *)selectedAllButton {
     if (!_selectedAllButton) {
         _selectedAllButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _selectedAllButton.backgroundColor = [UIColor grayColor];
+        [_selectedAllButton setImage:[UIImage imageNamed:@"shoppingcart_check_normal"] forState:UIControlStateNormal];
+        [_selectedAllButton setImage:[UIImage imageNamed:@"shoppingcart_check_sele"] forState:UIControlStateSelected];
         _selectedAllButton.frame = CGRectMake(PtWidth(13), PtHeight(16), PtWidth(20), PtWidth(20));
+        [_selectedAllButton sizeToFit];
     }
     return _selectedAllButton;
 }

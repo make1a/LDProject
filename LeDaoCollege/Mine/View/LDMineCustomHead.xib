@@ -17,7 +17,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lgs-ro-Icg">
                     <rect key="frame" x="0.0" y="0.0" width="434" height="152"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mine_default_headportrait" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tpH-0A-nQ6">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mine_headportrait_default" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tpH-0A-nQ6">
                             <rect key="frame" x="21" y="49" width="50" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="CKN-o9-IjV"/>
@@ -119,7 +119,7 @@
         </view>
     </objects>
     <resources>
-        <image name="mine_default_headportrait" width="29.5" height="29.5"/>
+        <image name="mine_headportrait_default" width="64" height="64"/>
         <image name="mine_integral" width="13" height="10"/>
         <image name="v_icon" width="13.5" height="10"/>
     </resources>

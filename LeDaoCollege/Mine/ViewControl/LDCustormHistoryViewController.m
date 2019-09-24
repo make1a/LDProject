@@ -7,7 +7,7 @@
 //
 
 #import "LDCustormHistoryViewController.h"
-
+#import "LDCustomHistoryCell.h"
 @interface LDCustormHistoryViewController ()<QMUITableViewDelegate,QMUITableViewDataSource>
 @property (nonatomic,strong)QMUITableView * tableView;
 @end
@@ -34,9 +34,11 @@
     return  10;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    cell.textLabel.text = @"make";
+    LDCustomHistoryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LDCustomHistoryCell" forIndexPath:indexPath];
     return cell;
+}
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 90;
 }
 #pragma  mark - GET SET
 - (QMUITableView *)tableView {
@@ -44,7 +46,7 @@
         _tableView = [[QMUITableView alloc]init];
         _tableView.delegate = self;
         self.tableView.dataSource = self;
-        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+        [_tableView registerNib:[UINib nibWithNibName:@"LDCustomHistoryCell" bundle:nil] forCellReuseIdentifier:@"LDCustomHistoryCell"];
     }
     return _tableView;
 }

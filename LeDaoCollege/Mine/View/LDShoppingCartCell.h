@@ -11,7 +11,7 @@
 extern NSString *const kLDShoppingCartCellIdentifier;
 @interface LDShoppingCartCell : QMUITableViewCell
 
-@property (nonatomic,strong)UIImageView * selectImageView;
+@property (nonatomic,strong)UIButton * selectButton;
 @property (nonatomic,strong)UIImageView * bigImageView;
 @property (nonatomic,strong)UILabel * titleLabel;
 @property (nonatomic,strong)QMUILabel * tagLabel;

@@ -104,7 +104,8 @@ NSString *const kLDShoppingTableViewCell = @"LDShoppingTableViewCell";
 - (UIImageView *)bigImageView{
     if (!_bigImageView) {
         _bigImageView = [[UIImageView alloc]init];
-        _bigImageView.image = [UIImage imageNamed:@"dog"];
+        _bigImageView.image = [UIImage imageNamed:@"seizeaseat_0"];
+        [_bigImageView setCornerRadius:10];
     }
     return _bigImageView;
 }

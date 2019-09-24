@@ -150,13 +150,13 @@
 }
 
 #pragma mark - <UISearchControllerDelegate>
-- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
-    searchBar.showsCancelButton = YES;
-    return YES;
-}
+//- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
+//    searchBar.showsCancelButton = YES;
+//    return YES;
+//}
 
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
-    
+
 }
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     if (searchText.length == 0) {
@@ -173,9 +173,10 @@
     searchBar.text = @"";
 }
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-
     LDInfoMationViewController *vc = self.magicController.currentViewController;
     vc.tableView.tableHeaderView = self.noticeView;
+    [vc.tableView qmui_scrollToTop];
+    [self.searchBar.qmui_textField resignFirstResponder];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         vc.tableView.tableHeaderView = nil;
     });
@@ -186,11 +187,12 @@
 - (QMUISearchBar *)searchBar {
     if (!_searchBar) {
         _searchBar = [[QMUISearchBar alloc]init];
+        _searchBar.placeholder = @"搜索";
         [_searchBar setCornerRadius:PtHeight(17)];
         _searchBar.searchBarStyle = UISearchBarStyleMinimal;
-        _searchBar.backgroundColor = [UIColor clearColor];
-        _searchBar.placeholder = @"搜索";
+//        _searchBar.backgroundColor = [UIColor clearColor];
         _searchBar.delegate = self;
+//        _searchBar.qmui_cancelButtonFont
         [UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[UISearchBar class]]].title = @"取消";
         [_searchBar qmui_styledAsQMUISearchBar];
     }

@@ -17,11 +17,16 @@
 
 @implementation LDOrderViewController
 #pragma mark - life cycle
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = NO;
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     [self configMagicController];
+    self.title = @"我的订单";
 }
 #pragma  mark - ConfigUI
 - (void)configMagicController{
@@ -71,7 +76,6 @@
         }
             break;
     }
-    
 }
 
 - (nonnull UIButton *)magicView:(nonnull VTMagicView *)magicView menuItemAtIndex:(NSUInteger)itemIndex {

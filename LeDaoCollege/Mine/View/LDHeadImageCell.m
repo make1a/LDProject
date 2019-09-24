@@ -44,7 +44,7 @@ NSString *const kLDHeadImageCellIdentifier = @"kLDHeadImageCellIdentifier";
         make.centerY.mas_equalTo(self);
         make.height.width.mas_equalTo(48);
     }];
-    self.imageView.image = [UIImage imageNamed:@"blank_common"];
+    self.imageView.image = [UIImage imageNamed:@"seizeaseat_0"];
     self.imageView.layer.masksToBounds = YES;
     self.imageView.layer.cornerRadius = 24;
     [self.textLabel mas_remakeConstraints:^(MASConstraintMaker *make) {

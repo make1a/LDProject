@@ -37,21 +37,21 @@ NSString *const kLDShoppingCartCellIdentifier = @"kLDShoppingCartCellIdentifier"
 
 - (void)cellRefreshWithModel:(LDShoppingCartModel *)model{
     if (model.isSelected) {
-        self.selectImageView.backgroundColor = [UIColor redColor];
+        self.selectButton.selected = YES;
     } else {
-        self.selectImageView.backgroundColor = [UIColor grayColor];
+        self.selectButton.selected = !YES;
     }
 }
 - (void)masLayoutSubview
 {
-    [self.contentView addSubview:self.selectImageView];
+    [self.contentView addSubview:self.selectButton];
     [self.contentView addSubview:self.tagLabel];
     [self.contentView addSubview:self.priceLabel];
     [self.contentView addSubview:self.cheapPriceLabel];
     [self.contentView addSubview:self.bigImageView];
     [self.contentView addSubview:self.titleLabel];
     
-    [self.selectImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.selectButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self).mas_offset(PtWidth(13));
         make.centerY.mas_equalTo(self);
         make.width.height.mas_equalTo(PtWidth(20));
@@ -85,12 +85,13 @@ NSString *const kLDShoppingCartCellIdentifier = @"kLDShoppingCartCellIdentifier"
 }
 
 #pragma  mark - GET & SET
-- (UIImageView *)selectImageView{
-    if (!_selectImageView) {
-        _selectImageView = [[UIImageView alloc]init];
-        _selectImageView.backgroundColor = [UIColor grayColor];
+- (UIButton *)selectButton{
+    if (!_selectButton) {
+        _selectButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_selectButton setImage:[UIImage imageNamed:@"shoppingcart_check_normal"] forState:UIControlStateNormal];
+        [_selectButton setImage:[UIImage imageNamed:@"shoppingcart_check_sele"] forState:UIControlStateSelected];
     }
-    return _selectImageView;
+    return _selectButton;
 }
 
 - (QMUILabel *)tagLabel {
@@ -104,6 +105,14 @@ NSString *const kLDShoppingCartCellIdentifier = @"kLDShoppingCartCellIdentifier"
     }
     return _tagLabel;
 }
+
+- (QMUILabel *)cheapPriceLabel {
+    if (!_cheapPriceLabel) {
+        _cheapPriceLabel = [[QMUILabel alloc]qmui_initWithFont:[UIFont systemFontOfSize:PtHeight(15)] textColor:[UIColor redColor]];
+        _cheapPriceLabel.text = @"18.88";
+    }
+    return _cheapPriceLabel;
+}
 - (QMUILabel *)priceLabel {
     if (!_priceLabel) {
         _priceLabel = [[QMUILabel alloc]init];
@@ -111,22 +120,20 @@ NSString *const kLDShoppingCartCellIdentifier = @"kLDShoppingCartCellIdentifier"
         NSString *textStr = @"18.88";
         NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
         NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:textStr attributes:attribtDic];
+        
         // 赋值
         _priceLabel.attributedText = attribtStr;
+        _priceLabel.textColor = UIColorFromHEXA(0x999999, 1);
+        _priceLabel.font = [UIFont systemFontOfSize:13];
     }
     return _priceLabel;
 }
-- (QMUILabel *)cheapPriceLabel {
-    if (!_cheapPriceLabel) {
-        _cheapPriceLabel = [[QMUILabel alloc]qmui_initWithFont:[UIFont systemFontOfSize:PtHeight(13)] textColor:[UIColor redColor]];
-        _cheapPriceLabel.text = @"18.88";
-    }
-    return _cheapPriceLabel;
-}
+
 - (UIImageView *)bigImageView{
     if (!_bigImageView) {
         _bigImageView = [[UIImageView alloc]init];
-        _bigImageView.image = [UIImage imageNamed:@"dog"];
+        _bigImageView.image = [UIImage imageNamed:@"seizeaseat_0"];
+        [_bigImageView setCornerRadius:10];
     }
     return _bigImageView;
 }

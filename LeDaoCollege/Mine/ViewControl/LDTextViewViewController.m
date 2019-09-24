@@ -27,20 +27,19 @@
     
     [self.sumbitButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.view);
-        make.top.mas_equalTo(self.textView.mas_bottom).mas_offset(20);
-        make.width.mas_equalTo(100);
-        make.height.mas_equalTo(48);
+        make.top.mas_equalTo(self.textView.mas_bottom).mas_offset(72);
+        make.width.mas_equalTo(301);
+        make.height.mas_equalTo(41);
     }];
 }
 
 #pragma  mark - TextView
 - (QMUITextView *)textView{
     if (!_textView) {
-        _textView = [[QMUITextView alloc]initWithFrame:CGRectMake(10, 10, SCREEN_WIDTH-20, 300)];
-        _textView.placeholder = @"写点什么";
-        _textView.layer.borderColor = [UIColor blackColor].CGColor;
-        _textView.layer.borderWidth = 1.f;
-        _textView.layer.cornerRadius = 5.f;
+        _textView = [[QMUITextView alloc]initWithFrame:CGRectMake(10, 10, PtWidth(344), 178)];
+//        _textView.placeholder = @"写点什么";
+        _textView.backgroundColor = UIColorFromHEXA(0xf4f4f4, 1);
+        _textView.layer.cornerRadius = 10.f;
         _textView.layer.masksToBounds = YES;
     }
     return _textView;
@@ -51,6 +50,7 @@
         _sumbitButton.layer.cornerRadius = 5;
         [_sumbitButton setTitle:@"提交" forState:UIControlStateNormal];
         _sumbitButton.layer.masksToBounds = YES;
+        [_sumbitButton setBackgroundColor:MainThemeColor];
     }
     return _sumbitButton;
 }
