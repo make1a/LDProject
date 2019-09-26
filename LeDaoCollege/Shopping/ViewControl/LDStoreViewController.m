@@ -37,7 +37,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self masLayoutSubviews];
 }
-- (void)viewDidAppear:(BOOL)animated{
+- (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self configMagicController];
 }
