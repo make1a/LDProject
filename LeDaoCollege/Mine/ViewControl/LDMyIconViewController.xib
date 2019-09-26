@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LDMyIconViewController">
+            <connections>
+                <outlet property="czButton" destination="AP4-6T-yli" id="c8T-P9-e5Y"/>
+                <outlet property="numberLabel" destination="Mfc-FQ-tUH" id="h8n-P8-iKP"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mine_currency_bg" translatesAutoresizingMaskIntoConstraints="NO" id="AVQ-gu-KXu">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mine_currency_cricle" translatesAutoresizingMaskIntoConstraints="NO" id="xY4-Iw-XoU">
+                    <rect key="frame" x="118" y="184" width="178" height="178"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mfc-FQ-tUH">
+                    <rect key="frame" x="162" y="249.5" width="90" height="47"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="39"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AP4-6T-yli">
+                    <rect key="frame" x="112.5" y="437" width="189" height="53"/>
+                    <color key="backgroundColor" red="0.53253036737442017" green="0.85898298025131226" blue="0.81576019525527954" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="53" id="bdG-Vi-GLm"/>
+                        <constraint firstAttribute="width" constant="189" id="tXS-tF-C7R"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                    <state key="normal" title="点击充值乐币"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="26"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="clickCZButtonAction:" destination="-1" eventType="touchUpInside" id="dJz-pR-ZAR"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的乐币" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xoh-iU-PqH">
+                    <rect key="frame" x="172" y="56" width="70" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nci-al-M9Z">
+                    <rect key="frame" x="20" y="55.5" width="11" height="22"/>
+                    <state key="normal" image="nav_back_01"/>
+                    <connections>
+                        <action selector="clickBackAction:" destination="-1" eventType="touchUpInside" id="jJm-og-g1k"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Mfc-FQ-tUH" firstAttribute="centerY" secondItem="xY4-Iw-XoU" secondAttribute="centerY" id="2ZA-wa-wDw"/>
+                <constraint firstItem="Nci-al-M9Z" firstAttribute="centerY" secondItem="xoh-iU-PqH" secondAttribute="centerY" id="52h-tA-7lw"/>
+                <constraint firstItem="AP4-6T-yli" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="EcL-Hw-tg3"/>
+                <constraint firstItem="xY4-Iw-XoU" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="140" id="FTn-LG-3MO"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="AVQ-gu-KXu" secondAttribute="trailing" id="MrX-uY-FTJ"/>
+                <constraint firstItem="Mfc-FQ-tUH" firstAttribute="centerX" secondItem="xY4-Iw-XoU" secondAttribute="centerX" id="fa1-IH-OWz"/>
+                <constraint firstItem="AVQ-gu-KXu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="faL-yr-f6g"/>
+                <constraint firstItem="AVQ-gu-KXu" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="jCc-uS-Qcs"/>
+                <constraint firstAttribute="bottom" secondItem="AVQ-gu-KXu" secondAttribute="bottom" id="lpk-hy-Lka"/>
+                <constraint firstItem="xoh-iU-PqH" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="uql-xf-W4l"/>
+                <constraint firstItem="Nci-al-M9Z" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="20" id="v0L-Kp-6eu"/>
+                <constraint firstItem="AP4-6T-yli" firstAttribute="top" secondItem="xY4-Iw-XoU" secondAttribute="bottom" constant="75" id="v0k-dl-YCV"/>
+                <constraint firstItem="xY4-Iw-XoU" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="yU0-Wp-dZ9"/>
+                <constraint firstItem="xoh-iU-PqH" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="12" id="zeL-IX-BKO"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <point key="canvasLocation" x="139" y="153"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="mine_currency_bg" width="375" height="667"/>
+        <image name="mine_currency_cricle" width="178" height="178"/>
+        <image name="nav_back_01" width="10.5" height="18"/>
+    </resources>
+</document>

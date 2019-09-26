@@ -28,7 +28,7 @@ static float kCollectionViewMargin = 3.f;
 @property (nonatomic, strong) NSMutableArray *dataSource;
 @property (nonatomic, strong) NSMutableArray *collectionDatas;
 @property (nonatomic, strong) LJCollectionViewFlowLayout *flowLayout;
-
+@property (nonatomic,strong) NSArray * leftTitles;
 @end
 
 @implementation LDBookRackViewController
@@ -40,20 +40,13 @@ static float kCollectionViewMargin = 3.f;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-
+    
     _selectIndex = 0;
     _isScrollDown = YES;
     
     self.title = @"我的书架";
-    self.edgesForExtendedLayout = UIRectEdgeNone;
-    self.extendedLayoutIncludesOpaqueBars = NO;
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    
-    self.view.backgroundColor = [UIColor whiteColor];
+    [self configUI];
 
-    [self.view addSubview:self.tableView];
-    [self.view addSubview:self.collectionView];
 
     NSString *path = [[NSBundle mainBundle] pathForResource:@"liwushuo" ofType:@"json"];
     NSData *data = [NSData dataWithContentsOfFile:path];
@@ -78,19 +71,22 @@ static float kCollectionViewMargin = 3.f;
                                 animated:YES
                           scrollPosition:UITableViewScrollPositionNone];
 }
-
+- (void)configUI {
+    self.view.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.tableView];
+    [self.view addSubview:self.collectionView];
+}
 #pragma mark - UITableView DataSource Delegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.dataSource.count;
+    return self.leftTitles.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     LeftTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier_Left forIndexPath:indexPath];
-    CollectionCategoryModel *model = self.dataSource[indexPath.row];
-    cell.name.text = model.name;
+    cell.name.text = self.leftTitles[indexPath.row];
     return cell;
 }
 
@@ -106,7 +102,9 @@ static float kCollectionViewMargin = 3.f;
     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:_selectIndex inSection:0]
                           atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
-
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 100;
+}
 #pragma mark - 解决点击 TableView 后 CollectionView 的 Header 遮挡问题
 
 - (void)scrollToTopOfSection:(NSInteger)section animated:(BOOL)animated
@@ -127,7 +125,7 @@ static float kCollectionViewMargin = 3.f;
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return self.dataSource.count;
+    return self.leftTitles.count;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -139,8 +137,10 @@ static float kCollectionViewMargin = 3.f;
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCellIdentifier_CollectionView forIndexPath:indexPath];
-    SubCategoryModel *model = self.collectionDatas[indexPath.section][indexPath.row];
-    cell.model = model;
+//    SubCategoryModel *model = self.collectionDatas[indexPath.section][indexPath.row];
+//    cell.model = model;
+    cell.imageV.backgroundColor = [UIColor qmui_randomColor];
+    cell.name.text = @"makemake";
     return cell;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -153,6 +153,7 @@ static float kCollectionViewMargin = 3.f;
     }
     MKReaderViewController *vc = [[MKReaderViewController alloc]init];
     vc.pdfInfo = doc;
+    vc.modalPresentationStyle = 0;
     [self presentViewController:vc animated:YES completion:nil];
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView
@@ -161,7 +162,7 @@ static float kCollectionViewMargin = 3.f;
 {
 
     return CGSizeMake((SCREEN_WIDTH - kLeftTableViewWidth - 4 * kCollectionViewMargin) / 3,
-                      PtHeight(140));
+                      PtHeight(128));
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
@@ -178,8 +179,7 @@ static float kCollectionViewMargin = 3.f;
                                                                                forIndexPath:indexPath];
     if ([kind isEqualToString:UICollectionElementKindSectionHeader])
     {
-        CollectionCategoryModel *model = self.dataSource[indexPath.section];
-        view.title.text = model.name;
+        view.title.text = self.leftTitles[indexPath.section];
     }
     return view;
 }
@@ -256,8 +256,6 @@ static float kCollectionViewMargin = 3.f;
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.tableFooterView = [UIView new];
-        _tableView.rowHeight = 55;
-        _tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.separatorColor = [UIColor clearColor];
         [_tableView registerClass:[LeftTableViewCell class] forCellReuseIdentifier:kCellIdentifier_Left];
@@ -297,5 +295,10 @@ static float kCollectionViewMargin = 3.f;
     }
     return _collectionView;
 }
-
+- (NSArray *)leftTitles {
+    if (!_leftTitles) {
+        _leftTitles = @[@"工具书",@"微课"];
+    }
+    return _leftTitles;
+}
 @end

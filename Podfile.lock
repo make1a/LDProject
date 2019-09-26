@@ -19,7 +19,6 @@ PODS:
   - CYLTabBarController/Core (1.28.3)
   - IQKeyboardManager (6.4.2)
   - LookinServer (0.9.4)
-  - MBProgressHUD (1.1.0)
   - QMUIKit (3.2.1):
     - QMUIKit/QMUIComponents (= 3.2.1)
     - QMUIKit/QMUICore (= 3.2.1)
@@ -302,7 +301,6 @@ DEPENDENCIES:
   - CYLTabBarController
   - IQKeyboardManager
   - LookinServer
-  - MBProgressHUD
   - QMUIKit
   - ReactiveObjC
   - SDCycleScrollView
@@ -316,7 +314,6 @@ SPEC REPOS:
     - CYLTabBarController
     - IQKeyboardManager
     - LookinServer
-    - MBProgressHUD
     - QMUIKit
     - ReactiveObjC
     - SDCycleScrollView
@@ -329,7 +326,6 @@ SPEC CHECKSUMS:
   CYLTabBarController: cd14c6260a38337600737873a57b3114c7065a8e
   IQKeyboardManager: b41e0a4943fbac4c11a239d31a688667675f962e
   LookinServer: 54eb99921647bda4068ff8776d842285e2bf0adb
-  MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   QMUIKit: a3af645843b9558eb7aaf407b320eaeb45ab6144
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
   SDCycleScrollView: b3c9a5ed840c771c4938978174c7c9d9feefeb96
@@ -337,6 +333,6 @@ SPEC CHECKSUMS:
   VTMagic: b49e5f456dbcbfd9a3588ba92417233a105bc193
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: 3ba27c9202b65d857ef820e6ecd80bf7a9cd8af2
+PODFILE CHECKSUM: 9bf0e63454e8432c6c0a37bb5f1b1716cc2b110c
 
 COCOAPODS: 1.5.3

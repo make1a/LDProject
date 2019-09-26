@@ -7,7 +7,13 @@
 //
 
 #import "LDCollectViewController.h"
+#import "LeftTableViewCell.h"
+
 #import "LDNewsTableViewCell.h"
+#import "LDVoiceTableViewCell.h"
+#import "LDVideoTableViewCell.h"
+#import "LDShoppingTableViewCell.h"
+#import "LDSmallClassLessonCell.h"
 
 @interface LDCollectViewController ()<QMUITableViewDataSource, QMUITableViewDelegate> {
     NSArray *_dataArray;
@@ -15,7 +21,7 @@
 }
 @property (nonatomic, strong) QMUITableView *leftTableView;
 @property (nonatomic, strong) QMUITableView *rightTableView;
-
+@property (nonatomic,strong) NSArray * leftTitles;
 @end
 
 @implementation LDCollectViewController
@@ -23,6 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"我的收藏";
+    self.view.backgroundColor = [UIColor whiteColor];
     [self leftTableView];
     [self rightTableView];
     _isRelate = YES;
@@ -34,48 +41,66 @@
     if (tableView == self.leftTableView) {
         return 1;
     } else {
-//        return [_dataArray count];
-        return 5;
+        //        return [_dataArray count];
+        return 6;
     }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    NSDictionary *item = [_dataArray objectAtIndex:section];
     if (tableView == self.leftTableView) {
-//        return [_dataArray count];
-        return 5;
+        return self.leftTitles.count;
     } else {
-//        return [[item objectForKey:@"list"] count];
+        //        return [[item objectForKey:@"list"] count];
         return 10;
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
+    
     if (tableView == self.leftTableView) {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-        cell.textLabel.text = @"资讯";
-        cell.textLabel.textColor = UIColorFromHEXA(0x999999, 1);
-        cell.contentView.backgroundColor = UIColorFromHEXA(0xECF9F5, 1);
-        [cell.textLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.centerY.mas_equalTo(cell.contentView);
-        }];
-        
-        UIView *selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
-        selectedBackgroundView.backgroundColor = [UIColor clearColor];
-        cell.selectedBackgroundView = selectedBackgroundView;
-        UIView *liner = [[UIView alloc] initWithFrame: CGRectMake(0, 0, 5, PtHeight(80))];
-        liner.backgroundColor = UIColorFromHEXA(0x00AD6F, 1);
-        [selectedBackgroundView addSubview:liner];
-        
+        LeftTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier_Left];
+        cell.name.text = self.leftTitles[indexPath.row];
         return cell;
     } else {
-        LDNewsTableViewCell *cell = [LDNewsTableViewCell dequeueReusableWithTableView:tableView];
-        [cell.bigImageVIew mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo(PtWidth(109));
-            make.height.mas_equalTo(PtHeight(60));
-        }];
-        return cell;
+        switch (indexPath.section) {
+            case 0:
+            {
+                LDNewsTableViewCell *cell = [LDNewsTableViewCell dequeueReusableWithTableView:tableView];
+                return cell;
+            }
+                break;
+            case 1:
+            {
+                LDVoiceTableViewCell *cell = [LDVoiceTableViewCell dequeueReusableWithTableView:tableView];
+                return cell;
+            }
+                break;
+            case 2:
+            {
+                LDVideoTableViewCell *cell = [LDVideoTableViewCell dequeueReusableWithTableView:tableView];
+                return cell;
+            }
+                break;
+            case 3:
+            {
+                LDShoppingTableViewCell *cell = [LDShoppingTableViewCell dequeueReusableWithTableView:tableView];
+                [cell.bigImageView mas_updateConstraints:^(MASConstraintMaker *make) {
+                    make.left.mas_equalTo(cell);
+                }];
+                return cell;
+            }
+                break;
+            default:
+            {
+                LDShoppingTableViewCell *cell = [LDShoppingTableViewCell dequeueReusableWithTableView:tableView];
+                [cell.bigImageView mas_updateConstraints:^(MASConstraintMaker *make) {
+                    make.left.mas_equalTo(cell);
+                }];
+                return cell;
+            }
+                break;
+        }
+        
     }
     
     
@@ -85,38 +110,37 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView == self.leftTableView) {
-        return PtHeight(80);
+        return PtHeight(100);
     } else {
-        return PtHeight(95);
+        return PtHeight(77);
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     if (tableView == self.leftTableView) {
-        return CGFLOAT_MIN;
+        return 1;
     } else {
-        return CGFLOAT_MIN;
+        return 1;
     }
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (tableView == self.rightTableView) {
-        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 30)];
-        view.backgroundColor = UIColorFromRGBA(217, 217, 217, 0.7);
+        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 15)];
+        view.backgroundColor = [UIColor whiteColor];
         
         UILabel *lable = [[UILabel alloc]initWithFrame:view.bounds];
-        NSDictionary *item = [_dataArray objectAtIndex:section];
-        NSString *title = [item objectForKey:@"title"];
-        lable.text = [NSString stringWithFormat:@"   %@", title];
+        lable.font = [UIFont systemFontOfSize:13];
+        lable.text = [NSString stringWithFormat:@"%ld", section];
         [view addSubview:lable];
-        
         return view;
         
     } else {
-        return nil;
+        return [UIView new];
     }
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
+    
     if (_isRelate) {
         NSInteger topCellSection = [[[tableView indexPathsForVisibleRows] firstObject] section];
         if (tableView == self.rightTableView) {
@@ -128,6 +152,7 @@
 - (void)tableView:(UITableView *)tableView didEndDisplayingFooterView:(UIView *)view forSection:(NSInteger)section {
     if (_isRelate) {
         NSInteger topCellSection = [[[tableView indexPathsForVisibleRows] firstObject] section];
+        
         if (tableView == self.rightTableView) {
             [self.leftTableView selectRowAtIndexPath:[NSIndexPath indexPathForItem:topCellSection inSection:0] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
         }
@@ -155,24 +180,30 @@
 #pragma  mark - GET & SET
 - (QMUITableView *)leftTableView {
     if (nil == _leftTableView){
-        _leftTableView = [[QMUITableView alloc] initWithFrame:CGRectMake(0, 0, PtWidth(90), self.view.frame.size.height)];
-        _leftTableView.backgroundColor = [UIColor whiteColor];
+        _leftTableView = [[QMUITableView alloc] initWithFrame:CGRectMake(0, 0, PtWidth(85), self.view.frame.size.height)];
+        _leftTableView.backgroundColor = UIColorFromHEXA(0xF9F9F9, 1);
         _leftTableView.delegate = self;
         _leftTableView.dataSource = self;
         [self.view addSubview:_leftTableView];
-        [_leftTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+        [_leftTableView registerClass:[LeftTableViewCell class] forCellReuseIdentifier:kCellIdentifier_Left];
     }
     return _leftTableView;
 }
 
 - (QMUITableView *)rightTableView{
     if (nil == _rightTableView){
-        _rightTableView = [[QMUITableView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.leftTableView.frame), 0, self.view.frame.size.width - CGRectGetMaxX(self.leftTableView.frame), self.view.frame.size.height)];
+        _rightTableView = [[QMUITableView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.leftTableView.frame)+10, 0, self.view.frame.size.width - CGRectGetMaxX(self.leftTableView.frame), self.view.frame.size.height)];
         _rightTableView.backgroundColor = [UIColor whiteColor];
         _rightTableView.delegate = self;
         _rightTableView.dataSource = self;
         [self.view addSubview:_rightTableView];
     }
     return _rightTableView;
+}
+- (NSArray *)leftTitles {
+    if (!_leftTitles) {
+        _leftTitles = @[@"资讯",@"音频",@"视频",@"工具书",@"微课",];
+    }
+    return _leftTitles;
 }
 @end

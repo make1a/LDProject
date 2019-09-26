@@ -256,7 +256,7 @@
 - (UIButton *)WXLoginButton{
     if (!_WXLoginButton) {
         _WXLoginButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_WXLoginButton setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+//        [_WXLoginButton setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
         _WXLoginButton.frame = CGRectMake(PtWidth(169.5),PtHeight(569.8),PtWidth(37.5),PtHeight(37.5));
     }
     return _WXLoginButton;

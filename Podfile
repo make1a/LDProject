@@ -3,7 +3,6 @@ target 'LeDaoCollege' do
     inhibit_all_warnings!
     
     pod 'CYLTabBarController'
-    pod 'MBProgressHUD'
     pod 'SDWebImage'
     pod 'SDCycleScrollView'
     pod 'YYModel'

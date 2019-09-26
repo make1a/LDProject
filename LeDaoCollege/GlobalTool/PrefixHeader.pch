@@ -18,8 +18,6 @@
 #import <AFNetworking.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <SDWebImage/UIButton+WebCache.h>
-#import <MBProgressHUD.h>
-#import "MBProgressHUD+PX.h"
 #import <ReactiveObjC.h>
 #import <YYModel.h>
 #import <CYLTabBarController.h>

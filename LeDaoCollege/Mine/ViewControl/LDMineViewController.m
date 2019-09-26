@@ -17,6 +17,8 @@
 #import "LDMineCustomHead.h"
 #import "LDScoreViewController.h"
 #import "LDCustomManagerListViewController.h"
+#import "LDMyIconViewController.h"
+
 @interface LDMineViewController () <QMUITableViewDelegate,QMUITableViewDataSource>
 @property (nonatomic,strong)QMUITableView * tableView;
 @property (nonatomic,strong)NSArray * titlesArray;
@@ -74,6 +76,11 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 1) {
+        LDConfigTableViewController *vc = [[LDConfigTableViewController alloc]initWithStyle:UITableViewStylePlain];
+        [self.navigationController pushViewController:vc animated:YES];
+        return;
+    }
     switch (indexPath.row) {
         case 0:
         {
@@ -112,8 +119,9 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
-        case 7 :{
-            LDConfigTableViewController *vc = [[LDConfigTableViewController alloc]initWithStyle:UITableViewStylePlain];
+        case 6:
+        {
+            LDMyIconViewController *vc = [[LDMyIconViewController alloc]initWithNibName:@"LDMyIconViewController" bundle:nil];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;

@@ -30,15 +30,19 @@
         self.name.textColor = UIColorFromHEXA(0x666666, 1);
         self.name.highlightedTextColor = UIColorFromHEXA(0xFF07C062, 1);
         [self.contentView addSubview:self.name];
+        [self.name mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.center.equalTo(self.contentView);
+        }];
         
         self.yellowView = [[UIView alloc] initWithFrame:CGRectMake(0, 5, 5, 45)];
-        self.yellowView.backgroundColor = UIColorFromHEXA(0xFF07C062, 1);
+        self.yellowView.backgroundColor = MainThemeColor;
         [self.contentView addSubview:self.yellowView];
+        [self.yellowView setCornerRadius: 2.5];
         [self.yellowView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.mas_equalTo(self);
-            make.left.mas_equalTo(self);
-            make.width.mas_equalTo(PtWidth(5));
-            make.height.mas_equalTo(PtHeight(20));
+            make.left.mas_equalTo(self.contentView);
+            make.centerY.mas_equalTo(self.contentView);
+            make.width.mas_equalTo(5);
+            make.height.mas_equalTo(45);
         }];
     }
     return self;

@@ -64,7 +64,7 @@
         type = @"dict";
         for (NSDictionary *dict in ary){
             HCSortString *sortString = [HCSortString new];
-            sortString.string = dict[name];
+            sortString.string = dict.allKeys.firstObject;
             [objAry addObject:sortString];
         }
     }else{
