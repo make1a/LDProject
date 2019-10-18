@@ -24,19 +24,28 @@
     self.window.frame = [UIScreen mainScreen].bounds;
     [self.window makeKeyAndVisible];
     [[QMUIConfiguration sharedInstance]applyInitialTemplate];
-//    LDTabBarController *rootViewController = [[LDTabBarController alloc] init];
-    LDLoginViewController *vc = [LDLoginViewController new];
+
     [self configIQKeyboard];
+    [self configMainView];
 //    if (@available(iOS 13.0, *)) {
 //        self.window.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
 //    } else {
 //        // Fallback on earlier versions
 //    }
-    [self.window setRootViewController:vc];
+    
     
     return YES;
 }
-
+- (void)configMainView{
+    if ([LDUserManager isLogin]) {
+        LDTabBarController *rootViewController = [[LDTabBarController alloc] init];
+        AppDelegate  *delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
+        delegate.window.rootViewController = rootViewController;
+    }else {
+        LDLoginViewController *vc = [LDLoginViewController new];
+        [self.window setRootViewController:vc];
+    }
+}
 - (void)configIQKeyboard {
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
     [IQKeyboardManager sharedManager].enableAutoToolbar = NO;

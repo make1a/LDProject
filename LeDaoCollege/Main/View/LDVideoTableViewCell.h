@@ -12,7 +12,7 @@ extern NSString *const kLDVideoTableViewCellIdentifier;
 @property (nonatomic,strong)UIImageView *blackImageView ;
 @property (nonatomic,strong)UIImageView *playImageView ;
 @property (nonatomic,strong)UILabel *durationLabel ;
-
+@property (nonatomic,strong)UIButton * collectionButton;
 + (instancetype)dequeueReusableWithTableView:(UITableView *)tableView;
 
 @end

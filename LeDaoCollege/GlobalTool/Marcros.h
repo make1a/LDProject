@@ -15,17 +15,20 @@
 #   define DLog(...)
 #endif
 
-#if 1
-#define REQUEST @"http://api.drawx.xunyinghulian.com"
-#else
-#define REQUEST @"http://47.92.91.192:8002/v1"
-#endif
+//#if 1
+//#define REQUEST @"http://api.drawx.xunyinghulian.com"
+//#else
+//#define REQUEST @"http://47.92.91.192:8002/v1"
+//#endif
+//
+//#define OSSREQUEST @"http://oss.drawx.xunyinghulian.com"
 
-#define OSSREQUEST @"http://oss.drawx.xunyinghulian.com"
+#define kCODE            [responseObject[@"returnCode"] integerValue]
+#define kUserID   [[NSUserDefaults standardUserDefaults]objectForKey:@"userId"]
+#define kUDID     [[NSUserDefaults standardUserDefaults]objectForKey:@"UDID"]
+#define kTOKEN    [[NSUserDefaults standardUserDefaults]objectForKey:@"token"]
 
-#define kCODE            [responseObject[@"code"] integerValue]
-
-
+#define ShowMsgInfo [QMUITips showInfo:responseObject[@"returnMsg"]]
 #define _weakself __weak typeof(self) weakself = self
 
 //PDF管理文件的归档路径

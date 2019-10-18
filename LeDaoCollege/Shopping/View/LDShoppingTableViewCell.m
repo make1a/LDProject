@@ -40,6 +40,7 @@ NSString *const kLDShoppingTableViewCell = @"LDShoppingTableViewCell";
     [self.contentView addSubview:self.cheapPriceLabel];
     [self.contentView addSubview:self.bigImageView];
     [self.contentView addSubview:self.titleLabel];
+    [self.contentView addSubview:self.shopButton];
 
     
     [self.bigImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -66,6 +67,11 @@ NSString *const kLDShoppingTableViewCell = @"LDShoppingTableViewCell";
     [self.priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.cheapPriceLabel.mas_right).mas_offset(PtWidth(6));
         make.centerY.mas_equalTo(self.cheapPriceLabel);
+    }];
+    
+    [self.shopButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.contentView).mas_offset(PtWidth(-17));
+        make.centerY.mas_equalTo(self.contentView);
     }];
 }
 
@@ -116,5 +122,13 @@ NSString *const kLDShoppingTableViewCell = @"LDShoppingTableViewCell";
         _titleLabel.numberOfLines = 1;
     }
     return _titleLabel;
+}
+- (UIButton *)shopButton{
+    if (!_shopButton) {
+        _shopButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_shopButton setImage:[UIImage imageNamed:@"content_list_shopcart"] forState:UIControlStateNormal];
+        
+    }
+    return _shopButton;
 }
 @end

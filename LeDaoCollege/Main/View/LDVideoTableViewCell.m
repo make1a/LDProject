@@ -41,7 +41,12 @@ NSString *const kLDVideoTableViewCellIdentifier = @"kLDVideoTableViewCellIdentif
     [self.contentView addSubview:self.blackImageView];
     [self.blackImageView addSubview:self.playImageView];
     [self.blackImageView addSubview:self.durationLabel];
-    
+    [self.contentView addSubview:self.collectionButton];
+
+    [self.collectionButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.contentView).mas_offset(PtWidth(-17));
+        make.centerY.mas_equalTo(self.titleLabel);
+    }];
     [self.blackImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.bigImageVIew).mas_offset(-1);
         make.bottom.mas_equalTo(self.bigImageVIew).mas_offset(-2);
@@ -70,14 +75,12 @@ NSString *const kLDVideoTableViewCellIdentifier = @"kLDVideoTableViewCellIdentif
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
+
 - (UIImageView *)blackImageView {
     if (!_blackImageView) {
         _blackImageView = [[UIImageView alloc]init];
@@ -103,5 +106,13 @@ NSString *const kLDVideoTableViewCellIdentifier = @"kLDVideoTableViewCellIdentif
         
     }
     return _durationLabel;
+}
+- (UIButton *)collectionButton {
+    if (!_collectionButton) {
+        _collectionButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_collectionButton setImage:[UIImage imageNamed:@"collect_default"] forState:UIControlStateNormal];
+        [_collectionButton setImage:[UIImage imageNamed:@"collect_sele"] forState:UIControlStateSelected];
+    }
+    return _collectionButton;
 }
 @end

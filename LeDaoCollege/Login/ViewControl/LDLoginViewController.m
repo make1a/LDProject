@@ -37,6 +37,7 @@
         sender.enabled = NO;
         
         [sender startCountDownWithSecond:10];
+        [self sendCode];
         
         [sender countDownChanging:^NSString *(JKCountDownButton *countDownButton,NSUInteger second) {
             NSString *title = [NSString stringWithFormat:@"%zds",second];
@@ -56,18 +57,109 @@
     [self presentViewController:vc animated:YES completion:nil];
 }
 - (void)clickLoginAction:(UIButton *)sender{
-    [self loginApp];
+    if (self.currentPageType == LDCurrentPageIsLogin) {
+        [self loginApp];
+    } else if (self.currentPageType == LDCurrentPageIsRegister){
+        [self regiserAPP];
+    } else {
+        
+    }
 }
 - (void)clickBackButton:(UIButton *)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 #pragma  mark - Private
+- (void)sendCode {
+    NSString *phone = self.nameTextField.text;
+
+    if (phone.length != 11) {
+        [QMUITips showError:@"请输入正确的手机号"];
+        return;
+    }
+
+    NSDictionary *dic = @{@"phone":phone,@"bizType":@"1"};
+    NSString *url = [NSString stringWithFormat:@"msg/sendmsg/%@/%@",phone,@"1"];
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:url requestParameters:dic requestHeader:nil success:^(id responseObject) {
+        ShowMsgInfo;
+    } faild:^(NSError *error) {
+        
+    }];
+
+}
 //登陆
 - (void)loginApp {
+    
+    NSString *phone = self.nameTextField.text;
+    NSString *pwd = self.pwdTextField.text;
+    if (phone.length != 11) {
+        [QMUITips showError:@"请输入正确的手机号"];
+        return;
+    }
+    if (pwd.length <= 0) {
+        [QMUITips showError:@"请输入验证码"];
+        return;
+    }
+    NSDictionary *dic = @{@"phone":phone,@"msgCode":pwd};
+    NSString *url = [NSString stringWithFormat:@"msg/validmsg/%@/%@",phone,pwd];
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:url requestParameters:dic requestHeader:nil success:^(id responseObject) {
+        if (kCODE == 200) {
+            [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:kLoginAPI requestParameters:@{@"phone":phone} requestHeader:nil success:^(id  _Nonnull responseObject) {
+                if (kCODE == 200) {
+                    LDUserModel *model = [LDUserModel yy_modelWithDictionary:responseObject[@"data"][@"user"]];
+                    [LDUserManager shareInstance].currentUser = model;
+                    [QMUITips showSucceed:@"登陆成功"];
+                    [self pushMain];
+                }else {
+                    ShowMsgInfo;
+                }
+            } faild:^(NSError * _Nonnull error) {
+                DLog(@"%@",error);
+            }];
+        }
+    } faild:^(NSError *error) {
+
+    }];
+
+
+}
+- (void)regiserAPP {
+    NSString *phone = self.nameTextField.text;
+    NSString *pwd = self.pwdTextField.text;
+    if (phone.length != 11) {
+        [QMUITips showError:@"请输入正确的手机号"];
+        return;
+    }
+    if (pwd.length <= 0) {
+        [QMUITips showError:@"请输入验证码"];
+        return;
+    }
+    NSDictionary *dic = @{@"phone":phone,@"msgCode":pwd};
+    NSString *url = [NSString stringWithFormat:@"msg/validmsg/%@/%@",phone,pwd];
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:url requestParameters:dic requestHeader:nil success:^(id responseObject) {
+        if (kCODE == 200) {
+            [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:kRegister requestParameters:@{@"phone":phone,@"userName":@"",@"pwd":@""} requestHeader:nil success:^(id  _Nonnull responseObject) {
+                if (kCODE == 200) {
+                    LDUserModel *model = [LDUserModel yy_modelWithDictionary:responseObject[@"data"][@"user"]];
+                    [LDUserManager shareInstance].currentUser = model;
+                    [QMUITips showSucceed:@"注册成功"];
+                    [self pushMain];
+                }
+                DLog(@"%@",responseObject);
+            } faild:^(NSError * _Nonnull error) {
+                DLog(@"%@",error);
+            }];
+        }
+    } faild:^(NSError *error) {
+
+    }];
+}
+- (void)pushMain{
+    
     LDTabBarController *rootViewController = [[LDTabBarController alloc] init];
     AppDelegate  *delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
     delegate.window.rootViewController = rootViewController;
 }
+
 #pragma  mark - LayoutUI
 - (void)configUI{
     switch (self.currentPageType) {
@@ -250,6 +342,11 @@
         [_registerButton setTitle:@"注册" forState:UIControlStateNormal];
         [_registerButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [_registerButton addTarget:self action:@selector(clickRegisterAction:) forControlEvents:UIControlEventTouchUpInside];
+        if (self.currentPageType == 0) {
+            _registerButton.hidden = NO;
+        }else {
+            _registerButton.hidden = !NO;
+        }
     }
     return _registerButton;
 }

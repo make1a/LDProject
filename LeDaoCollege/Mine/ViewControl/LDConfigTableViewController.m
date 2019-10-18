@@ -14,6 +14,8 @@
 #import "HNAlertView.h"
 #import "LDNameCell.h"
 #import "LDAlterNameViewController.h"
+#import "LDLoginViewController.h"
+
 @interface LDConfigTableViewController () <UIImagePickerControllerDelegate>
 @property (nonatomic,strong)UIButton * logoutButton;
 @end
@@ -26,19 +28,39 @@
 }
 
 - (void)configUI {
+    self.title = @"设置";
     self.tableView.separatorInset = UIEdgeInsetsMake(0,10, 0, 10);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    self.tableView.separatorColor = [UIColor groupTableViewBackgroundColor];
+    self.tableView.scrollEnabled = NO;
+    [self.view addSubview:self.logoutButton];
+    [self.logoutButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.view).mas_offset(PtWidth(37));
+        make.width.mas_equalTo(PtWidth(300.5));
+        make.height.mas_equalTo(PtHeight(40));
+        if (@available(iOS 11.0, *)) {
+            make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom).mas_offset(PtHeight(-89.5));
+        } else {
+            make.bottom.mas_equalTo(self.view).mas_offset(PtHeight(-89.5));
+        }
+    }];
+    
+    [self.view bringSubviewToFront:self.logoutButton];
 }
 
+#pragma  mark - Action
+- (void)logOutAction:(UIButton *)sender{
+    [LDUserManager removeUserID];
+    LDLoginViewController *vc = [LDLoginViewController new];
+    [[UIApplication sharedApplication].keyWindow setRootViewController:vc];
+}
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
     return 6;
 }
 
@@ -95,7 +117,6 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     switch (indexPath.row) {
         case 0:
         {
@@ -118,7 +139,16 @@
     }
     
 }
-
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    switch (indexPath.row) {
+        case 0:
+            return PtHeight(84.5);
+            break;
+        default:
+            return PtHeight(55.5);
+            break;
+    }
+}
 #pragma  mark - private
 - (void)showSelectPhotoViewAction {
     HNAlertView *view = [[HNAlertView alloc] initWithTitle:nil Content:nil whitTitleArray:@[@"从相册选择",@"拍摄",@"取消"] withType:@"bottom"];
@@ -201,6 +231,9 @@
     if (!_logoutButton) {
         _logoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_logoutButton setTitle:@"退出登录" forState:UIControlStateNormal];
+        [_logoutButton setCornerRadius:PtHeight(20)];
+        _logoutButton.backgroundColor = UIColorFromHEXA(0x69B681, 1);
+        [_logoutButton addTarget:self action:@selector(logOutAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _logoutButton;
 }

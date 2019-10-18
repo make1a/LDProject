@@ -9,12 +9,15 @@
 #import "LDInfoMationViewController.h"
 #import "SDCycleScrollView.h"
 #import "LDNewsTableViewCell.h"
-
+#import "LDNewsModel.h"
 
 @interface LDInfoMationViewController ()<SDCycleScrollViewDelegate,QMUITableViewDataSource,QMUITableViewDelegate>
+{
+    NSInteger currentPage;
+}
 @property (nonatomic,strong)SDCycleScrollView* cycleScrollView;
 @property (nonatomic,strong)NSArray * netImages;
-
+@property (nonatomic,strong)NSArray * dataSource;
 @end
 
 @implementation LDInfoMationViewController
@@ -25,16 +28,29 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    currentPage = 0;
     [self masLayoutSubviews];
+    [self requestDatasource];
 }
-#pragma mark - event response
+#pragma mark - NetWork
+- (void)requestDatasource {
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"information/getlists" requestParameters:nil requestHeader:nil success:^(id responseObject) {
+        if (kCODE == 200) {
+            self.dataSource = [NSArray yy_modelArrayWithClass:[LDNewsModel class] json:responseObject[@"data"][@"list"]];
+            [self.tableView reloadData];
+        }
+    } faild:^(NSError *error) {
+        
+    }];
+}
 
 #pragma  mark - TableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return self.dataSource.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     LDNewsTableViewCell *cell = [LDNewsTableViewCell dequeueReusableWithTableView:tableView];
+    [cell refreshWithModel:self.dataSource[indexPath.row]];
     return cell;
 }
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -56,19 +72,28 @@
 #pragma  mark - LayoutSubviews
 - (void)masLayoutSubviews {
     [self.view addSubview:self.tableView];
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view).offset(PtWidth(20));
-        make.right.mas_equalTo(self.view).mas_offset(PtWidth(-20));
-        make.top.mas_equalTo(self.view);
-        if (@available(iOS 11.0, *)) {
-            make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom);
-        } else {
-            make.bottom.mas_equalTo(self.view);
-        }
-    }];
+
     if (!self.isSearchModel) {
-        self.tableView.tableHeaderView = self.cycleScrollView;
+        [self.view addSubview:self.cycleScrollView];
         [self.cycleScrollView reloadInputViews];
+        [self.cycleScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.view).offset(PtWidth(20));
+            make.right.mas_equalTo(self.view).mas_offset(PtWidth(-20));
+            make.top.mas_equalTo(self.view);
+            make.height.mas_equalTo(PtHeight(120));
+        }];
+        
+        [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.view).offset(PtWidth(20));
+            make.right.mas_equalTo(self.view).mas_offset(PtWidth(-20));
+            make.top.mas_equalTo(self.cycleScrollView.mas_bottom);
+            if (@available(iOS 11.0, *)) {
+                make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom);
+            } else {
+                make.bottom.mas_equalTo(self.view);
+            }
+        }];
+        
     }else {
         [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self.view);

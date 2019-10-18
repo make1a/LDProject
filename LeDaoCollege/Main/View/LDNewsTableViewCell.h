@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LDNewsModel.h"
 extern NSString *const kLDNewsTableViewCellIdentifier;
 @interface LDNewsTableViewCell : UITableViewCell
 
@@ -17,4 +18,5 @@ extern NSString *const kLDNewsTableViewCellIdentifier;
 + (instancetype)dequeueReusableWithTableView:(UITableView *)tableView;
 
 - (void)masLayoutSubview;
+- (void)refreshWithModel:(LDNewsModel *)model;
 @end

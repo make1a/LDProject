@@ -9,7 +9,7 @@
 #import "LDNewsTableViewCell.h"
 extern NSString *const kLDVoiceTableViewCellIdentifier;
 @interface LDVoiceTableViewCell : LDNewsTableViewCell
-
+@property (nonatomic,strong)UIButton * collectionButton;
 + (instancetype)dequeueReusableWithTableView:(UITableView *)tableView;
 
 @end

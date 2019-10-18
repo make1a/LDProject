@@ -18,6 +18,7 @@ extern NSString *const kLDShoppingTableViewCell;
 @property (nonatomic,strong)QMUILabel * tagLabel;
 @property (nonatomic,strong)QMUILabel * cheapPriceLabel;
 @property (nonatomic,strong)QMUILabel * priceLabel;
+@property (nonatomic,strong)UIButton * shopButton;
 
 + (instancetype)dequeueReusableWithTableView:(UITableView *)tableView;
 

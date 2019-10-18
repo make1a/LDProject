@@ -72,29 +72,39 @@
 - (void)isShowTagView:(BOOL)isShow {
     if (isShow) {
         self.tableView.hidden = YES;
+        self.cycleScrollView.hidden = YES;
         self.tagView.hidden = NO;
     }else {
         self.tableView.hidden = !YES;
         self.tagView.hidden = !NO;
+        self.cycleScrollView.hidden = NO;
     }
 }
 #pragma  mark - LayoutSubviews
 - (void)masLayoutSubviews {
     [self.view addSubview:self.tableView];
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view).offset(PtWidth(20));
-        make.right.mas_equalTo(self.view).mas_offset(PtWidth(-20));
-        make.top.mas_equalTo(self.view);
-        if (@available(iOS 11.0, *)) {
-            make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom);
-        } else {
-            make.bottom.mas_equalTo(self.view);
-        }
-    }];
-    
+
     if (!self.isSearchModel) {
-        self.tableView.tableHeaderView = self.cycleScrollView;
+        [self.view addSubview:self.cycleScrollView];
         [self.cycleScrollView reloadInputViews];
+        [self.cycleScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.view).offset(PtWidth(20));
+            make.right.mas_equalTo(self.view).mas_offset(PtWidth(-20));
+            make.top.mas_equalTo(self.view);
+            make.height.mas_equalTo(PtHeight(120));
+        }];
+        
+        [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.view).offset(PtWidth(20));
+            make.right.mas_equalTo(self.view).mas_offset(PtWidth(-20));
+            make.top.mas_equalTo(self.cycleScrollView.mas_bottom);
+            if (@available(iOS 11.0, *)) {
+                make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom);
+            } else {
+                make.bottom.mas_equalTo(self.view);
+            }
+        }];
+        
     }else {
         [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self.view);
@@ -105,7 +115,7 @@
 
 - (LDTagView *)tagView {
     if (!_tagView) {
-        _tagView = [[LDTagView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        _tagView = [[LDTagView alloc]initWithFrame:CGRectMake(0, PtHeight(30), SCREEN_WIDTH, SCREEN_HEIGHT)];
         _tagView.titles = @[@"Helps", @"Maintain", @"Liver", @"Health", @"Function", @"Supports", @"Healthy", @"Fat"];
     }
     return _tagView;

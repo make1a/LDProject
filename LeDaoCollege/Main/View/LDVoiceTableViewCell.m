@@ -40,10 +40,16 @@ NSString *const kLDVoiceTableViewCellIdentifier = @"kLDVoiceTableViewCellIdentif
 - (void)configUI
 {
     [self.contentView addSubview:self.playImageView];
+    [self.contentView addSubview:self.collectionButton];
+    
     [self.playImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.bigImageVIew);
         make.bottom.mas_equalTo(self.bigImageVIew).mas_offset(-PtHeight(2));
         make.width.height.mas_equalTo(20);
+    }];
+    [self.collectionButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.contentView).mas_offset(PtWidth(-17));
+        make.centerY.mas_equalTo(self.titleLabel);
     }];
 }
 
@@ -66,5 +72,12 @@ NSString *const kLDVoiceTableViewCellIdentifier = @"kLDVoiceTableViewCellIdentif
     }
     return _playImageView;
 }
-
+- (UIButton *)collectionButton {
+    if (!_collectionButton) {
+        _collectionButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_collectionButton setImage:[UIImage imageNamed:@"collect_default"] forState:UIControlStateNormal];
+        [_collectionButton setImage:[UIImage imageNamed:@"collect_sele"] forState:UIControlStateSelected];
+    }
+    return _collectionButton;
+}
 @end
