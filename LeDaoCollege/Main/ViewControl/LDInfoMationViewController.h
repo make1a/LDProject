@@ -17,4 +17,6 @@
 @property (nonatomic,assign)BOOL isSearchModel;
 
 @property (nonatomic,strong)QMUITableView * tableView;
+
+- (void)requestSource:(NSString *)title;
 @end

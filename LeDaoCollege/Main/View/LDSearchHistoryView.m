@@ -72,23 +72,57 @@
     self.historyView.itemMargins = UIEdgeInsetsMake(0, 0, 10, 10);
     self.historyView.minimumItemSize = CGSizeMake(69, 29);
     [self addSubview:self.historyView];
-    
-    NSArray<NSString *> *suggestions = @[@"Helps", @"Maintain", @"Liver", @"Health", @"Function", @"Supports", @"Healthy", @"Fat"];
-    for (NSInteger i = 0; i < suggestions.count; i++) {
-        QMUIGhostButton *button = [[QMUIGhostButton alloc] initWithGhostType:QMUIGhostButtonColorGray];
-        [button setTitle:suggestions[i] forState:UIControlStateNormal];
-        button.titleLabel.font = UIFontMake(14);
-        button.contentEdgeInsets = UIEdgeInsetsMake(6, 20, 6, 20);
-        [self.advertisingView addSubview:button];
+//
+//    NSArray<NSString *> *suggestions = @[@"Helps", @"Maintain", @"Liver", @"Health", @"Function", @"Supports", @"Healthy", @"Fat"];
+//    for (NSInteger i = 0; i < suggestions.count; i++) {
+//        QMUIGhostButton *button = [[QMUIGhostButton alloc] initWithGhostType:QMUIGhostButtonColorGray];
+//        [button setTitle:suggestions[i] forState:UIControlStateNormal];
+//        button.titleLabel.font = UIFontMake(14);
+//        button.contentEdgeInsets = UIEdgeInsetsMake(6, 20, 6, 20);
+//        [self.advertisingView addSubview:button];
+//    }
+//
+//    for (NSInteger i = 0; i < suggestions.count; i++) {
+//        QMUIGhostButton *button = [[QMUIGhostButton alloc] initWithGhostType:QMUIGhostButtonColorGray];
+//        [button setTitle:suggestions[i] forState:UIControlStateNormal];
+//        button.titleLabel.font = UIFontMake(14);
+//        button.contentEdgeInsets = UIEdgeInsetsMake(6, 20, 6, 20);
+//        [self.historyView addSubview:button];
+//    }
+}
+
+
+- (void)setHistroyArray:(NSArray *)histroyArray{
+    _histroyArray = histroyArray;
+    for (UIView *view in self.historyView.subviews) {
+        [view removeFromSuperview];
     }
-    
-    for (NSInteger i = 0; i < suggestions.count; i++) {
+    for (NSInteger i = 0; i < histroyArray.count; i++) {
         QMUIGhostButton *button = [[QMUIGhostButton alloc] initWithGhostType:QMUIGhostButtonColorGray];
-        [button setTitle:suggestions[i] forState:UIControlStateNormal];
+        [button setTitle:histroyArray[i] forState:UIControlStateNormal];
         button.titleLabel.font = UIFontMake(14);
         button.contentEdgeInsets = UIEdgeInsetsMake(6, 20, 6, 20);
         [self.historyView addSubview:button];
     }
+    [self.historyView setNeedsLayout];
+    [self setNeedsLayout];
+
+}
+
+- (void)setAdvanceArray:(NSArray *)advanceArray {
+    _advanceArray = advanceArray;
+    for (UIView *view in self.advertisingView.subviews) {
+        [view removeFromSuperview];
+    }
+    for (NSInteger i = 0; i < advanceArray.count; i++) {
+        QMUIGhostButton *button = [[QMUIGhostButton alloc] initWithGhostType:QMUIGhostButtonColorGray];
+        [button setTitle:advanceArray[i] forState:UIControlStateNormal];
+        button.titleLabel.font = UIFontMake(14);
+        button.contentEdgeInsets = UIEdgeInsetsMake(6, 20, 6, 20);
+        [self.advertisingView addSubview:button];
+    }
+    [self.advertisingView setNeedsLayout];
+    [self setNeedsLayout];
 }
 
 @end

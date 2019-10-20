@@ -34,7 +34,9 @@
 #pragma mark - get and set
 - (void)setTitles:(NSArray *)titles {
     _titles = titles;
-
+    for (UIView *view in self.advertisingView.subviews) {
+        [view removeFromSuperview];
+    }
     for (NSInteger i = 0; i < titles.count; i++) {
         QMUIFillButton *button = [QMUIFillButton buttonWithType:UIButtonTypeCustom];
         [button setTitleTextColor:UIColorFromHEXA(0x999999, 1)];
@@ -42,14 +44,14 @@
         [button setTitle:titles[i] forState:UIControlStateNormal];
         button.titleLabel.font = UIFontMake(14);
         button.contentEdgeInsets = UIEdgeInsetsMake(6, 20, 6, 20);
-        button.tag = 100+i;
+        button.tag = 100+i+1;
         [button addTarget:self action:@selector(clickButtonAction:) forControlEvents:UIControlEventTouchUpInside];
         [self.advertisingView addSubview:button];
     }
+    [self setNeedsLayout];
 }
 - (void)masLayoutSubview
 {
-    
     self.advertisingView = [[QMUIFloatLayoutView alloc] init];
     self.advertisingView.padding = UIEdgeInsetsZero;
     self.advertisingView.itemMargins = UIEdgeInsetsMake(0, 0, 10, 10);

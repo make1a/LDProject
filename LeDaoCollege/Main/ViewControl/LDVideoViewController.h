@@ -14,4 +14,6 @@
  */
 @property (nonatomic,assign)BOOL isSearchModel;
 @property (nonatomic,strong)UITableView * tableView;
+
+- (void)requestSource:(NSString *)title mark:(NSInteger)mark;
 @end

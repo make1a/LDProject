@@ -31,6 +31,7 @@
     currentPage = 0;
     [self masLayoutSubviews];
     [self requestDatasource];
+    [self requestBannerList];
 }
 #pragma mark - NetWork
 - (void)requestDatasource {
@@ -43,7 +44,25 @@
         
     }];
 }
-
+- (void)requestSource:(NSString *)title {
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"information/getlists" requestParameters:@{@"title":title} requestHeader:nil success:^(id responseObject) {
+        if (kCODE == 200) {
+            self.dataSource = [NSArray yy_modelArrayWithClass:[LDNewsModel class] json:responseObject[@"data"][@"list"]];
+            [self.tableView reloadData];
+        }
+    } faild:^(NSError *error) {
+        
+    }];
+}
+- (void)requestBannerList{
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"banner/getbytype/1" requestParameters:@{@"type":@"1"} requestHeader:nil success:^(id responseObject) {
+        if (kCODE == 200) {
+            
+        }
+    } faild:^(NSError *error) {
+        
+    }];
+}
 #pragma  mark - TableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataSource.count;

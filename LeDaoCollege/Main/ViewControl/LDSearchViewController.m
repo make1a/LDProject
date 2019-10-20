@@ -40,6 +40,7 @@
     [self addHistoryView];
     [self addSearchBar];
     [self showHistoryView:YES];
+    [self requestTag];
 }
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
@@ -50,6 +51,20 @@
 - (NSArray *)menueBarTitles {
     return @[@"资讯",@"音频",@"视频",@"直播"];
 }
+- (void)requestTag {
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"academic/search" requestParameters:nil requestHeader:nil success:^(id responseObject) {
+        DLog(@"%@",responseObject);
+        if (kCODE == 200) {
+           NSArray *historyArray = responseObject[@"data"][@"historySearch"];
+            NSArray *hotArray = responseObject[@"data"][@"hotSearch"];
+            self.historyView.histroyArray = historyArray;
+            self.historyView.advanceArray = hotArray;
+        }
+    } faild:^(NSError *error) {
+        
+    }];
+}
+
 #pragma mark - private method
 - (void)configMagicController{
     [self addChildViewController:self.magicController];

@@ -10,11 +10,12 @@
 #import "LDTagView.h"
 #import "LDVoiceTableViewCell.h"
 #import "SDCycleScrollView.h"
-
+#import "LDTagModel.h"
 @interface LDVoiceViewController ()<SDCycleScrollViewDelegate,UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,strong)LDTagView * tagView;
 @property (nonatomic,strong)NSArray * netImages;
 @property (nonatomic,strong)SDCycleScrollView* cycleScrollView;
+@property (nonatomic,strong)NSMutableArray * tagArray;
 @end
 
 @implementation LDVoiceViewController
@@ -30,11 +31,36 @@
     [super viewDidLoad];
     [self didSelectTagAction];
     [self configUI];
+    [self requestTag];
     if (self.isSearchModel) {
         [self isShowTagView:NO];
     }
 }
+#pragma  mark - Requst
+- (void)requestTag {
+    
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"item/getitem/1" requestParameters:@{@"id":@1} requestHeader:nil success:^(id responseObject) {
+        if (kCODE == 200) {
+            NSArray *array = [NSArray yy_modelArrayWithClass:[LDTagModel class] json:responseObject[@"data"][0][@"itemList"]];
+            self.tagArray = @[].mutableCopy;
+            for (LDTagModel *model in array) {
+                [self.tagArray addObject:model.itemDesc];
+            }
+            self.tagView.titles = self.tagArray;
+        }
+    } faild:^(NSError *error) {
+        
+    }];
+}
+- (void)requestSource:(NSString *)title mark:(NSInteger)mark{
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"audio/getaudios" requestParameters:@{@"title":title,@"mark":@(mark)} requestHeader:nil success:^(id responseObject) {
+        if (kCODE == 200) {
 
+        }
+    } faild:^(NSError *error) {
+        
+    }];
+}
 #pragma mark - event response
 - (void)didSelectTagAction{
     _weakself;
@@ -115,7 +141,6 @@
 - (LDTagView *)tagView {
     if (!_tagView) {
         _tagView = [[LDTagView alloc]initWithFrame:CGRectMake(0, PtHeight(30), SCREEN_WIDTH, SCREEN_HEIGHT)];
-        _tagView.titles = @[@"Helps", @"Maintain", @"Liver", @"Health", @"Function", @"Supports", @"Healthy", @"Fat"];
     }
     return _tagView;
 }

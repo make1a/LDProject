@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "LDStoreModel.h"
 NS_ASSUME_NONNULL_BEGIN
 extern NSString *const kLDShoppingTableViewCell;
 @interface LDShoppingTableViewCell : UITableViewCell
@@ -22,6 +22,7 @@ extern NSString *const kLDShoppingTableViewCell;
 
 + (instancetype)dequeueReusableWithTableView:(UITableView *)tableView;
 
+- (void)refreshWithModel:(LDStoreModel *)model;
 @end
 
 NS_ASSUME_NONNULL_END

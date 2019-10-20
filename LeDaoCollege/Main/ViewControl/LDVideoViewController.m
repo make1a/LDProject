@@ -10,12 +10,15 @@
 #import "LDTagView.h"
 #import "LDVideoTableViewCell.h"
 #import "SDCycleScrollView.h"
-
+#import "LDTagModel.h"
 @interface LDVideoViewController ()<SDCycleScrollViewDelegate,UITableViewDataSource,UITableViewDelegate>
+{
+    NSInteger currentIndex;
+}
 @property (nonatomic,strong)LDTagView * tagView;
-
 @property (nonatomic,strong)NSArray * netImages;
 @property (nonatomic,strong)SDCycleScrollView* cycleScrollView;
+@property (nonatomic,strong)NSMutableArray * tagArray;
 @end
 
 @implementation LDVideoViewController
@@ -31,16 +34,40 @@
     [super viewDidLoad];
     [self didSelectTagAction];
     [self configUI];
+    [self requestTag];
     if (self.isSearchModel) {
         [self isShowTagView:NO];
     }
 }
+- (void)requestTag {
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"item/getitem/2" requestParameters:@{@"id":@1} requestHeader:nil success:^(id responseObject) {
+        if (kCODE == 200) {
+            self.tagArray = [NSArray yy_modelArrayWithClass:[LDTagModel class] json:responseObject[@"data"][0][@"itemList"]].mutableCopy;
+            NSMutableArray *tags = @[].mutableCopy;
+            for (LDTagModel *model in self.tagArray) {
+                [tags addObject:model.itemDesc];
+            }
+            self.tagView.titles = tags;
+        }
+    } faild:^(NSError *error) {
+        
+    }];
+}
+- (void)requestSource:(NSString *)title mark:(NSInteger)mark{
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"video/getlist" requestParameters:@{@"title":title,@"mark":@(mark)} requestHeader:nil success:^(id responseObject) {
+        if (kCODE == 200) {
 
+        }
+    } faild:^(NSError *error) {
+        
+    }];
+}
 #pragma mark - event response
 - (void)didSelectTagAction{
     _weakself;
     self.tagView.didSelectButtonBlock = ^(NSInteger index) {
         [weakself isShowTagView:NO];
+        self->currentIndex = index;
     };
 }
 #pragma  mark - TableView
@@ -116,7 +143,6 @@
 - (LDTagView *)tagView {
     if (!_tagView) {
         _tagView = [[LDTagView alloc]initWithFrame:CGRectMake(0, PtHeight(30), SCREEN_WIDTH, SCREEN_HEIGHT)];
-        _tagView.titles = @[@"Helps", @"Maintain", @"Liver", @"Health", @"Function", @"Supports", @"Healthy", @"Fat"];
     }
     return _tagView;
 }

@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface LDSearchHistoryView : UIView
-
+@property (nonatomic,strong)NSArray * histroyArray;
+@property (nonatomic,strong)NSArray * advanceArray;
 @end

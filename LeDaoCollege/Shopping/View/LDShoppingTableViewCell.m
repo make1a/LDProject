@@ -74,7 +74,17 @@ NSString *const kLDShoppingTableViewCell = @"LDShoppingTableViewCell";
         make.centerY.mas_equalTo(self.contentView);
     }];
 }
-
+- (void)refreshWithModel:(LDStoreModel *)model {
+    [self.bigImageView sd_setImageWithURL:[NSURL URLWithString:model.coverImg] placeholderImage:[UIImage imageNamed:@"seizeaseat_0"]];
+    self.titleLabel.text = model.title;
+    self.priceLabel.text = model.originalPrice;
+    self.cheapPriceLabel.text = model.discount;
+    if ([model.type intValue] == 1) {
+        self.tagLabel.text = @"微课";
+    }else {
+        self.tagLabel.text = @"工具书";
+    }
+}
 #pragma  mark - GET & SET
 
 - (QMUILabel *)tagLabel {
