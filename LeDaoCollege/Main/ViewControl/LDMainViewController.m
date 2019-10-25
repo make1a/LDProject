@@ -57,7 +57,6 @@
         }
         make.height.mas_equalTo(PtHeight(32));
     }];
-    
 }
 #pragma  mark - Touch Action
 - (void)clickSearchAction:(UIButton *)sender {

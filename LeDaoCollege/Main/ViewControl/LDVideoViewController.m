@@ -11,7 +11,8 @@
 #import "LDVideoTableViewCell.h"
 #import "SDCycleScrollView.h"
 #import "LDTagModel.h"
-@interface LDVideoViewController ()<SDCycleScrollViewDelegate,UITableViewDataSource,UITableViewDelegate>
+#import "LDVideoModel.h"
+@interface LDVideoViewController ()<SDCycleScrollViewDelegate,QMUITableViewDataSource,QMUITableViewDelegate>
 {
     NSInteger currentIndex;
 }
@@ -19,6 +20,7 @@
 @property (nonatomic,strong)NSArray * netImages;
 @property (nonatomic,strong)SDCycleScrollView* cycleScrollView;
 @property (nonatomic,strong)NSMutableArray * tagArray;
+
 @end
 
 @implementation LDVideoViewController
@@ -34,9 +36,10 @@
     [super viewDidLoad];
     [self didSelectTagAction];
     [self configUI];
-    [self requestTag];
     if (self.isSearchModel) {
         [self isShowTagView:NO];
+    }else {
+        [self requestTag];
     }
 }
 - (void)requestTag {
@@ -53,13 +56,35 @@
         
     }];
 }
-- (void)requestSource:(NSString *)title mark:(NSInteger)mark{
-    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"video/getlist" requestParameters:@{@"title":title,@"mark":@(mark)} requestHeader:nil success:^(id responseObject) {
+- (void)requestSource:(NSString *)title mark:(NSString *)mark back:(backSourceCountBlock)blcok{
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"video/getlist" requestParameters:@{@"title":title,@"mark":mark} requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {
-
+            self.dataSource = [NSArray yy_modelArrayWithClass:[LDVideoModel class] json:responseObject[@"data"][@"list"]];
+            [self.tableView reloadData];
+            if (blcok) {
+                blcok(self.dataSource.count);
+            }
+            
         }
     } faild:^(NSError *error) {
         
+    }];
+}
+
+- (void)requestCollection:(LDVideoModel*)model index:(NSInteger)index{
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:@"collection/addanddelete" requestParameters:@{@"collectionId":model.v_id,@"collectionType":@"3"} requestHeader:nil success:^(id responseObject) {
+        if (kCODE == 200) {
+            [QMUITips showSucceed:responseObject[@"returnMsg"]];
+            if ([model.collectionFlag isEqualToString:@"N"]) {
+                model.collectionFlag = @"Y";
+            } else {
+                model.collectionFlag = @"N";
+            }
+
+            [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+        }
+    } faild:^(NSError *error) {
+
     }];
 }
 #pragma mark - event response
@@ -67,15 +92,21 @@
     _weakself;
     self.tagView.didSelectButtonBlock = ^(NSInteger index) {
         [weakself isShowTagView:NO];
-        self->currentIndex = index;
+        [weakself requestSource:@"" mark:[NSString stringWithFormat:@"%ld",index] back:nil];
     };
 }
 #pragma  mark - TableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return self.dataSource.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     LDVideoTableViewCell *cell = [LDVideoTableViewCell dequeueReusableWithTableView:tableView];
+    LDVideoModel *model = self.dataSource[indexPath.row];
+    [cell refreshWithModel:model];
+    _weakself;
+    cell.didSelectCollectionActionBlock = ^{
+        [weakself requestCollection:model index:indexPath.row];
+    };
     return cell;
 }
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -173,9 +204,9 @@
     return _netImages;
 }
 
-- (UITableView *)tableView {
+- (QMUITableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc]init];
+        _tableView = [[QMUITableView alloc]init];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.backgroundColor = [UIColor clearColor];

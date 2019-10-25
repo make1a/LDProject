@@ -39,6 +39,8 @@ UIKIT_EXTERN  NSString * const ZHSpliceVCNotBackNotification ;
 UIKIT_EXTERN  NSString * const kSpriteNodeDidLoadlNotification;
 
 
+typedef void(^backSourceCountBlock)(NSInteger count);
+
 #define kSpliceConatinerBGViewX PtW(11)
 #define kSpliceConatinerBGViewY PtH(15)
 #define kSpliceConatinerBGViewW PtW(470)

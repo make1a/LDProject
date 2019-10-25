@@ -85,6 +85,11 @@ NSString *const kLDShoppingTableViewCell = @"LDShoppingTableViewCell";
         self.tagLabel.text = @"工具书";
     }
 }
+- (void)clickShopAction{
+    if (self.addShopCarActionBlock) {
+        self.addShopCarActionBlock();
+    }
+}
 #pragma  mark - GET & SET
 
 - (QMUILabel *)tagLabel {
@@ -137,7 +142,7 @@ NSString *const kLDShoppingTableViewCell = @"LDShoppingTableViewCell";
     if (!_shopButton) {
         _shopButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_shopButton setImage:[UIImage imageNamed:@"content_list_shopcart"] forState:UIControlStateNormal];
-        
+        [_shopButton addTarget:self action:@selector(clickShopAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _shopButton;
 }

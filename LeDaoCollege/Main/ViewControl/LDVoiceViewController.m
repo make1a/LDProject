@@ -11,11 +11,15 @@
 #import "LDVoiceTableViewCell.h"
 #import "SDCycleScrollView.h"
 #import "LDTagModel.h"
-@interface LDVoiceViewController ()<SDCycleScrollViewDelegate,UITableViewDataSource,UITableViewDelegate>
+#import "LDVoiceModel.h"
+@interface LDVoiceViewController ()<SDCycleScrollViewDelegate,QMUITableViewDataSource,QMUITableViewDelegate>
+
 @property (nonatomic,strong)LDTagView * tagView;
 @property (nonatomic,strong)NSArray * netImages;
 @property (nonatomic,strong)SDCycleScrollView* cycleScrollView;
 @property (nonatomic,strong)NSMutableArray * tagArray;
+
+
 @end
 
 @implementation LDVoiceViewController
@@ -31,9 +35,11 @@
     [super viewDidLoad];
     [self didSelectTagAction];
     [self configUI];
-    [self requestTag];
+    
     if (self.isSearchModel) {
         [self isShowTagView:NO];
+    } else {
+        [self requestTag];
     }
 }
 #pragma  mark - Requst
@@ -52,10 +58,31 @@
         
     }];
 }
-- (void)requestSource:(NSString *)title mark:(NSInteger)mark{
-    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"audio/getaudios" requestParameters:@{@"title":title,@"mark":@(mark)} requestHeader:nil success:^(id responseObject) {
+- (void)requestSource:(NSString *)title mark:(NSString *)mark back:(backSourceCountBlock)blcok{
+//    @"pageSize":@1
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"audio/getaudios" requestParameters:@{@"title":title,@"mark":mark} requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {
-
+            self.dataSource = [NSArray yy_modelArrayWithClass:[LDVoiceModel class] json:responseObject[@"data"][@"list"]];
+            [self.tableView reloadData];
+                        if (blcok) {
+                blcok(self.dataSource.count);
+            }
+        }
+    } faild:^(NSError *error) {
+        
+    }];
+}
+- (void)requestCollection:(LDVoiceModel*)model index:(NSInteger)index{
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:@"collection/addanddelete" requestParameters:@{@"collectionId":model.v_id,@"collectionType":@"2"} requestHeader:nil success:^(id responseObject) {
+        if (kCODE == 200) {
+            [QMUITips showSucceed:responseObject[@"returnMsg"]];
+            if ([model.collectionFlag isEqualToString:@"N"]) {
+                model.collectionFlag = @"Y";
+            } else {
+                model.collectionFlag = @"N";
+            }
+            
+            [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
         }
     } faild:^(NSError *error) {
         
@@ -66,14 +93,22 @@
     _weakself;
     self.tagView.didSelectButtonBlock = ^(NSInteger index) {
         [weakself isShowTagView:NO];
+        [weakself requestSource:@"" mark:[NSString stringWithFormat:@"%ld",(long)index] back:nil];
     };
 }
+
 #pragma  mark - TableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return self.dataSource.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     LDVoiceTableViewCell *cell = [LDVoiceTableViewCell dequeueReusableWithTableView:tableView];
+    LDVoiceModel *model = self.dataSource[indexPath.row];
+    [cell refreshWithModel:model];
+    _weakself;
+    cell.didSelectCollectionActionBlock = ^{
+        [weakself requestCollection:model index:indexPath.row];
+    };
     return cell;
 }
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -171,9 +206,9 @@
     return _netImages;
 }
 
-- (UITableView *)tableView {
+- (QMUITableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc]init];
+        _tableView = [[QMUITableView alloc]init];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.backgroundColor = [UIColor clearColor];

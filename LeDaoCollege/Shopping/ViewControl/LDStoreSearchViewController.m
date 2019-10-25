@@ -7,12 +7,9 @@
 //
 
 #import "LDStoreSearchViewController.h"
-
-
-#import "LDInfoMationViewController.h"
-#import "LDVoiceViewController.h"
-#import "LDVideoViewController.h"
-#import "LDLiveViewController.h"
+#import "LDAllshoppingViewController.h"
+#import "LDToolBooksViewController.h"
+#import "LDSmallClassViewController.h"
 
 @interface LDStoreSearchViewController ()
 
@@ -25,7 +22,6 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -34,6 +30,21 @@
 - (NSArray *)menueBarTitles {
     return @[@"全部商品",@"工具书",@"微课"];
 }
+- (void)requestTag {
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"academic/search" requestParameters:nil requestHeader:nil success:^(id responseObject) {
+        if (kCODE == 200) {
+            NSArray *historyArray = responseObject[@"data"][@"historySearch"];
+            if (historyArray.count>20) {
+               historyArray = [historyArray subarrayWithRange:NSMakeRange(0, 20)];
+            }
+            NSArray *hotArray = responseObject[@"data"][@"hotSearch"];
+            self.historyView.histroyArray = historyArray;
+            self.historyView.advanceArray = hotArray;
+        }
+    } faild:^(NSError *error) {
+        
+    }];
+}
 
 // 设置菜单栏上面的每个按钮对应的VC
 - (UIViewController *)magicView:(VTMagicView *)magicView viewControllerAtPage:(NSUInteger)pageIndex
@@ -41,50 +52,40 @@
     switch (pageIndex) {
         case 0:
         {
-            static NSString *identifier = @"LDInfoMationViewController.identifier";
-            LDInfoMationViewController *vc = [magicView dequeueReusablePageWithIdentifier:identifier];
+            static NSString *identifier = @"LDAllshoppingViewController.identifier";
+            LDAllshoppingViewController *vc = [magicView dequeueReusablePageWithIdentifier:identifier];
             if (!vc)
             {
-                vc = [[LDInfoMationViewController alloc] init];
-                vc.isSearchModel = YES;
+                vc = [[LDAllshoppingViewController alloc] init];
             }
             return vc;
         }
             break;
         case 1:
         {
-            static NSString *identifier = @"LDVoiceViewController.identifier";
-            LDVoiceViewController *vc = [magicView dequeueReusablePageWithIdentifier:identifier];
+            static NSString *identifier = @"LDToolBooksViewController.identifier";
+            LDToolBooksViewController *vc = [magicView dequeueReusablePageWithIdentifier:identifier];
             if (!vc)
             {
-                vc = [[LDVoiceViewController alloc] init];
-                vc.isSearchModel = YES;
+                vc = [[LDToolBooksViewController alloc] init];
             }
             return vc;
         }
             break;
         case 2:
         {
-            static NSString *identifier = @"LDVideoViewController.identifier";
-            LDVideoViewController *vc = [magicView dequeueReusablePageWithIdentifier:identifier];
+            static NSString *identifier = @"LDSmallClassViewController.identifier";
+            LDSmallClassViewController *vc = [magicView dequeueReusablePageWithIdentifier:identifier];
             if (!vc)
             {
-                vc = [[LDVideoViewController alloc] init];
-                vc.isSearchModel = YES;
+                vc = [[LDSmallClassViewController alloc] init];
             }
             return vc;
         }
             break;
         default:
         {
-            static NSString *identifier = @"LDLiveViewController.identifier";
-            LDLiveViewController *vc = [magicView dequeueReusablePageWithIdentifier:identifier];
-            if (!vc)
-            {
-                vc = [[LDLiveViewController alloc] init];
-                vc.isSearchModel = YES;
-            }
-            return vc;
+            return nil;
         }
             break;
     }

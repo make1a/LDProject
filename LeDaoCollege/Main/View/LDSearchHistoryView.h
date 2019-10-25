@@ -11,4 +11,8 @@
 @interface LDSearchHistoryView : UIView
 @property (nonatomic,strong)NSArray * histroyArray;
 @property (nonatomic,strong)NSArray * advanceArray;
+
+@property (nonatomic,copy)void (^didSelectHistoryActionBlock)(NSString* title);
+@property (nonatomic,copy)void (^didSelectAdvanceActionBlock)(NSString* title);
+
 @end

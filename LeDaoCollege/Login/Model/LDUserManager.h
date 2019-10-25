@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (BOOL)isLogin;
 
 +(void)removeUserID;
++ (NSString *)userID;
 @end
 
 NS_ASSUME_NONNULL_END

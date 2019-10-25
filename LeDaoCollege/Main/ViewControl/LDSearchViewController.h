@@ -8,8 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import <VTMagic/VTMagic.h>
+#import "LDSearchHistoryView.h"
+#import "LDNoticeView.h"
 
 @interface LDSearchViewController : QMUICommonViewController <UISearchBarDelegate,VTMagicViewDelegate,VTMagicViewDataSource>
+@property (nonatomic,strong)LDSearchHistoryView * historyView;
+@property (strong, nonatomic) LDNoticeView *noticeView;
+@property(nonatomic, strong) QMUISearchBar *searchBar;
+@property (nonatomic, strong)VTMagicController *magicController;
 
+@property (nonatomic,strong)NSArray * menueBarTitles;
 - (NSArray *)menueBarTitles;
 @end

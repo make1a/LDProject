@@ -37,6 +37,15 @@
         
     }];
 }
+- (void)addShopCar:(LDStoreModel *)model{
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:@"shoppingcat/addgoods" requestParameters:@{@"goodsId":model.s_id,@"goodsType":model.type} requestHeader:nil success:^(id responseObject) {
+        if (kCODE == 200) {
+            [QMUITips showSucceed:@"添加成功"];
+        }
+    } faild:^(NSError *error) {
+        
+    }];
+}
 #pragma  mark - TableView
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -46,7 +55,12 @@
 }
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     LDShoppingTableViewCell *cell = [LDShoppingTableViewCell dequeueReusableWithTableView:tableView];
-    [cell refreshWithModel:self.dataSource[indexPath.row]];
+    LDStoreModel *model = self.dataSource[indexPath.row];
+    [cell refreshWithModel: model];
+    _weakself;
+    cell.addShopCarActionBlock = ^{
+        [weakself addShopCar:model];
+    };
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

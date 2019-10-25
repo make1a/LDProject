@@ -7,21 +7,19 @@
 //
 
 #import "LDSearchViewController.h"
-#import "LDSearchHistoryView.h"
 
 #import "LDInfoMationViewController.h"
 #import "LDVoiceViewController.h"
 #import "LDVideoViewController.h"
 #import "LDLiveViewController.h"
-#import "LDNoticeView.h"
-@interface LDSearchViewController () 
+
+@interface LDSearchViewController ()
+{
+    NSString *searchTitle;
+}
 @property(nonatomic, strong) NSArray<NSString *> *keywords;
 @property(nonatomic, strong) NSMutableArray<NSString *> *searchResultsKeywords;
-@property(nonatomic, strong) QMUISearchBar *searchBar;
-@property (nonatomic, strong)VTMagicController *magicController;
-@property (nonatomic,strong)LDSearchHistoryView * historyView;
-@property (strong, nonatomic) LDNoticeView *noticeView;
-@property (nonatomic,strong)NSArray * menueBarTitles;
+
 @end
 
 @implementation LDSearchViewController
@@ -35,7 +33,7 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-
+    searchTitle = @"";
     [self configMagicController];
     [self addHistoryView];
     [self addSearchBar];
@@ -55,7 +53,10 @@
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"academic/search" requestParameters:nil requestHeader:nil success:^(id responseObject) {
         DLog(@"%@",responseObject);
         if (kCODE == 200) {
-           NSArray *historyArray = responseObject[@"data"][@"historySearch"];
+            NSArray *historyArray = responseObject[@"data"][@"historySearch"];
+            if (historyArray.count>20) {
+                historyArray = [historyArray subarrayWithRange:NSMakeRange(0, 20)];
+            }
             NSArray *hotArray = responseObject[@"data"][@"hotSearch"];
             self.historyView.histroyArray = historyArray;
             self.historyView.advanceArray = hotArray;
@@ -78,7 +79,13 @@
 }
 - (void)addHistoryView {
     [self.view addSubview:self.historyView];
-    
+    _weakself;
+    self.historyView.didSelectAdvanceActionBlock = ^(NSString *title) {
+        [weakself searchAction:title];
+    };
+    self.historyView.didSelectHistoryActionBlock = ^(NSString *title) {
+        [weakself searchAction:title];
+    };
 }
 - (void)showHistoryView:(BOOL)isShow {
     self.historyView.hidden = !isShow;
@@ -100,6 +107,7 @@
 // 设置菜单栏上面的每个按钮对应的VC
 - (UIViewController *)magicView:(VTMagicView *)magicView viewControllerAtPage:(NSUInteger)pageIndex
 {
+    _weakself;
     switch (pageIndex) {
         case 0:
         {
@@ -110,6 +118,15 @@
                 vc = [[LDInfoMationViewController alloc] init];
                 vc.isSearchModel = YES;
             }
+            [vc requestSource:searchTitle back:^(NSInteger count) {
+                weakself.noticeView.titleLabel.text = [NSString stringWithFormat:@"共找到%ld个相关内容",vc.dataSource.count];
+                [vc.tableView qmui_scrollToTop];
+                vc.tableView.tableHeaderView = self.noticeView;
+                [vc.tableView qmui_scrollToTop];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    vc.tableView.tableHeaderView = nil;
+                });
+            }];
             return vc;
         }
             break;
@@ -122,6 +139,15 @@
                 vc = [[LDVoiceViewController alloc] init];
                 vc.isSearchModel = YES;
             }
+            [vc requestSource:searchTitle mark:@"" back:^(NSInteger count) {
+                weakself.noticeView.titleLabel.text = [NSString stringWithFormat:@"共找到%ld个相关内容",vc.dataSource.count];
+                [vc.tableView qmui_scrollToTop];
+                vc.tableView.tableHeaderView = self.noticeView;
+                [vc.tableView qmui_scrollToTop];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    vc.tableView.tableHeaderView = nil;
+                });
+            }];
             return vc;
         }
             break;
@@ -134,6 +160,15 @@
                 vc = [[LDVideoViewController alloc] init];
                 vc.isSearchModel = YES;
             }
+            [vc requestSource:searchTitle mark:@"" back:^(NSInteger count) {
+                weakself.noticeView.titleLabel.text = [NSString stringWithFormat:@"共找到%ld个相关内容",vc.dataSource.count];
+                [vc.tableView qmui_scrollToTop];
+                vc.tableView.tableHeaderView = self.noticeView;
+                [vc.tableView qmui_scrollToTop];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    vc.tableView.tableHeaderView = nil;
+                });
+            }];
             return vc;
         }
             break;
@@ -171,7 +206,7 @@
 //}
 
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
-
+    
 }
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     if (searchText.length == 0) {
@@ -188,14 +223,13 @@
     searchBar.text = @"";
 }
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    LDInfoMationViewController *vc = self.magicController.currentViewController;
-    vc.tableView.tableHeaderView = self.noticeView;
-    [vc.tableView qmui_scrollToTop];
+    [self searchAction:searchBar.text];
+}
+- (void)searchAction:(NSString *)title{
+    searchTitle = title;
+    [self showHistoryView:NO];
     [self.searchBar.qmui_textField resignFirstResponder];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        vc.tableView.tableHeaderView = nil;
-    });
-    
+    [self.magicController.magicView reloadData];
 }
 #pragma mark - get and set
 
@@ -205,9 +239,9 @@
         _searchBar.placeholder = @"搜索";
         [_searchBar setCornerRadius:PtHeight(17)];
         _searchBar.searchBarStyle = UISearchBarStyleMinimal;
-//        _searchBar.backgroundColor = [UIColor clearColor];
+        //        _searchBar.backgroundColor = [UIColor clearColor];
         _searchBar.delegate = self;
-//        _searchBar.qmui_cancelButtonFont
+        //        _searchBar.qmui_cancelButtonFont
         [UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[UISearchBar class]]].title = @"取消";
         [_searchBar qmui_styledAsQMUISearchBar];
     }

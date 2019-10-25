@@ -36,7 +36,18 @@ NSString *const kLDVoiceTableViewCellIdentifier = @"kLDVoiceTableViewCellIdentif
     }
     return self;
 }
-
+- (void)refreshWithModel:(LDVoiceModel *)model {
+    self.titleLabel.text = model.audioContent;
+    [self.bigImageVIew sd_setImageWithURL:[NSURL URLWithString:model.coverImg] placeholderImage:[UIImage imageNamed:@"seizeaseat_0"]];
+    self.timeLabel.text = model.createdDate;
+    self.collectionButton.selected = [model.collectionFlag isEqualToString:@"Y"]?YES:NO;
+}
+- (void)clickCollectionButtonAction{
+    if (self.didSelectCollectionActionBlock) {
+        self.didSelectCollectionActionBlock();
+    }
+}
+#pragma  mark - UI
 - (void)configUI
 {
     [self.contentView addSubview:self.playImageView];
@@ -45,7 +56,7 @@ NSString *const kLDVoiceTableViewCellIdentifier = @"kLDVoiceTableViewCellIdentif
     [self.playImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.bigImageVIew);
         make.bottom.mas_equalTo(self.bigImageVIew).mas_offset(-PtHeight(2));
-        make.width.height.mas_equalTo(20);
+        make.width.height.mas_equalTo(PtWidth(16));
     }];
     [self.collectionButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.contentView).mas_offset(PtWidth(-17));
@@ -68,7 +79,7 @@ NSString *const kLDVoiceTableViewCellIdentifier = @"kLDVoiceTableViewCellIdentif
 - (UIImageView *)playImageView {
     if (!_playImageView) {
         _playImageView = [[UIImageView alloc]init];
-        _playImageView.image = [UIImage imageNamed:@"play_icon_01"];
+        _playImageView.image = [UIImage imageNamed:@"play_icon_black_01"];
     }
     return _playImageView;
 }
@@ -77,6 +88,7 @@ NSString *const kLDVoiceTableViewCellIdentifier = @"kLDVoiceTableViewCellIdentif
         _collectionButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_collectionButton setImage:[UIImage imageNamed:@"collect_default"] forState:UIControlStateNormal];
         [_collectionButton setImage:[UIImage imageNamed:@"collect_sele"] forState:UIControlStateSelected];
+        [_collectionButton addTarget:self action:@selector(clickCollectionButtonAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _collectionButton;
 }

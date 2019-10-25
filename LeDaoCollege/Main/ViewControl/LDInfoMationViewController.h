@@ -9,14 +9,15 @@
 #import <UIKit/UIKit.h>
 
 
+
 @interface LDInfoMationViewController : QMUICommonViewController
 
 /**
   作为搜索界面复用标示
  */
 @property (nonatomic,assign)BOOL isSearchModel;
-
 @property (nonatomic,strong)QMUITableView * tableView;
+@property (nonatomic,strong)NSArray * dataSource;
 
-- (void)requestSource:(NSString *)title;
+- (void)requestSource:(NSString *)title back:(backSourceCountBlock)blcok;
 @end

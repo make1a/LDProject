@@ -20,6 +20,8 @@ extern NSString *const kLDShoppingTableViewCell;
 @property (nonatomic,strong)QMUILabel * priceLabel;
 @property (nonatomic,strong)UIButton * shopButton;
 
+@property (nonatomic,copy)void (^addShopCarActionBlock)(void);
+
 + (instancetype)dequeueReusableWithTableView:(UITableView *)tableView;
 
 - (void)refreshWithModel:(LDStoreModel *)model;

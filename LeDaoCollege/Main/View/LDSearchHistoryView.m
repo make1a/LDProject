@@ -43,7 +43,16 @@
     self.historyView.frame = CGRectMake(padding.left, historyViewMinY, CGRectGetWidth(self.bounds) - UIEdgeInsetsGetHorizontalValue(padding), QMUIViewSelfSizingHeight);
 
 }
-
+- (void)clickHistoryAction:(UIButton *)sender{
+    if (self.didSelectHistoryActionBlock) {
+        self.didSelectHistoryActionBlock(sender.currentTitle);
+    }
+}
+- (void)clickAdvanceAction:(UIButton *)sender{
+    if (self.didSelectAdvanceActionBlock) {
+        self.didSelectAdvanceActionBlock(sender.currentTitle);
+    }
+}
 #pragma mark - get and set
 - (void)masLayoutSubview
 {
@@ -72,23 +81,7 @@
     self.historyView.itemMargins = UIEdgeInsetsMake(0, 0, 10, 10);
     self.historyView.minimumItemSize = CGSizeMake(69, 29);
     [self addSubview:self.historyView];
-//
-//    NSArray<NSString *> *suggestions = @[@"Helps", @"Maintain", @"Liver", @"Health", @"Function", @"Supports", @"Healthy", @"Fat"];
-//    for (NSInteger i = 0; i < suggestions.count; i++) {
-//        QMUIGhostButton *button = [[QMUIGhostButton alloc] initWithGhostType:QMUIGhostButtonColorGray];
-//        [button setTitle:suggestions[i] forState:UIControlStateNormal];
-//        button.titleLabel.font = UIFontMake(14);
-//        button.contentEdgeInsets = UIEdgeInsetsMake(6, 20, 6, 20);
-//        [self.advertisingView addSubview:button];
-//    }
-//
-//    for (NSInteger i = 0; i < suggestions.count; i++) {
-//        QMUIGhostButton *button = [[QMUIGhostButton alloc] initWithGhostType:QMUIGhostButtonColorGray];
-//        [button setTitle:suggestions[i] forState:UIControlStateNormal];
-//        button.titleLabel.font = UIFontMake(14);
-//        button.contentEdgeInsets = UIEdgeInsetsMake(6, 20, 6, 20);
-//        [self.historyView addSubview:button];
-//    }
+
 }
 
 
@@ -103,6 +96,7 @@
         button.titleLabel.font = UIFontMake(14);
         button.contentEdgeInsets = UIEdgeInsetsMake(6, 20, 6, 20);
         [self.historyView addSubview:button];
+        [button addTarget:self action:@selector(clickHistoryAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     [self.historyView setNeedsLayout];
     [self setNeedsLayout];
@@ -120,6 +114,7 @@
         button.titleLabel.font = UIFontMake(14);
         button.contentEdgeInsets = UIEdgeInsetsMake(6, 20, 6, 20);
         [self.advertisingView addSubview:button];
+        [button addTarget:self action:@selector(clickAdvanceAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     [self.advertisingView setNeedsLayout];
     [self setNeedsLayout];

@@ -10,11 +10,13 @@
 #import "LDShoppingCartCell.h"
 #import "LDShoppingCartModel.h"
 #import "LDShoppingCartPaymentView.h"
+#import "LDStoreModel.h"
 @interface LDShoppingCartViewController ()<QMUITableViewDelegate,QMUITableViewDataSource>
 {
     BOOL isTableViewDeleteModel; //是否处于删除模式 - 对应UIBarButtonItem的管理按钮
 }
-@property (nonatomic,strong)NSMutableArray * dataSource;
+@property (nonatomic,strong)NSMutableArray * selectDataSource;
+@property (nonatomic,strong)NSArray * dataSource;
 @property (nonatomic,strong)QMUITableView * tableView;
 @property (nonatomic,strong)LDShoppingCartPaymentView * payView;
 @end
@@ -32,6 +34,18 @@
     [self creatNavButton];
     [self masLayoutSubviews];
     self.title = @"购物车";
+    [self requestShop];
+}
+#pragma  mark - Request
+- (void)requestShop{
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"shoppingcat/getgoodslist" requestParameters:nil requestHeader:nil success:^(id responseObject) {
+        if (kCODE == 200) {
+            self.dataSource = [NSArray yy_modelArrayWithClass:[LDStoreModel class] json:responseObject[@"data"][@"list"]];
+            [self.tableView reloadData];
+        }
+    } faild:^(NSError *error) {
+        
+    }];
 }
 #pragma mark - event response
 - (void)configTablViewAction:(UIBarButtonItem *)sender {
@@ -48,7 +62,7 @@
 }
 - (void)clickSelectedAllAction:(UIButton *)sender {
     sender.selected = !sender.selected;
-    for (LDShoppingCartModel *model in self.dataSource) {
+    for (LDShoppingCartModel *model in self.selectDataSource) {
         model.isSelected = sender.isSelected;
     }
     [self.tableView reloadData];
@@ -65,7 +79,7 @@
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return self.dataSource.count;
 }
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     LDShoppingCartCell *cell = [LDShoppingCartCell dequeueReusableWithTableView:tableView];
@@ -73,7 +87,7 @@
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    LDShoppingCartModel *model = self.dataSource[indexPath.row];
+    LDShoppingCartModel *model = self.selectDataSource[indexPath.row];
     model.isSelected = !model.isSelected;
     LDShoppingCartCell *cell = (LDShoppingCartCell *) [tableView cellForRowAtIndexPath:indexPath];
     [cell cellRefreshWithModel:model];
@@ -102,16 +116,16 @@
     }];
 }
 #pragma mark - get and set
-- (NSMutableArray *)dataSource{
-    if (!_dataSource) {
-        _dataSource = @[].mutableCopy;
+- (NSMutableArray *)selectDataSource{
+    if (!_selectDataSource) {
+        _selectDataSource = @[].mutableCopy;
         for (int i = 0; i<10; i++) {
             LDShoppingCartModel *model = [LDShoppingCartModel new];
             model.isSelected = NO;
-            [_dataSource addObject:model];
+            [_selectDataSource addObject:model];
         }
     }
-    return _dataSource;
+    return _selectDataSource;
 }
 - (QMUITableView *)tableView{
     if (!_tableView) {

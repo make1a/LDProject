@@ -24,6 +24,10 @@
     [self saveUserID];
 }
 
++ (NSString *)userID {
+    NSString * s = [[NSUserDefaults standardUserDefaults]valueForKey:@"_currentUser.userId"];
+    return s;
+}
 + (void)removeUserID{
     [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"_currentUser.userId"];
 }

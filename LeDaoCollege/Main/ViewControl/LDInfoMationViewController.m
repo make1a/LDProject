@@ -17,7 +17,6 @@
 }
 @property (nonatomic,strong)SDCycleScrollView* cycleScrollView;
 @property (nonatomic,strong)NSArray * netImages;
-@property (nonatomic,strong)NSArray * dataSource;
 @end
 
 @implementation LDInfoMationViewController
@@ -44,11 +43,14 @@
         
     }];
 }
-- (void)requestSource:(NSString *)title {
+- (void)requestSource:(NSString *)title back:(backSourceCountBlock)blcok {
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"information/getlists" requestParameters:@{@"title":title} requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {
             self.dataSource = [NSArray yy_modelArrayWithClass:[LDNewsModel class] json:responseObject[@"data"][@"list"]];
             [self.tableView reloadData];
+                        if (blcok) {
+                blcok(self.dataSource.count);
+            }
         }
     } faild:^(NSError *error) {
         

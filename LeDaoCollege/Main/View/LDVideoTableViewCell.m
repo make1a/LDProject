@@ -34,7 +34,17 @@ NSString *const kLDVideoTableViewCellIdentifier = @"kLDVideoTableViewCellIdentif
     }
     return self;
 }
-
+- (void)refreshWithModel:(LDVideoModel *)model{
+    [self.bigImageVIew sd_setImageWithURL:[NSURL URLWithString:model.coverImg] placeholderImage:[UIImage imageNamed:@"seizeaseat_0"]];
+    self.timeLabel.text = model.createdDate;
+    self.titleLabel.text = model.title;
+    self.collectionButton.selected = [model.collectionFlag isEqualToString:@"Y"]?YES:NO;
+}
+- (void)clickCollectionButtonAction{
+    if (self.didSelectCollectionActionBlock) {
+        self.didSelectCollectionActionBlock();
+    }
+}
 - (void)masLayoutSubview
 {
     [super masLayoutSubview];
@@ -112,6 +122,8 @@ NSString *const kLDVideoTableViewCellIdentifier = @"kLDVideoTableViewCellIdentif
         _collectionButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_collectionButton setImage:[UIImage imageNamed:@"collect_default"] forState:UIControlStateNormal];
         [_collectionButton setImage:[UIImage imageNamed:@"collect_sele"] forState:UIControlStateSelected];
+        [_collectionButton addTarget:self action:@selector(clickCollectionButtonAction) forControlEvents:UIControlEventTouchUpInside];
+
     }
     return _collectionButton;
 }

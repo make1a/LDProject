@@ -12,6 +12,8 @@
 		262E4A03232A30C1000A6B0B /* 003.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 262E49F4232A30C1000A6B0B /* 003.pdf */; };
 		262E4A0B232A3387000A6B0B /* LDReadPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 262E4A0A232A3387000A6B0B /* LDReadPDFViewController.m */; };
 		262E4A0D232A3681000A6B0B /* Reader.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 262E4A0C232A3680000A6B0B /* Reader.pdf */; };
+		2633E3D5235D48C6002DEA26 /* LDVoiceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2633E3D4235D48C6002DEA26 /* LDVoiceModel.m */; };
+		2633E3D8235D53D8002DEA26 /* LDVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2633E3D7235D53D8002DEA26 /* LDVideoModel.m */; };
 		2638A5C82351791500D4DC55 /* MKRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2638A5C72351791500D4DC55 /* MKRequestManager.m */; };
 		2638A5CB23517ADC00D4DC55 /* LDAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 2638A5CA23517ADC00D4DC55 /* LDAPI.m */; };
 		2640F06A232771760015F7A6 /* LDTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2640F069232771760015F7A6 /* LDTagView.m */; };
@@ -167,6 +169,10 @@
 		262E4A09232A3387000A6B0B /* LDReadPDFViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDReadPDFViewController.h; sourceTree = "<group>"; };
 		262E4A0A232A3387000A6B0B /* LDReadPDFViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDReadPDFViewController.m; sourceTree = "<group>"; };
 		262E4A0C232A3680000A6B0B /* Reader.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Reader.pdf; sourceTree = "<group>"; };
+		2633E3D3235D48C6002DEA26 /* LDVoiceModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDVoiceModel.h; sourceTree = "<group>"; };
+		2633E3D4235D48C6002DEA26 /* LDVoiceModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDVoiceModel.m; sourceTree = "<group>"; };
+		2633E3D6235D53D8002DEA26 /* LDVideoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDVideoModel.h; sourceTree = "<group>"; };
+		2633E3D7235D53D8002DEA26 /* LDVideoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDVideoModel.m; sourceTree = "<group>"; };
 		2638A5C62351791500D4DC55 /* MKRequestManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKRequestManager.h; sourceTree = "<group>"; };
 		2638A5C72351791500D4DC55 /* MKRequestManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKRequestManager.m; sourceTree = "<group>"; };
 		2638A5C923517ADC00D4DC55 /* LDAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDAPI.h; sourceTree = "<group>"; };
@@ -769,6 +775,10 @@
 				26B0D4DE2356B9400064205B /* LDNewsModel.m */,
 				26B7BE1B235ABB7600CA16F3 /* LDTagModel.h */,
 				26B7BE1C235ABB7600CA16F3 /* LDTagModel.m */,
+				2633E3D3235D48C6002DEA26 /* LDVoiceModel.h */,
+				2633E3D4235D48C6002DEA26 /* LDVoiceModel.m */,
+				2633E3D6235D53D8002DEA26 /* LDVideoModel.h */,
+				2633E3D7235D53D8002DEA26 /* LDVideoModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1239,6 +1249,7 @@
 				2658F0FD232CAEBF00F4C37A /* MKIndexView.m in Sources */,
 				265BE25E232684EA0093E60A /* LDAlterNameViewController.m in Sources */,
 				26E816352332395100CECCE3 /* LDNavigationController.m in Sources */,
+				2633E3D8235D53D8002DEA26 /* LDVideoModel.m in Sources */,
 				2638A5C82351791500D4DC55 /* MKRequestManager.m in Sources */,
 				26BA0655232735E200992FFD /* LDAlterNameViewController.m in Sources */,
 				265CB9812320AAA600883FE2 /* View+MASAdditions.m in Sources */,
@@ -1252,6 +1263,7 @@
 				26F3BB762330AD09001A645C /* CollectionViewHeaderView.m in Sources */,
 				26CBF89423252A98005139EF /* JKCountDownButton.m in Sources */,
 				265CB9822320AAA600883FE2 /* MASConstraint.m in Sources */,
+				2633E3D5235D48C6002DEA26 /* LDVoiceModel.m in Sources */,
 				26DD09842333600400E1B5E2 /* LDNoticeView.m in Sources */,
 				26869C3B23210672001DEDBA /* LDInfoMationViewController.m in Sources */,
 				26CBF86F2323BC6E005139EF /* HCSortString.m in Sources */,

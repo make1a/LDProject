@@ -7,6 +7,7 @@
 //
 
 #import "LDNewsTableViewCell.h"
+#import "LDVideoModel.h"
 extern NSString *const kLDVideoTableViewCellIdentifier;
 @interface LDVideoTableViewCell : LDNewsTableViewCell
 @property (nonatomic,strong)UIImageView *blackImageView ;
@@ -15,4 +16,5 @@ extern NSString *const kLDVideoTableViewCellIdentifier;
 @property (nonatomic,strong)UIButton * collectionButton;
 + (instancetype)dequeueReusableWithTableView:(UITableView *)tableView;
 
+- (void)refreshWithModel:(LDVideoModel *)model;
 @end

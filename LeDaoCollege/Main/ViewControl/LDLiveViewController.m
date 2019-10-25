@@ -26,15 +26,19 @@
     blueView.frame = CGRectMake(0, 0, SCREEN_WIDTH, maxY);
     [self.view addSubview:blueView];
     
+    if (self.isSearchModel) {
+        maxY = 0;
+    }
+    
     self.emptyView = [[NSBundle mainBundle]loadNibNamed:@"LDEmptyViewXIB" owner:self options:nil].firstObject;
-    self.emptyView.frame = CGRectMake(0, CGRectGetMaxY(blueView.frame), SCREEN_WIDTH, CGRectGetHeight(self.view.frame));
+    self.emptyView.frame = CGRectMake(0, maxY, SCREEN_WIDTH, CGRectGetHeight(self.view.frame));
     [self showEmptyView];
     
     if (!self.isSearchModel) {
         [self.view addSubview:self.cycleScrollView];
         [self.cycleScrollView reloadInputViews];
     }
-    
+
 }
 #pragma mark - event response
 
