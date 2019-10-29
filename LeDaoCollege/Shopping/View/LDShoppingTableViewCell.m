@@ -40,9 +40,8 @@ NSString *const kLDShoppingTableViewCell = @"LDShoppingTableViewCell";
     [self.contentView addSubview:self.cheapPriceLabel];
     [self.contentView addSubview:self.bigImageView];
     [self.contentView addSubview:self.titleLabel];
-    [self.contentView addSubview:self.shopButton];
+//    [self.contentView addSubview:self.shopButton];
 
-    
     [self.bigImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self).mas_offset(PtWidth(18));
         make.top.mas_equalTo(self).mas_offset(PtHeight(12));
@@ -69,10 +68,10 @@ NSString *const kLDShoppingTableViewCell = @"LDShoppingTableViewCell";
         make.centerY.mas_equalTo(self.cheapPriceLabel);
     }];
     
-    [self.shopButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.contentView).mas_offset(PtWidth(-17));
-        make.centerY.mas_equalTo(self.contentView);
-    }];
+//    [self.shopButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.right.mas_equalTo(self.contentView).mas_offset(PtWidth(-17));
+//        make.centerY.mas_equalTo(self.contentView);
+//    }];
 }
 - (void)refreshWithModel:(LDStoreModel *)model {
     [self.bigImageView sd_setImageWithURL:[NSURL URLWithString:model.coverImg] placeholderImage:[UIImage imageNamed:@"seizeaseat_0"]];
@@ -138,12 +137,12 @@ NSString *const kLDShoppingTableViewCell = @"LDShoppingTableViewCell";
     }
     return _titleLabel;
 }
-- (UIButton *)shopButton{
-    if (!_shopButton) {
-        _shopButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_shopButton setImage:[UIImage imageNamed:@"content_list_shopcart"] forState:UIControlStateNormal];
-        [_shopButton addTarget:self action:@selector(clickShopAction) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _shopButton;
-}
+//- (UIButton *)shopButton{
+//    if (!_shopButton) {
+//        _shopButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//        [_shopButton setImage:[UIImage imageNamed:@"content_list_shopcart"] forState:UIControlStateNormal];
+//        [_shopButton addTarget:self action:@selector(clickShopAction) forControlEvents:UIControlEventTouchUpInside];
+//    }
+//    return _shopButton;
+//}
 @end

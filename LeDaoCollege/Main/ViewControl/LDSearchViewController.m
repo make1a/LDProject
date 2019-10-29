@@ -53,13 +53,18 @@
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"academic/search" requestParameters:nil requestHeader:nil success:^(id responseObject) {
         DLog(@"%@",responseObject);
         if (kCODE == 200) {
-            NSArray *historyArray = responseObject[@"data"][@"historySearch"];
-            if (historyArray.count>20) {
-                historyArray = [historyArray subarrayWithRange:NSMakeRange(0, 20)];
+            NSArray *historyArray = [NSArray arrayWithObject:responseObject[@"data"][@"historySearch"]];
+            if (responseObject[@"data"][@"historySearch"] != [NSNull null]) {
+                if (historyArray.count>20) {
+                    historyArray = [historyArray subarrayWithRange:NSMakeRange(0, 20)];
+                }
+                self.historyView.histroyArray = historyArray;
             }
-            NSArray *hotArray = responseObject[@"data"][@"hotSearch"];
-            self.historyView.histroyArray = historyArray;
-            self.historyView.advanceArray = hotArray;
+
+            if (responseObject[@"data"][@"hotSearch"] != [NSNull null]) {
+                NSArray *hotArray = responseObject[@"data"][@"hotSearch"];
+                self.historyView.advanceArray = hotArray;
+            }
         }
     } faild:^(NSError *error) {
         
@@ -161,7 +166,7 @@
                 vc.isSearchModel = YES;
             }
             [vc requestSource:searchTitle mark:@"" back:^(NSInteger count) {
-                weakself.noticeView.titleLabel.text = [NSString stringWithFormat:@"共找到%ld个相关内容",vc.dataSource.count];
+                weakself.noticeView.titleLabel.text = [NSString stringWithFormat:@"共找到%lu个相关内容",(unsigned long)vc.dataSource.count];
                 [vc.tableView qmui_scrollToTop];
                 vc.tableView.tableHeaderView = self.noticeView;
                 [vc.tableView qmui_scrollToTop];
@@ -210,11 +215,11 @@
 }
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     if (searchText.length == 0) {
-        [self showHistoryView:YES];
+//        [self showHistoryView:YES];
         self.searchBar.showsCancelButton = NO;
     }else {
         searchBar.showsCancelButton = YES;
-        [self showHistoryView:NO];
+//        [self showHistoryView:NO];
     }
 }
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {

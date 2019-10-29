@@ -100,26 +100,26 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
-        case 3:
-        {
-            LDShoppingCartViewController *vc = [LDShoppingCartViewController new];
-            [self.navigationController pushViewController:vc animated:YES];
-
-        }
+//        case 3:
+//        {
+//            LDShoppingCartViewController *vc = [LDShoppingCartViewController new];
+//            [self.navigationController pushViewController:vc animated:YES];
+//
+//        }
             break;
-        case 4:
+        case 3:
         {
             LDBookRackViewController *vc = [LDBookRackViewController new];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
-        case 5:
+        case 4:
         {
             LDScoreViewController *vc = [LDScoreViewController new];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
-        case 6:
+        case 5:
         {
             LDMyIconViewController *vc = [[LDMyIconViewController alloc]initWithNibName:@"LDMyIconViewController" bundle:nil];
             [self.navigationController pushViewController:vc animated:YES];
@@ -141,13 +141,13 @@
 }
 - (NSArray *)titlesArray {
     if (!_titlesArray) {
-        _titlesArray = @[@[@"我的管理",@"我的收藏",@"我的订单",@"我的购物车",@"我的书架",@"我的积分",@"我的乐币"],@[@"设置"]];
+        _titlesArray = @[@[@"我的管理",@"我的收藏",@"我的订单",@"我的书架",@"我的积分",@"我的乐币"],@[@"设置"]];
     }
     return _titlesArray;
 }
 - (NSArray *)imagesArray {
     if (!_imagesArray) {
-        _imagesArray = @[@[@"mine_manage_list",@"mine_collect_list",@"mine_list_daily",@"mine_shoppingcart_list",@"mine_shoppingcart_list",@"mine_integral_list",@"mine_coin_list"],@[@"mine_set_list"]];
+        _imagesArray = @[@[@"mine_manage_list",@"mine_collect_list",@"mine_list_daily",@"mine_shoppingcart_list",@"mine_integral_list",@"mine_coin_list"],@[@"mine_set_list"]];
     }
     return _imagesArray;
 }

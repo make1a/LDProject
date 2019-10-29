@@ -23,9 +23,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 }
-- (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    self.navigationController.navigationBar.hidden = YES;
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+
 }
 - (NSArray *)menueBarTitles {
     return @[@"全部商品",@"工具书",@"微课"];
@@ -33,13 +33,18 @@
 - (void)requestTag {
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"academic/search" requestParameters:nil requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {
-            NSArray *historyArray = responseObject[@"data"][@"historySearch"];
-            if (historyArray.count>20) {
-               historyArray = [historyArray subarrayWithRange:NSMakeRange(0, 20)];
+            NSArray *historyArray = [NSArray arrayWithObject:responseObject[@"data"][@"historySearch"]];
+            if (responseObject[@"data"][@"historySearch"] != [NSNull null]) {
+                if (historyArray.count>20) {
+                    historyArray = [historyArray subarrayWithRange:NSMakeRange(0, 20)];
+                }
+                self.historyView.histroyArray = historyArray;
             }
-            NSArray *hotArray = responseObject[@"data"][@"hotSearch"];
-            self.historyView.histroyArray = historyArray;
-            self.historyView.advanceArray = hotArray;
+
+            if (responseObject[@"data"][@"hotSearch"] != [NSNull null]) {
+                NSArray *hotArray = responseObject[@"data"][@"hotSearch"];
+                self.historyView.advanceArray = hotArray;
+            }
         }
     } faild:^(NSError *error) {
         

@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewHeight;
 @property (weak, nonatomic) IBOutlet QMUIButton *searchButton;
 @property (weak, nonatomic) IBOutlet UIButton *docButton;
-@property (weak, nonatomic) IBOutlet UIButton *carButton;
+
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewWidth;
 @end

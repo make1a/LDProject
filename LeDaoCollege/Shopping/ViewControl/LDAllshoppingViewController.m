@@ -14,7 +14,7 @@
     NSInteger page;
     
 }
-@property (nonatomic,strong)NSArray * dataSource;
+
 @end
 
 @implementation LDAllshoppingViewController
@@ -36,10 +36,14 @@
         
     }];
 }
-- (void)addShopCar:(LDStoreModel *)model{
-    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:@"shoppingcat/addgoods" requestParameters:@{@"goodsId":model.s_id,@"goodsType":model.type} requestHeader:nil success:^(id responseObject) {
+- (void)requestSource:(NSString *)title back:(backSourceCountBlock)blcok {
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"information/getlists" requestParameters:@{@"title":title} requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {
-            [QMUITips showSucceed:@"添加成功"];
+            self.dataSource = [NSArray yy_modelArrayWithClass:[LDStoreModel class] json:responseObject[@"data"][@"list"]];
+            [self.tableView reloadData];
+                        if (blcok) {
+                blcok(self.dataSource.count);
+            }
         }
     } faild:^(NSError *error) {
         
@@ -56,10 +60,6 @@
     LDShoppingTableViewCell *cell = [LDShoppingTableViewCell dequeueReusableWithTableView:tableView];
     LDStoreModel *model = self.dataSource[indexPath.row];
     [cell refreshWithModel: model];
-    _weakself;
-    cell.addShopCarActionBlock = ^{
-        [weakself addShopCar:model];
-    };
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
