@@ -10,7 +10,7 @@
 #import <VTMagic/VTMagic.h>
 #import "SDCycleScrollView.h"
 #import "LDStoreSearchViewController.h"
-#import "LDOrderViewController.h"
+#import "LDFinishOrderViewController.h"
 #import "LDShoppingCartViewController.h"
 
 #import "LDAllshoppingViewController.h"
@@ -65,7 +65,7 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (IBAction)pushToOrderVCAction:(id)sender {
-    LDOrderViewController *vc = [[LDOrderViewController alloc]init];
+    LDFinishOrderViewController *vc = [[LDFinishOrderViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
     
 }

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "LDClassModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LDSmallClassDetailIntroCell : UITableViewCell
@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
+- (void)refreshWith:(LDClassModel *)model;
 @end
 
 NS_ASSUME_NONNULL_END

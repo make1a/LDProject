@@ -13,6 +13,8 @@
 
 @interface LDSearchViewController : QMUICommonViewController <UISearchBarDelegate,VTMagicViewDelegate,VTMagicViewDataSource>
 @property (nonatomic,strong)LDSearchHistoryView * historyView;
+@property (nonatomic,copy)NSString *searchTitle;
+
 @property (strong, nonatomic) LDNoticeView *noticeView;
 @property(nonatomic, strong) QMUISearchBar *searchBar;
 @property (nonatomic, strong)VTMagicController *magicController;

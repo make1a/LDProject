@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2613780E2322448300228261 /* LDSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2613780D2322448300228261 /* LDSearchViewController.m */; };
 		2613781123225DA300228261 /* LDSearchHistoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2613781023225DA300228261 /* LDSearchHistoryView.m */; };
+		2617607B236AB2AE00A5A59D /* LDClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2617607A236AB2AE00A5A59D /* LDClassModel.m */; };
 		262E4A03232A30C1000A6B0B /* 003.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 262E49F4232A30C1000A6B0B /* 003.pdf */; };
 		262E4A0B232A3387000A6B0B /* LDReadPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 262E4A0A232A3387000A6B0B /* LDReadPDFViewController.m */; };
 		262E4A0D232A3681000A6B0B /* Reader.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 262E4A0C232A3680000A6B0B /* Reader.pdf */; };
@@ -81,6 +82,8 @@
 		26B7BE1D235ABB7600CA16F3 /* LDTagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B7BE1C235ABB7600CA16F3 /* LDTagModel.m */; };
 		26B7BE26235AD9F700CA16F3 /* LDStoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B7BE25235AD9F700CA16F3 /* LDStoreModel.m */; };
 		26BA0655232735E200992FFD /* LDAlterNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BA0654232735E200992FFD /* LDAlterNameViewController.m */; };
+		26BCBDD923697A1000C568A0 /* LDNoUseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BCBDD823697A1000C568A0 /* LDNoUseView.m */; };
+		26BCBDDB23697A2300C568A0 /* LDNoUseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26BCBDDA23697A2300C568A0 /* LDNoUseView.xib */; };
 		26C2D0112320E61900906324 /* LDNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26C2D0102320E61900906324 /* LDNewsTableViewCell.m */; };
 		26C8469D233895C900500B3F /* LDSmallClassDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26C8469C233895C900500B3F /* LDSmallClassDetailViewController.m */; };
 		26C846A02338976E00500B3F /* LDSmallClassDetailHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 26C8469F2338976E00500B3F /* LDSmallClassDetailHeadView.m */; };
@@ -165,6 +168,8 @@
 		2613780D2322448300228261 /* LDSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDSearchViewController.m; sourceTree = "<group>"; };
 		2613780F23225DA300228261 /* LDSearchHistoryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDSearchHistoryView.h; sourceTree = "<group>"; };
 		2613781023225DA300228261 /* LDSearchHistoryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDSearchHistoryView.m; sourceTree = "<group>"; };
+		26176079236AB2AE00A5A59D /* LDClassModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDClassModel.h; sourceTree = "<group>"; };
+		2617607A236AB2AE00A5A59D /* LDClassModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDClassModel.m; sourceTree = "<group>"; };
 		262E49F4232A30C1000A6B0B /* 003.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 003.pdf; sourceTree = "<group>"; };
 		262E4A09232A3387000A6B0B /* LDReadPDFViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDReadPDFViewController.h; sourceTree = "<group>"; };
 		262E4A0A232A3387000A6B0B /* LDReadPDFViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDReadPDFViewController.m; sourceTree = "<group>"; };
@@ -307,6 +312,9 @@
 		26B7BE25235AD9F700CA16F3 /* LDStoreModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDStoreModel.m; sourceTree = "<group>"; };
 		26BA0653232735E200992FFD /* LDAlterNameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDAlterNameViewController.h; sourceTree = "<group>"; };
 		26BA0654232735E200992FFD /* LDAlterNameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDAlterNameViewController.m; sourceTree = "<group>"; };
+		26BCBDD723697A1000C568A0 /* LDNoUseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDNoUseView.h; sourceTree = "<group>"; };
+		26BCBDD823697A1000C568A0 /* LDNoUseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDNoUseView.m; sourceTree = "<group>"; };
+		26BCBDDA23697A2300C568A0 /* LDNoUseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LDNoUseView.xib; sourceTree = "<group>"; };
 		26C2D00F2320E61900906324 /* LDNewsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDNewsTableViewCell.h; sourceTree = "<group>"; };
 		26C2D0102320E61900906324 /* LDNewsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDNewsTableViewCell.m; sourceTree = "<group>"; };
 		26C8469B233895C900500B3F /* LDSmallClassDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDSmallClassDetailViewController.h; sourceTree = "<group>"; };
@@ -735,6 +743,9 @@
 				26C846A92338B73F00500B3F /* LDSmallClassLessonCell.h */,
 				26C846AA2338B73F00500B3F /* LDSmallClassLessonCell.m */,
 				26C846AB2338B73F00500B3F /* LDSmallClassLessonCell.xib */,
+				26BCBDD723697A1000C568A0 /* LDNoUseView.h */,
+				26BCBDDA23697A2300C568A0 /* LDNoUseView.xib */,
+				26BCBDD823697A1000C568A0 /* LDNoUseView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -883,6 +894,8 @@
 			children = (
 				26B7BE24235AD9F700CA16F3 /* LDStoreModel.h */,
 				26B7BE25235AD9F700CA16F3 /* LDStoreModel.m */,
+				26176079236AB2AE00A5A59D /* LDClassModel.h */,
+				2617607A236AB2AE00A5A59D /* LDClassModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1071,6 +1084,7 @@
 				26EE3ED0233B0923003FEA7B /* LDAddressBookCell.xib in Resources */,
 				265CB9442320A2F500883FE2 /* LaunchScreen.storyboard in Resources */,
 				262E4A0D232A3681000A6B0B /* Reader.pdf in Resources */,
+				26BCBDDB23697A2300C568A0 /* LDNoUseView.xib in Resources */,
 				26B6CD5D233A080D00E94520 /* LDEmptyViewXIB.xib in Resources */,
 				26F3BB942330B44B001A645C /* LDScoreCell.xib in Resources */,
 				26D93F8623372F2B00B31DAB /* LDShoppingDetailFootView.xib in Resources */,
@@ -1178,6 +1192,7 @@
 				26F3BB8F2330B26A001A645C /* LDScoreViewController.m in Sources */,
 				26EC9E462328960300364943 /* LDOrderViewController.m in Sources */,
 				26C846AC2338B73F00500B3F /* LDSmallClassLessonCell.m in Sources */,
+				2617607B236AB2AE00A5A59D /* LDClassModel.m in Sources */,
 				26CBF87C2323BCC7005139EF /* LDCustomerManagerViewController.m in Sources */,
 				26B70226232F250C00156116 /* LDFinishOrderCell.m in Sources */,
 				2640F06A232771760015F7A6 /* LDTagView.m in Sources */,
@@ -1214,6 +1229,7 @@
 				265CB9802320AAA600883FE2 /* NSArray+MASAdditions.m in Sources */,
 				2657FBE8233CA66700D316E3 /* LDRechargeCell.m in Sources */,
 				26CB9A7C2334CE2000DC12AD /* LDShoppingTableViewCell.m in Sources */,
+				26BCBDD923697A1000C568A0 /* LDNoUseView.m in Sources */,
 				268EEDF92325F1640014F971 /* ClickPickerCell.m in Sources */,
 				26B70237232F858E00156116 /* LDShoppingCartPaymentView.m in Sources */,
 				26C846B12338CAEE00500B3F /* LDCommitBuyViewController.m in Sources */,

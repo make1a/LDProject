@@ -29,8 +29,10 @@
     [super viewDidLoad];
     currentPage = 0;
     [self masLayoutSubviews];
-    [self requestDatasource];
-    [self requestBannerList];
+    if (!self.isSearchModel) {
+        [self requestDatasource];
+        [self requestBannerList];
+    }
 }
 #pragma mark - NetWork
 - (void)requestDatasource {

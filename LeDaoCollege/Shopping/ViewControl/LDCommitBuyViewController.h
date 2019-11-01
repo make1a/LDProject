@@ -7,11 +7,11 @@
 //
 
 #import "QMUICommonViewController.h"
-
+#import "LDStoreModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LDCommitBuyViewController : QMUICommonViewController
-
+@property (nonatomic,strong)LDBookModel * currentModel;
 @end
 
 NS_ASSUME_NONNULL_END

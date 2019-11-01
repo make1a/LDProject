@@ -21,4 +21,8 @@
     // Configure the view for the selected state
 }
 
+- (void)refreshWith:(LDClassChapterSectionModel *)model{
+    self.chapterLabel.text = model.sectionContent;
+    self.timeLabel.text = [NSString stringWithFormat:@"(%@)",model.duration];
+}
 @end

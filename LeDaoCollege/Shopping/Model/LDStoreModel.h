@@ -28,4 +28,67 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface LDBookModel : NSObject
+/** <#Description#> **/
+@property(nonatomic,strong) NSString *b_id;
+/** <#Description#> **/
+@property(nonatomic,copy) NSString *userId;
+/** <#Description#> **/
+@property(nonatomic,copy) NSString *userName;
+/** <#Description#> **/
+@property(nonatomic,copy) NSString *activeFlag;
+/** <#Description#> **/
+@property(nonatomic,copy) NSString *deleteFlag;
+/** <#Description#> **/
+@property(nonatomic,strong) NSNumber *createdBy;
+/** <#Description#> **/
+@property(nonatomic,copy) NSString *createdDate;
+/** <#Description#> **/
+@property(nonatomic,strong) NSNumber *updateBy;
+/** <#Description#> **/
+@property(nonatomic,copy) NSString *updateDate;
+/** <#Description#> **/
+@property(nonatomic,copy) NSString *title;
+/** <#Description#> **/
+@property(nonatomic,copy) NSString *coverImg;
+/** <#Description#> **/
+@property(nonatomic,copy) NSString *originalPrice;
+/** <#Description#> **/
+@property(nonatomic,copy) NSString *discount;
+/** <#Description#> **/
+@property(nonatomic,copy) NSString *bookInfo;
+@property(nonatomic,copy) NSString *bookUrl;
+@property(nonatomic,copy) NSString *collectionFlag;
+@property (nonatomic,strong)NSArray * detailArray;
+@end
+
+
+@interface goodsImgVOSModel : NSObject
+/** <#Description#> **/
+@property(nonatomic,strong) NSString *b_id;
+/** <#Description#> **/
+@property(nonatomic,copy) NSString *userId;
+/** <#Description#> **/
+@property(nonatomic,copy) NSString *userName;
+/** <#Description#> **/
+@property(nonatomic,copy) NSString *activeFlag;
+/** <#Description#> **/
+@property(nonatomic,copy) NSString *deleteFlag;
+/** <#Description#> **/
+@property(nonatomic,copy) NSString *createdBy;
+/** <#Description#> **/
+@property(nonatomic,copy) NSString *createdDate;
+/** <#Description#> **/
+@property(nonatomic,copy) NSString *updateBy;
+/** <#Description#> **/
+@property(nonatomic,copy) NSString *updateDate;
+/** <#Description#> **/
+@property(nonatomic,copy) NSString *goodsType;
+/** <#Description#> **/
+@property(nonatomic,copy) NSString *goodsId;
+/** <#Description#> **/
+@property(nonatomic,copy) NSString *imgUrl;
+
+
+@end
 NS_ASSUME_NONNULL_END

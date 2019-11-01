@@ -14,9 +14,7 @@
 #import "LDLiveViewController.h"
 
 @interface LDSearchViewController ()
-{
-    NSString *searchTitle;
-}
+
 @property(nonatomic, strong) NSArray<NSString *> *keywords;
 @property(nonatomic, strong) NSMutableArray<NSString *> *searchResultsKeywords;
 
@@ -33,7 +31,7 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    searchTitle = @"";
+    self.searchTitle = @"";
     [self configMagicController];
     [self addHistoryView];
     [self addSearchBar];
@@ -123,8 +121,8 @@
                 vc = [[LDInfoMationViewController alloc] init];
                 vc.isSearchModel = YES;
             }
-            [vc requestSource:searchTitle back:^(NSInteger count) {
-                weakself.noticeView.titleLabel.text = [NSString stringWithFormat:@"共找到%ld个相关内容",vc.dataSource.count];
+            [vc requestSource:self.searchTitle back:^(NSInteger count) {
+                weakself.noticeView.titleLabel.text = [NSString stringWithFormat:@"共找到%lu个相关内容",(unsigned long)vc.dataSource.count];
                 [vc.tableView qmui_scrollToTop];
                 vc.tableView.tableHeaderView = self.noticeView;
                 [vc.tableView qmui_scrollToTop];
@@ -144,7 +142,7 @@
                 vc = [[LDVoiceViewController alloc] init];
                 vc.isSearchModel = YES;
             }
-            [vc requestSource:searchTitle mark:@"" back:^(NSInteger count) {
+            [vc requestSource:self.searchTitle mark:@"" back:^(NSInteger count) {
                 weakself.noticeView.titleLabel.text = [NSString stringWithFormat:@"共找到%ld个相关内容",vc.dataSource.count];
                 [vc.tableView qmui_scrollToTop];
                 vc.tableView.tableHeaderView = self.noticeView;
@@ -165,7 +163,7 @@
                 vc = [[LDVideoViewController alloc] init];
                 vc.isSearchModel = YES;
             }
-            [vc requestSource:searchTitle mark:@"" back:^(NSInteger count) {
+            [vc requestSource:self.searchTitle mark:@"" back:^(NSInteger count) {
                 weakself.noticeView.titleLabel.text = [NSString stringWithFormat:@"共找到%lu个相关内容",(unsigned long)vc.dataSource.count];
                 [vc.tableView qmui_scrollToTop];
                 vc.tableView.tableHeaderView = self.noticeView;
@@ -231,7 +229,7 @@
     [self searchAction:searchBar.text];
 }
 - (void)searchAction:(NSString *)title{
-    searchTitle = title;
+    self.searchTitle = title;
     [self showHistoryView:NO];
     [self.searchBar.qmui_textField resignFirstResponder];
     [self.magicController.magicView reloadData];

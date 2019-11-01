@@ -68,6 +68,7 @@ NSString *const kLDNewsTableViewCellIdentifier = @"kLDNewsTableViewCellIdentifie
         make.left.mas_equalTo(self.bigImageVIew.mas_right).mas_offset(PtWidth(17));
         make.top.equalTo(self.bigImageVIew);
         make.right.mas_equalTo(self).mas_offset(PtWidth(-31));
+        
     }];
     
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -91,7 +92,7 @@ NSString *const kLDNewsTableViewCellIdentifier = @"kLDNewsTableViewCellIdentifie
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc]init];
         _titleLabel.text = @"makemakemakemakemakemakemakemake";
-        _titleLabel.numberOfLines = 1;
+        _titleLabel.numberOfLines = 2;
         _titleLabel.font = [UIFont systemFontOfSize:PtHeight(16)];
     }
     return _titleLabel;

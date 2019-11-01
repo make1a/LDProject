@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LDShoppingDetailFootView : UIView
 @property (weak, nonatomic) IBOutlet QMUIButton *collectionButton;
-@property (weak, nonatomic) IBOutlet QMUIButton *shopCartButton;
+//@property (weak, nonatomic) IBOutlet QMUIButton *shopCartButton;
 @property (weak, nonatomic) IBOutlet QMUIButton *buyButton;
 
 @end

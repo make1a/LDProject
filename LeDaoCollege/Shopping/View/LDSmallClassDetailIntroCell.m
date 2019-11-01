@@ -29,6 +29,10 @@
     }];
 }
 
+- (void)refreshWith:(LDClassModel *)model {
+    self.descLabel.text = model.briefIntroduction;
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
     

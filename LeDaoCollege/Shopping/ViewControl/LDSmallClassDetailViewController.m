@@ -12,11 +12,13 @@
 #import "LDSmallClassDetailHeadView.h"
 #import "LDSmallClassDetailIntroCell.h"
 #import "LDSmallClassLessonCell.h"
+#import "LDClassModel.h"
 @interface LDSmallClassDetailViewController ()<QMUITableViewDelegate,QMUITableViewDataSource>
 @property (nonatomic,strong)QMUITableView * tableView;
 @property (nonatomic,strong)LDShoppingDetailFootView * footView;
 @property (nonatomic,strong)LDSmallClassDetailHeadView * headView;
 @property(nonatomic, strong) QMUINavigationBarScrollingSnapAnimator *navigationAnimator;
+@property (nonatomic,strong)LDClassModel * currenModel;
 @end
 
 @implementation LDSmallClassDetailViewController
@@ -27,6 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self masLayoutSubViews];
+    [self requestDtasource];
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -49,48 +52,102 @@
         }
     }];
 }
-
+- (void)requestDtasource{
+    if (!self.classID) {
+        return;
+    }
+    NSString *api = [NSString stringWithFormat:@"course/getcourseinfo/%@",self.classID];
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:api requestParameters:@{@"id":self.classID} requestHeader:nil success:^(id responseObject) {
+        if (kCODE == 200) {
+            self.currenModel = [LDClassModel yy_modelWithJSON:responseObject[@"data"]];
+            [self.tableView reloadData];
+            self.headView.nameLabel.text = self.currenModel.lecturerName;
+            self.headView.priceLabel.text = [NSString stringWithFormat:@"¥%@",self.currenModel.discount];
+            self.headView.discountPriceLabel.text = [NSString stringWithFormat:@"¥%@",self.currenModel.originalPrice];
+            self.headView.introLabel.text = self.currenModel.briefIntroduction;
+            [self.headView.headImageView sd_setImageWithURL:[NSURL URLWithString:self.currenModel.coverImg] placeholderImage:[UIImage imageNamed:@"mine_headportrait_default"]];
+            if ([self.currenModel.collectionFlag isEqualToString:@"Y"]) {
+                self.footView.collectionButton.selected = YES;
+            }else {
+                self.footView.collectionButton.selected = !YES;
+            }
+        }
+    } faild:^(NSError *error) {
+        
+    }];
+}
+- (void)collectionAction{
+    if (self.classID.length == 0) {
+        return;
+    }
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:@"collection/addanddelete" requestParameters:@{@"collectionId":self.classID,@"collectionType":@"5"} requestHeader:nil success:^(id responseObject) {
+        if (kCODE == 200) {
+            [QMUITips showSucceed:responseObject[@"returnMsg"]];
+            if ([self.currenModel.collectionFlag isEqualToString:@"N"]) {
+                self.currenModel.collectionFlag = @"Y";
+            } else {
+                self.currenModel.collectionFlag = @"N";
+            }
+        }
+    } faild:^(NSError *error) {
+        
+    }];
+}
+- (void)clickCollectionAction:(UIButton *)sender{
+    sender.selected = !sender.selected;
+    [self collectionAction];
+}
 #pragma  mark - TableView
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 10;
+    return self.currenModel.chapterArray.count+1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section==0) {
         return 1;
     }
-    return 10;
+    LDClassChapterModel *model = self.currenModel.chapterArray[section-1];
+    return model.sectionArray.count;
 }
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     if (indexPath.row == 0 && indexPath.section == 0) {
         LDSmallClassDetailIntroCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LDSmallClassDetailIntroCell" forIndexPath:indexPath];
+        if (self.currenModel) {
+            [cell refreshWith:self.currenModel];
+        }
         return cell;
     }
     LDSmallClassLessonCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LDSmallClassLessonCell" forIndexPath:indexPath];
+    if (self.currenModel) {
+        LDClassChapterModel *model = self.currenModel.chapterArray[indexPath.section-1];
+        LDClassChapterSectionModel *sectionModel = model.sectionArray[indexPath.row];
+        [cell refreshWith:sectionModel];
+    }
+    
     return cell;
-    
 }
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 100;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
-        return nil;
+    if (self.currenModel) {
+        LDClassChapterModel *model = self.currenModel.chapterArray[section-1];
+        NSString *chapterName = model.chapterTitle;
+        UIView *view = [UIView new];
+        view.backgroundColor = [UIColor whiteColor];
+        UILabel *label = [[UILabel alloc]init];
+        label.text = chapterName;
+        [view addSubview:label];
+        [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.mas_equalTo(view);
+            make.left.mas_equalTo(view).mas_offset(16);
+        }];
+        return view;
     }
-    UIView *view = [UIView new];
-    view.backgroundColor = [UIColor whiteColor];
-    UILabel *label = [[UILabel alloc]init];
-    label.text = [NSString stringWithFormat:@"第%ld章:天才是怎样炼成的",section];
-    [view addSubview:label];
-    [label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(view);
-        make.left.mas_equalTo(view).mas_offset(16);
-    }];
-    return view;
+    return nil;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == 0) {
@@ -115,6 +172,7 @@
 - (LDShoppingDetailFootView *)footView {
     if (!_footView) {
         _footView = [[NSBundle mainBundle]loadNibNamed:@"LDShoppingDetailFootView" owner:self options:nil].firstObject;
+        [_footView.collectionButton addTarget:self action:@selector(clickCollectionAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _footView;
 }

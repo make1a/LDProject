@@ -15,12 +15,18 @@
 
 @implementation LDFinishOrderViewController
 #pragma mark - life cycle
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = NO;
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"我的订单";
     self.view.backgroundColor = [UIColor whiteColor];
     [self configUI];
 }
+
 - (void)configUI {
     self.tableView.separatorInset = UIEdgeInsetsMake(0,0, 0, 0);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;

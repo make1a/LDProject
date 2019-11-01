@@ -13,3 +13,22 @@
     return @{@"s_id": @"id"};
 }
 @end
+
+@implementation LDBookModel
++ (NSDictionary *)modelCustomPropertyMapper {
+    return @{@"b_id": @"id",
+             @"detailArray":@"goodsImgVOS"
+    };
+}
+
++ (nullable NSDictionary<NSString *, id> *)modelContainerPropertyGenericClass{
+    return @{@"detailArray":[goodsImgVOSModel class]};
+}
+@end
+
+
+@implementation goodsImgVOSModel
++ (NSDictionary *)modelCustomPropertyMapper {
+    return @{@"b_id": @"id"};
+}
+@end

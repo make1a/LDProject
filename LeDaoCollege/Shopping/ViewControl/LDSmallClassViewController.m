@@ -13,14 +13,16 @@
 {
     NSInteger page;
 }
-@property (nonatomic,strong)NSArray * dataSource;
+
 @end
 
 @implementation LDSmallClassViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self requestAllStore];
+        if (!self.isSearchModel) {
+        [self requestAllStore];
+    }
 }
 - (void)requestAllStore {
     NSDictionary *dic = @{@"title":@"",
@@ -32,6 +34,24 @@
         if (kCODE == 200) {
            self.dataSource = [NSArray yy_modelArrayWithClass:[LDStoreModel class] json:responseObject[@"data"][@"list"]];
             [self.tableView reloadData];
+        }
+    } faild:^(NSError *error) {
+        
+    }];
+}
+- (void)requestSource:(NSString *)title back:(backSourceCountBlock)blcok {
+    NSDictionary *dic = @{@"title":title,
+                          @"page":@(page),
+                          @"pageSize":@20,
+                          @"type": @2, //1书籍 2课程
+    };
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"goods/getallgoods" requestParameters:dic requestHeader:nil success:^(id responseObject) {
+        if (kCODE == 200) {
+            self.dataSource = [NSArray yy_modelArrayWithClass:[LDStoreModel class] json:responseObject[@"data"][@"list"]];
+            [self.tableView reloadData];
+                        if (blcok) {
+                blcok(self.dataSource.count);
+            }
         }
     } faild:^(NSError *error) {
         
@@ -65,6 +85,8 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     LDSmallClassDetailViewController *vc = [LDSmallClassDetailViewController new];
+    LDStoreModel *model = self.dataSource[indexPath.row];
+    vc.classID = model.s_id;
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

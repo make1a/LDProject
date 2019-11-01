@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LDSmallClassDetailViewController : QMUICommonViewController
+@property (nonatomic,copy)NSString * classID;
 
 @end
 

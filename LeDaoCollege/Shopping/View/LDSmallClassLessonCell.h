@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "LDClassModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LDSmallClassLessonCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *chapterLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 
+- (void)refreshWith:(LDClassChapterSectionModel *)model;
 @end
 
 NS_ASSUME_NONNULL_END

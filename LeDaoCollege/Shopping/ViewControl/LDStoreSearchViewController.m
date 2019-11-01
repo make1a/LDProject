@@ -54,6 +54,7 @@
 // 设置菜单栏上面的每个按钮对应的VC
 - (UIViewController *)magicView:(VTMagicView *)magicView viewControllerAtPage:(NSUInteger)pageIndex
 {
+    _weakself;
     switch (pageIndex) {
         case 0:
         {
@@ -62,7 +63,17 @@
             if (!vc)
             {
                 vc = [[LDAllshoppingViewController alloc] init];
+                vc.isSearchModel = YES;
             }
+            [vc requestSource:self.searchTitle back:^(NSInteger count) {
+                weakself.noticeView.titleLabel.text = [NSString stringWithFormat:@"共找到%lu个相关内容",(unsigned long)vc.dataSource.count];
+                [vc.tableView qmui_scrollToTop];
+                vc.tableView.tableHeaderView = self.noticeView;
+                [vc.tableView qmui_scrollToTop];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    vc.tableView.tableHeaderView = nil;
+                });
+            }];
             return vc;
         }
             break;
@@ -73,7 +84,17 @@
             if (!vc)
             {
                 vc = [[LDToolBooksViewController alloc] init];
+                vc.isSearchModel = YES;
             }
+            [vc requestSource:self.searchTitle back:^(NSInteger count) {
+                weakself.noticeView.titleLabel.text = [NSString stringWithFormat:@"共找到%lu个相关内容",(unsigned long)vc.dataSource.count];
+                [vc.tableView qmui_scrollToTop];
+                vc.tableView.tableHeaderView = self.noticeView;
+                [vc.tableView qmui_scrollToTop];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    vc.tableView.tableHeaderView = nil;
+                });
+            }];
             return vc;
         }
             break;
@@ -84,7 +105,17 @@
             if (!vc)
             {
                 vc = [[LDSmallClassViewController alloc] init];
+                vc.isSearchModel = YES;
             }
+            [vc requestSource:self.searchTitle back:^(NSInteger count) {
+                weakself.noticeView.titleLabel.text = [NSString stringWithFormat:@"共找到%lu个相关内容",(unsigned long)vc.dataSource.count];
+                [vc.tableView qmui_scrollToTop];
+                vc.tableView.tableHeaderView = self.noticeView;
+                [vc.tableView qmui_scrollToTop];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    vc.tableView.tableHeaderView = nil;
+                });
+            }];
             return vc;
         }
             break;

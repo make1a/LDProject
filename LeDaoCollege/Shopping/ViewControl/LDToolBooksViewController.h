@@ -11,7 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LDToolBooksViewController : QMUICommonTableViewController
+@property (nonatomic,assign)BOOL isSearchModel;
+@property (nonatomic,strong)NSArray * dataSource;
 
+- (void)requestSource:(NSString *)title back:(backSourceCountBlock)blcok;
 @end
 
 NS_ASSUME_NONNULL_END

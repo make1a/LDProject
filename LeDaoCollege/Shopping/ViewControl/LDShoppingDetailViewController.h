@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LDShoppingDetailViewController : QMUICommonViewController
+@property (nonatomic,copy)NSString * shopID;
 
 @end
 

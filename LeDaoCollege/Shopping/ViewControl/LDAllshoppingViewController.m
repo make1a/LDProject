@@ -21,7 +21,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self requestAllStore];
+    if (!self.isSearchModel) {
+        [self requestAllStore];
+    }
 }
 - (void)requestAllStore {
     NSDictionary *dic = @{@"title":@"",

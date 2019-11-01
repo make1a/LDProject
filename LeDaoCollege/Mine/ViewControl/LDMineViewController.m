@@ -11,7 +11,7 @@
 #import "LDCustomerManagerViewController.h"
 #import "LDConfigTableViewController.h"
 #import "LDCollectViewController.h"
-#import "LDOrderViewController.h"
+#import "LDFinishOrderViewController.h"
 #import "LDShoppingCartViewController.h"
 #import "LDBookRackViewController.h"
 #import "LDMineCustomHead.h"
@@ -96,7 +96,7 @@
             break;
         case 2:
         {
-            LDOrderViewController *vc = [LDOrderViewController new];
+            LDFinishOrderViewController *vc = [LDFinishOrderViewController new];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;

@@ -1,14 +1,14 @@
 //
-//  LDShoppingDetailFootView.m
+//  LDNoUseView.m
 //  LeDaoCollege
 //
-//  Created by make on 2019/9/22.
+//  Created by Make on 2019/10/30.
 //  Copyright © 2019 Make. All rights reserved.
 //
 
-#import "LDShoppingDetailFootView.h"
+#import "LDNoUseView.h"
 
-@implementation LDShoppingDetailFootView
+@implementation LDNoUseView
 
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -17,7 +17,5 @@
     // Drawing code
 }
 */
-- (void)awakeFromNib {
-    [self.buyButton setCornerRadius:21];
-}
+
 @end
