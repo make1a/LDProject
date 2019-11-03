@@ -10,7 +10,7 @@
 #import "SDCycleScrollView.h"
 #import "LDNewsTableViewCell.h"
 #import "LDNewsModel.h"
-
+#import "LDWebViewViewController.h"
 @interface LDInfoMationViewController ()<SDCycleScrollViewDelegate,QMUITableViewDataSource,QMUITableViewDelegate>
 {
     NSInteger currentPage;
@@ -75,6 +75,11 @@
     LDNewsTableViewCell *cell = [LDNewsTableViewCell dequeueReusableWithTableView:tableView];
     [cell refreshWithModel:self.dataSource[indexPath.row]];
     return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    LDWebViewViewController * vc = [LDWebViewViewController new];
+    vc.urlStrng = [NSString stringWithFormat:@""];
 }
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return PtHeight(80);
