@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LDCommitBuyViewController : QMUICommonViewController
+@property (weak, nonatomic) IBOutlet UIView *footView;
 @property (nonatomic,strong)LDBookModel * currentModel;
 @end
 

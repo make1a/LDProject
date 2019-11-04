@@ -135,6 +135,7 @@
 - (void)pushToBuyVC{
     LDCommitBuyViewController *vc = [[LDCommitBuyViewController alloc]initWithNibName:@"LDCommitBuyViewController" bundle:[NSBundle mainBundle]];
     vc.currentModel = self.currentModel;
+    vc.title = @"确认购买";
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)clickBackAction {

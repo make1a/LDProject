@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(instancetype)shareInstance;
 + (BOOL)isLogin;
-
++ (NSString *)userName;
 +(void)removeUserID;
 + (NSString *)userID;
 @end

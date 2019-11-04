@@ -8,9 +8,10 @@
 
 #import "LDFinishOrderViewController.h"
 #import "LDFinishOrderCell.h"
-
+#import "LDOrderModel.h"
+#import "LDCommitBuyViewController.h"
 @interface LDFinishOrderViewController ()
-
+@property (nonatomic,strong)NSArray * dataSource;
 @end
 
 @implementation LDFinishOrderViewController
@@ -25,6 +26,7 @@
     self.title = @"我的订单";
     self.view.backgroundColor = [UIColor whiteColor];
     [self configUI];
+    [self requestData];
 }
 
 - (void)configUI {
@@ -32,22 +34,39 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.view.backgroundColor = [UIColor whiteColor];
 }
+- (void)requestData{
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"order/orderlist" requestParameters:nil requestHeader:nil success:^(id responseObject) {
+        if (kCODE == 200) {
+            self.dataSource = [NSArray yy_modelArrayWithClass:[LDOrderModel class] json:responseObject[@"data"][@"list"]];
+            [self.tableView reloadData];
+        }
+    } faild:^(NSError *error) {
+        
+    }];
+}
 #pragma mark - event response
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return self.dataSource.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     LDFinishOrderCell *cell = [LDFinishOrderCell dequeueReusableWithTableView:tableView];
+    LDOrderModel*model = self.dataSource[indexPath.row];
+    [cell refreshWith:model];
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 95;
 }
-#pragma mark - private method
-//当程序从后台进入时，重新刷新tableView
-- (void)applicationDidBecomeActive:(NSNotification *)notification {
-    [self.tableView reloadData];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+        LDCommitBuyViewController *vc = [[LDCommitBuyViewController alloc]initWithNibName:@"LDCommitBuyViewController" bundle:[NSBundle mainBundle]];
+    vc.currentModel = self.dataSource[indexPath.row];
+    vc.footView.hidden = YES;
+    vc.title = @"订单详情";
+    [self.navigationController pushViewController:vc animated:YES];
 }
+#pragma mark - private method
+
 
 #pragma mark - get and set
 

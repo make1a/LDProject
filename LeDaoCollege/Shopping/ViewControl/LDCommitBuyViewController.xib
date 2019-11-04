@@ -12,6 +12,7 @@
             <connections>
                 <outlet property="bigPayLabel" destination="c4n-2t-DEN" id="nfE-eF-Fw7"/>
                 <outlet property="discountLabel" destination="ceN-fh-1vY" id="A9o-BN-M59"/>
+                <outlet property="footView" destination="q7D-1p-Thc" id="CXK-c4-AjS"/>
                 <outlet property="headImageView" destination="JF3-7r-W0w" id="5ce-2f-Qu3"/>
                 <outlet property="originLabel" destination="P63-Jr-Uu6" id="m7b-ZN-41s"/>
                 <outlet property="payButton" destination="3C3-lC-Q8g" id="FZU-CJ-c1i"/>

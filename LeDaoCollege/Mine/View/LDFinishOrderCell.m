@@ -35,7 +35,23 @@ NSString *const kLDFinishOrderCellIdentifier = @"kLDFinishOrderCellIdentifier";
     }
     return self;
 }
-
+- (void)refreshWith:(LDOrderModel *)model{
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@img/%@",BaseAPI,model.coverImg]] placeholderImage:[UIImage imageNamed:@"seizeaseat_0"]];
+    self.textLabel.text = model.title;
+    if ([model.goodsType isEqualToString:@"1"]) {
+        self.tagLabel.text = @"音频";
+    }else if ([model.goodsType isEqualToString:@"2"]) {
+        self.tagLabel.text = @"视频";
+    }else if ([model.goodsType isEqualToString:@"3"]) {
+        self.tagLabel.text = @"工具书";
+    }else{
+        self.tagLabel.text = @"微课";
+    }
+    
+    self.priceLabel.text = [NSString stringWithFormat:@"¥%@",model.originalPrice];
+    self.safePriceLabel.text = [NSString stringWithFormat:@"¥%@",model.discount];
+    self.timeLabel.text = model.createDate;
+}
 - (void)masLayoutSubview
 {
     [self.imageView setCornerRadius:10];

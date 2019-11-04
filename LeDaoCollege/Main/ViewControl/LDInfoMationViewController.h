@@ -20,4 +20,5 @@
 @property (nonatomic,strong)NSArray * dataSource;
 
 - (void)requestSource:(NSString *)title back:(backSourceCountBlock)blcok;
+@property (nonatomic,strong)NSArray * netImages;
 @end

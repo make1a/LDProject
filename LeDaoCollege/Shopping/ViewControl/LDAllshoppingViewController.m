@@ -9,6 +9,9 @@
 #import "LDAllshoppingViewController.h"
 #import "LDShoppingTableViewCell.h"
 #import "LDStoreModel.h"
+#import "LDShoppingDetailViewController.h"
+#import "LDSmallClassDetailViewController.h"
+
 @interface LDAllshoppingViewController ()
 {
     NSInteger page;
@@ -65,7 +68,17 @@
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-
+    LDStoreModel *model = self.dataSource[indexPath.row];
+    if ([model.type isEqualToString:@"1"]) {
+        LDShoppingDetailViewController *vc = [LDShoppingDetailViewController new];
+        vc.shopID = model.s_id;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else {
+        LDSmallClassDetailViewController *vc = [LDSmallClassDetailViewController new];
+        LDStoreModel *model = self.dataSource[indexPath.row];
+        vc.classID = model.s_id;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return PtHeight(80);

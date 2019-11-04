@@ -22,6 +22,7 @@
 - (void)setCurrentUser:(LDUserModel *)currentUser{
     _currentUser = currentUser;
     [self saveUserID];
+    [self saveName];
 }
 
 + (NSString *)userID {
@@ -33,6 +34,12 @@
 }
 - (void)saveUserID{
     [[NSUserDefaults standardUserDefaults]setValue:_currentUser.userId forKey:@"_currentUser.userId"];
+}
+- (void)saveName{
+    [[NSUserDefaults standardUserDefaults]setValue:_currentUser.userName forKey:@"_currentUser.userName"];
+}
++ (NSString *)userName{
+    return [[NSUserDefaults standardUserDefaults]valueForKey:@"_currentUser.userName"];
 }
 + (BOOL)isLogin{
     NSString * s = [[NSUserDefaults standardUserDefaults]valueForKey:@"_currentUser.userId"];

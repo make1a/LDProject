@@ -65,7 +65,7 @@
             self.headView.priceLabel.text = [NSString stringWithFormat:@"¥%@",self.currenModel.discount];
             self.headView.discountPriceLabel.text = [NSString stringWithFormat:@"¥%@",self.currenModel.originalPrice];
             self.headView.introLabel.text = self.currenModel.briefIntroduction;
-            [self.headView.headImageView sd_setImageWithURL:[NSURL URLWithString:self.currenModel.coverImg] placeholderImage:[UIImage imageNamed:@"mine_headportrait_default"]];
+            [self.headView.headImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@img/%@",BaseAPI,self.currenModel.coverImg]] placeholderImage:[UIImage imageNamed:@"mine_headportrait_default"]];
             if ([self.currenModel.collectionFlag isEqualToString:@"Y"]) {
                 self.footView.collectionButton.selected = YES;
             }else {

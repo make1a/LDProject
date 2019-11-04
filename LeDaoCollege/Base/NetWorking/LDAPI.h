@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 
 UIKIT_EXTERN  NSString * const BaseUrl;
-
+UIKIT_EXTERN  NSString * const BaseAPI;
 UIKIT_EXTERN  NSString * const kRegister;
 UIKIT_EXTERN  NSString * const kLoginAPI;

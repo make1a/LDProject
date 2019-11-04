@@ -45,9 +45,9 @@ NSString *const kLDNewsTableViewCellIdentifier = @"kLDNewsTableViewCellIdentifie
     return self;
 }
 - (void)refreshWithModel:(LDNewsModel *)model {
-    [self.bigImageVIew sd_setImageWithURL:[NSURL URLWithString:model.coverImg] placeholderImage:[UIImage imageNamed:@"seizeaseat_0"]];
+    [self.bigImageVIew sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@img/%@",BaseAPI,model.coverImg]] placeholderImage:[UIImage imageNamed:@"seizeaseat_0"]];
     self.timeLabel.text = model.createdDate;
-    self.titleLabel.text = model.content;
+    self.titleLabel.text = model.title;
 }
 
 #pragma  mark - masLayoutSuviews

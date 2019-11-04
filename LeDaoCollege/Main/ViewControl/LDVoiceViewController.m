@@ -12,14 +12,12 @@
 #import "SDCycleScrollView.h"
 #import "LDTagModel.h"
 #import "LDVoiceModel.h"
+#import "LDWebViewViewController.h"
 @interface LDVoiceViewController ()<SDCycleScrollViewDelegate,QMUITableViewDataSource,QMUITableViewDelegate>
 
 @property (nonatomic,strong)LDTagView * tagView;
-@property (nonatomic,strong)NSArray * netImages;
 @property (nonatomic,strong)SDCycleScrollView* cycleScrollView;
 @property (nonatomic,strong)NSMutableArray * tagArray;
-
-
 @end
 
 @implementation LDVoiceViewController
@@ -33,6 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.netImages = @[];
     [self didSelectTagAction];
     [self configUI];
     
@@ -114,6 +113,20 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return PtHeight(80);
 }
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    LDVoiceModel *model = self.dataSource[indexPath.row];
+    LDWebViewViewController * vc = [LDWebViewViewController new];
+    vc.urlStrng = model.contentUrl;
+    vc.s_id = model.v_id;
+    vc.isCollection = [model.collectionFlag isEqualToString:@"Y"]?YES:NO;
+    vc.collectionType = @"2";
+    vc.didRefreshCollectionStateBlock = ^(BOOL isCollection) {
+        model.collectionFlag = isCollection?@"Y":@"N";
+        [tableView reloadData];
+    };
+    [self.navigationController pushViewController:vc animated:YES];
+}
 #pragma  mark - SDCyclesScrollview
 /** 点击图片回调 */
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
@@ -182,7 +195,7 @@
 
 - (SDCycleScrollView *)cycleScrollView {
     if (!_cycleScrollView) {
-        UIImage * placeholderImage = [UIImage imageNamed:@"seizeaseat_0"];
+        UIImage * placeholderImage = [UIImage imageNamed:@"seizeaseat_1"];
         CGRect frame = CGRectMake(PtWidth(20), 0, PtWidth(335), PtHeight(120));
         _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:frame delegate:self placeholderImage:placeholderImage];
         _cycleScrollView.imageURLStringsGroup = self.netImages;
@@ -192,18 +205,9 @@
     }
     return _cycleScrollView;
 }
-
--(NSArray *)netImages{
-    
-    if (!_netImages) {
-        _netImages = @[
-            @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1569321432704&di=d65324c4864f2a08817b6a73b6b5caeb&imgtype=0&src=http%3A%2F%2Fwww.leawo.cn%2Fattachment%2F201404%2F16%2F1433365_1397624557Bz7w.jpg",
-            @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1569321432704&di=52224a01dded6315a23357c5bc9afd03&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20160830%2Ffe779ac6f79d4fb2a8101fda35eb8bdd_th.jpg",
-            @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1569321432703&di=4130ed50a2fdac16ce5ee7c234a1bc7a&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2018-12-14%2F5c1319ac76f03.jpg",
-            @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1569321462846&di=65658adbc9c571fc14e125c62d2a705c&imgtype=jpg&src=http%3A%2F%2Fimg3.imgtn.bdimg.com%2Fit%2Fu%3D312440173%2C484202537%26fm%3D214%26gp%3D0.jpg"
-        ];
-    }
-    return _netImages;
+- (void)setNetImages:(NSArray *)netImages{
+    _netImages = netImages;
+    self.cycleScrollView.imageURLStringsGroup = netImages;
 }
 
 - (QMUITableView *)tableView {

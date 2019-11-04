@@ -16,7 +16,7 @@
     NSInteger currentPage;
 }
 @property (nonatomic,strong)SDCycleScrollView* cycleScrollView;
-@property (nonatomic,strong)NSArray * netImages;
+
 @end
 
 @implementation LDInfoMationViewController
@@ -27,6 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.netImages = @[];
     currentPage = 0;
     [self masLayoutSubviews];
     if (!self.isSearchModel) {
@@ -35,6 +36,7 @@
     }
 }
 #pragma mark - NetWork
+
 - (void)requestDatasource {
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"information/getlists" requestParameters:nil requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {
@@ -78,8 +80,16 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    LDNewsModel *model = self.dataSource[indexPath.row];
     LDWebViewViewController * vc = [LDWebViewViewController new];
-    vc.urlStrng = [NSString stringWithFormat:@""];
+    vc.urlStrng = model.contentUrl;
+    vc.s_id = model.newsId;
+    vc.isCollection = [model.collectionFlag isEqualToString:@"Y"]?YES:NO;
+    vc.collectionType = @"1";
+    vc.didRefreshCollectionStateBlock = ^(BOOL isCollection) {
+        model.collectionFlag = isCollection?@"Y":@"N";
+    };
+    [self.navigationController pushViewController:vc animated:YES];
 }
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return PtHeight(80);
@@ -131,7 +141,7 @@
 #pragma mark - get and set
 - (SDCycleScrollView *)cycleScrollView {
     if (!_cycleScrollView) {
-        UIImage * placeholderImage = [UIImage imageNamed:@"seizeaseat_0"];
+        UIImage * placeholderImage = [UIImage imageNamed:@"seizeaseat_1"];
         CGRect frame = CGRectMake(PtWidth(20), 0, PtWidth(335), PtHeight(120));
         _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:frame delegate:self placeholderImage:placeholderImage];
         _cycleScrollView.imageURLStringsGroup = self.netImages;
@@ -141,18 +151,9 @@
     }
     return _cycleScrollView;
 }
-
--(NSArray *)netImages{
-    
-    if (!_netImages) {
-        _netImages = @[
-            @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1569321432704&di=d65324c4864f2a08817b6a73b6b5caeb&imgtype=0&src=http%3A%2F%2Fwww.leawo.cn%2Fattachment%2F201404%2F16%2F1433365_1397624557Bz7w.jpg",
-            @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1569321432704&di=52224a01dded6315a23357c5bc9afd03&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20160830%2Ffe779ac6f79d4fb2a8101fda35eb8bdd_th.jpg",
-            @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1569321432703&di=4130ed50a2fdac16ce5ee7c234a1bc7a&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2018-12-14%2F5c1319ac76f03.jpg",
-            @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1569321462846&di=65658adbc9c571fc14e125c62d2a705c&imgtype=jpg&src=http%3A%2F%2Fimg3.imgtn.bdimg.com%2Fit%2Fu%3D312440173%2C484202537%26fm%3D214%26gp%3D0.jpg"
-        ];
-    }
-    return _netImages;
+- (void)setNetImages:(NSArray *)netImages{
+    _netImages = netImages;
+    self.cycleScrollView.imageURLStringsGroup = netImages;
 }
 
 - (QMUITableView *)tableView {

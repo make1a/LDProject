@@ -85,6 +85,7 @@
 		26BA0655232735E200992FFD /* LDAlterNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BA0654232735E200992FFD /* LDAlterNameViewController.m */; };
 		26BCBDD923697A1000C568A0 /* LDNoUseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BCBDD823697A1000C568A0 /* LDNoUseView.m */; };
 		26BCBDDB23697A2300C568A0 /* LDNoUseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26BCBDDA23697A2300C568A0 /* LDNoUseView.xib */; };
+		26BF746123700A70008D4F24 /* LDOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 26BF746023700A70008D4F24 /* LDOrderModel.m */; };
 		26C2D0112320E61900906324 /* LDNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26C2D0102320E61900906324 /* LDNewsTableViewCell.m */; };
 		26C8469D233895C900500B3F /* LDSmallClassDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26C8469C233895C900500B3F /* LDSmallClassDetailViewController.m */; };
 		26C846A02338976E00500B3F /* LDSmallClassDetailHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 26C8469F2338976E00500B3F /* LDSmallClassDetailHeadView.m */; };
@@ -318,6 +319,8 @@
 		26BCBDD723697A1000C568A0 /* LDNoUseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDNoUseView.h; sourceTree = "<group>"; };
 		26BCBDD823697A1000C568A0 /* LDNoUseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDNoUseView.m; sourceTree = "<group>"; };
 		26BCBDDA23697A2300C568A0 /* LDNoUseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LDNoUseView.xib; sourceTree = "<group>"; };
+		26BF745F23700A70008D4F24 /* LDOrderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDOrderModel.h; sourceTree = "<group>"; };
+		26BF746023700A70008D4F24 /* LDOrderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDOrderModel.m; sourceTree = "<group>"; };
 		26C2D00F2320E61900906324 /* LDNewsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDNewsTableViewCell.h; sourceTree = "<group>"; };
 		26C2D0102320E61900906324 /* LDNewsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDNewsTableViewCell.m; sourceTree = "<group>"; };
 		26C8469B233895C900500B3F /* LDSmallClassDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDSmallClassDetailViewController.h; sourceTree = "<group>"; };
@@ -625,6 +628,8 @@
 				26B70233232F828A00156116 /* LDShoppingCartModel.m */,
 				26F3BB842330AEA3001A645C /* CollectionCategoryModel.h */,
 				26F3BB832330AEA2001A645C /* CollectionCategoryModel.m */,
+				26BF745F23700A70008D4F24 /* LDOrderModel.h */,
+				26BF746023700A70008D4F24 /* LDOrderModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1221,6 +1226,7 @@
 				268EEDFC2325F2670014F971 /* LDHeadImageCell.m in Sources */,
 				2658F0EB232A9D8F00F4C37A /* LDReadProgressView.m in Sources */,
 				26B0D4E52356C1B60064205B /* LDUserManager.m in Sources */,
+				26BF746123700A70008D4F24 /* LDOrderModel.m in Sources */,
 				26CBF88E23252566005139EF /* LDLoginViewController.m in Sources */,
 				26B6CD5B233A07FA00E94520 /* LDEmptyView.m in Sources */,
 				26F3BB932330B44B001A645C /* LDScoreCell.m in Sources */,

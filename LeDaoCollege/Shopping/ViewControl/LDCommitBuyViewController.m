@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *discountLabel;
 @property (weak, nonatomic) IBOutlet UIButton *payButton;
 
+
 @end
 
 @implementation LDCommitBuyViewController
@@ -30,7 +31,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"确认购买";
     [self configInfo];
 }
 
@@ -42,8 +42,9 @@
 - (void)configInfo {
     NSString *salePrice = [NSString stringWithFormat:@"¥%@",self.currentModel.discount];
     self.bigPayLabel.text = salePrice;
-    self.usernameLabel.text = self.currentModel.userName;
-    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:self.currentModel.coverImg] placeholderImage:[UIImage imageNamed:@"seizeaseat_0"]];
+    self.usernameLabel.text = [LDUserManager userName];
+    NSLog(@"%@",[LDUserManager shareInstance].currentUser);
+    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@img/%@",BaseAPI,self.currentModel.coverImg]] placeholderImage:[UIImage imageNamed:@"seizeaseat_0"]];
     self.typeLabel.text = @"工具书";
     self.shopNameLabel.text = self.currentModel.title;
     self.saleLabel.text = salePrice;

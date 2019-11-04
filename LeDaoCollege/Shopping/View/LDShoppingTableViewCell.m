@@ -74,11 +74,12 @@ NSString *const kLDShoppingTableViewCell = @"LDShoppingTableViewCell";
 //    }];
 }
 - (void)refreshWithModel:(LDStoreModel *)model {
-    [self.bigImageView sd_setImageWithURL:[NSURL URLWithString:model.coverImg] placeholderImage:[UIImage imageNamed:@"seizeaseat_0"]];
+    
+    [self.bigImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@img/%@",BaseAPI,model.coverImg]] placeholderImage:[UIImage imageNamed:@"seizeaseat_0"]];
     self.titleLabel.text = model.title;
     self.priceLabel.text = [NSString stringWithFormat:@"¥%@",model.originalPrice];
     self.cheapPriceLabel.text = [NSString stringWithFormat:@"¥%@",model.discount];;
-    if ([model.type intValue] == 1) {
+    if ([model.type intValue] == 2) {
         self.tagLabel.text = @"微课";
     }else {
         self.tagLabel.text = @"工具书";

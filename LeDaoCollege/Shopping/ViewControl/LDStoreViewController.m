@@ -20,7 +20,7 @@
 #import "LDShoppingHeadView.h"
 @interface LDStoreViewController ()<SDCycleScrollViewDelegate,VTMagicViewDelegate,VTMagicViewDataSource>
 @property (nonatomic, strong)VTMagicController *magicController;
-@property (nonatomic,strong)NSArray * netImages;
+@property (nonatomic,strong)NSMutableArray * netImages;
 @property (nonatomic,strong)LDShoppingHeadView * headView;
 @end
 
@@ -36,6 +36,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     [self masLayoutSubviews];
+    [self requestBannerList];
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -73,8 +74,27 @@
     LDShoppingCartViewController *vc = [[LDShoppingCartViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }
-
-
+#pragma  mark - REQUEST
+- (void)requestBannerList {
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"banner/getbytype/2" requestParameters:@{@"type":@"2"} requestHeader:nil success:^(id responseObject) {
+        if (kCODE == 200) {
+            NSArray *array = responseObject[@"data"];
+            self.netImages = @[].mutableCopy;
+            for (NSDictionary *dic in array) {
+                NSString *url = dic[@"imgUrl"];
+                if ([url containsString:@"http"]) {
+                    [self.netImages addObject:url];
+                }else{
+                    url = [NSString stringWithFormat:@"%@img/%@",BaseAPI,url];
+                    [self.netImages addObject:url];
+                }
+            }
+            self.headView.cycleScrollView.imageURLStringsGroup = self.netImages;
+        }
+    } faild:^(NSError *error) {
+        
+    }];
+}
 #pragma mark - VTMagicViewDelegate
 - (NSArray<__kindof NSString *> *)menuTitlesForMagicView:(VTMagicView *)magicView{
     return @[@"全部商品",@"工具书",@"微课"];
@@ -193,7 +213,7 @@
     if (!_headView) {
         _headView = [[NSBundle mainBundle]loadNibNamed:@"LDShoppingHeadView" owner:self options:nil].firstObject;
         [_headView.searchButton addTarget:self action:@selector(clickSearchAction:) forControlEvents:UIControlEventTouchUpInside];
-        
+
     }
     return _headView;
 }

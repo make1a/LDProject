@@ -19,6 +19,7 @@
 @property (nonatomic, strong)VTMagicController *magicController;
 @property (nonatomic,strong)UIButton * searchButton;
 @property (nonatomic,strong)UIView * bgView;
+@property (nonatomic,strong)NSMutableArray * imageArray;
 @end
 
 @implementation LDMainViewController
@@ -32,6 +33,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.bgView];
     [self masLayoutSubviews];
+    [self requestBannerList];
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -56,6 +58,26 @@
 
         }
         make.height.mas_equalTo(PtHeight(32));
+    }];
+}
+- (void)requestBannerList {
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"banner/getbytype/1" requestParameters:@{@"type":@"1"} requestHeader:nil success:^(id responseObject) {
+        if (kCODE == 200) {
+            NSArray *array = responseObject[@"data"];
+            self.imageArray = @[].mutableCopy;
+            for (NSDictionary *dic in array) {
+                NSString *url = dic[@"imgUrl"];
+                if ([url containsString:@"http"]) {
+                    [self.imageArray addObject:url];
+                }else{
+                    url = [NSString stringWithFormat:@"%@img/%@",BaseAPI,url];
+                    [self.imageArray addObject:url];
+                }
+            }
+            [self.magicController.magicView reloadData];
+        }
+    } faild:^(NSError *error) {
+        
     }];
 }
 #pragma  mark - Touch Action
@@ -85,6 +107,7 @@
             {
                 vc = [[LDInfoMationViewController alloc] init];
             }
+            vc.netImages = self.imageArray;
             return vc;
         }
             break;
@@ -96,6 +119,7 @@
             {
                 vc = [[LDVoiceViewController alloc] init];
             }
+            vc.netImages = self.imageArray;
             return vc;
         }
             break;
@@ -107,6 +131,7 @@
             {
                 vc = [[LDVideoViewController alloc] init];
             }
+            vc.netImages = self.imageArray;
             return vc;
         }
             break;

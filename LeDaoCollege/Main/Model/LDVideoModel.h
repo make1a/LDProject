@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LDVideoModel : NSObject
 /** <#Description#> **/
-@property(nonatomic,strong) NSNumber *v_id;
+@property(nonatomic,copy) NSString *v_id;
 /** <#Description#> **/
 @property(nonatomic,copy) NSString *userId;
 /** <#Description#> **/

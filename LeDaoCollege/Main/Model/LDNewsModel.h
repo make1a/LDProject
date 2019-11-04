@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LDNewsModel : NSObject
 /** <#Description#> **/
-@property(nonatomic,strong) NSNumber *newsId;
+@property(nonatomic,copy) NSString *newsId;
 /** <#Description#> **/
 @property(nonatomic,copy) NSString *userId;
 /** <#Description#> **/

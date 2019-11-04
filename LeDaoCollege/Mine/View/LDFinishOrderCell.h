@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LDOrderModel.h"
 extern NSString *const kLDFinishOrderCellIdentifier;
 @interface LDFinishOrderCell : UITableViewCell
 @property (nonatomic,strong)QMUILabel * tagLabel;
@@ -14,4 +15,5 @@ extern NSString *const kLDFinishOrderCellIdentifier;
 @property (nonatomic,strong)QMUILabel * timeLabel;
 + (instancetype)dequeueReusableWithTableView:(UITableView *)tableView;
 
+- (void)refreshWith:(LDOrderModel *)model;
 @end
