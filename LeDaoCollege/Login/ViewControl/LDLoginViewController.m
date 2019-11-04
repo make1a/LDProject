@@ -45,7 +45,7 @@
         }];
         [sender countDownFinished:^NSString *(JKCountDownButton *countDownButton, NSUInteger second) {
             countDownButton.enabled = YES;
-            return @"点击重新获取";
+            return @"重新获取";
             
         }];
         

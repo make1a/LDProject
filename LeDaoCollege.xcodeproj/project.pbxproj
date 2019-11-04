@@ -67,6 +67,7 @@
 		26B0D4DF2356B9400064205B /* LDNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B0D4DE2356B9400064205B /* LDNewsModel.m */; };
 		26B0D4E22356BEEA0064205B /* LDUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B0D4E12356BEEA0064205B /* LDUserModel.m */; };
 		26B0D4E52356C1B60064205B /* LDUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B0D4E42356C1B60064205B /* LDUserManager.m */; };
+		26B38DAC236EE51B00578D89 /* LDWebViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B38DAB236EE51B00578D89 /* LDWebViewViewController.m */; };
 		26B6CD5B233A07FA00E94520 /* LDEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B6CD5A233A07FA00E94520 /* LDEmptyView.m */; };
 		26B6CD5D233A080D00E94520 /* LDEmptyViewXIB.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26B6CD5C233A080D00E94520 /* LDEmptyViewXIB.xib */; };
 		26B6CD60233A13BF00E94520 /* LDCustomManagerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B6CD5F233A13BF00E94520 /* LDCustomManagerListViewController.m */; };
@@ -284,6 +285,8 @@
 		26B0D4E12356BEEA0064205B /* LDUserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDUserModel.m; sourceTree = "<group>"; };
 		26B0D4E32356C1B60064205B /* LDUserManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDUserManager.h; sourceTree = "<group>"; };
 		26B0D4E42356C1B60064205B /* LDUserManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDUserManager.m; sourceTree = "<group>"; };
+		26B38DAA236EE51B00578D89 /* LDWebViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDWebViewViewController.h; sourceTree = "<group>"; };
+		26B38DAB236EE51B00578D89 /* LDWebViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDWebViewViewController.m; sourceTree = "<group>"; };
 		26B6CD59233A07FA00E94520 /* LDEmptyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDEmptyView.h; sourceTree = "<group>"; };
 		26B6CD5A233A07FA00E94520 /* LDEmptyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDEmptyView.m; sourceTree = "<group>"; };
 		26B6CD5C233A080D00E94520 /* LDEmptyViewXIB.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LDEmptyViewXIB.xib; sourceTree = "<group>"; };
@@ -775,6 +778,8 @@
 				26869C4623210879001DEDBA /* LDLiveViewController.m */,
 				2613780C2322448300228261 /* LDSearchViewController.h */,
 				2613780D2322448300228261 /* LDSearchViewController.m */,
+				26B38DAA236EE51B00578D89 /* LDWebViewViewController.h */,
+				26B38DAB236EE51B00578D89 /* LDWebViewViewController.m */,
 			);
 			path = ViewControl;
 			sourceTree = "<group>";
@@ -1303,6 +1308,7 @@
 				26F3BB7F2330AD54001A645C /* LJCollectionViewFlowLayout.m in Sources */,
 				26B6CD64233A172C00E94520 /* LDEmptyViewController.m in Sources */,
 				265CB9392320A2F400883FE2 /* AppDelegate.m in Sources */,
+				26B38DAC236EE51B00578D89 /* LDWebViewViewController.m in Sources */,
 				26DD0989233368A500E1B5E2 /* LDStoreSearchViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
