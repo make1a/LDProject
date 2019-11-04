@@ -154,7 +154,6 @@
     }];
 }
 - (void)pushMain{
-    
     LDTabBarController *rootViewController = [[LDTabBarController alloc] init];
     AppDelegate  *delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
     delegate.window.rootViewController = rootViewController;
@@ -165,7 +164,7 @@
     switch (self.currentPageType) {
         case LDCurrentPageIsRegister:
         {
-            UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom]     ;
             [backButton setImage:[UIImage imageNamed:@"nav_black"] forState:UIControlStateNormal];
             [backButton addTarget:self action:@selector(clickBackButton:) forControlEvents:UIControlEventTouchUpInside];
             [self.view addSubview:backButton];

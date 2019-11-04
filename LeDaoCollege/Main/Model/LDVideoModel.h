@@ -47,7 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy) NSString *markName;
 /** <#Description#> **/
 @property(nonatomic,copy) NSString *collectionFlag;
-
+@property (nonatomic,copy)NSString * contentUrl;
 @property (nonatomic,strong)NSArray * detailArray;
 @end
 

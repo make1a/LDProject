@@ -270,7 +270,6 @@
     _isRelate = YES;
 }
 
-
 #pragma  mark - GET & SET
 - (QMUITableView *)leftTableView {
     if (nil == _leftTableView){
