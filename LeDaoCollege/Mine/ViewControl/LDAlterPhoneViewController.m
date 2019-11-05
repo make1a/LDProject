@@ -1,18 +1,21 @@
 //
-//  LDAlterNameViewController.m
+//  LDAlterPhoneViewController.m
 //  LeDaoCollege
 //
-//  Created by make on 2019/9/9.
+//  Created by Make on 2019/11/5.
+//  Copyright © 2019 Make. All rights reserved.
+//
 
+#import "LDAlterPhoneViewController.h"
 
-#import "LDAlterNameViewController.h"
-
-@interface LDAlterNameViewController ()
+@interface LDAlterPhoneViewController ()
 @property (nonatomic,strong)QMUITextField * textfield;
+@property (nonatomic,strong)QMUITextField * nPhoneTextfield;
+@property (nonatomic,strong)QMUITextField * tfTextfield;
 @property (nonatomic,strong)UIBarButtonItem * doneButton;
 @end
 
-@implementation LDAlterNameViewController
+@implementation LDAlterPhoneViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,17 +38,17 @@
 }
 - (void)clickDoneAction:(UIBarButtonItem *)sender {
     [self requestAlterName];
-
 }
+
 - (void)requestAlterName {
     NSString *name = self.textfield.text;
     if (name.length == 0) {
         [QMUITips showError:@"您的输入为空"];
         return;
     }
-    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:@"updateuser" requestParameters:@{@"userName":name} requestHeader:nil success:^(id responseObject) {
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:@"updateuser" requestParameters:@{@"phone":name} requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {
-            [LDUserManager shareInstance].currentUser.userName = name;
+            [LDUserManager shareInstance].currentUser.phone = name;
             [QMUITips showInfo:responseObject[@"returnMsg"]];
             [self.navigationController popViewControllerAnimated:YES];
         }

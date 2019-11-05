@@ -45,4 +45,16 @@
     NSString * s = [[NSUserDefaults standardUserDefaults]valueForKey:@"_currentUser.userId"];
     return s.length;
 }
+
+
+- (void)updateUser{
+    NSDictionary *dic = [self.currentUser yy_modelToJSONObject];
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:@"updateuser" requestParameters:dic requestHeader:nil success:^(id responseObject) {
+        if (kCODE == 200) {
+            [QMUITips showInfo:responseObject[@"returnMsg"]];
+        }
+    } faild:^(NSError *error) {
+        
+    }];
+}
 @end

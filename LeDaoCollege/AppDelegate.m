@@ -33,7 +33,7 @@
 //        // Fallback on earlier versions
 //    }
     
-    
+    [self autoLogin];
     return YES;
 }
 - (void)configMainView{
@@ -49,6 +49,23 @@
 - (void)configIQKeyboard {
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
     [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
+}
+
+- (void)autoLogin{
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:@"autologin" requestParameters:nil requestHeader:nil success:^(id responseObject) {
+        if (kCODE == 200) {
+            LDUserModel *model = [LDUserModel yy_modelWithDictionary:responseObject[@"data"][@"user"]];
+            [LDUserManager shareInstance].currentUser = model;
+            NSString *f = responseObject[@"data"][@"firstLogin"];
+            if ([f isEqualToString:@"Y"]) { //第一次登陆
+                
+            }else {
+                
+            }
+        }
+    } faild:^(NSError *error) {
+        
+    }];
 }
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

@@ -173,6 +173,7 @@
     if (!_footView) {
         _footView = [[NSBundle mainBundle]loadNibNamed:@"LDShoppingDetailFootView" owner:self options:nil].firstObject;
         [_footView.collectionButton addTarget:self action:@selector(clickCollectionAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_footView.buyButton addTarget:self action:@selector(clickBuyAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _footView;
 }

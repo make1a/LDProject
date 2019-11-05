@@ -306,7 +306,6 @@
     }
     CGFloat maxFileSize = kBit*1024;
     CGFloat compression = 0.9f;
-    //    compression = 0.7;
     NSData *compressedData = UIImageJPEGRepresentation(image, compression);
     int i = 0;
     while ([compressedData length] > maxFileSize) {

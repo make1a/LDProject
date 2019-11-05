@@ -30,6 +30,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
+    [self refreshView];
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -53,6 +54,10 @@
 }
 - (BOOL)prefersStatusBarHidden {
     return NO;
+}
+- (void)refreshView{
+    [self.headView.headImageView sd_setImageWithURL:[NSURL URLWithString:[LDUserManager shareInstance].currentUser.headImgUrl]
+                                   placeholderImage:[UIImage imageNamed:@"mine_headportrait_default"]];
 }
 #pragma  mark - tableView
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

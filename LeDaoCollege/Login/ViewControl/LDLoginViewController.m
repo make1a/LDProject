@@ -119,8 +119,6 @@
     } faild:^(NSError *error) {
 
     }];
-
-
 }
 - (void)regiserAPP {
     NSString *phone = self.nameTextField.text;

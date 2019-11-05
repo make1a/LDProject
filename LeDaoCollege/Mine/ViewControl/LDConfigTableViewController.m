@@ -15,13 +15,17 @@
 #import "LDNameCell.h"
 #import "LDAlterNameViewController.h"
 #import "LDLoginViewController.h"
-
+#import <SDImageCache.h>
+#import "LDAlterPhoneViewController.h"
 @interface LDConfigTableViewController () <UIImagePickerControllerDelegate>
 @property (nonatomic,strong)UIButton * logoutButton;
 @end
 
 @implementation LDConfigTableViewController
-
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configUI];
@@ -70,6 +74,8 @@
         case 0:
         {
             LDHeadImageCell *cell = [LDHeadImageCell dequeueReusableWithTableView:tableView];
+            NSURL *url = [NSURL URLWithString:[LDUserManager shareInstance].currentUser.headImgUrl];
+            [cell.imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"seizeaseat_0"]];
             return cell;
         }
             break;
@@ -77,7 +83,7 @@
         {
             LDNameCell *cell = [LDNameCell dequeueReusableWithTableView:tableView];
             cell.textLabel.text = @"性别";
-            cell.detailTextLabel.text = @"男";
+            cell.detailTextLabel.text = [[LDUserManager shareInstance].currentUser.sex isEqualToString:@"1"]?@"男":@"女";
             return cell;
         }
             break;
@@ -85,15 +91,16 @@
         {
             LDNameCell *cell = [LDNameCell dequeueReusableWithTableView:tableView];
             cell.textLabel.text = @"手机";
-            cell.detailTextLabel.text = @"13380398412";
+            cell.detailTextLabel.text = [LDUserManager shareInstance].currentUser.phone;
             return cell;
         }
             break;
         case 4:
         {
             LDNameCell *cell = [LDNameCell dequeueReusableWithTableView:tableView];
-            cell.textLabel.text = @"清楚缓存";
-            cell.detailTextLabel.text = @"1003M";
+            cell.textLabel.text = @"清除缓存";
+            CGFloat size = [[SDImageCache sharedImageCache] totalDiskSize] / 1024.0 / 1024.0;
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2fM",size];
             return cell;
         }
             break;
@@ -108,7 +115,7 @@
         {
             LDNameCell *cell = [LDNameCell dequeueReusableWithTableView:tableView];
             cell.textLabel.text = @"昵称";
-            cell.detailTextLabel.text = @"makemake";
+            cell.detailTextLabel.text = [LDUserManager shareInstance].currentUser.userName;
             return cell;
         }
             break;
@@ -132,6 +139,22 @@
         case 2:
         {
             [self showSelectSexViewAction];
+        }
+            break;
+        case 3:
+        {
+            LDAlterPhoneViewController *vc = [LDAlterPhoneViewController new];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 4:
+        {
+            [[LDUserManager shareInstance]updateUser];
+            [QMUITips showSucceed:@"清除成功"];
+            [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
+                UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+                cell.detailTextLabel.text = @"0.00M";
+            }];
         }
             break;
         default:
@@ -171,13 +194,16 @@
     [view showAlertView:^(NSInteger index) {
         if (index == 0)
         {
+            [LDUserManager shareInstance].currentUser.sex = @"1";
             
         }
         else if (index == 1)
         {
-            
+            [LDUserManager shareInstance].currentUser.sex = @"2";
             
         }
+        [[LDUserManager shareInstance]updateUser];
+        [weakself.tableView reloadData];
     }];
 }
 #pragma mark - 调用相册处理
@@ -207,23 +233,24 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
     [self dismissViewControllerAnimated:YES completion:nil];
     
-    //    UIImage *selectedImage = info[@"UIImagePickerControllerOriginalImage"];
-    //    //    UIImage *newSelectImg = [HNTools imageCompressForSize:selectedImage targetSize:CGSizeMake((SCREEN_WIDTH-70) * 2, (SCREEN_WIDTH -70) * 2)];
-    //    UIImage  *image = [HNTools zipImageWithImage:selectedImage withMaxSize:1000];
-    //    // 七牛上传图片， 先获取下上传的token
-    //    [MBProgressHUD showMessage:@"正在上传图片..." toView:self.view];
-    //    _weakself;
-    //    // 腾讯云上传
-    //    [[HNTencentUploadTools shareInstance] uploadFileWithImage:image uploadSuccess:^(NSString *resp) {
-    //        [MBProgressHUD hideHUDForView:self.view];
-    //        _upimgUrl =resp;
-    //        [weakself uploadImage:_upimgUrl isVideo:NO];
-    //
-    //    } uploadFailed:^(NSDictionary *dict) {
-    //
-    //        [MBProgressHUD hideHUDForView:self.view];
-    //        [MBProgressHUD showError:@"头像上传失败"];
-    //    }];
+    UIImage *selectedImage = info[@"UIImagePickerControllerOriginalImage"];
+    UIImage  *image = [HNTools zipImageWithImage:selectedImage withMaxSize:1000];
+    [QMUITips showLoading:@"正在上传图片" inView:self.view];
+    
+    [MKRequestManager uploadImage:image success:^(id responseObject) {
+        if (kCODE == 200) {
+            NSString *url = responseObject[@"data"][@"imgUrl"];
+            [LDUserManager shareInstance].currentUser.headImgUrl = [NSString stringWithFormat:@"%@img/%@",BaseAPI,url];
+            [[LDUserManager shareInstance]updateUser];
+            [self.tableView reloadData];
+        }else {
+            
+        }
+        [QMUITips hideAllTips];
+    } faild:^(NSError *error) {
+        [QMUITips hideAllTips];
+    }];
+    
 }
 
 #pragma  mark - GET SET

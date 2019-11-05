@@ -13,6 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LDUserManager : NSObject
 @property (nonatomic,strong) LDUserModel* currentUser;
 
+
+- (void)updateUser;
+
 +(instancetype)shareInstance;
 + (BOOL)isLogin;
 + (NSString *)userName;

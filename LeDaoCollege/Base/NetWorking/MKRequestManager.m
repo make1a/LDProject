@@ -55,4 +55,35 @@
         }];
     }
 }
+
++ (void)uploadImage:(UIImage *)image
+            success:(SuccessBlock)success
+              faild:(FaildBlock)faild{
+    NSString *requestUrl = [NSString stringWithFormat:@"%@%@",BaseUrl,@"file/upload"];
+    
+    image = [HNTools zipImageWithImage:image withMaxSize:5];
+    
+    NSData *data = UIImagePNGRepresentation(image);
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer.timeoutInterval = 20;
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain", @"multipart/form-data", @"application/json", @"text/html", @"image/jpeg", @"image/png", @"application/octet-stream", @"text/json", nil];
+    
+    if ([LDUserManager isLogin]) { //判断的是userID是否为空
+        [manager.requestSerializer setValue:[LDUserManager userID] forHTTPHeaderField:@"token"];
+    }
+    [manager POST:requestUrl parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        [formData appendPartWithFileData:data name:@"file" fileName:@"headImage.png" mimeType:@"image/png"];
+        NSData *d = [@"headImg" dataUsingEncoding:NSUTF8StringEncoding];
+        [formData appendPartWithFormData:d name:@"fileType"];
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        success(responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        faild(error);
+    }];
+    
+}
 @end

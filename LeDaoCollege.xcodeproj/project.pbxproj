@@ -10,6 +10,7 @@
 		2613780E2322448300228261 /* LDSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2613780D2322448300228261 /* LDSearchViewController.m */; };
 		2613781123225DA300228261 /* LDSearchHistoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2613781023225DA300228261 /* LDSearchHistoryView.m */; };
 		2617607B236AB2AE00A5A59D /* LDClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2617607A236AB2AE00A5A59D /* LDClassModel.m */; };
+		261CBB53237179EA00134E6D /* LDAlterPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 261CBB52237179EA00134E6D /* LDAlterPhoneViewController.m */; };
 		262E4A03232A30C1000A6B0B /* 003.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 262E49F4232A30C1000A6B0B /* 003.pdf */; };
 		262E4A0B232A3387000A6B0B /* LDReadPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 262E4A0A232A3387000A6B0B /* LDReadPDFViewController.m */; };
 		262E4A0D232A3681000A6B0B /* Reader.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 262E4A0C232A3680000A6B0B /* Reader.pdf */; };
@@ -172,6 +173,8 @@
 		2613781023225DA300228261 /* LDSearchHistoryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDSearchHistoryView.m; sourceTree = "<group>"; };
 		26176079236AB2AE00A5A59D /* LDClassModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDClassModel.h; sourceTree = "<group>"; };
 		2617607A236AB2AE00A5A59D /* LDClassModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDClassModel.m; sourceTree = "<group>"; };
+		261CBB51237179EA00134E6D /* LDAlterPhoneViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDAlterPhoneViewController.h; sourceTree = "<group>"; };
+		261CBB52237179EA00134E6D /* LDAlterPhoneViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDAlterPhoneViewController.m; sourceTree = "<group>"; };
 		262E49F4232A30C1000A6B0B /* 003.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 003.pdf; sourceTree = "<group>"; };
 		262E4A09232A3387000A6B0B /* LDReadPDFViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDReadPDFViewController.h; sourceTree = "<group>"; };
 		262E4A0A232A3387000A6B0B /* LDReadPDFViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDReadPDFViewController.m; sourceTree = "<group>"; };
@@ -591,6 +594,8 @@
 				265BE25D232684EA0093E60A /* LDAlterNameViewController.m */,
 				26BA0653232735E200992FFD /* LDAlterNameViewController.h */,
 				26BA0654232735E200992FFD /* LDAlterNameViewController.m */,
+				261CBB51237179EA00134E6D /* LDAlterPhoneViewController.h */,
+				261CBB52237179EA00134E6D /* LDAlterPhoneViewController.m */,
 				2658F0E02327D02300F4C37A /* LDCollectViewController.h */,
 				2658F0E12327D02300F4C37A /* LDCollectViewController.m */,
 				26EC9E442328960300364943 /* LDOrderViewController.h */,
@@ -1232,6 +1237,7 @@
 				26F3BB932330B44B001A645C /* LDScoreCell.m in Sources */,
 				26CBF8912325275C005139EF /* LoginEnableButton.m in Sources */,
 				265CB95F2320A96100883FE2 /* MYConstansManager.m in Sources */,
+				261CBB53237179EA00134E6D /* LDAlterPhoneViewController.m in Sources */,
 				26CB9A712334C31F00DC12AD /* LDToolBooksViewController.m in Sources */,
 				26E816302332267400CECCE3 /* LDMineCustomHead.m in Sources */,
 				26E8162D23321FAC00CECCE3 /* LDVideoTableViewCell.m in Sources */,
@@ -1459,7 +1465,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WTVS3VH7AZ;
+				DEVELOPMENT_TEAM = Q94RAKWUSW;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/LeDaoCollege/GlobalTool/PrefixHeader.pch";
 				INFOPLIST_FILE = LeDaoCollege/Info.plist;
@@ -1480,7 +1486,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WTVS3VH7AZ;
+				DEVELOPMENT_TEAM = Q94RAKWUSW;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/LeDaoCollege/GlobalTool/PrefixHeader.pch";
 				INFOPLIST_FILE = LeDaoCollege/Info.plist;

@@ -37,6 +37,10 @@ typedef void(^FaildBlock)(NSError *error);
                     requestHeader:(NSDictionary *)headerParameters
                           success:(SuccessBlock)success
                             faild:(FaildBlock)faild;
+
++ (void)uploadImage:(UIImage *)image
+            success:(SuccessBlock)success
+              faild:(FaildBlock)faild;
 @end
 
 
