@@ -86,4 +86,35 @@
     }];
     
 }
+
++ (void)loadFileWith:(NSString *)downloadURL
+            progress:(SuccessBlock)progress
+            fileName:(NSString *)name
+             success:(SuccessBlock)success
+               faild:(FaildBlock)faild{
+    AFHTTPSessionManager *manage  = [AFHTTPSessionManager manager];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString: downloadURL]];
+
+    NSURLSessionDownloadTask *downloadTask = [manage downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
+        progress([NSString stringWithFormat:@"%.2f",downloadProgress.fractionCompleted*100]);
+    } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
+        NSString *caches = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+        NSString *bookName;
+        if (name.length > 0) {
+            bookName = name;
+        }else {
+            bookName = response.suggestedFilename;
+        }
+        NSString *fullpath = [caches stringByAppendingPathComponent:bookName];
+        NSURL *filePathUrl = [NSURL fileURLWithPath:fullpath];
+        return filePathUrl;
+    } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
+        if (filePath) {
+            success(filePath);
+        }else {
+            faild(error);
+        }
+    }];
+    [downloadTask resume];
+}
 @end

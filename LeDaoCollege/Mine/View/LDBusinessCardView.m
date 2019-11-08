@@ -8,7 +8,7 @@
 
 #import "LDBusinessCardView.h"
 @interface LDBusinessCardView ()
-@property (nonatomic,strong) UILabel * nameLabel;
+
 @property (nonatomic,strong) UILabel * sexLabel2;
 @property (nonatomic,strong) UILabel * birthDayLabel2;
 @property (nonatomic,strong) UILabel * descLabel2;
@@ -26,6 +26,13 @@
     }
     return self;
 }
+- (void)updateWith:(LDCustomModel *)model{
+    self.nameLabel.text = model.name;
+    self.sexLabel.text = [model.sex isEqualToString:@"1"]?@"男":@"女";
+    self.birthDayLabel.text = model.birthDate;
+    self.descLabel.text = model.companyName;
+}
+
 - (void)masLayoutSubviews{
     CGFloat pandingLeft = 17;
     self.nameLabel.frame = CGRectMake(28, 14, self.qmui_width, QMUIViewSelfSizingHeight);

@@ -31,6 +31,7 @@
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
     [self refreshView];
+
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -39,6 +40,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self masLayoutSubviews];
+    [self requestScore];
 }
 
 - (void)masLayoutSubviews{
@@ -58,6 +60,20 @@
 - (void)refreshView{
     [self.headView.headImageView sd_setImageWithURL:[NSURL URLWithString:[LDUserManager shareInstance].currentUser.headImgUrl]
                                    placeholderImage:[UIImage imageNamed:@"mine_headportrait_default"]];
+    self.headView.nameLabel.text = [LDUserManager shareInstance].currentUser.userName;
+
+}
+- (void)requestScore{
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"poins/getmypoinsleval" requestParameters:@{} requestHeader:nil success:^(id responseObject) {
+        if (kCODE == 200) {
+           NSString *point = responseObject[@"data"][@"poins"];
+           NSString *level = responseObject[@"data"][@"levalDesc"];
+            self.headView.levelLabel.text = [NSString stringWithFormat:@"%@",level];
+            self.headView.scoreLabel.text = [NSString stringWithFormat:@"%@",point];
+        }
+    } faild:^(NSError *error) {
+        
+    }];
 }
 #pragma  mark - tableView
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -121,6 +137,7 @@
         case 4:
         {
             LDScoreViewController *vc = [LDScoreViewController new];
+            vc.allScore = self.headView.scoreLabel.text;
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;

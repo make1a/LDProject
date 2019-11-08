@@ -20,7 +20,9 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self masLayoutSubviews];
 }
-
+- (void)clickSumbit{
+    [self requestAddLog];
+}
 - (void)masLayoutSubviews{
     [self.view addSubview:self.textView];
     [self.view addSubview:self.sumbitButton];
@@ -30,6 +32,20 @@
         make.top.mas_equalTo(self.textView.mas_bottom).mas_offset(72);
         make.width.mas_equalTo(301);
         make.height.mas_equalTo(41);
+    }];
+}
+- (void)requestAddLog{
+    if (self.textView.text.length == 0) {
+        [QMUITips showError:@"请输入日志内容"];
+        return;
+    }
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:@"customerlog/addlog" requestParameters:@{@"customerId":self.c_id,@"content":self.textView.text} requestHeader:nil success:^(id responseObject) {
+        ShowMsgInfo;
+        if (kCODE == 200) {
+            self.textView.text = @"";
+        }
+    } faild:^(NSError *error) {
+        
     }];
 }
 
@@ -51,6 +67,7 @@
         [_sumbitButton setTitle:@"提交" forState:UIControlStateNormal];
         _sumbitButton.layer.masksToBounds = YES;
         [_sumbitButton setBackgroundColor:MainThemeColor];
+        [_sumbitButton addTarget:self action:@selector(clickSumbit) forControlEvents:UIControlEventTouchUpInside];
     }
     return _sumbitButton;
 }

@@ -10,6 +10,7 @@
 #import "LDTabBarController.h"
 #import <IQKeyboardManager.h>
 #import "LDLoginViewController.h"
+#import "LDFirstLoginViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -58,13 +59,21 @@
             [LDUserManager shareInstance].currentUser = model;
             NSString *f = responseObject[@"data"][@"firstLogin"];
             if ([f isEqualToString:@"Y"]) { //第一次登陆
-                
+                LDFirstLoginViewController *vc = [LDFirstLoginViewController new];
+                AppDelegate  *delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
+                delegate.window.rootViewController = vc;
             }else {
-                
+                LDTabBarController *rootViewController = [[LDTabBarController alloc] init];
+                AppDelegate  *delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
+                delegate.window.rootViewController = rootViewController;
             }
+        }else {
+            LDLoginViewController *vc = [LDLoginViewController new];
+            [self.window setRootViewController:vc];
         }
     } faild:^(NSError *error) {
-        
+        LDLoginViewController *vc = [LDLoginViewController new];
+        [self.window setRootViewController:vc];
     }];
 }
 - (void)applicationWillResignActive:(UIApplication *)application {

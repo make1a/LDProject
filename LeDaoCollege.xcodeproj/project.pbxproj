@@ -16,6 +16,10 @@
 		262E4A0D232A3681000A6B0B /* Reader.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 262E4A0C232A3680000A6B0B /* Reader.pdf */; };
 		2633E3D5235D48C6002DEA26 /* LDVoiceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2633E3D4235D48C6002DEA26 /* LDVoiceModel.m */; };
 		2633E3D8235D53D8002DEA26 /* LDVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2633E3D7235D53D8002DEA26 /* LDVideoModel.m */; };
+		2633EA4F2372649E00F78BFB /* LDFirstLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2633EA4D2372649E00F78BFB /* LDFirstLoginViewController.m */; };
+		2633EA502372649E00F78BFB /* LDFirstLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2633EA4E2372649E00F78BFB /* LDFirstLoginViewController.xib */; };
+		2633EA532372A92100F78BFB /* LDScoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2633EA522372A92100F78BFB /* LDScoreModel.m */; };
+		2633EA562372C13500F78BFB /* LDCustomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2633EA552372C13500F78BFB /* LDCustomModel.m */; };
 		2638A5C82351791500D4DC55 /* MKRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2638A5C72351791500D4DC55 /* MKRequestManager.m */; };
 		2638A5CB23517ADC00D4DC55 /* LDAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 2638A5CA23517ADC00D4DC55 /* LDAPI.m */; };
 		2640F06A232771760015F7A6 /* LDTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2640F069232771760015F7A6 /* LDTagView.m */; };
@@ -51,6 +55,9 @@
 		265CB9962320B2AA00883FE2 /* LDMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 265CB9952320B2AA00883FE2 /* LDMineViewController.m */; };
 		265CB9992320B2BC00883FE2 /* LDMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 265CB9982320B2BC00883FE2 /* LDMainViewController.m */; };
 		265CB99C2320B2DF00883FE2 /* LDStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 265CB99B2320B2DF00883FE2 /* LDStoreViewController.m */; };
+		266DC86A23740BD30036A767 /* LDBookDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 266DC86823740BD30036A767 /* LDBookDetailViewController.m */; };
+		266DC86B23740BD30036A767 /* LDBookDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 266DC86923740BD30036A767 /* LDBookDetailViewController.xib */; };
+		268543662373C445003083EE /* LDChargeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 268543652373C445003083EE /* LDChargeModel.m */; };
 		26869C3B23210672001DEDBA /* LDInfoMationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26869C3A23210672001DEDBA /* LDInfoMationViewController.m */; };
 		26869C3E232106A9001DEDBA /* LDVoiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26869C3D232106A9001DEDBA /* LDVoiceViewController.m */; };
 		26869C41232106F6001DEDBA /* LDVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26869C40232106F6001DEDBA /* LDVideoViewController.m */; };
@@ -152,7 +159,6 @@
 		26F3BB822330AD93001A645C /* LeftTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F3BB812330AD93001A645C /* LeftTableViewCell.m */; };
 		26F3BB852330AEA3001A645C /* CollectionCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F3BB832330AEA2001A645C /* CollectionCategoryModel.m */; };
 		26F3BB8A2330AEF1001A645C /* NSObject+Property.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F3BB892330AEF1001A645C /* NSObject+Property.m */; };
-		26F3BB8C2330AF83001A645C /* liwushuo.json in Resources */ = {isa = PBXBuildFile; fileRef = 26F3BB8B2330AF82001A645C /* liwushuo.json */; };
 		26F3BB8F2330B26A001A645C /* LDScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F3BB8E2330B26A001A645C /* LDScoreViewController.m */; };
 		26F3BB932330B44B001A645C /* LDScoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F3BB912330B44B001A645C /* LDScoreCell.m */; };
 		26F3BB942330B44B001A645C /* LDScoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26F3BB922330B44B001A645C /* LDScoreCell.xib */; };
@@ -183,6 +189,13 @@
 		2633E3D4235D48C6002DEA26 /* LDVoiceModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDVoiceModel.m; sourceTree = "<group>"; };
 		2633E3D6235D53D8002DEA26 /* LDVideoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDVideoModel.h; sourceTree = "<group>"; };
 		2633E3D7235D53D8002DEA26 /* LDVideoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDVideoModel.m; sourceTree = "<group>"; };
+		2633EA4C2372649E00F78BFB /* LDFirstLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDFirstLoginViewController.h; sourceTree = "<group>"; };
+		2633EA4D2372649E00F78BFB /* LDFirstLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDFirstLoginViewController.m; sourceTree = "<group>"; };
+		2633EA4E2372649E00F78BFB /* LDFirstLoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LDFirstLoginViewController.xib; sourceTree = "<group>"; };
+		2633EA512372A92100F78BFB /* LDScoreModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDScoreModel.h; sourceTree = "<group>"; };
+		2633EA522372A92100F78BFB /* LDScoreModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDScoreModel.m; sourceTree = "<group>"; };
+		2633EA542372C13500F78BFB /* LDCustomModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDCustomModel.h; sourceTree = "<group>"; };
+		2633EA552372C13500F78BFB /* LDCustomModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDCustomModel.m; sourceTree = "<group>"; };
 		2638A5C62351791500D4DC55 /* MKRequestManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKRequestManager.h; sourceTree = "<group>"; };
 		2638A5C72351791500D4DC55 /* MKRequestManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKRequestManager.m; sourceTree = "<group>"; };
 		2638A5C923517ADC00D4DC55 /* LDAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDAPI.h; sourceTree = "<group>"; };
@@ -257,6 +270,11 @@
 		265CB9982320B2BC00883FE2 /* LDMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDMainViewController.m; sourceTree = "<group>"; };
 		265CB99A2320B2DF00883FE2 /* LDStoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDStoreViewController.h; sourceTree = "<group>"; };
 		265CB99B2320B2DF00883FE2 /* LDStoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDStoreViewController.m; sourceTree = "<group>"; };
+		266DC86723740BD30036A767 /* LDBookDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDBookDetailViewController.h; sourceTree = "<group>"; };
+		266DC86823740BD30036A767 /* LDBookDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDBookDetailViewController.m; sourceTree = "<group>"; };
+		266DC86923740BD30036A767 /* LDBookDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LDBookDetailViewController.xib; sourceTree = "<group>"; };
+		268543642373C445003083EE /* LDChargeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDChargeModel.h; sourceTree = "<group>"; };
+		268543652373C445003083EE /* LDChargeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDChargeModel.m; sourceTree = "<group>"; };
 		26869C3923210672001DEDBA /* LDInfoMationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDInfoMationViewController.h; sourceTree = "<group>"; };
 		26869C3A23210672001DEDBA /* LDInfoMationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDInfoMationViewController.m; sourceTree = "<group>"; };
 		26869C3C232106A9001DEDBA /* LDVoiceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDVoiceViewController.h; sourceTree = "<group>"; };
@@ -442,7 +460,6 @@
 		26F3BB842330AEA3001A645C /* CollectionCategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionCategoryModel.h; sourceTree = "<group>"; };
 		26F3BB882330AEF1001A645C /* NSObject+Property.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Property.h"; sourceTree = "<group>"; };
 		26F3BB892330AEF1001A645C /* NSObject+Property.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Property.m"; sourceTree = "<group>"; };
-		26F3BB8B2330AF82001A645C /* liwushuo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = liwushuo.json; sourceTree = "<group>"; };
 		26F3BB8D2330B26A001A645C /* LDScoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDScoreViewController.h; sourceTree = "<group>"; };
 		26F3BB8E2330B26A001A645C /* LDScoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDScoreViewController.m; sourceTree = "<group>"; };
 		26F3BB902330B44B001A645C /* LDScoreCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDScoreCell.h; sourceTree = "<group>"; };
@@ -610,7 +627,6 @@
 				26B7022D232F735C00156116 /* LDShoppingCartViewController.m */,
 				26F3BB712330ACF4001A645C /* LDBookRackViewController.h */,
 				26F3BB722330ACF4001A645C /* LDBookRackViewController.m */,
-				26F3BB8B2330AF82001A645C /* liwushuo.json */,
 				26F3BB8D2330B26A001A645C /* LDScoreViewController.h */,
 				26F3BB8E2330B26A001A645C /* LDScoreViewController.m */,
 				26B6CD5E233A13BF00E94520 /* LDCustomManagerListViewController.h */,
@@ -622,6 +638,9 @@
 				26EE3ED3233B5A64003FEA7B /* LDMyIconViewController.xib */,
 				26EE3ED6233B5F0E003FEA7B /* LDRechargeViewController.h */,
 				26EE3ED7233B5F0E003FEA7B /* LDRechargeViewController.m */,
+				266DC86723740BD30036A767 /* LDBookDetailViewController.h */,
+				266DC86823740BD30036A767 /* LDBookDetailViewController.m */,
+				266DC86923740BD30036A767 /* LDBookDetailViewController.xib */,
 			);
 			path = ViewControl;
 			sourceTree = "<group>";
@@ -635,6 +654,12 @@
 				26F3BB832330AEA2001A645C /* CollectionCategoryModel.m */,
 				26BF745F23700A70008D4F24 /* LDOrderModel.h */,
 				26BF746023700A70008D4F24 /* LDOrderModel.m */,
+				2633EA512372A92100F78BFB /* LDScoreModel.h */,
+				2633EA522372A92100F78BFB /* LDScoreModel.m */,
+				2633EA542372C13500F78BFB /* LDCustomModel.h */,
+				2633EA552372C13500F78BFB /* LDCustomModel.m */,
+				268543642373C445003083EE /* LDChargeModel.h */,
+				268543652373C445003083EE /* LDChargeModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -979,6 +1004,9 @@
 			children = (
 				26CBF88C23252566005139EF /* LDLoginViewController.h */,
 				26CBF88D23252566005139EF /* LDLoginViewController.m */,
+				2633EA4C2372649E00F78BFB /* LDFirstLoginViewController.h */,
+				2633EA4D2372649E00F78BFB /* LDFirstLoginViewController.m */,
+				2633EA4E2372649E00F78BFB /* LDFirstLoginViewController.xib */,
 			);
 			path = ViewControl;
 			sourceTree = "<group>";
@@ -1105,9 +1133,10 @@
 				26D93F8623372F2B00B31DAB /* LDShoppingDetailFootView.xib in Resources */,
 				26C846A22338990C00500B3F /* LDSmallClassDetailHeadView.xib in Resources */,
 				26C846B22338CAEE00500B3F /* LDCommitBuyViewController.xib in Resources */,
-				26F3BB8C2330AF83001A645C /* liwushuo.json in Resources */,
 				26E816322332268800CECCE3 /* LDMineCustomHead.xib in Resources */,
 				2640F106232793950015F7A6 /* Assets.xcassets in Resources */,
+				266DC86B23740BD30036A767 /* LDBookDetailViewController.xib in Resources */,
+				2633EA502372649E00F78BFB /* LDFirstLoginViewController.xib in Resources */,
 				265CB93F2320A2F400883FE2 /* Main.storyboard in Resources */,
 				26C846AD2338B73F00500B3F /* LDSmallClassLessonCell.xib in Resources */,
 			);
@@ -1228,6 +1257,7 @@
 				26B6CD69233A1E0100E94520 /* LDCustomHistoryCell.m in Sources */,
 				26CBF8712323BC6E005139EF /* NSString+PinYin4Cocoa.m in Sources */,
 				26CBF8752323BC6E005139EF /* HanyuPinyinOutputFormat.m in Sources */,
+				268543662373C445003083EE /* LDChargeModel.m in Sources */,
 				268EEDFC2325F2670014F971 /* LDHeadImageCell.m in Sources */,
 				2658F0EB232A9D8F00F4C37A /* LDReadProgressView.m in Sources */,
 				26B0D4E52356C1B60064205B /* LDUserManager.m in Sources */,
@@ -1271,6 +1301,7 @@
 				26B6CD60233A13BF00E94520 /* LDCustomManagerListViewController.m in Sources */,
 				26CBF8762323BC6E005139EF /* ZYPinYinSearch.m in Sources */,
 				26CBF8702323BC6E005139EF /* UIAlertController+HCAdd.m in Sources */,
+				2633EA562372C13500F78BFB /* LDCustomModel.m in Sources */,
 				26F558142325F6A8006D826D /* HNAlertView.m in Sources */,
 				2658F0F4232BF5EA00F4C37A /* MKPdfViewController.m in Sources */,
 				262E4A0B232A3387000A6B0B /* LDReadPDFViewController.m in Sources */,
@@ -1287,9 +1318,11 @@
 				26BA0655232735E200992FFD /* LDAlterNameViewController.m in Sources */,
 				265CB9812320AAA600883FE2 /* View+MASAdditions.m in Sources */,
 				26AAE4DD2334D8C700B9C5D3 /* LDShoppingDetailNameViewCell.m in Sources */,
+				266DC86A23740BD30036A767 /* LDBookDetailViewController.m in Sources */,
 				26CBF8792323BC6E005139EF /* PinYinForObjc.m in Sources */,
 				26EE3ED4233B5A64003FEA7B /* LDMyIconViewController.m in Sources */,
 				265CB97E2320AAA600883FE2 /* MASConstraintMaker.m in Sources */,
+				2633EA4F2372649E00F78BFB /* LDFirstLoginViewController.m in Sources */,
 				26EE3ECF233B0923003FEA7B /* LDAddressBookCell.m in Sources */,
 				26F3BB732330ACF4001A645C /* LDBookRackViewController.m in Sources */,
 				26B7BE1D235ABB7600CA16F3 /* LDTagModel.m in Sources */,
@@ -1308,6 +1341,7 @@
 				26869C41232106F6001DEDBA /* LDVideoViewController.m in Sources */,
 				26B7BE26235AD9F700CA16F3 /* LDStoreModel.m in Sources */,
 				26CBF8772323BC6E005139EF /* ChineseToPinyinResource.m in Sources */,
+				2633EA532372A92100F78BFB /* LDScoreModel.m in Sources */,
 				26AAE4E22334DD8B00B9C5D3 /* LDShoppingTitleCell.m in Sources */,
 				265CB97F2320AAA600883FE2 /* MASLayoutConstraint.m in Sources */,
 				26CB9A6B2334BA2D00DC12AD /* LDShoppingDetailViewController.m in Sources */,

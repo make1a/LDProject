@@ -201,16 +201,16 @@
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 0.1;
+    return 20;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (tableView == self.rightTableView) {
-        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 0.1)];
+        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 20)];
         view.backgroundColor = [UIColor whiteColor];
         
         UILabel *lable = [[UILabel alloc]initWithFrame:view.bounds];
         lable.font = [UIFont systemFontOfSize:13];
-//        lable.text = self.leftTitles[section];
+        lable.text = self.leftTitles[section];
         [view addSubview:lable];
         return view;
         

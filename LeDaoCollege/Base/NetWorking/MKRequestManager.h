@@ -41,6 +41,12 @@ typedef void(^FaildBlock)(NSError *error);
 + (void)uploadImage:(UIImage *)image
             success:(SuccessBlock)success
               faild:(FaildBlock)faild;
+
++ (void)loadFileWith:(NSString *)downloadURL
+            progress:(SuccessBlock)progress
+            fileName:(NSString *)name
+             success:(SuccessBlock)success
+               faild:(FaildBlock)faild;
 @end
 
 

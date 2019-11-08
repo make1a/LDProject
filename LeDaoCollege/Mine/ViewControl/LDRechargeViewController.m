@@ -8,6 +8,7 @@
 
 #import "LDRechargeViewController.h"
 #import "LDRechargeCell.h"
+#import "LDChargeModel.h"
 @interface LDRechargeViewController ()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property (nonatomic,strong)UIImageView * bgImageView;
 @property (nonatomic,strong)QMUILabel * balanceLabel;
@@ -16,6 +17,9 @@
 @property (nonatomic,strong)QMUIButton * payButton;
 @property (nonatomic,strong)UILabel * titleLabel;
 @property (nonatomic,strong)UIButton * backButton;
+@property (nonatomic,strong)NSArray * dataSource;
+@property (nonatomic,assign)NSInteger selectIndex;
+
 @end
 
 @implementation LDRechargeViewController
@@ -24,9 +28,21 @@
     [super viewDidLoad];
     [self masLayoutSubviews];
     self.view.backgroundColor = [UIColor whiteColor];
+    self.selectIndex = -1;
+    [self requestList];
 }
 - (void)clickBackAction:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+- (void)requestList{
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"item/getitem/7" requestParameters:nil requestHeader:nil success:^(id responseObject) {
+        if (kCODE == 200) {
+            self.dataSource = [NSArray yy_modelArrayWithClass:[LDChargeModel class] json:responseObject[@"data"][0][@"itemList"]];
+            [self.collectionView reloadData];
+        }
+    } faild:^(NSError *error) {
+        
+    }];
 }
 #pragma  mark - UI
 - (void)masLayoutSubviews {
@@ -83,10 +99,20 @@
     return 1;
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 9;
+    return self.dataSource.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     LDRechargeCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LDRechargeCell" forIndexPath:indexPath];
+    [cell refreshWith:self.dataSource[indexPath.item]];
+    if (indexPath.item == self.selectIndex) {
+        cell.bgImage.image = [UIImage imageNamed:@"recharge_button_selected"];
+        cell.rmbLabel.textColor = [UIColor whiteColor];
+        cell.iconlabel.textColor = [UIColor whiteColor];
+    }else {
+        cell.bgImage.image = [UIImage imageNamed:@"recharge_button_normal"];
+        cell.rmbLabel.textColor = UIColorFromHEXA(0x419DFF, 1);
+        cell.iconlabel.textColor = UIColorFromHEXA(0x419DFF, 1);
+    }
     return cell;
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -100,6 +126,10 @@
 }
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     return UIEdgeInsetsMake(1, PtWidth(20), 1, PtWidth(20));
+}
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    self.selectIndex = indexPath.item;
+    [collectionView reloadData];
 }
 #pragma  mark - GET SET
 - (UIImageView *)bgImageView {

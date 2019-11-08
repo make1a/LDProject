@@ -8,12 +8,16 @@
 
 #import "LDCustormHistoryViewController.h"
 #import "LDCustomHistoryCell.h"
+#import "LDCustomModel.h"
 @interface LDCustormHistoryViewController ()<QMUITableViewDelegate,QMUITableViewDataSource>
 @property (nonatomic,strong)QMUITableView * tableView;
 @end
 
 @implementation LDCustormHistoryViewController
-
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self requestDatsSource];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self masLayoutSubviews];
@@ -28,13 +32,25 @@
         }
     }];
 }
-
+-(void)requestDatsSource{
+    NSString *url = [NSString stringWithFormat:@"customer/getcustomerinfo/%@",self.c_id];
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:url requestParameters:@{@"id":self.c_id} requestHeader:nil success:^(id responseObject) {
+        if (kCODE == 200) {
+            self.dataSource = [NSArray yy_modelArrayWithClass:[LDCustomLogModel class] json:responseObject[@"data"][@"customerLogVOS"]];
+            [self.tableView reloadData];
+        }
+    } faild:^(NSError *error) {
+        
+    }];
+}
 #pragma  mark - tableview
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return  10;
+    return  self.dataSource.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     LDCustomHistoryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LDCustomHistoryCell" forIndexPath:indexPath];
+    LDCustomLogModel *model = self.dataSource[indexPath.row];
+    [cell refreshWith:model];
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -50,4 +66,5 @@
     }
     return _tableView;
 }
+
 @end

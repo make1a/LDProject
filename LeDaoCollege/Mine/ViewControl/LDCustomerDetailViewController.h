@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LDCustomerDetailViewController : QMUICommonViewController
+@property (nonatomic,copy)NSString * c_id;
 
 @end
 

@@ -11,6 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LDCustormHistoryViewController : QMUICommonViewController
+@property (nonatomic,strong)NSArray * dataSource;
+@property (nonatomic,copy)NSString * c_id;
 
 @end
 

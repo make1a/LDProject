@@ -27,33 +27,30 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Emh-lI-pEX">
-                        <rect key="frame" x="98" y="58" width="14" height="27"/>
+                        <rect key="frame" x="105" y="58" width="14" height="27"/>
                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                        <color key="textColor" red="0.25490196078431371" green="0.61568627450980395" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kh6-ck-Xei">
-                        <rect key="frame" x="114" y="62.5" width="16" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.25490196078431371" green="0.61568627450980395" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="Emh-lI-pEX" firstAttribute="trailing" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="0PL-CY-GrE"/>
-                <constraint firstItem="kh6-ck-Xei" firstAttribute="leading" secondItem="Emh-lI-pEX" secondAttribute="trailing" constant="2" id="9E1-8g-8CY"/>
+                <constraint firstItem="cLj-HN-lxy" firstAttribute="top" secondItem="Emh-lI-pEX" secondAttribute="bottom" constant="5.5" id="FOs-0D-wtz"/>
                 <constraint firstItem="Emh-lI-pEX" firstAttribute="bottom" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="HvP-9K-6L4"/>
-                <constraint firstItem="kh6-ck-Xei" firstAttribute="centerY" secondItem="Emh-lI-pEX" secondAttribute="centerY" id="Thu-oU-2od"/>
-                <constraint firstItem="cLj-HN-lxy" firstAttribute="top" secondItem="kh6-ck-Xei" secondAttribute="bottom" constant="10" id="UIh-ew-9V7"/>
                 <constraint firstAttribute="bottom" secondItem="9ac-zU-qBM" secondAttribute="bottom" id="cHK-f6-bW8"/>
                 <constraint firstItem="9ac-zU-qBM" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="eco-jg-yUC"/>
+                <constraint firstItem="cLj-HN-lxy" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="fjb-pZ-Sje"/>
+                <constraint firstItem="Emh-lI-pEX" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="rjd-f2-hzi"/>
                 <constraint firstItem="9ac-zU-qBM" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="suI-re-HIT"/>
-                <constraint firstItem="cLj-HN-lxy" firstAttribute="centerX" secondItem="Emh-lI-pEX" secondAttribute="trailing" id="ufl-O6-Jeh"/>
                 <constraint firstAttribute="trailing" secondItem="9ac-zU-qBM" secondAttribute="trailing" id="v3N-vV-rLl"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
             <size key="customSize" width="224" height="170"/>
+            <connections>
+                <outlet property="bgImage" destination="9ac-zU-qBM" id="JWo-7f-8PF"/>
+                <outlet property="iconlabel" destination="cLj-HN-lxy" id="NfB-rR-HZE"/>
+                <outlet property="rmbLabel" destination="Emh-lI-pEX" id="UzL-5b-U6X"/>
+            </connections>
             <point key="canvasLocation" x="-48" y="126"/>
         </collectionViewCell>
     </objects>

@@ -11,10 +11,12 @@
 #import <VTMagic/VTMagic.h>
 #import "LDCustormHistoryViewController.h"
 #import "LDTextViewViewController.h"
-
+#import "LDCustomModel.h"
 @interface LDCustomerDetailViewController ()<VTMagicViewDelegate,VTMagicViewDataSource>
 @property (nonatomic,strong)LDBusinessCardView * cardView;
 @property (nonatomic, strong)VTMagicController *magicController;
+@property (nonatomic,strong)LDCustomModel * currentModel;
+@property (nonatomic,strong)NSArray * dataSource;
 @end
 
 @implementation LDCustomerDetailViewController
@@ -24,6 +26,7 @@
     self.title = @"客户日志管理";
     self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
     [self masLayoutSubviews];
+    [self requestDatsSource];
 }
 
 - (void)masLayoutSubviews{
@@ -32,6 +35,20 @@
     [self addChildViewController:self.magicController];
     [self.view addSubview:self.magicController.view];
     [self.magicController.magicView reloadData];
+}
+-(void)requestDatsSource{
+    NSString *url = [NSString stringWithFormat:@"customer/getcustomerinfo/%@",self.c_id];
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:url requestParameters:@{@"id":self.c_id} requestHeader:nil success:^(id responseObject) {
+        if (kCODE == 200) {
+            LDCustomModel *model = [LDCustomModel yy_modelWithJSON:responseObject[@"data"][@"customerVO"]];
+            [self.cardView updateWith:model];
+            
+            self.dataSource = [NSArray yy_modelArrayWithClass:[LDCustomLogModel class] json:responseObject[@"data"][@"customerLogVOS"]];
+            [self.magicController.magicView reloadData];
+        }
+    } faild:^(NSError *error) {
+        
+    }];
 }
 #pragma mark - VTMagicViewDelegate
 - (NSArray<__kindof NSString *> *)menuTitlesForMagicView:(VTMagicView *)magicView{
@@ -55,6 +72,7 @@
             {
                 vc = [[LDTextViewViewController alloc] init];
             }
+            vc.c_id = self.c_id;
             return vc;
             
         }
@@ -67,6 +85,7 @@
             {
                 vc = [[LDCustormHistoryViewController alloc] init];
             }
+            vc.c_id = self.c_id;
             return vc;
         }
             break;

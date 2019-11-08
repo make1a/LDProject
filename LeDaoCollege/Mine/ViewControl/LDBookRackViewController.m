@@ -16,6 +16,7 @@
 #import "MKPdfDocumentManager.h"
 #import "MKPdfViewController.h"
 #import "MKReaderViewController.h"
+#import "LDBookDetailViewController.h"
 
 static float kLeftTableViewWidth = 80.f;
 static float kCollectionViewMargin = 3.f;
@@ -46,35 +47,32 @@ static float kCollectionViewMargin = 3.f;
     
     self.title = @"我的书架";
     [self configUI];
-
-
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"liwushuo" ofType:@"json"];
-    NSData *data = [NSData dataWithContentsOfFile:path];
-    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-    NSArray *categories = dict[@"data"][@"categories"];
-    for (NSDictionary *dict in categories)
-    {
-        CollectionCategoryModel *model =
-        [CollectionCategoryModel objectWithDictionary:dict];
-        [self.dataSource addObject:model];
         
-        NSMutableArray *datas = [NSMutableArray array];
-        for (SubCategoryModel *sModel in model.subcategories)
-        {
-            [datas addObject:sModel];
-        }
-        [self.collectionDatas addObject:datas];
-    }
-
-    
+    [self reqeustDataSource];
     [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
                                 animated:YES
                           scrollPosition:UITableViewScrollPositionNone];
+
 }
 - (void)configUI {
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.collectionView];
+}
+#pragma  mark - Request
+- (void)reqeustDataSource{
+//        商品类型 1 书籍 2微课
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"bookshelf/goods" requestParameters:@{@"goodsType":@"1",@"page":@"1",@"pageSize":@"1000"} requestHeader:nil success:^(id responseObject) {
+        responseObject[@"data"][@"list"];
+        
+    } faild:^(NSError *error) {
+        
+    }];
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"bookshelf/goods" requestParameters:@{@"goodsType":@"2",@"page":@"1",@"pageSize":@"1000"} requestHeader:nil success:^(id responseObject) {
+        responseObject[@"data"][@"list"];
+    } faild:^(NSError *error) {
+        
+    }];
 }
 #pragma mark - UITableView DataSource Delegate
 
@@ -98,7 +96,7 @@ static float kCollectionViewMargin = 3.f;
     // 解决点击 TableView 后 CollectionView 的 Header 遮挡问题。
     [self scrollToTopOfSection:_selectIndex animated:YES];
     
-//    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:_selectIndex] atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
+    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:_selectIndex] atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:_selectIndex inSection:0]
                           atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
@@ -130,8 +128,8 @@ static float kCollectionViewMargin = 3.f;
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    CollectionCategoryModel *model = self.dataSource[section];
-    return model.subcategories.count;
+//    CollectionCategoryModel *model = self.dataSource[section];
+    return 10;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -144,17 +142,11 @@ static float kCollectionViewMargin = 3.f;
     return cell;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    MKPdfDocumentManager *doc = [MKPdfDocumentManager getToLocalWith:@"Reader"];
-    if (!doc) {
-        NSString *path = [[NSBundle mainBundle]pathForResource:@"Reader" ofType:@"pdf"];
-        NSURL *url = [NSURL fileURLWithPath:path];
-        doc = [[MKPdfDocumentManager alloc]initWithUrl:url];
-        doc.name = @"Reader";
+
+    if (indexPath.section == 0) {
+        LDBookDetailViewController *vc = [[LDBookDetailViewController alloc]initWithNibName:@"LDBookDetailViewController" bundle:[NSBundle mainBundle]];
+        [self.navigationController pushViewController:vc animated:YES];
     }
-    MKReaderViewController *vc = [[MKReaderViewController alloc]init];
-    vc.pdfInfo = doc;
-    vc.modalPresentationStyle = 0;
-    [self presentViewController:vc animated:YES completion:nil];
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout *)collectionViewLayout

@@ -9,5 +9,6 @@
 #import "QMUICommonViewController.h"
 
 @interface LDScoreViewController : QMUICommonTableViewController
+@property (nonatomic,copy)NSString * allScore;
 
 @end

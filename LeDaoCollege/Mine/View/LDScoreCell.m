@@ -20,5 +20,9 @@
 
     // Configure the view for the selected state
 }
-
+- (void)refreshView:(LDScoreModel *)model{
+    self.titleLabel.text = model.action;
+    self.smallTitleLabel.text = model.createdDate;
+    self.redLabel.text = [NSString stringWithFormat:@"+%@",model.poins];
+}
 @end

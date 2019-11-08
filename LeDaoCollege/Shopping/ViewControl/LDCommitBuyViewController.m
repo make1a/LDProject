@@ -51,6 +51,9 @@
     self.originLabel.text = [NSString stringWithFormat:@"¥%@",self.currentModel.originalPrice];
     self.discountLabel.text = salePrice;
     [self.payButton setCornerRadius:self.payButton.qmui_height/2.0];
+    if ([self.title isEqualToString:@"订单详情"]) {
+        self.footView.hidden = YES;
+    }
 }
 #pragma  mark - Touch Down
 - (IBAction)payAction:(id)sender {

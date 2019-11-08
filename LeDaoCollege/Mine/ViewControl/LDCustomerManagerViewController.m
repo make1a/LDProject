@@ -11,6 +11,7 @@
 #import "HCSortString.h"
 #import "LDCustomerDetailViewController.h"
 #import "LDAddressBookCell.h"
+#import "LDCustomModel.h"
 @interface LDCustomerManagerViewController ()<UISearchResultsUpdating>
 @property (strong, nonatomic) UISearchController *searchController;
 @property (strong, nonatomic) NSArray *dataSource;/**<排序前的整个数据源*/
@@ -26,14 +27,14 @@
     [super viewDidLoad];
     self.title = @"客户列表";
     self.tableView.tableFooterView = [UIView new];
-    [self initData];
+    
     self.tableView.backgroundColor = UIColorFromHEXA(0xF9F9F9, 1);
     if (@available(iOS 11.0, *)) {
         self.navigationItem.searchController = self.searchController;
     } else {
         self.tableView.tableHeaderView = self.searchController.searchBar;
     }
-    
+    [self requestData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,9 +45,19 @@
     _searchController = nil;
 }
 
+- (void)requestData{
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"customer/getcustomer" requestParameters:nil requestHeader:nil success:^(id responseObject) {
+        if (kCODE == 200) {
+            self.dataSource = [NSArray yy_modelArrayWithClass:[LDCustomModel class] json:responseObject[@"data"]];
+            [self initData];
+            [self.tableView reloadData];
+        }
+    } faild:^(NSError *error) {
+            
+    }];
+}
 #pragma mark - Init
 - (void)initData {
-    _dataSource = @[@{@"九寨沟":@"13390909090"},@{@"鼓浪屿":@"131313131"},@{@"香格里拉":@"13131313"},@{@"千岛湖":@"1313133131"},@{@"西双版纳":@"44445555"},@{@"+-*/":@"4848484848"},@{@"故宫":@"313213123131"},@{@"上海科技馆":@"8493849389"},@{@"东方明珠":@"13389982876"},@{@"外滩":@"13903030909"}];
     _searchDataSource = [NSMutableArray new];
     
     _allDataSource = [HCSortString sortAndGroupForArray:_dataSource PropertyName:@"name"];
@@ -110,9 +121,13 @@
     LDAddressBookCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LDAddressBookCell"];
     if (!self.searchController.active) {
         NSArray *value = [_allDataSource objectForKey:_indexDataSource[indexPath.section]];
-        cell.nameLabel.text = value[indexPath.row];
+       LDCustomModel *model = value[indexPath.row];
+        cell.nameLabel.text = model.name;
+        cell.phoneLabel.text = model.phone;
     }else{
-        cell.nameLabel.text = _searchDataSource[indexPath.row];
+        LDCustomModel *model = _searchDataSource[indexPath.row];
+        cell.nameLabel.text = model.name;
+        cell.phoneLabel.text = model.phone;
     }
     return cell;
 }
@@ -131,6 +146,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     self.searchController.active = NO;
     LDCustomerDetailViewController *vc = [LDCustomerDetailViewController new];
+     NSArray *value = [_allDataSource objectForKey:_indexDataSource[indexPath.section]];
+    LDCustomModel *model = value[indexPath.row];
+    vc.c_id = model.c_id;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -9,8 +9,10 @@
 #import "LDScoreViewController.h"
 #import "LDScoreCell.h"
 #import "LDScoreView.h"
+#import "LDScoreModel.h"
 @interface LDScoreViewController ()<QMUITableViewDelegate,QMUITableViewDataSource>
 @property (nonatomic,strong)LDScoreView * headView;
+@property (nonatomic,strong)NSArray * dataSource;
 @end
 
 @implementation LDScoreViewController
@@ -32,9 +34,22 @@
     [super viewDidLoad];
     [self regiseterCell];
     [self addTableHeader];
+    [self requestDataSource];
     if (iPhoneX) {
         self.tableView.contentInset = UIEdgeInsetsMake(-kSTATUSBAR_HEIGHT, 0, 0, 0);
     }
+}
+
+- (void)requestDataSource {
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"poins/getmyPoins" requestParameters:nil requestHeader:nil success:^(id responseObject) {
+        if (kCODE) {
+            self.dataSource = [NSArray yy_modelArrayWithClass:[LDScoreModel class] json:responseObject[@"data"][@"poinsList"]];
+            [self.tableView reloadData];
+            self.headView.scoreLabel.text = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"totalPoins"]];
+        }
+    } faild:^(NSError *error) {
+        
+    }];
 }
 #pragma mark - event response
 - (void)clickBackAction{
@@ -42,11 +57,13 @@
 }
 #pragma mark - QMUITableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return self.dataSource.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     LDScoreCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LDScoreCell" forIndexPath:indexPath];
+    LDScoreModel *model = self.dataSource[indexPath.row];
+    [cell refreshView:model];
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

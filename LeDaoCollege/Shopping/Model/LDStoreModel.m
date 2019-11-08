@@ -10,7 +10,7 @@
 
 @implementation LDStoreModel
 + (NSDictionary *)modelCustomPropertyMapper {
-    return @{@"s_id": @"id"};
+    return @{@"s_id": @[@"id",@"goodsId"]};
 }
 @end
 

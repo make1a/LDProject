@@ -14,5 +14,9 @@
     [super awakeFromNib];
     
 }
+- (void)refreshWith:(LDChargeModel *)model{
+    self.rmbLabel.text = [NSString stringWithFormat:@"%@元",model.itemCode];
+    self.iconlabel.text = model.itemDesc;
+}
 
 @end

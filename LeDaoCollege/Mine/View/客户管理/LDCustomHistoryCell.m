@@ -19,6 +19,10 @@
     }];
     self.decsLabel.text = @"今天跟进客户的需求，向客户推荐了我司产品甜心屋 巧克力脆皮花生甜筒。今天跟进客户的需求，向客户推荐了我司产品甜心屋 巧克力脆皮花生甜筒。今天跟进客户的需求，向客户推荐了我司产品甜心屋 巧克力脆皮花生甜筒。";
 }
+- (void)refreshWith:(LDCustomLogModel*)model{
+    self.decsLabel.text = model.content;
+    self.timeLabel.text = model.createdDate;
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
