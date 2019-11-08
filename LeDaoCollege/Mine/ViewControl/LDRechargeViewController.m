@@ -9,6 +9,9 @@
 #import "LDRechargeViewController.h"
 #import "LDRechargeCell.h"
 #import "LDChargeModel.h"
+#import "IAPShare.h"
+#import "NSString+Base64.h"
+
 @interface LDRechargeViewController ()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property (nonatomic,strong)UIImageView * bgImageView;
 @property (nonatomic,strong)QMUILabel * balanceLabel;
@@ -18,8 +21,9 @@
 @property (nonatomic,strong)UILabel * titleLabel;
 @property (nonatomic,strong)UIButton * backButton;
 @property (nonatomic,strong)NSArray * dataSource;
-@property (nonatomic,assign)NSInteger selectIndex;
+@property (nonatomic,assign)NSInteger currentIndex;
 
+@property (nonatomic,strong)NSArray * orderList;
 @end
 
 @implementation LDRechargeViewController
@@ -28,7 +32,7 @@
     [super viewDidLoad];
     [self masLayoutSubviews];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.selectIndex = -1;
+    self.currentIndex = -1;
     [self requestList];
 }
 - (void)clickBackAction:(id)sender {
@@ -43,6 +47,107 @@
     } faild:^(NSError *error) {
         
     }];
+}
+- (void)clickPayAction{
+        
+    [self buyWithType:self.currentIndex];
+}
+- (void)buyWithType:(NSInteger)typeId
+{
+   LDChargeModel *model = self.dataSource[typeId];
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:@"ios/pay" requestParameters:@{@"chargePrice":model.itemCode,@"chargeLecionNum":model.itemCode,@"chargeType":@"3"} requestHeader:nil success:^(id responseObject) {
+        if (kCODE ==200) {
+           NSString *orderid = responseObject[@"data"];
+            [self buywithOrder:orderid];
+        }
+    } faild:^(NSError *error) {
+
+    }];
+   
+}
+- (void)buywithOrder:(NSString*)orderId {
+       if(![IAPShare sharedHelper].iap) {
+           NSSet* dataSet =  [NSSet setWithArray:self.orderList];
+            [IAPShare sharedHelper].iap = [[IAPHelper alloc] initWithProductIdentifiers:dataSet];
+        }
+        
+        [IAPShare sharedHelper].iap.production = NO ;
+
+        
+        [[IAPShare sharedHelper].iap requestProductsWithCompletion:^(SKProductsRequest* request,SKProductsResponse* response)
+         {
+             if(response > 0 ) {
+                 NSArray* products = [IAPShare sharedHelper].iap.products;
+                 //             SKProduct* product = products.firstObject ;
+                 SKProduct *product = nil;
+                 
+                 if (products.count == 0) {
+                     DLog(@"products====nil");
+//                     [QMUITips showError:kRequestFailMsg];
+                     return  ;
+                 }
+                 NSString* productId = self.orderList[self.currentIndex];
+
+                 for (SKProduct *pro in products ) {
+                     if ([pro.productIdentifier isEqualToString:productId]) {
+                         product = pro ;
+                     }
+                 }
+                 
+                 DLog(@"Price========: %@",[[IAPShare sharedHelper].iap getLocalePrice:product]);
+                 DLog(@"Title========: %@",product.localizedTitle);
+                 if (products.count==0) {
+                     DLog(@"products====nil，没有可供购买的产品");
+    //                 [MBProgressHUD hideAllHUDsForView:window animated:YES];
+//                     [QMUITips showError:kRequestFailMsg];
+                     return  ;
+                 }
+                 
+                 [[IAPShare sharedHelper].iap
+                  buyProduct:product
+                  onCompletion:^(SKPaymentTransaction* trans){
+    //                  [MBProgressHUD hideAllHUDsForView:window animated:YES];
+                      NSString* transId2 = trans.transactionIdentifier ;
+                      DLog(@"transId2 ===== %@",transId2 ) ;
+                      if(trans.error)
+                      {
+                          DLog(@"Fail=== %@",[trans.error localizedDescription]);
+//                          [QMUITips showError:kRequestFailMsg];
+                      }
+                      else if(trans.transactionState == SKPaymentTransactionStatePurchased) {
+                          
+                          NSString* transId = trans.transactionIdentifier ;
+                          NSMutableDictionary* dict = [NSMutableDictionary dictionary];
+                          dict[@"transid"] = transId.base64EncodeString ;
+                          dict[@"orderId"] = orderId.base64EncodeString ;
+                          dict[@"trans"] = trans ;
+                          [[NSUserDefaults standardUserDefaults]setObject:dict forKey:kLocalPurchData];
+                          
+                          DLog(@"trans.transactionIdentifier=====%@",trans.transactionIdentifier);
+                          //这里拿到这个 trans.transactionIdentifier 去服务器校验即可.
+                          [[IAPShare sharedHelper].iap checkReceipt:[NSData dataWithContentsOfURL:[[NSBundle mainBundle] appStoreReceiptURL]] onCompletion:^(NSString *response, NSError *error) {
+                              NSData* receiptData = [NSData dataWithContentsOfURL:[[NSBundle mainBundle] appStoreReceiptURL]] ;
+                              NSString *receiptBase64 = [NSString base64StringFromData:receiptData length:[receiptData length]];
+                              
+                              DLog(@"receiptBase64 ====%@    response =======%@",receiptBase64,response);
+                              [IAPHelper sendDataToServer:trans orderId:orderId recesData:receiptBase64];
+                          }];
+                      }
+                      else if(trans.transactionState == SKPaymentTransactionStateFailed) {
+                          DLog(@"Fail");
+//                          [QMUITips showError:kRequestFailMsg];
+                      }
+                      else{
+//                          [QMUITips showError:kRequestFailMsg];
+                           DLog(@"Fail 2222");
+                      }
+                  }];
+             }
+             else{
+                 DLog(@"response === 0 ");
+//                 [QMUITips showError:kRequestFailMsg];
+             }
+         }];
 }
 #pragma  mark - UI
 - (void)masLayoutSubviews {
@@ -104,7 +209,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     LDRechargeCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LDRechargeCell" forIndexPath:indexPath];
     [cell refreshWith:self.dataSource[indexPath.item]];
-    if (indexPath.item == self.selectIndex) {
+    if (indexPath.item == self.currentIndex) {
         cell.bgImage.image = [UIImage imageNamed:@"recharge_button_selected"];
         cell.rmbLabel.textColor = [UIColor whiteColor];
         cell.iconlabel.textColor = [UIColor whiteColor];
@@ -128,7 +233,7 @@
     return UIEdgeInsetsMake(1, PtWidth(20), 1, PtWidth(20));
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    self.selectIndex = indexPath.item;
+    self.currentIndex = indexPath.item;
     [collectionView reloadData];
 }
 #pragma  mark - GET SET
@@ -180,6 +285,7 @@
         [_payButton setBackgroundImage:[UIImage imageNamed:@"recharge_paymentbutton"] forState:UIControlStateNormal];
         [_payButton setTitleColor:UIColorFromHEXA(0x865701, 1) forState:UIControlStateNormal];
         [_payButton setCornerRadius:PtHeight(20)];
+        [_payButton addTarget:self action:@selector(clickPayAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _payButton;
 }
@@ -198,5 +304,11 @@
         [_backButton addTarget:self action:@selector(clickBackAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _backButton;
+}
+- (NSArray *)orderList{
+    if (!_orderList) {
+        _orderList = @[@"com.ledao.6coin",@"com.ledao.18coin",@"com.ledao.30coin",@"com.ledao.118coin",@"com.ledao.218coin",@"com.ledao.488coin",@"com.ledao.618coin",@"com.ledao.998coin"];
+    }
+    return _orderList;
 }
 @end

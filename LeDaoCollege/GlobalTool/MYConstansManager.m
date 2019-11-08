@@ -37,3 +37,4 @@ NSInteger const MYAutoDrawLineWidth = 7;
 NSString * const ZHSpliceVCNotBackNotification = @"ZHSpliceVCNotBackNotification" ;
 
 NSString * const kSpriteNodeDidLoadlNotification = @"kSpriteNodeDidLoadlNotification";
+NSString * const kLocalPurchData = @"kLocalPurchData";

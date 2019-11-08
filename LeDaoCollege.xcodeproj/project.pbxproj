@@ -11,9 +11,7 @@
 		2613781123225DA300228261 /* LDSearchHistoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2613781023225DA300228261 /* LDSearchHistoryView.m */; };
 		2617607B236AB2AE00A5A59D /* LDClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2617607A236AB2AE00A5A59D /* LDClassModel.m */; };
 		261CBB53237179EA00134E6D /* LDAlterPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 261CBB52237179EA00134E6D /* LDAlterPhoneViewController.m */; };
-		262E4A03232A30C1000A6B0B /* 003.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 262E49F4232A30C1000A6B0B /* 003.pdf */; };
 		262E4A0B232A3387000A6B0B /* LDReadPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 262E4A0A232A3387000A6B0B /* LDReadPDFViewController.m */; };
-		262E4A0D232A3681000A6B0B /* Reader.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 262E4A0C232A3680000A6B0B /* Reader.pdf */; };
 		2633E3D5235D48C6002DEA26 /* LDVoiceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2633E3D4235D48C6002DEA26 /* LDVoiceModel.m */; };
 		2633E3D8235D53D8002DEA26 /* LDVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2633E3D7235D53D8002DEA26 /* LDVideoModel.m */; };
 		2633EA4F2372649E00F78BFB /* LDFirstLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2633EA4D2372649E00F78BFB /* LDFirstLoginViewController.m */; };
@@ -168,6 +166,10 @@
 		26F558172325F7B4006D826D /* HNTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F558152325F7B4006D826D /* HNTools.m */; };
 		26F5581A2325F953006D826D /* UIView+HNExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F558182325F953006D826D /* UIView+HNExtension.m */; };
 		26F5581D23263E48006D826D /* LDNameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F5581C23263E48006D826D /* LDNameCell.m */; };
+		26F67A272375611D00B1D71C /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F67A1F2375611C00B1D71C /* IAPHelper.m */; };
+		26F67A282375611D00B1D71C /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F67A202375611C00B1D71C /* NSString+Base64.m */; };
+		26F67A292375611D00B1D71C /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F67A212375611C00B1D71C /* SFHFKeychainUtils.m */; };
+		26F67A2A2375611D00B1D71C /* IAPShare.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F67A262375611C00B1D71C /* IAPShare.m */; };
 		5EBFFAD28375ED4CCCBD420A /* libPods-LeDaoCollege.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 51F34611335481E74543E6CB /* libPods-LeDaoCollege.a */; };
 /* End PBXBuildFile section */
 
@@ -181,10 +183,8 @@
 		2617607A236AB2AE00A5A59D /* LDClassModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDClassModel.m; sourceTree = "<group>"; };
 		261CBB51237179EA00134E6D /* LDAlterPhoneViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDAlterPhoneViewController.h; sourceTree = "<group>"; };
 		261CBB52237179EA00134E6D /* LDAlterPhoneViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDAlterPhoneViewController.m; sourceTree = "<group>"; };
-		262E49F4232A30C1000A6B0B /* 003.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 003.pdf; sourceTree = "<group>"; };
 		262E4A09232A3387000A6B0B /* LDReadPDFViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDReadPDFViewController.h; sourceTree = "<group>"; };
 		262E4A0A232A3387000A6B0B /* LDReadPDFViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDReadPDFViewController.m; sourceTree = "<group>"; };
-		262E4A0C232A3680000A6B0B /* Reader.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Reader.pdf; sourceTree = "<group>"; };
 		2633E3D3235D48C6002DEA26 /* LDVoiceModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDVoiceModel.h; sourceTree = "<group>"; };
 		2633E3D4235D48C6002DEA26 /* LDVoiceModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDVoiceModel.m; sourceTree = "<group>"; };
 		2633E3D6235D53D8002DEA26 /* LDVideoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDVideoModel.h; sourceTree = "<group>"; };
@@ -476,6 +476,14 @@
 		26F558192325F953006D826D /* UIView+HNExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+HNExtension.h"; sourceTree = "<group>"; };
 		26F5581B23263E48006D826D /* LDNameCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDNameCell.h; sourceTree = "<group>"; };
 		26F5581C23263E48006D826D /* LDNameCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDNameCell.m; sourceTree = "<group>"; };
+		26F67A1F2375611C00B1D71C /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
+		26F67A202375611C00B1D71C /* NSString+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Base64.m"; sourceTree = "<group>"; };
+		26F67A212375611C00B1D71C /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
+		26F67A222375611C00B1D71C /* IAPShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPShare.h; sourceTree = "<group>"; };
+		26F67A232375611C00B1D71C /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
+		26F67A242375611C00B1D71C /* NSString+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Base64.h"; sourceTree = "<group>"; };
+		26F67A252375611C00B1D71C /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
+		26F67A262375611C00B1D71C /* IAPShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPShare.m; sourceTree = "<group>"; };
 		51F34611335481E74543E6CB /* libPods-LeDaoCollege.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LeDaoCollege.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFEFE78EDB4F924076740AF8 /* Pods-LeDaoCollege.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeDaoCollege.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LeDaoCollege/Pods-LeDaoCollege.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -943,11 +951,10 @@
 		26CBF8572323BC64005139EF /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				26F67A1E2375611C00B1D71C /* IAPHelper */,
 				26F3BB882330AEF1001A645C /* NSObject+Property.h */,
 				26F3BB892330AEF1001A645C /* NSObject+Property.m */,
 				2658F0EE232BF37900F4C37A /* MKPdfReader */,
-				262E49F4232A30C1000A6B0B /* 003.pdf */,
-				262E4A0C232A3680000A6B0B /* Reader.pdf */,
 				26CBF8582323BC6E005139EF /* HCSortString */,
 				26CBF85D2323BC6E005139EF /* PinYinSearchLib */,
 			);
@@ -1044,6 +1051,21 @@
 			path = AlterView;
 			sourceTree = "<group>";
 		};
+		26F67A1E2375611C00B1D71C /* IAPHelper */ = {
+			isa = PBXGroup;
+			children = (
+				26F67A252375611C00B1D71C /* IAPHelper.h */,
+				26F67A1F2375611C00B1D71C /* IAPHelper.m */,
+				26F67A222375611C00B1D71C /* IAPShare.h */,
+				26F67A262375611C00B1D71C /* IAPShare.m */,
+				26F67A242375611C00B1D71C /* NSString+Base64.h */,
+				26F67A202375611C00B1D71C /* NSString+Base64.m */,
+				26F67A232375611C00B1D71C /* SFHFKeychainUtils.h */,
+				26F67A212375611C00B1D71C /* SFHFKeychainUtils.m */,
+			);
+			path = IAPHelper;
+			sourceTree = "<group>";
+		};
 		9CF121A53BFA2761DD3BE88F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1113,7 +1135,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				26DD09862333602000E1B5E2 /* LDNoticeView.xib in Resources */,
-				262E4A03232A30C1000A6B0B /* 003.pdf in Resources */,
 				26F3BB9D2330BD0E001A645C /* LDScoreViewXib.xib in Resources */,
 				26CBF8722323BC6E005139EF /* unicode_to_hanyu_pinyin.txt in Resources */,
 				26C846A82338A93B00500B3F /* LDSmallClassDetailIntroCell.xib in Resources */,
@@ -1126,7 +1147,6 @@
 				26AAE4DE2334D8C700B9C5D3 /* LDShoppingDetailNameViewCell.xib in Resources */,
 				26EE3ED0233B0923003FEA7B /* LDAddressBookCell.xib in Resources */,
 				265CB9442320A2F500883FE2 /* LaunchScreen.storyboard in Resources */,
-				262E4A0D232A3681000A6B0B /* Reader.pdf in Resources */,
 				26BCBDDB23697A2300C568A0 /* LDNoUseView.xib in Resources */,
 				26B6CD5D233A080D00E94520 /* LDEmptyViewXIB.xib in Resources */,
 				26F3BB942330B44B001A645C /* LDScoreCell.xib in Resources */,
@@ -1290,6 +1310,7 @@
 				26D93F8423372F1300B31DAB /* LDShoppingDetailFootView.m in Sources */,
 				26B7022E232F735C00156116 /* LDShoppingCartViewController.m in Sources */,
 				268EEDF02325EDFC0014F971 /* LDConfigTableViewController.m in Sources */,
+				26F67A2A2375611D00B1D71C /* IAPShare.m in Sources */,
 				268EEDF72325F1640014F971 /* DatePickerCell.m in Sources */,
 				26CB9A742334C32C00DC12AD /* LDSmallClassViewController.m in Sources */,
 				265CB97D2320AAA600883FE2 /* MASCompositeConstraint.m in Sources */,
@@ -1310,6 +1331,7 @@
 				26EC9E4F23289C5900364943 /* LDTimerCell.m in Sources */,
 				26F5581D23263E48006D826D /* LDNameCell.m in Sources */,
 				26F3BB8A2330AEF1001A645C /* NSObject+Property.m in Sources */,
+				26F67A272375611D00B1D71C /* IAPHelper.m in Sources */,
 				2658F0FD232CAEBF00F4C37A /* MKIndexView.m in Sources */,
 				265BE25E232684EA0093E60A /* LDAlterNameViewController.m in Sources */,
 				26E816352332395100CECCE3 /* LDNavigationController.m in Sources */,
@@ -1323,6 +1345,7 @@
 				26EE3ED4233B5A64003FEA7B /* LDMyIconViewController.m in Sources */,
 				265CB97E2320AAA600883FE2 /* MASConstraintMaker.m in Sources */,
 				2633EA4F2372649E00F78BFB /* LDFirstLoginViewController.m in Sources */,
+				26F67A292375611D00B1D71C /* SFHFKeychainUtils.m in Sources */,
 				26EE3ECF233B0923003FEA7B /* LDAddressBookCell.m in Sources */,
 				26F3BB732330ACF4001A645C /* LDBookRackViewController.m in Sources */,
 				26B7BE1D235ABB7600CA16F3 /* LDTagModel.m in Sources */,
@@ -1345,6 +1368,7 @@
 				26AAE4E22334DD8B00B9C5D3 /* LDShoppingTitleCell.m in Sources */,
 				265CB97F2320AAA600883FE2 /* MASLayoutConstraint.m in Sources */,
 				26CB9A6B2334BA2D00DC12AD /* LDShoppingDetailViewController.m in Sources */,
+				26F67A282375611D00B1D71C /* NSString+Base64.m in Sources */,
 				265CB9992320B2BC00883FE2 /* LDMainViewController.m in Sources */,
 				26869C3E232106A9001DEDBA /* LDVoiceViewController.m in Sources */,
 				26E8162A23321BD100CECCE3 /* LDVoiceTableViewCell.m in Sources */,

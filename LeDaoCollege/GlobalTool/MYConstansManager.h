@@ -20,7 +20,7 @@ UIKIT_EXTERN  NSString * const WXAPPSecret;
 UIKIT_EXTERN  NSString * const UserModelNotification;
 UIKIT_EXTERN  NSString * const IsLoginUserdefault;
 UIKIT_EXTERN  NSString * const LoginOutUserdefault;
-
+UIKIT_EXTERN  NSString * const kLocalPurchData;
 //记录首页图片的name
 UIKIT_EXTERN  NSString * const MYUserDefaultHomeBgImageName ;
 

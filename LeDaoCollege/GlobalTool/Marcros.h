@@ -31,6 +31,8 @@
 #define ShowMsgInfo [QMUITips showInfo:responseObject[@"returnMsg"]]
 #define _weakself __weak typeof(self) weakself = self
 
+#define kRequestFailMsg    @"Error,Please retry later ~ "
+
 //PDF管理文件的归档路径
 #define SavePDFDocumenToPlisttPath(name)     [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject]stringByAppendingString:[NSString stringWithFormat:@"/%@.plist",name]]
 //PDF Data 归档路径
