@@ -37,7 +37,10 @@ static float kCollectionViewMargin = 3.f;
     NSInteger _selectIndex;
     BOOL _isScrollDown;
 }
-
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = NO;
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -146,6 +149,8 @@ static float kCollectionViewMargin = 3.f;
     if (indexPath.section == 0) {
         LDBookDetailViewController *vc = [[LDBookDetailViewController alloc]initWithNibName:@"LDBookDetailViewController" bundle:[NSBundle mainBundle]];
         [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        
     }
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView

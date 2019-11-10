@@ -170,6 +170,7 @@
 		26F67A282375611D00B1D71C /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F67A202375611C00B1D71C /* NSString+Base64.m */; };
 		26F67A292375611D00B1D71C /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F67A212375611C00B1D71C /* SFHFKeychainUtils.m */; };
 		26F67A2A2375611D00B1D71C /* IAPShare.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F67A262375611C00B1D71C /* IAPShare.m */; };
+		26F67A2E237591D300B1D71C /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26F67A2D237591D300B1D71C /* StoreKit.framework */; };
 		5EBFFAD28375ED4CCCBD420A /* libPods-LeDaoCollege.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 51F34611335481E74543E6CB /* libPods-LeDaoCollege.a */; };
 /* End PBXBuildFile section */
 
@@ -224,7 +225,7 @@
 		2658F0FC232CAEBF00F4C37A /* MKIndexView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKIndexView.m; sourceTree = "<group>"; };
 		265BE25C232684EA0093E60A /* LDAlterNameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDAlterNameViewController.h; sourceTree = "<group>"; };
 		265BE25D232684EA0093E60A /* LDAlterNameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDAlterNameViewController.m; sourceTree = "<group>"; };
-		265CB9342320A2F400883FE2 /* LeDaoCollege.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeDaoCollege.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		265CB9342320A2F400883FE2 /* 乐道金矿.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "乐道金矿.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		265CB9372320A2F400883FE2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		265CB9382320A2F400883FE2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		265CB93A2320A2F400883FE2 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -484,6 +485,7 @@
 		26F67A242375611C00B1D71C /* NSString+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Base64.h"; sourceTree = "<group>"; };
 		26F67A252375611C00B1D71C /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
 		26F67A262375611C00B1D71C /* IAPShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPShare.m; sourceTree = "<group>"; };
+		26F67A2D237591D300B1D71C /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		51F34611335481E74543E6CB /* libPods-LeDaoCollege.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LeDaoCollege.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFEFE78EDB4F924076740AF8 /* Pods-LeDaoCollege.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeDaoCollege.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LeDaoCollege/Pods-LeDaoCollege.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -494,6 +496,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5EBFFAD28375ED4CCCBD420A /* libPods-LeDaoCollege.a in Frameworks */,
+				26F67A2E237591D300B1D71C /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -561,7 +564,7 @@
 		265CB9352320A2F400883FE2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				265CB9342320A2F400883FE2 /* LeDaoCollege.app */,
+				265CB9342320A2F400883FE2 /* 乐道金矿.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1069,6 +1072,7 @@
 		9CF121A53BFA2761DD3BE88F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				26F67A2D237591D300B1D71C /* StoreKit.framework */,
 				51F34611335481E74543E6CB /* libPods-LeDaoCollege.a */,
 			);
 			name = Frameworks;
@@ -1094,7 +1098,7 @@
 			);
 			name = LeDaoCollege;
 			productName = LeDaoCollege;
-			productReference = 265CB9342320A2F400883FE2 /* LeDaoCollege.app */;
+			productReference = 265CB9342320A2F400883FE2 /* 乐道金矿.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1522,7 +1526,9 @@
 			baseConfigurationReference = AFEFE78EDB4F924076740AF8 /* Pods-LeDaoCollege.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = Q94RAKWUSW;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/LeDaoCollege/GlobalTool/PrefixHeader.pch";
@@ -1533,7 +1539,8 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.LD.LeDaoCollege;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "乐道金矿";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1543,7 +1550,9 @@
 			baseConfigurationReference = 25246010FBA437DC58E5C3B8 /* Pods-LeDaoCollege.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = Q94RAKWUSW;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/LeDaoCollege/GlobalTool/PrefixHeader.pch";
@@ -1554,7 +1563,8 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.LD.LeDaoCollege;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "乐道金矿";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

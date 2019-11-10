@@ -67,12 +67,12 @@
 }
 - (void)buywithOrder:(NSString*)orderId {
        if(![IAPShare sharedHelper].iap) {
+//           NSSet* dataSet =  [NSSet setWithObject:@"com.ledo.6coin"];
            NSSet* dataSet =  [NSSet setWithArray:self.orderList];
             [IAPShare sharedHelper].iap = [[IAPHelper alloc] initWithProductIdentifiers:dataSet];
         }
         
         [IAPShare sharedHelper].iap.production = NO ;
-
         
         [[IAPShare sharedHelper].iap requestProductsWithCompletion:^(SKProductsRequest* request,SKProductsResponse* response)
          {
@@ -307,7 +307,7 @@
 }
 - (NSArray *)orderList{
     if (!_orderList) {
-        _orderList = @[@"com.ledao.6coin",@"com.ledao.18coin",@"com.ledao.30coin",@"com.ledao.118coin",@"com.ledao.218coin",@"com.ledao.488coin",@"com.ledao.618coin",@"com.ledao.998coin"];
+        _orderList = @[@"com.ledo.6coin",@"com.ledo.18coin",@"com.ledo.30coin",@"com.ledo.118coin",@"com.ledo.218coin",@"com.ledo.488coin",@"com.ledo.618coin",@"com.ledo.998coin"];
     }
     return _orderList;
 }
