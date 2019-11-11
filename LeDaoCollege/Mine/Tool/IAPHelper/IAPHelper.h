@@ -62,5 +62,5 @@ typedef void (^resoreProductsCompleteResponseBlock) (SKPaymentQueue* payment,NSE
 - (NSString *)getLocalePrice:(SKProduct *)product;
 
 
-+ (void)sendDataToServerorderId:(NSString*)orderId  recesData:(NSString*)recept;
++ (void)sendDataToServerorderId:(NSString*)orderId productID:(NSString *)productID recesData:(NSString*)recept;
 @end

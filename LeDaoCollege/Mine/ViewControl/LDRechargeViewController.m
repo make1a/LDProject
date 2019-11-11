@@ -129,8 +129,7 @@
                               NSData* receiptData = [NSData dataWithContentsOfURL:[[NSBundle mainBundle] appStoreReceiptURL]] ;
                               NSString *receiptBase64 = [NSString base64StringFromData:receiptData length:[receiptData length]];
                               DLog(@"receiptBase64 ====%@    response =======%@",receiptBase64,response);
-//                              [IAPHelper sendDataToServer:trans orderId:orderId recesData:receiptBase64];
-                              [IAPHelper sendDataToServerorderId:self.orderList[self.currentIndex] recesData:response];
+                              [IAPHelper sendDataToServerorderId:orderId productID:self.orderList[self.currentIndex] recesData:receiptBase64];
                           }];
                       }
                       else if(trans.transactionState == SKPaymentTransactionStateFailed) {

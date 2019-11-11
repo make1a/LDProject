@@ -65,18 +65,42 @@
     }
 }
 
-+ (void)sendDataToServerorderId:(NSString*)orderId  recesData:(NSString*)recept {
++ (void)sendDataToServerorderId:(NSString*)orderId productID:(NSString *)productID recesData:(NSString*)recept {
     
     NSString *requestUrl = [NSString stringWithFormat:@"%@%@",BaseUrl,@"ios/ipaynotify"];
+//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+//    manager.requestSerializer.timeoutInterval = 20;
+//    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json", nil];
+//    if ([LDUserManager isLogin]) { //判断的是userID是否为空
+//        [manager.requestSerializer setValue:[LDUserManager userID] forHTTPHeaderField:@"token"];
+//    }
+//    [manager POST:requestUrl parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+//        NSData *o= [orderId dataUsingEncoding:NSUTF8StringEncoding];
+//        NSData *p= [productID dataUsingEncoding:NSUTF8StringEncoding];
+//        NSData *r= [recept dataUsingEncoding:NSUTF8StringEncoding];
+//        [formData appendPartWithFormData:o name:@"orderNo"];
+//        [formData appendPartWithFormData:p name:@"productId"];
+//        [formData appendPartWithFormData:r name:@"receipt"];
+//    } progress:^(NSProgress * _Nonnull uploadProgress) {
+//
+//    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+////        success(responseObject);
+//        NSLog(@"r");
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+////        faild(error);
+//        NSLog(@".");
+//    }];
+    
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST" URLString:requestUrl parameters:nil error:nil];
     request.timeoutInterval = 3;
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    
-    NSDictionary *dic = @{@"productId":orderId,@"receipt":recept};
+
+    NSDictionary *dic = @{@"productId":productID,@"receipt":recept,@"orderNo":orderId};
     NSData *requestData = [NSJSONSerialization dataWithJSONObject:dic options:0 error:nil];
     [request setHTTPBody:requestData];
-    
+
     AFHTTPResponseSerializer *responseSerializer = [AFHTTPResponseSerializer serializer];
     responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",
                                                  @"text/html",
@@ -84,7 +108,7 @@
                                                  @"text/javascript",
                                                  @"text/plain",
                                                  nil];
-   
+
     manager.responseSerializer = responseSerializer;
     if ([LDUserManager isLogin]) { //判断的是userID是否为空
         [request setValue:[LDUserManager userID] forHTTPHeaderField:@"token"];
@@ -96,27 +120,7 @@
     } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
         NSDictionary *dictionary =[NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
         NSLog(@"%@",dictionary);
-    }] resume]  ;
-    
-//    if ([LDUserManager isLogin]) { //判断的是userID是否为空
-//        [storeRequest setValue:[LDUserManager userID] forHTTPHeaderField:@"token"];
-//    }
-//    [storeRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-//
-//    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-//    [NSURLConnection sendAsynchronousRequest:storeRequest queue:queue
-//                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-//        if (connectionError) {
-//            /* ... Handle error ... */
-//        } else {
-//            NSError *error;
-//            NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data     options:0 error:&error];
-//            if (!jsonResponse) { /* ... Handle error ...*/ }
-//            /* ... Send a response back to the device ... */
-//        }
-//    }];
-//
-    
+    }] resume];
 }
 
 -(BOOL)isPurchasedProductsIdentifier:(NSString*)productID
