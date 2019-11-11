@@ -38,7 +38,6 @@
     return YES;
 }
 - (void)configMainView{
-    [[NSUserDefaults standardUserDefaults]setValue:@"1570869149716" forKey:@"_currentUser.userId"];
     if ([LDUserManager isLogin]) {
         LDTabBarController *rootViewController = [[LDTabBarController alloc] init];
         AppDelegate  *delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;

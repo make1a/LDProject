@@ -17,7 +17,8 @@
 #import "MKPdfViewController.h"
 #import "MKReaderViewController.h"
 #import "LDBookDetailViewController.h"
-
+#import "LDSmallClassDetailViewController.h"
+#import "LDShujiaModel.h"
 static float kLeftTableViewWidth = 80.f;
 static float kCollectionViewMargin = 3.f;
 
@@ -26,10 +27,10 @@ static float kCollectionViewMargin = 3.f;
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, strong) NSMutableArray *dataSource;
-@property (nonatomic, strong) NSMutableArray *collectionDatas;
 @property (nonatomic, strong) LJCollectionViewFlowLayout *flowLayout;
 @property (nonatomic,strong) NSArray * leftTitles;
+@property (nonatomic,strong)NSArray * bookArray;
+@property (nonatomic,strong)NSArray * smallClassArray;
 @end
 
 @implementation LDBookRackViewController
@@ -64,15 +65,16 @@ static float kCollectionViewMargin = 3.f;
 }
 #pragma  mark - Request
 - (void)reqeustDataSource{
-//        商品类型 1 书籍 2微课
+    //        商品类型 1 书籍 2微课
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"bookshelf/goods" requestParameters:@{@"goodsType":@"1",@"page":@"1",@"pageSize":@"1000"} requestHeader:nil success:^(id responseObject) {
-        responseObject[@"data"][@"list"];
-        
+        self.bookArray = [NSArray yy_modelArrayWithClass:[LDShujiaModel class] json:responseObject[@"data"][@"list"]];
+        [self.collectionView reloadData];
     } faild:^(NSError *error) {
         
     }];
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"bookshelf/goods" requestParameters:@{@"goodsType":@"2",@"page":@"1",@"pageSize":@"1000"} requestHeader:nil success:^(id responseObject) {
-        responseObject[@"data"][@"list"];
+        self.smallClassArray = [NSArray yy_modelArrayWithClass:[LDShujiaModel class] json:responseObject[@"data"][@"list"]];
+        [self.collectionView reloadData];
     } faild:^(NSError *error) {
         
     }];
@@ -132,25 +134,38 @@ static float kCollectionViewMargin = 3.f;
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
 //    CollectionCategoryModel *model = self.dataSource[section];
-    return 10;
+    if (section == 0) {
+        return self.bookArray.count;
+    }
+    return self.smallClassArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCellIdentifier_CollectionView forIndexPath:indexPath];
-//    SubCategoryModel *model = self.collectionDatas[indexPath.section][indexPath.row];
-//    cell.model = model;
-    cell.imageV.backgroundColor = [UIColor qmui_randomColor];
-    cell.name.text = @"makemake";
+    LDShujiaModel *model;
+    if (indexPath.section == 0) {
+        model = self.bookArray[indexPath.item];
+    }else {
+        model = self.smallClassArray[indexPath.item];
+    }
+    cell.name.text = model.title;
+    [cell.imageV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@img/%@",BaseAPI,model.coverImg]]];
     return cell;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
     if (indexPath.section == 0) {
         LDBookDetailViewController *vc = [[LDBookDetailViewController alloc]initWithNibName:@"LDBookDetailViewController" bundle:[NSBundle mainBundle]];
+        LDShujiaModel *model =self.smallClassArray[indexPath.item];
+        vc.bookID = model.goodsId;
         [self.navigationController pushViewController:vc animated:YES];
     }else{
-        
+        LDSmallClassDetailViewController *vc = [[LDSmallClassDetailViewController alloc]init];
+        vc.isPay = YES;
+        LDShujiaModel *model =self.smallClassArray[indexPath.item];
+        vc.classID = model.goodsId;
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView
@@ -227,24 +242,6 @@ static float kCollectionViewMargin = 3.f;
 
 
 #pragma mark - Getters
-- (NSMutableArray *)dataSource
-{
-    if (!_dataSource)
-    {
-        _dataSource = [NSMutableArray array];
-    }
-    return _dataSource;
-}
-
-- (NSMutableArray *)collectionDatas
-{
-    if (!_collectionDatas)
-    {
-        _collectionDatas = [NSMutableArray array];
-    }
-    return _collectionDatas;
-}
-
 - (UITableView *)tableView
 {
     if (!_tableView)

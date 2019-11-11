@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return self
  */
 + (instancetype)getToLocalWith:(NSString *)name;
-- (instancetype)initWithUrl:(NSURL *)url;
+- (instancetype)initWithUrl:(NSURL *)url name:(NSString *)name;
 - (void)saveToPlist;
 @end
 

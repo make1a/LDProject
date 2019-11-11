@@ -12,7 +12,9 @@
 #import "LDSmallClassDetailHeadView.h"
 #import "LDSmallClassDetailIntroCell.h"
 #import "LDSmallClassLessonCell.h"
+#import "LDSmallClassSectionDetailViewController.h"
 #import "LDClassModel.h"
+#import "LDCommitBuyViewController.h"
 @interface LDSmallClassDetailViewController ()<QMUITableViewDelegate,QMUITableViewDataSource>
 @property (nonatomic,strong)QMUITableView * tableView;
 @property (nonatomic,strong)LDShoppingDetailFootView * footView;
@@ -39,18 +41,19 @@
 - (void)masLayoutSubViews{
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.tableView];
-    [self.view addSubview:self.footView];
+    if (self.isPay == NO) {
+        [self.view addSubview:self.footView];
+        [self.footView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.mas_equalTo(self.view);
+            make.top.mas_equalTo(self.tableView.mas_bottom);
+            if (@available(iOS 11.0, *)) {
+                make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom);
+            } else {
+                make.bottom.mas_equalTo(self.view.mas_bottom);
+            }
+        }];
+    }
     self.tableView.tableHeaderView = self.headView;
-    [self.view addSubview:self.footView];
-    [self.footView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_equalTo(self.view);
-        make.top.mas_equalTo(self.tableView.mas_bottom);
-        if (@available(iOS 11.0, *)) {
-            make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom);
-        } else {
-            make.bottom.mas_equalTo(self.view.mas_bottom);
-        }
-    }];
 }
 - (void)requestDtasource{
     if (!self.classID) {
@@ -93,6 +96,12 @@
         
     }];
 }
+- (void)clickBuyAction:(id)sender{
+    LDCommitBuyViewController *vc = [[LDCommitBuyViewController alloc]initWithNibName:@"LDCommitBuyViewController" bundle:[NSBundle mainBundle]];
+    vc.currentModel = self.currenModel;
+    vc.title = @"确认购买";
+    [self.navigationController pushViewController:vc animated:YES];
+}
 - (void)clickCollectionAction:(UIButton *)sender{
     sender.selected = !sender.selected;
     [self collectionAction];
@@ -127,6 +136,16 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    if (!self.isPay) {
+        return;
+    }
+    if (indexPath.section != 0) {
+        LDSmallClassSectionDetailViewController *vc = [LDSmallClassSectionDetailViewController new];
+        LDClassChapterModel *model = self.currenModel.chapterArray[indexPath.section-1];
+        LDClassChapterSectionModel *sectionModel = model.sectionArray[indexPath.row];
+        vc.urlStrng = sectionModel.sectionContent;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{

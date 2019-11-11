@@ -242,19 +242,20 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0 && self.dataSource1.count == 0) {
-        return;
-    } else if (indexPath.section == 1 && self.dataSource2.count == 0) {
-        return;
-    }else if (indexPath.section == 2 && self.dataSource3.count == 0) {
-        return;
-    }else if (indexPath.section == 3 && self.dataSource4.count == 0) {
-        return;
-    }else if (indexPath.section == 4 && self.dataSource5.count == 0) {
-        return;
-    }
-    
+
     if (tableView == self.leftTableView) {
+        if (indexPath.section == 0 && self.dataSource1.count == 0) {
+            return;
+        } else if (indexPath.section == 1 && self.dataSource2.count == 0) {
+            return;
+        }else if (indexPath.section == 2 && self.dataSource3.count == 0) {
+            return;
+        }else if (indexPath.section == 3 && self.dataSource4.count == 0) {
+            return;
+        }else if (indexPath.section == 4 && self.dataSource5.count == 0) {
+            return;
+        }
+        
         _isRelate = NO;
         [self.leftTableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionMiddle];
         [self.rightTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:indexPath.row] atScrollPosition:UITableViewScrollPositionTop animated:YES];

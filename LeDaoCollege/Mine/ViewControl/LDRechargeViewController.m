@@ -121,16 +121,16 @@
                           dict[@"transid"] = transId.base64EncodeString ;
                           dict[@"orderId"] = orderId.base64EncodeString ;
                           dict[@"trans"] = trans ;
-                          [[NSUserDefaults standardUserDefaults]setObject:dict forKey:kLocalPurchData];
+//                          [[NSUserDefaults standardUserDefaults]setObject:dict forKey:kLocalPurchData];
                           
                           DLog(@"trans.transactionIdentifier=====%@",trans.transactionIdentifier);
                           //这里拿到这个 trans.transactionIdentifier 去服务器校验即可.
                           [[IAPShare sharedHelper].iap checkReceipt:[NSData dataWithContentsOfURL:[[NSBundle mainBundle] appStoreReceiptURL]] onCompletion:^(NSString *response, NSError *error) {
                               NSData* receiptData = [NSData dataWithContentsOfURL:[[NSBundle mainBundle] appStoreReceiptURL]] ;
                               NSString *receiptBase64 = [NSString base64StringFromData:receiptData length:[receiptData length]];
-                              
                               DLog(@"receiptBase64 ====%@    response =======%@",receiptBase64,response);
-                              [IAPHelper sendDataToServer:trans orderId:orderId recesData:receiptBase64];
+//                              [IAPHelper sendDataToServer:trans orderId:orderId recesData:receiptBase64];
+                              [IAPHelper sendDataToServerorderId:self.orderList[self.currentIndex] recesData:response];
                           }];
                       }
                       else if(trans.transactionState == SKPaymentTransactionStateFailed) {

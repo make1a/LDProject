@@ -73,6 +73,7 @@
     if ([LDUserManager isLogin]) { //判断的是userID是否为空
         [manager.requestSerializer setValue:[LDUserManager userID] forHTTPHeaderField:@"token"];
     }
+
     [manager POST:requestUrl parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         [formData appendPartWithFileData:data name:@"file" fileName:@"headImage.png" mimeType:@"image/png"];
         NSData *d = [@"headImg" dataUsingEncoding:NSUTF8StringEncoding];

@@ -22,7 +22,7 @@
     if (self = [super initWithFrame:frame])
     {
         self.imageV = [[UIImageView alloc] initWithFrame:CGRectMake(2, 2, PtWidth(77), PtHeight(100))];
-        self.imageV.contentMode = UIViewContentModeScaleAspectFit;
+        self.imageV.contentMode = UIViewContentModeScaleToFill;
         [self.contentView addSubview:self.imageV];
         [self.imageV setCornerRadius:10];
         

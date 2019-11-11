@@ -22,7 +22,7 @@
 }
 
 - (void)refreshWith:(LDClassChapterSectionModel *)model{
-    self.chapterLabel.text = model.sectionContent;
+    self.chapterLabel.text = model.sectionTitle;
     self.timeLabel.text = [NSString stringWithFormat:@"(%@)",model.duration];
 }
 @end

@@ -22,10 +22,11 @@
     [m resetDocumentFormLocal];
     return m;
 }
-- (instancetype)initWithUrl:(NSURL *)url;
+- (instancetype)initWithUrl:(NSURL *)url name:(NSString *)name
 {
     self = [super init];
     if (self) {
+        self.name = name;
         [self configPdfWith:url];
         [self savePDFDataWith:url];
     }

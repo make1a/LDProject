@@ -25,8 +25,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self requestDataSource];
+    
+    UISwipeGestureRecognizer * recognizer = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(handleSwipeFrom:)];
+    [recognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)];
+    [self.view addGestureRecognizer:recognizer];
 }
-
+- (IBAction)backAction:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+- (void)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer{
+    if(recognizer.direction == UISwipeGestureRecognizerDirectionLeft) {
+        [self readww];
+    }
+}
 - (void)requestDataSource{
     self.bookID = @"1";
     NSString *url = [NSString stringWithFormat:@"book/book/%@",self.bookID];
@@ -53,8 +64,8 @@
                 [[NSOperationQueue mainQueue]addOperationWithBlock:^{
                     [QMUITips hideAllTips];
                 }];
-                doc = [[MKPdfDocumentManager alloc]initWithUrl:responseObject];
-                doc.name = self.bookID;
+                doc = [[MKPdfDocumentManager alloc]initWithUrl:responseObject name:self.bookID];
+                [doc saveToPlist];
                 MKReaderViewController *vc = [[MKReaderViewController alloc]init];
                 vc.pdfInfo = doc;
                 vc.modalPresentationStyle = 0;
@@ -73,18 +84,5 @@
 
     
 }
-//    MKPdfDocumentManager *doc = [MKPdfDocumentManager getToLocalWith:@"Reader"];
-//    if (!doc) {
-//        NSString *path = [[NSBundle mainBundle]pathForResource:@"Reader" ofType:@"pdf"];
-//        NSURL *url = [NSURL fileURLWithPath:path];
-//        doc = [[MKPdfDocumentManager alloc]initWithUrl:url];
-//        doc.name = @"Reader";
-//    }
-//    MKReaderViewController *vc = [[MKReaderViewController alloc]init];
-//    vc.pdfInfo = doc;
-//    vc.modalPresentationStyle = 0;
-//    [self presentViewController:vc animated:YES completion:nil];
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    [self readww];
-}
+
 @end

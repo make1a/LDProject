@@ -57,10 +57,10 @@ typedef void (^resoreProductsCompleteResponseBlock) (SKPaymentQueue* payment,NSE
 - (void)clearSavedPurchasedProducts;
 - (void)clearSavedPurchasedProductByID:(NSString*)productIdentifier;
 
-
+ 
 //Get The Price with local currency
 - (NSString *)getLocalePrice:(SKProduct *)product;
 
 
-+ (void)sendDataToServer:(SKPaymentTransaction*)trans orderId:(NSString*)orderId  recesData:(NSString*)receptString;
++ (void)sendDataToServerorderId:(NSString*)orderId  recesData:(NSString*)recept;
 @end
