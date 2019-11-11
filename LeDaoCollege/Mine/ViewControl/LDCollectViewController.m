@@ -20,6 +20,10 @@
 #import "LDVoiceModel.h"
 #import "LDStoreModel.h"
 
+#import "LDWebViewViewController.h"
+#import "LDShoppingDetailViewController.h"
+#import "LDSmallClassDetailViewController.h"
+
 @interface LDCollectViewController ()<QMUITableViewDataSource, QMUITableViewDelegate> {
     NSArray *_dataArray;
     BOOL _isRelate;
@@ -262,6 +266,74 @@
     } else {
         [self.rightTableView deselectRowAtIndexPath:indexPath animated:NO];
         
+        switch (indexPath.section) {
+            case 0:
+                {
+                    LDNewsModel *model = self.dataSource1[indexPath.row];
+                    LDWebViewViewController * vc = [LDWebViewViewController new];
+                    vc.urlStrng = model.contentUrl;
+                    vc.s_id = model.newsId;
+                    vc.isCollection = [model.collectionFlag isEqualToString:@"Y"]?YES:NO;
+                    vc.collectionType = @"1";
+                    vc.didRefreshCollectionStateBlock = ^(BOOL isCollection) {
+                        model.collectionFlag = isCollection?@"Y":@"N";
+                    };
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
+                break;
+            case 1:
+            {
+                LDVoiceModel *model = self.dataSource2[indexPath.row];
+                LDWebViewViewController * vc = [LDWebViewViewController new];
+                vc.urlStrng = model.contentUrl;
+                vc.s_id = model.v_id;
+                vc.isCollection = [model.collectionFlag isEqualToString:@"Y"]?YES:NO;
+                vc.collectionType = @"2";
+                vc.didRefreshCollectionStateBlock = ^(BOOL isCollection) {
+                    model.collectionFlag = isCollection?@"Y":@"N";
+                    [tableView reloadData];
+                };
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+                break;
+            case 2:
+            {
+                LDVideoModel *model = self.dataSource3[indexPath.row];
+                LDWebViewViewController * vc = [LDWebViewViewController new];
+                vc.urlStrng = model.contentUrl;
+                vc.s_id = model.v_id;
+                vc.isCollection = [model.collectionFlag isEqualToString:@"Y"]?YES:NO;
+                vc.collectionType = @"3";
+                vc.didRefreshCollectionStateBlock = ^(BOOL isCollection) {
+                    model.collectionFlag = isCollection?@"Y":@"N";
+                    [tableView reloadData];
+                };
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+                break;
+            case 3:
+            {
+                LDShoppingDetailViewController *vc = [LDShoppingDetailViewController new];
+                LDStoreModel *model = self.dataSource4[indexPath.row];
+                vc.shopID = model.s_id;
+                [self.navigationController pushViewController:vc animated:YES];
+                
+            }
+                break;
+            case 4:
+            {
+                LDSmallClassDetailViewController *vc = [LDSmallClassDetailViewController new];
+                LDStoreModel *model = self.dataSource5[indexPath.row];
+                vc.classID = model.s_id;
+                if ([model.isPayFlag isEqualToString:@"Y"]) {
+                    vc.isPay = YES;
+                }
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+                break;
+            default:
+                break;
+        }
     }
 }
 

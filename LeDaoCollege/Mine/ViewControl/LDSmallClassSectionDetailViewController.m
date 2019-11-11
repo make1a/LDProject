@@ -28,7 +28,6 @@
         _webView = [[UIWebView alloc]initWithFrame:self.view.bounds];
         _webView.allowsInlineMediaPlayback = YES;
         _webView.mediaPlaybackRequiresUserAction = NO;
-
         [_webView loadHTMLString:self.urlStrng baseURL:nil];
     }
     return _webView;
