@@ -32,13 +32,13 @@
     [self masLayoutSubviews];
     if (!self.isSearchModel) {
         [self requestDatasource];
-        [self requestBannerList];
+//        [self requestBannerList];
     }
 }
 #pragma mark - NetWork
 
 - (void)requestDatasource {
-    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"information/getlists" requestParameters:nil requestHeader:nil success:^(id responseObject) {
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"information/getlists" requestParameters:@{@"pageSize":@(1000)} requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {
             self.dataSource = [NSArray yy_modelArrayWithClass:[LDNewsModel class] json:responseObject[@"data"][@"list"]];
             [self.tableView reloadData];
@@ -48,7 +48,7 @@
     }];
 }
 - (void)requestSource:(NSString *)title back:(backSourceCountBlock)blcok {
-    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"information/getlists" requestParameters:@{@"title":title} requestHeader:nil success:^(id responseObject) {
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"information/getlists" requestParameters:@{@"title":title,@"pageSize":@(1000)} requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {
             self.dataSource = [NSArray yy_modelArrayWithClass:[LDNewsModel class] json:responseObject[@"data"][@"list"]];
             [self.tableView reloadData];
@@ -60,15 +60,15 @@
         
     }];
 }
-- (void)requestBannerList{
-    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"banner/getbytype/1" requestParameters:@{@"type":@"1"} requestHeader:nil success:^(id responseObject) {
-        if (kCODE == 200) {
-            
-        }
-    } faild:^(NSError *error) {
-        
-    }];
-}
+//- (void)requestBannerList{
+//    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"banner/getbytype/1" requestParameters:@{@"type":@"1"} requestHeader:nil success:^(id responseObject) {
+//        if (kCODE == 200) {
+//
+//        }
+//    } faild:^(NSError *error) {
+//
+//    }];
+//}
 #pragma  mark - TableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataSource.count;
@@ -82,7 +82,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     LDNewsModel *model = self.dataSource[indexPath.row];
     LDWebViewViewController * vc = [LDWebViewViewController new];
-    vc.urlStrng = model.contentUrl;
+    vc.urlStrng = [NSString stringWithFormat:@"%@?id=%@",model.contentUrl,model.newsId];
     vc.s_id = model.newsId;
     vc.isCollection = [model.collectionFlag isEqualToString:@"Y"]?YES:NO;
     vc.collectionType = @"1";

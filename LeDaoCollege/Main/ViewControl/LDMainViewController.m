@@ -55,7 +55,7 @@
             make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop).offset(10);
         } else {
             make.top.mas_equalTo(self.view);
-
+            
         }
         make.height.mas_equalTo(PtHeight(32));
     }];
@@ -107,7 +107,9 @@
             {
                 vc = [[LDInfoMationViewController alloc] init];
             }
-            vc.netImages = self.imageArray;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                vc.netImages = self.imageArray;
+            });
             return vc;
         }
             break;
@@ -119,7 +121,9 @@
             {
                 vc = [[LDVoiceViewController alloc] init];
             }
-            vc.netImages = self.imageArray;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                vc.netImages = self.imageArray;
+            });
             return vc;
         }
             break;
@@ -131,7 +135,9 @@
             {
                 vc = [[LDVideoViewController alloc] init];
             }
-            vc.netImages = self.imageArray;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                vc.netImages = self.imageArray;
+            });
             return vc;
         }
             break;
@@ -168,7 +174,7 @@
         _magicController.magicView.navigationColor = [UIColor clearColor];
         _magicController.magicView.navigationHeight = PtHeight(35);
         _magicController.magicView.sliderHidden = NO;
-
+        
         UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, PtWidth(20), 5)];
         view.backgroundColor = [UIColor whiteColor];
         [view setCornerRadius:5.0/2];

@@ -15,12 +15,15 @@
 #import "LDSmallClassSectionDetailViewController.h"
 #import "LDClassModel.h"
 #import "LDCommitBuyViewController.h"
+#import "LDNoUseView.h"
+
 @interface LDSmallClassDetailViewController ()<QMUITableViewDelegate,QMUITableViewDataSource>
 @property (nonatomic,strong)QMUITableView * tableView;
 @property (nonatomic,strong)LDShoppingDetailFootView * footView;
 @property (nonatomic,strong)LDSmallClassDetailHeadView * headView;
 @property(nonatomic, strong) QMUINavigationBarScrollingSnapAnimator *navigationAnimator;
 @property (nonatomic,strong)LDClassModel * currenModel;
+@property (nonatomic,strong)LDNoUseView * noUseView;
 @end
 
 @implementation LDSmallClassDetailViewController
@@ -55,6 +58,20 @@
     }
     self.tableView.tableHeaderView = self.headView;
 }
+- (void)addNouseView:(NSString *)flag {
+    if ([flag isEqualToString:@"N"]) {
+        self.footView.buyButton.enabled = NO;
+        [self.view addSubview:self.noUseView];
+        [self.noUseView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.mas_equalTo(self.footView.mas_top);
+            make.left.right.mas_equalTo(self.view);
+            make.height.mas_equalTo(PtHeight(40));
+        }];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:YES];
+        });
+    }
+}
 - (void)requestDtasource{
     if (!self.classID) {
         return;
@@ -64,6 +81,7 @@
         if (kCODE == 200) {
             self.currenModel = [LDClassModel yy_modelWithJSON:responseObject[@"data"]];
             [self.tableView reloadData];
+            [self addNouseView:self.currenModel.activeFlag];
             self.headView.nameLabel.text = self.currenModel.lecturerName;
             self.headView.priceLabel.text = [NSString stringWithFormat:@"¥%@",self.currenModel.discount];
             self.headView.discountPriceLabel.text = [NSString stringWithFormat:@"¥%@",self.currenModel.originalPrice];
@@ -100,6 +118,8 @@
     LDCommitBuyViewController *vc = [[LDCommitBuyViewController alloc]initWithNibName:@"LDCommitBuyViewController" bundle:[NSBundle mainBundle]];
     vc.currentModel = self.currenModel;
     vc.title = @"确认购买";
+    vc.goodsId = self.currenModel.c_id;
+    vc.goodsType = @"4";
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)clickCollectionAction:(UIButton *)sender{
@@ -202,5 +222,11 @@
         _headView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 227);
     }
     return _headView;
+}
+- (LDNoUseView *)noUseView {
+    if (!_noUseView) {
+        _noUseView = [[NSBundle mainBundle]loadNibNamed:@"LDNoUseView" owner:self options:nil].firstObject;
+    }
+    return _noUseView;
 }
 @end

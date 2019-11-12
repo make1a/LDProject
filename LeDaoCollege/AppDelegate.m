@@ -11,6 +11,7 @@
 #import <IQKeyboardManager.h>
 #import "LDLoginViewController.h"
 #import "LDFirstLoginViewController.h"
+#import "IAPShare.h"
 @interface AppDelegate ()
 
 @end
@@ -35,6 +36,7 @@
 //    }
     
     [self autoLogin];
+    [self recharge];
     return YES;
 }
 - (void)configMainView{
@@ -74,6 +76,34 @@
     } faild:^(NSError *error) {
         LDLoginViewController *vc = [LDLoginViewController new];
         [self.window setRootViewController:vc];
+    }];
+}
+- (void)recharge{
+    NSDictionary *dic = [[NSUserDefaults standardUserDefaults]valueForKey:kLocalPurchData];
+    if (!dic) {
+        return;
+    }
+    [[IAPShare sharedHelper].iap checkReceipt:[NSData dataWithContentsOfURL:[[NSBundle mainBundle] appStoreReceiptURL]] onCompletion:^(NSString *response, NSError *error) {
+
+        [IAPHelper sendDataToServerorderId:dic[@"orderId"] productID:dic[@"productID"] recesData:dic[@"receipt"] success:^(id responseObject) {
+            if (kCODE == 200) {
+                [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+                    [QMUITips hideAllTips];
+                    [QMUITips showSucceed:@"充值成功"];
+                }];
+                [[NSUserDefaults standardUserDefaults]removeObjectForKey:kLocalPurchData];
+            }else {
+                [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+                    [QMUITips hideAllTips];
+                    [QMUITips showError:kRequestFailMsg];
+                }];
+            }
+        } faild:^(NSError *error) {
+            [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+                [QMUITips hideAllTips];
+                [QMUITips showError:kRequestFailMsg];
+            }];
+        }];;
     }];
 }
 - (void)applicationWillResignActive:(UIApplication *)application {

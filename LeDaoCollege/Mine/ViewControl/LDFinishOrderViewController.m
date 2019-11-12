@@ -60,8 +60,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     LDCommitBuyViewController *vc = [[LDCommitBuyViewController alloc]initWithNibName:@"LDCommitBuyViewController" bundle:[NSBundle mainBundle]];
+    LDOrderModel*model = self.dataSource[indexPath.row];
     vc.currentModel = self.dataSource[indexPath.row];
     vc.title = @"订单详情";
+    vc.goodsId = model.goodsId;
+    vc.goodsType = model.goodsType;
     [self.navigationController pushViewController:vc animated:YES];
 }
 #pragma mark - private method

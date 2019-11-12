@@ -59,7 +59,7 @@
 }
 - (void)requestSource:(NSString *)title mark:(NSString *)mark back:(backSourceCountBlock)blcok{
 //    @"pageSize":@1
-    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"audio/getaudios" requestParameters:@{@"title":title,@"mark":mark} requestHeader:nil success:^(id responseObject) {
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"audio/getaudios" requestParameters:@{@"title":title,@"mark":mark,@"pageSize":@1000} requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {
             self.dataSource = [NSArray yy_modelArrayWithClass:[LDVoiceModel class] json:responseObject[@"data"][@"list"]];
             [self.tableView reloadData];
@@ -117,7 +117,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     LDVoiceModel *model = self.dataSource[indexPath.row];
     LDWebViewViewController * vc = [LDWebViewViewController new];
-    vc.urlStrng = model.contentUrl;
+    vc.urlStrng = [NSString stringWithFormat:@"%@?id=%@",model.contentUrl,model.v_id];
     vc.s_id = model.v_id;
     vc.isCollection = [model.collectionFlag isEqualToString:@"Y"]?YES:NO;
     vc.collectionType = @"2";

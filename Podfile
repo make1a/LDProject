@@ -15,4 +15,6 @@ target 'LeDaoCollege' do
     pod 'IQKeyboardManager'
     pod 'AFNetworking'
     pod 'MJRefresh'
+     pod 'UMCShare/UI'
+        pod 'UMCShare/Social/ReducedSina'
 end

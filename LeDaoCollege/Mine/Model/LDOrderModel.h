@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 /** <#Description#> **/
 @property(nonatomic,strong) NSNumber *originalPrice;
 /** <#Description#> **/
-@property(nonatomic,strong) NSNumber *goodsId;
+@property(nonatomic,strong) NSString *goodsId;
 /** <#Description#> **/
 @property(nonatomic,strong) NSNumber *goodsPrice;
 /** <#Description#> **/

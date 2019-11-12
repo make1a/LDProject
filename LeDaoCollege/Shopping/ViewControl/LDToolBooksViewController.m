@@ -21,7 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-        if (!self.isSearchModel) {
+    if (!self.isSearchModel) {
         [self requestAllStore];
     }
 }
@@ -33,7 +33,7 @@
     };
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"goods/getallgoods" requestParameters:dic requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {
-           self.dataSource = [NSArray yy_modelArrayWithClass:[LDStoreModel class] json:responseObject[@"data"][@"list"]];
+            self.dataSource = [NSArray yy_modelArrayWithClass:[LDStoreModel class] json:responseObject[@"data"][@"list"]];
             [self.tableView reloadData];
         }
     } faild:^(NSError *error) {
@@ -50,7 +50,7 @@
         if (kCODE == 200) {
             self.dataSource = [NSArray yy_modelArrayWithClass:[LDStoreModel class] json:responseObject[@"data"][@"list"]];
             [self.tableView reloadData];
-                        if (blcok) {
+            if (blcok) {
                 blcok(self.dataSource.count);
             }
         }

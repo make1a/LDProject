@@ -18,10 +18,20 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
+    [self requestData];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+}
+- (void)requestData{
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"wallet/getlebi" requestParameters:nil requestHeader:nil success:^(id responseObject) {
+        if (kCODE == 200) {
+            NSString *icon =[NSString stringWithFormat:@"%@",responseObject[@"data"][@"lecoin"]];
+            self.numberLabel.text = icon;
+        }
+    } faild:^(NSError *error) {
+        
+    }];
 }
 #pragma  mark - Touch Event
 - (IBAction)clickCZButtonAction:(id)sender {

@@ -26,6 +26,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
+    [self addSearchBar];
 }
 - (void)viewDidLoad
 {
@@ -34,14 +35,13 @@
     self.searchTitle = @"";
     [self configMagicController];
     [self addHistoryView];
-    [self addSearchBar];
+    
     [self showHistoryView:YES];
     [self requestTag];
 }
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     [self.searchBar removeFromSuperview];
-    self.navigationController.navigationBar.hidden = YES;
 }
 
 - (NSArray *)menueBarTitles {

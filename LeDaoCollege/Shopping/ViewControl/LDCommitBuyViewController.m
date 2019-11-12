@@ -57,6 +57,18 @@
 }
 #pragma  mark - Touch Down
 - (IBAction)payAction:(id)sender {
-    
+    [self requestBuy];
+}
+
+- (void)requestBuy{
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:@"order/placeorder" requestParameters:@{@"goodsType":self.goodsType,@"goodsId":self.goodsId,@"goodsPrice":self.currentModel.discount} requestHeader:nil success:^(id responseObject) {
+        if (kCODE == 200) {
+            ShowMsgInfo;
+        }else {
+            ShowMsgInfo;
+        }
+    } faild:^(NSError *error) {
+        
+    }];
 }
 @end

@@ -7,7 +7,6 @@
 //
 
 #import "LDWebViewViewController.h"
-
 @interface LDWebViewViewController ()
 @property (nonatomic,strong)UIWebView * webView;
 @end
@@ -35,7 +34,26 @@
     }
 }
 - (void)clickShareAction{
-    
+    QMUIMoreOperationController *moreOperationController = [[QMUIMoreOperationController alloc] init];
+    moreOperationController.items = @[
+        // 第一行
+        @[
+            [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"wechat") title:@"分享给微信好友" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+                [moreOperationController hideToBottom];
+            }],
+            [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareMoment") title:@"分享到朋友圈" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+                [moreOperationController hideToBottom];
+            }],
+            [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareWeibo") title:@"分享到微博" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+                [moreOperationController hideToBottom];
+            }],
+            
+            [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareChat") title:@"分享到私信" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+                [moreOperationController hideToBottom];
+            }]
+        ],
+    ];
+    [moreOperationController showFromBottom];
 }
 - (void)clickCollectionAction:(UIButton *)sender{
     sender.selected = !sender.selected;

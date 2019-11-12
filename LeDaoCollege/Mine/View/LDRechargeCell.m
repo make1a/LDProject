@@ -16,7 +16,7 @@
 }
 - (void)refreshWith:(LDChargeModel *)model{
     self.rmbLabel.text = [NSString stringWithFormat:@"%@元",model.itemCode];
-    self.iconlabel.text = model.itemDesc;
+    self.iconlabel.text = [NSString stringWithFormat:@"%@乐币",model.itemCode];
 }
 
 @end

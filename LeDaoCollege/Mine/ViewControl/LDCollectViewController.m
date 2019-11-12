@@ -52,6 +52,7 @@
     [self requestDataSource];
 }
 - (void)requestDataSource {
+    
     // type:收藏类型(1.资讯 2.音频 3.视频 4书籍 5课程)
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"collection/mycollection" requestParameters:@{@"page":@1,@"pageSize":@1000,@"type":@1} requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {

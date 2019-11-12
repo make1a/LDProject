@@ -37,7 +37,7 @@ NSString *const kLDVoiceTableViewCellIdentifier = @"kLDVoiceTableViewCellIdentif
     return self;
 }
 - (void)refreshWithModel:(LDVoiceModel *)model {
-    self.titleLabel.text = model.audioContent;
+    self.titleLabel.text = model.title;
     [self.bigImageVIew sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@img/%@",BaseAPI,model.coverImg]] placeholderImage:[UIImage imageNamed:@"seizeaseat_0"]];
     self.timeLabel.text = model.createdDate;
     self.collectionButton.selected = [model.collectionFlag isEqualToString:@"Y"]?YES:NO;

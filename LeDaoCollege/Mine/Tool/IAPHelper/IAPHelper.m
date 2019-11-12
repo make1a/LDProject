@@ -65,40 +65,20 @@
     }
 }
 
-+ (void)sendDataToServerorderId:(NSString*)orderId productID:(NSString *)productID recesData:(NSString*)recept {
++ (void)sendDataToServerorderId:(NSString*)orderId
+                      productID:(NSString *)productID
+                      recesData:(NSString*)recept
+                        success:(SuccessBlock)success
+                          faild:(FaildBlock)faild{
     
     NSString *requestUrl = [NSString stringWithFormat:@"%@%@",BaseUrl,@"ios/ipaynotify"];
-//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-//    manager.requestSerializer.timeoutInterval = 20;
-//    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json", nil];
-//    if ([LDUserManager isLogin]) { //判断的是userID是否为空
-//        [manager.requestSerializer setValue:[LDUserManager userID] forHTTPHeaderField:@"token"];
-//    }
-//    [manager POST:requestUrl parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-//        NSData *o= [orderId dataUsingEncoding:NSUTF8StringEncoding];
-//        NSData *p= [productID dataUsingEncoding:NSUTF8StringEncoding];
-//        NSData *r= [recept dataUsingEncoding:NSUTF8StringEncoding];
-//        [formData appendPartWithFormData:o name:@"orderNo"];
-//        [formData appendPartWithFormData:p name:@"productId"];
-//        [formData appendPartWithFormData:r name:@"receipt"];
-//    } progress:^(NSProgress * _Nonnull uploadProgress) {
-//
-//    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-////        success(responseObject);
-//        NSLog(@"r");
-//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-////        faild(error);
-//        NSLog(@".");
-//    }];
-    
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST" URLString:requestUrl parameters:nil error:nil];
-    request.timeoutInterval = 3;
+    request.timeoutInterval = 20;
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
 
     NSDictionary *dic = @{@"productId":productID,@"receipt":recept,@"orderNo":orderId};
-    NSData *requestData = [NSJSONSerialization dataWithJSONObject:dic options:0 error:nil];
+    NSData *requestData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:nil];
     [request setHTTPBody:requestData];
 
     AFHTTPResponseSerializer *responseSerializer = [AFHTTPResponseSerializer serializer];
@@ -118,8 +98,12 @@
     } downloadProgress:^(NSProgress * _Nonnull downloadProgress) {
         NSLog(@"...");
     } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
-        NSDictionary *dictionary =[NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
-        NSLog(@"%@",dictionary);
+        if (error) {
+            faild(error);
+        } else {
+            NSDictionary *dictionary =[NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+            success(dictionary);
+        }
     }] resume];
 }
 
