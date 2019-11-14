@@ -7,6 +7,7 @@
 //
 
 #import "LDWebViewViewController.h"
+#import <UMShare/UMShare.h>
 @interface LDWebViewViewController ()
 @property (nonatomic,strong)UIWebView * webView;
 @end
@@ -35,25 +36,47 @@
 }
 - (void)clickShareAction{
     QMUIMoreOperationController *moreOperationController = [[QMUIMoreOperationController alloc] init];
-    moreOperationController.items = @[
-        // 第一行
-        @[
-            [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"wechat") title:@"分享给微信好友" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
-                [moreOperationController hideToBottom];
-            }],
-            [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareMoment") title:@"分享到朋友圈" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
-                [moreOperationController hideToBottom];
-            }],
-            [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareWeibo") title:@"分享到微博" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
-                [moreOperationController hideToBottom];
-            }],
-            
-            [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"icon_moreOperation_shareChat") title:@"分享到私信" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
-                [moreOperationController hideToBottom];
-            }]
-        ],
-    ];
+    
+    NSMutableArray *array = @[].mutableCopy;
+    
+   QMUIMoreOperationItemView *wx = [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"wechat") title:@"分享给微信好友" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+        [self share:UMSocialPlatformType_WechatSession];
+        [moreOperationController hideToBottom];
+    }];
+   QMUIMoreOperationItemView *wxp = [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"pyq") title:@"分享到朋友圈" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+        [self share:UMSocialPlatformType_WechatTimeLine];
+        [moreOperationController hideToBottom];
+    }];
+   QMUIMoreOperationItemView *sina = [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"weibo") title:@"分享到微博" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+        [self share:UMSocialPlatformType_Sina];
+        [moreOperationController hideToBottom];
+    }];
+    if ([[UMSocialManager defaultManager]isInstall:UMSocialPlatformType_WechatSession]) {
+        [array addObject:wx];
+        [array addObject:wxp];
+    }
+    if ([[UMSocialManager defaultManager]isInstall:UMSocialPlatformType_Sina]) {
+        [array addObject:sina];
+    }
+    moreOperationController.items = @[array];
     [moreOperationController showFromBottom];
+}
+- (void)share:(UMSocialPlatformType)shareType{
+    UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
+    UIImage *image = [UIImage imageNamed:@"ledao_logo_2"];
+    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"乐道分享" descr:nil thumImage:image];
+    //设置网页地址
+    shareObject.webpageUrl = self.urlStrng;
+    messageObject.shareObject = shareObject;
+    
+    //调用分享接口
+    [[UMSocialManager defaultManager] shareToPlatform:shareType messageObject:messageObject currentViewController:nil completion:^(id data, NSError *error) {
+        if (error) {
+            NSLog(@"%@",error);
+        }else{
+            NSLog(@"%@",data);
+        }
+    }];
 }
 - (void)clickCollectionAction:(UIButton *)sender{
     sender.selected = !sender.selected;

@@ -12,6 +12,8 @@
 #import "LDLoginViewController.h"
 #import "LDFirstLoginViewController.h"
 #import "IAPShare.h"
+#import <UMShare/UMShare.h>
+#import <UMCommon/UMCommon.h>
 @interface AppDelegate ()
 
 @end
@@ -34,10 +36,19 @@
 //    } else {
 //        // Fallback on earlier versions
 //    }
-    
+    [self setUMdata];
     [self autoLogin];
     [self recharge];
     return YES;
+}
+- (void)setUMdata
+{
+    //设置友盟appkey
+    [UMConfigure initWithAppkey:UMengAppkey channel:nil];
+    //设置微信的appKey和appSecret
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:WXAPPKEY appSecret:WXAPPSecret redirectURL:BaseAPI];
+    //设置新浪的appKey和appSecret
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Sina appKey:WBAPPKEY  appSecret:WBAPPSecret redirectURL:BaseAPI];
 }
 - (void)configMainView{
     if ([LDUserManager isLogin]) {

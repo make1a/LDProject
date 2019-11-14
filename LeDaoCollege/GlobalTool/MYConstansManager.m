@@ -9,14 +9,16 @@
 #import "MYConstansManager.h"
 
 
-NSString * const UMengAppkey = @"5b865d50f29d982aa400018c";
+NSString * const UMengAppkey = @"5dccf7414ca35704cd0005d5";
 
-NSString * const QQAPPID = @"4UR00WX5EMiUlWri";
+NSString * const QQAPPID = @"wx556e6360122782aa";
 NSString * const QQAPPKEY = @"1106510712";
 
-NSString * const WXAPPKEY = @"wx5fb2b63c9ea483bb";
-NSString * const WXAPPSecret = @"60ac95b794498f9eaadd71f92e1622f7";
-NSString * const JPushKEY = @"bd3c93f7a2c9a75550d77d95";
+NSString * const WXAPPKEY = @"wx556e6360122782aa";
+NSString * const WXAPPSecret = @"0fbdc36cd62300e628c731e1fbff24f6";
+
+NSString * const WBAPPKEY = @"1009638213";
+NSString * const WBAPPSecret = @"6105aa5afe34f7502ba37352b7a5c9d5";
 
 NSString * const MYUserDefaultHomeBgImageName = @"MYUserDefaultHomeBgImageName";
 

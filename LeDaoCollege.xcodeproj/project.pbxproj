@@ -76,6 +76,7 @@
 		26B0D4E22356BEEA0064205B /* LDUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B0D4E12356BEEA0064205B /* LDUserModel.m */; };
 		26B0D4E52356C1B60064205B /* LDUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B0D4E42356C1B60064205B /* LDUserManager.m */; };
 		26B38DAC236EE51B00578D89 /* LDWebViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B38DAB236EE51B00578D89 /* LDWebViewViewController.m */; };
+		26B6758E237D42AF00031749 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26B6758D237D42AE00031749 /* CoreGraphics.framework */; };
 		26B6CD5B233A07FA00E94520 /* LDEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B6CD5A233A07FA00E94520 /* LDEmptyView.m */; };
 		26B6CD5D233A080D00E94520 /* LDEmptyViewXIB.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26B6CD5C233A080D00E94520 /* LDEmptyViewXIB.xib */; };
 		26B6CD60233A13BF00E94520 /* LDCustomManagerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B6CD5F233A13BF00E94520 /* LDCustomManagerListViewController.m */; };
@@ -316,6 +317,8 @@
 		26B0D4E42356C1B60064205B /* LDUserManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDUserManager.m; sourceTree = "<group>"; };
 		26B38DAA236EE51B00578D89 /* LDWebViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDWebViewViewController.h; sourceTree = "<group>"; };
 		26B38DAB236EE51B00578D89 /* LDWebViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDWebViewViewController.m; sourceTree = "<group>"; };
+		26B6758D237D42AE00031749 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		26B6758F237D42BA00031749 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		26B6CD59233A07FA00E94520 /* LDEmptyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDEmptyView.h; sourceTree = "<group>"; };
 		26B6CD5A233A07FA00E94520 /* LDEmptyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDEmptyView.m; sourceTree = "<group>"; };
 		26B6CD5C233A080D00E94520 /* LDEmptyViewXIB.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LDEmptyViewXIB.xib; sourceTree = "<group>"; };
@@ -501,6 +504,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26B6758E237D42AF00031749 /* CoreGraphics.framework in Frameworks */,
 				5EBFFAD28375ED4CCCBD420A /* libPods-LeDaoCollege.a in Frameworks */,
 				26F67A2E237591D300B1D71C /* StoreKit.framework in Frameworks */,
 			);
@@ -1082,6 +1086,8 @@
 		9CF121A53BFA2761DD3BE88F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				26B6758F237D42BA00031749 /* libsqlite3.0.tbd */,
+				26B6758D237D42AE00031749 /* CoreGraphics.framework */,
 				26F67A2D237591D300B1D71C /* StoreKit.framework */,
 				51F34611335481E74543E6CB /* libPods-LeDaoCollege.a */,
 			);
@@ -1552,10 +1558,58 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+					"-ObjC",
+					"-l\"AFNetworking\"",
+					"-l\"CYLTabBarController\"",
+					"-l\"IQKeyboardManager\"",
+					"-l\"MJRefresh\"",
+					"-l\"QMUIKit\"",
+					"-l\"ReactiveObjC\"",
+					"-l\"SDCycleScrollView\"",
+					"-l\"SDWebImage\"",
+					"-l\"SocialSina\"",
+					"-l\"VTMagic\"",
+					"-l\"YYModel\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"CoreFoundation\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"LookinServer\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"Photos\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"UMCommon\"",
+					"-framework",
+					"\"UMShare\"",
+					"-framework",
+					"\"UShareUI\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.LD.LeDaoCollege;
 				PRODUCT_NAME = "乐道金矿";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1576,10 +1630,56 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"AFNetworking\"",
+					"-l\"CYLTabBarController\"",
+					"-l\"IQKeyboardManager\"",
+					"-l\"MJRefresh\"",
+					"-l\"QMUIKit\"",
+					"-l\"ReactiveObjC\"",
+					"-l\"SDCycleScrollView\"",
+					"-l\"SDWebImage\"",
+					"-l\"SocialSina\"",
+					"-l\"VTMagic\"",
+					"-l\"YYModel\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"CoreFoundation\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"Photos\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"UMCommon\"",
+					"-framework",
+					"\"UMShare\"",
+					"-framework",
+					"\"UShareUI\"",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.LD.LeDaoCollege;
 				PRODUCT_NAME = "乐道金矿";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

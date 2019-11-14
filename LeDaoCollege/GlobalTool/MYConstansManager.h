@@ -13,7 +13,10 @@
 UIKIT_EXTERN  NSString * const UMengAppkey;
 UIKIT_EXTERN  NSString * const QQAPPID;
 UIKIT_EXTERN  NSString * const QQAPPKEY;
-UIKIT_EXTERN  NSString * const JPushKEY;
+
+UIKIT_EXTERN  NSString * const WBAPPKEY;
+UIKIT_EXTERN  NSString * const WBAPPSecret;
+
 UIKIT_EXTERN  NSString * const WXAPPKEY;
 UIKIT_EXTERN  NSString * const WXAPPSecret;
 
