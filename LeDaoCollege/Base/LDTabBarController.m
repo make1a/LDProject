@@ -20,7 +20,7 @@
     if (!(self = [super init])) {
         return nil;
     }
-
+    
     CYLTabBarController *tabBarController = [CYLTabBarController tabBarControllerWithViewControllers: self.viewControllers
                                                                                tabBarItemsAttributes: self.tabBarItemsAttributesForController
                                                                                          imageInsets: UIEdgeInsetsZero
@@ -56,27 +56,27 @@
 
 - (NSArray *)tabBarItemsAttributesForController {
     NSDictionary *firstTabBarItemsAttributes = @{
-                                                 CYLTabBarItemTitle : @"学院",
-                                                 CYLTabBarItemImage : @"nav_button_xueyuan_default",
-                                                 CYLTabBarItemSelectedImage : @"nav_button_xueyuan_pre",
-                                                 };
+        CYLTabBarItemTitle : @"学院",
+        CYLTabBarItemImage : @"nav_button_xueyuan_default",
+        CYLTabBarItemSelectedImage : @"nav_button_xueyuan_pre",
+    };
     NSDictionary *secondTabBarItemsAttributes = @{
-                                                  CYLTabBarItemTitle : @"商城",
-                                                  CYLTabBarItemImage : @"nav_button_shangcheng_default",
-                                                  CYLTabBarItemSelectedImage : @"nav_button_shangcheng_pre",
-                                                  };
+        CYLTabBarItemTitle : @"商城",
+        CYLTabBarItemImage : @"nav_button_shangcheng_default",
+        CYLTabBarItemSelectedImage : @"nav_button_shangcheng_pre",
+    };
     
     NSDictionary *thirdTabBarItemsAttributes = @{
-                                                  CYLTabBarItemTitle : @"我的",
-                                                  CYLTabBarItemImage : @"nav_button_mine_default",
-                                                  CYLTabBarItemSelectedImage : @"nav_button_mine_pre",
-                                                  };
+        CYLTabBarItemTitle : @"我的",
+        CYLTabBarItemImage : @"nav_button_mine_default",
+        CYLTabBarItemSelectedImage : @"nav_button_mine_pre",
+    };
     
     NSArray *tabBarItemsAttributes = @[
-                                       firstTabBarItemsAttributes,
-                                       secondTabBarItemsAttributes,
-                                       thirdTabBarItemsAttributes
-                                       ];
+        firstTabBarItemsAttributes,
+        secondTabBarItemsAttributes,
+        thirdTabBarItemsAttributes
+    ];
     return tabBarItemsAttributes;
 }
 @end

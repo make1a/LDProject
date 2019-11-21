@@ -18,7 +18,7 @@ typedef enum : NSUInteger {
 
 @interface LDLoginViewController : QMUICommonViewController
 @property (nonatomic,assign)LDCurrentPageEnum currentPageType;
-
+@property (nonatomic,strong)NSMutableDictionary * WXInfoDic;
 @end
 
 NS_ASSUME_NONNULL_END

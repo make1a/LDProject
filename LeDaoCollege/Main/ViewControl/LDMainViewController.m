@@ -33,7 +33,9 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.bgView];
     [self masLayoutSubviews];
-    [self requestBannerList];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self requestBannerList];
+    });
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];

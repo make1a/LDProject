@@ -10,7 +10,7 @@
 #import "LoginEnableButton.h"
 #import "JKCountDownButton.h"
 #import "LDTabBarController.h"
-
+#import <UMShare/UMShare.h>
 @interface LDLoginViewController ()
 @property (nonatomic,strong)UILabel * titleLabel;
 @property (nonatomic,strong)QMUITextField * nameTextField;
@@ -21,6 +21,7 @@
 @property (nonatomic,strong)UIButton * wxButton;
 @property (nonatomic,strong)UIButton * registerButton;
 @property (nonatomic,strong)UIButton * WXLoginButton;
+
 @end
 
 @implementation LDLoginViewController
@@ -62,7 +63,7 @@
     } else if (self.currentPageType == LDCurrentPageIsRegister){
         [self regiserAPP];
     } else {
-        
+        [self bindApp];
     }
 }
 - (void)clickBackButton:(UIButton *)sender {
@@ -120,6 +121,42 @@
 
     }];
 }
+- (void)bindApp {
+    
+    NSString *phone = self.nameTextField.text;
+    NSString *pwd = self.pwdTextField.text;
+    if (phone.length != 11) {
+        [QMUITips showError:@"请输入正确的手机号"];
+        return;
+    }
+    if (pwd.length <= 0) {
+        [QMUITips showError:@"请输入验证码"];
+        return;
+    }
+    NSDictionary *dic = @{@"phone":phone,@"msgCode":pwd};
+    NSString *url = [NSString stringWithFormat:@"msg/validmsg/%@/%@",phone,pwd];
+//    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:url requestParameters:dic requestHeader:nil success:^(id responseObject) {
+//        if (kCODE == 200) {
+            [self.WXInfoDic setValue:phone forKey:@"phone"];
+            [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:@"wxlogin/bindphone" requestParameters:self.WXInfoDic requestHeader:nil success:^(id  _Nonnull responseObject) {
+                if (kCODE == 200) {
+                    LDUserModel *model = [LDUserModel yy_modelWithDictionary:responseObject[@"data"][@"user"]];
+                    [LDUserManager shareInstance].currentUser = model;
+                    [QMUITips showSucceed:@"绑定成功"];
+                    [self pushMain];
+                }else {
+                    ShowMsgInfo;
+                }
+            } faild:^(NSError * _Nonnull error) {
+                DLog(@"%@",error);
+            }];
+//        }else{
+//            ShowMsgInfo;
+//        }
+//    } faild:^(NSError *error) {
+//
+//    }];
+}
 - (void)regiserAPP {
     NSString *phone = self.nameTextField.text;
     NSString *pwd = self.pwdTextField.text;
@@ -157,6 +194,36 @@
     delegate.window.rootViewController = rootViewController;
 }
 
+- (void)WXlogin{
+    [[UMSocialManager defaultManager]getUserInfoWithPlatform:UMSocialPlatformType_WechatSession currentViewController:nil completion:^(id result, NSError *error) {
+        if (error) {
+            [QMUITips showError:error.localizedDescription];
+        } else {
+            UMSocialUserInfoResponse *resp = result;
+            NSDictionary *dic = @{@"openId":resp.openid};
+            NSString *api = [NSString stringWithFormat:@"wxlogin/login/%@",resp.openid];
+            self.WXInfoDic = @{@"openid":resp.openid,@"access_token":resp.accessToken}.mutableCopy;
+        
+            [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:api requestParameters:dic requestHeader:nil success:^(id responseObject) {
+                if (kCODE == 200) {
+                    NSDictionary *da = responseObject[@"data"];
+                    if ([da isEqual:[NSNull null]]) {
+                           LDLoginViewController *vc = [LDLoginViewController new];
+                       vc.currentPageType = LDCurrentPageIsBindPhone;
+                        vc.WXInfoDic = self.WXInfoDic;
+                       [self presentViewController:vc animated:YES completion:nil];
+                    } else {
+                        LDUserModel *model = [LDUserModel yy_modelWithDictionary:responseObject[@"data"][@"user"]];
+                        [LDUserManager shareInstance].currentUser = model;
+                        [self pushMain];
+                    }
+                }
+            } faild:^(NSError *error) {
+                
+            }];
+        }
+    }];
+}
 #pragma  mark - LayoutUI
 - (void)configUI{
     switch (self.currentPageType) {
@@ -241,10 +308,14 @@
         }
     }];
     [self creatLineView];
-    
-    [self.view addSubview:self.WXLoginButton];
-    
-    
+    if (self.currentPageType == LDCurrentPageIsLogin) {
+        [self.view addSubview:self.WXLoginButton];
+        if ([[UMSocialManager defaultManager]isInstall:UMSocialPlatformType_WechatSession]) {
+            _WXLoginButton.hidden = NO;
+        }else{
+            _WXLoginButton.hidden = YES;
+        }
+    }
 }
 - (void)creatLineView {
     UIView *leftLine = [[UIView alloc] init];
@@ -350,8 +421,10 @@
 - (UIButton *)WXLoginButton{
     if (!_WXLoginButton) {
         _WXLoginButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//        [_WXLoginButton setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+        [_WXLoginButton setBackgroundImage:[UIImage imageNamed:@"wechat"] forState:UIControlStateNormal];
         _WXLoginButton.frame = CGRectMake(PtWidth(169.5),PtHeight(569.8),PtWidth(37.5),PtHeight(37.5));
+        [_WXLoginButton sizeToFit];
+        [_WXLoginButton addTarget:self action:@selector(WXlogin) forControlEvents:UIControlEventTouchUpInside];
     }
     return _WXLoginButton;
 }

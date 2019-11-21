@@ -228,7 +228,7 @@
 		2658F0FC232CAEBF00F4C37A /* MKIndexView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKIndexView.m; sourceTree = "<group>"; };
 		265BE25C232684EA0093E60A /* LDAlterNameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDAlterNameViewController.h; sourceTree = "<group>"; };
 		265BE25D232684EA0093E60A /* LDAlterNameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDAlterNameViewController.m; sourceTree = "<group>"; };
-		265CB9342320A2F400883FE2 /* 乐道金矿.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "乐道金矿.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		265CB9342320A2F400883FE2 /* 行矩阵.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "行矩阵.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		265CB9372320A2F400883FE2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		265CB9382320A2F400883FE2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		265CB93A2320A2F400883FE2 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -574,7 +574,7 @@
 		265CB9352320A2F400883FE2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				265CB9342320A2F400883FE2 /* 乐道金矿.app */,
+				265CB9342320A2F400883FE2 /* 行矩阵.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1114,7 +1114,7 @@
 			);
 			name = LeDaoCollege;
 			productName = LeDaoCollege;
-			productReference = 265CB9342320A2F400883FE2 /* 乐道金矿.app */;
+			productReference = 265CB9342320A2F400883FE2 /* 行矩阵.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1607,7 +1607,7 @@
 					"\"UShareUI\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.LD.LeDaoCollege;
-				PRODUCT_NAME = "乐道金矿";
+				PRODUCT_NAME = "行矩阵";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1677,7 +1677,7 @@
 					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.LD.LeDaoCollege;
-				PRODUCT_NAME = "乐道金矿";
+				PRODUCT_NAME = "行矩阵";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
