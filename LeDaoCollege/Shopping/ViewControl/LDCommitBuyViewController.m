@@ -7,7 +7,8 @@
 //
 
 #import "LDCommitBuyViewController.h"
-
+#import "HNAlertView.h"
+#import "LDRechargeViewController.h"
 @interface LDCommitBuyViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *bigPayLabel;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
@@ -54,6 +55,16 @@
     if ([self.title isEqualToString:@"订单详情"]) {
         self.footView.hidden = YES;
     }
+    
+}
+- (void)showAlertView{
+    HNAlertView *alertView = [[HNAlertView alloc]initWithTitle:@"余额不足" Content:@"您的余额不足是否前往充值" whitTitleArray:@[@"是",@"否"] withType:@"center"];
+    [alertView showAlertView:^(NSInteger index) {
+        if (index == 0) {
+            LDRechargeViewController *vc = [LDRechargeViewController new];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    }];
 }
 #pragma  mark - Touch Down
 - (IBAction)payAction:(id)sender {
@@ -64,6 +75,8 @@
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:@"order/placeorder" requestParameters:@{@"goodsType":self.goodsType,@"goodsId":self.goodsId,@"goodsPrice":self.currentModel.discount} requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {
             ShowMsgInfo;
+        } else if (kCODE == 608){ //余额不足 跳转
+            [self showAlertView];
         }else {
             ShowMsgInfo;
         }

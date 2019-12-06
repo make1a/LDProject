@@ -35,7 +35,12 @@ NSString *const kLDVideoTableViewCellIdentifier = @"kLDVideoTableViewCellIdentif
     return self;
 }
 - (void)refreshWithModel:(LDVideoModel *)model{
-    [self.bigImageVIew sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@img/%@",BaseAPI,model.coverImg]] placeholderImage:[UIImage imageNamed:@"seizeaseat_0"]];
+    if ([model.coverImg containsString:@"http"]) {
+        [self.bigImageVIew sd_setImageWithURL:[NSURL URLWithString:model.coverImg] placeholderImage:[UIImage imageNamed:@"seizeaseat_0"]];
+    }else{
+        [self.bigImageVIew sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@img/%@",BaseAPI,model.coverImg]] placeholderImage:[UIImage imageNamed:@"seizeaseat_0"]];
+    }
+//    [self.bigImageVIew sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@img/%@",BaseAPI,model.coverImg]] placeholderImage:[UIImage imageNamed:@"seizeaseat_0"]];
     self.timeLabel.text = model.createdDate;
     self.titleLabel.text = model.title;
     self.collectionButton.selected = [model.collectionFlag isEqualToString:@"Y"]?YES:NO;

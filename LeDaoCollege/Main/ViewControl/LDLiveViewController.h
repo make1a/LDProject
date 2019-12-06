@@ -13,6 +13,6 @@
  作为搜索界面复用标示
  */
 @property (nonatomic,assign)BOOL isSearchModel;
-
+@property (nonatomic,strong)NSArray * netImages;
 
 @end

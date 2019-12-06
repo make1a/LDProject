@@ -45,14 +45,18 @@
     }
 }
 - (void)requestTag {
-    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"item/getitem/2" requestParameters:@{@"id":@1} requestHeader:nil success:^(id responseObject) {
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"item/getitem/2" requestParameters:@{@"id":@2} requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {
             self.tagArray = [NSArray yy_modelArrayWithClass:[LDTagModel class] json:responseObject[@"data"][0][@"itemList"]].mutableCopy;
             NSMutableArray *tags = @[].mutableCopy;
             for (LDTagModel *model in self.tagArray) {
-                [tags addObject:model.itemDesc];
+                [tags addObject:model];
             }
-            self.tagView.titles = tags;
+            NSMutableArray *titles = @[].mutableCopy;
+            for (LDTagModel *model in self.tagArray) {
+                [titles addObject: model.itemDesc];
+            }
+            self.tagView.titles = titles;
         }
     } faild:^(NSError *error) {
         
@@ -94,7 +98,8 @@
     _weakself;
     self.tagView.didSelectButtonBlock = ^(NSInteger index) {
         [weakself isShowTagView:NO];
-        [weakself requestSource:@"" mark:[NSString stringWithFormat:@"%ld",(long)index] back:nil];
+        LDTagModel *model = weakself.tagArray[index];
+        [weakself requestSource:@"" mark:[NSString stringWithFormat:@"%@",model.tagId] back:nil];
     };
 }
 #pragma  mark - TableView
@@ -118,7 +123,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     LDVideoModel *model = self.dataSource[indexPath.row];
     LDWebViewViewController * vc = [LDWebViewViewController new];
-    vc.urlStrng = [NSString stringWithFormat:@"%@?id=%@",model.contentUrl,model.v_id];
+    vc.urlStrng = [NSString stringWithFormat:@"%@?id=%@&token=%@",model.contentUrl,model.v_id,[LDUserManager userID]];
     vc.s_id = model.v_id;
     vc.isCollection = [model.collectionFlag isEqualToString:@"Y"]?YES:NO;
     vc.collectionType = @"3";

@@ -25,7 +25,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self requestDataSource];
-    
     UISwipeGestureRecognizer * recognizer = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(handleSwipeFrom:)];
     [recognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)];
     [self.view addGestureRecognizer:recognizer];
@@ -65,6 +64,12 @@
                     [QMUITips hideAllTips];
                 }];
                 doc = [[MKPdfDocumentManager alloc]initWithUrl:responseObject name:self.bookID];
+                if (doc.pdfDocument == nil) {
+                    [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+                        [QMUITips showError:@"PDF为空"];
+                    }];
+                    return ;
+                }
                 [doc saveToPlist];
                 MKReaderViewController *vc = [[MKReaderViewController alloc]init];
                 vc.pdfInfo = doc;
@@ -74,7 +79,7 @@
             } faild:^(NSError *error) {
                 
             }];
-
+            
         }else {
             MKReaderViewController *vc = [[MKReaderViewController alloc]init];
             vc.pdfInfo = doc;

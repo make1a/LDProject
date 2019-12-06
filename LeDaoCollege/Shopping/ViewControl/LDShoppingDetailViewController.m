@@ -16,6 +16,7 @@
 #import "LDCommitBuyViewController.h"
 #import "LDStoreModel.h"
 #import "LDNoUseView.h"
+
 @interface LDShoppingDetailViewController ()<SDCycleScrollViewDelegate,QMUITableViewDelegate,QMUITableViewDataSource,UIWebViewDelegate>
 {
     BOOL isLoadData;
@@ -67,7 +68,8 @@
             }
             self.netImages = @[].mutableCopy;
             for (goodsImgVOSModel *model in self.currentModel.detailArray) {
-                [self.netImages addObject:model.imgUrl];
+                NSString *imageURL = [NSString stringWithFormat:@"%@img/%@",BaseAPI,model.imgUrl];
+                [self.netImages addObject:imageURL];
             }
             self.cycleScrollView.imageURLStringsGroup = self.netImages;
         }
@@ -267,6 +269,7 @@
         _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_backButton setImage:[UIImage imageNamed:@"nav_black"] forState:UIControlStateNormal];
         [_backButton addTarget:self action:@selector(clickBackAction) forControlEvents:UIControlEventTouchUpInside];
+        [_backButton setEnlargeEdgeWithTop:10 right:10 bottom:10 left:10];
     }
     return _backButton;
 }

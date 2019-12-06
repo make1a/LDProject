@@ -44,7 +44,7 @@
         [button setTitle:titles[i] forState:UIControlStateNormal];
         button.titleLabel.font = UIFontMake(14);
         button.contentEdgeInsets = UIEdgeInsetsMake(6, 20, 6, 20);
-        button.tag = 100+i+1;
+        button.tag = 100+i;
         [button addTarget:self action:@selector(clickButtonAction:) forControlEvents:UIControlEventTouchUpInside];
         [self.advertisingView addSubview:button];
     }

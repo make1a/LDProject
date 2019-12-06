@@ -17,7 +17,9 @@
 #import "LDLoginViewController.h"
 #import <SDImageCache.h>
 #import "LDAlterPhoneViewController.h"
-@interface LDConfigTableViewController () <UIImagePickerControllerDelegate>
+#import <StoreKit/StoreKit.h>
+
+@interface LDConfigTableViewController () <UIImagePickerControllerDelegate,SKStoreProductViewControllerDelegate>
 @property (nonatomic,strong)UIButton * logoutButton;
 @end
 
@@ -29,6 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configUI];
+    [self update];
 }
 
 - (void)configUI {
@@ -57,6 +60,50 @@
     [LDUserManager removeUserID];
     LDLoginViewController *vc = [LDLoginViewController new];
     [[UIApplication sharedApplication].keyWindow setRootViewController:vc];
+}
+- (void)checkVesion{
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"/app/getversion/2" requestParameters:nil requestHeader:nil success:^(id responseObject) {
+        if (kCODE == 200) {
+            NSString *code = responseObject[@"data"][@"version_code"];
+            CGFloat version = [code floatValue];
+            NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+            NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+            CGFloat appV = [app_Version floatValue];
+            if (appV < version) {
+                [self update];
+            }else{
+                [QMUITips showInfo:@"当前已是最新版本"];
+            }
+        }
+    } faild:^(NSError *error) {
+        
+    }];
+}
+- (void)update{
+    SKStoreProductViewController *storeProductViewContorller = [[SKStoreProductViewController alloc] init];
+    //设置代理请求为当前控制器本身
+    storeProductViewContorller.delegate = self;
+    //加载一个新的视图展示
+    [storeProductViewContorller loadProductWithParameters:
+     //appId唯一的
+     @{SKStoreProductParameterITunesItemIdentifier : @"1486286817"} completionBlock:^(BOOL result, NSError *error) {
+         //block回调
+         if(error){
+             NSLog(@"error %@ with userInfo %@",error,[error userInfo]);
+         }else{
+             //模态弹出appstore
+             [self presentViewController:storeProductViewContorller animated:YES completion:^{
+                 
+             }
+              ];
+         }
+    }];
+}
+//取消按钮监听
+- (void)productViewControllerDidFinish:(SKStoreProductViewController *)viewController{
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 #pragma mark - Table view data source
 
@@ -155,6 +202,11 @@
                 UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
                 cell.detailTextLabel.text = @"0.00M";
             }];
+        }
+            break;
+        case 5:
+        {
+            [self checkVesion];
         }
             break;
         default:

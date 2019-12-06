@@ -82,7 +82,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     LDNewsModel *model = self.dataSource[indexPath.row];
     LDWebViewViewController * vc = [LDWebViewViewController new];
-    vc.urlStrng = [NSString stringWithFormat:@"%@?id=%@",model.contentUrl,model.newsId];
+    vc.urlStrng = [NSString stringWithFormat:@"%@?id=%@&token=%@",model.contentUrl,model.newsId,[LDUserManager userID]];
     vc.s_id = model.newsId;
     vc.isCollection = [model.collectionFlag isEqualToString:@"Y"]?YES:NO;
     vc.collectionType = @"1";

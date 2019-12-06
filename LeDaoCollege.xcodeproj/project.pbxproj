@@ -131,6 +131,7 @@
 		26CBF88E23252566005139EF /* LDLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CBF88D23252566005139EF /* LDLoginViewController.m */; };
 		26CBF8912325275C005139EF /* LoginEnableButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CBF88F2325275C005139EF /* LoginEnableButton.m */; };
 		26CBF89423252A98005139EF /* JKCountDownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CBF89323252A97005139EF /* JKCountDownButton.m */; };
+		26CDCBA3239A42AB005E924D /* UIButton+EnlargeEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CDCBA2239A42AB005E924D /* UIButton+EnlargeEdge.m */; };
 		26D93F8023372E2700B31DAB /* LDShoppingImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26D93F7E23372E2700B31DAB /* LDShoppingImageCell.m */; };
 		26D93F8123372E2700B31DAB /* LDShoppingImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26D93F7F23372E2700B31DAB /* LDShoppingImageCell.xib */; };
 		26D93F8423372F1300B31DAB /* LDShoppingDetailFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = 26D93F8323372F1300B31DAB /* LDShoppingDetailFootView.m */; };
@@ -418,6 +419,8 @@
 		26CBF8902325275C005139EF /* LoginEnableButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginEnableButton.h; sourceTree = "<group>"; };
 		26CBF89223252A97005139EF /* JKCountDownButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKCountDownButton.h; sourceTree = "<group>"; };
 		26CBF89323252A97005139EF /* JKCountDownButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKCountDownButton.m; sourceTree = "<group>"; };
+		26CDCBA1239A42AA005E924D /* UIButton+EnlargeEdge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+EnlargeEdge.h"; sourceTree = "<group>"; };
+		26CDCBA2239A42AB005E924D /* UIButton+EnlargeEdge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+EnlargeEdge.m"; sourceTree = "<group>"; };
 		26D93F7D23372E2700B31DAB /* LDShoppingImageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDShoppingImageCell.h; sourceTree = "<group>"; };
 		26D93F7E23372E2700B31DAB /* LDShoppingImageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDShoppingImageCell.m; sourceTree = "<group>"; };
 		26D93F7F23372E2700B31DAB /* LDShoppingImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LDShoppingImageCell.xib; sourceTree = "<group>"; };
@@ -968,6 +971,8 @@
 		26CBF8572323BC64005139EF /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				26CDCBA1239A42AA005E924D /* UIButton+EnlargeEdge.h */,
+				26CDCBA2239A42AB005E924D /* UIButton+EnlargeEdge.m */,
 				26F67A1E2375611C00B1D71C /* IAPHelper */,
 				26F3BB882330AEF1001A645C /* NSObject+Property.h */,
 				26F3BB892330AEF1001A645C /* NSObject+Property.m */,
@@ -1383,6 +1388,7 @@
 				26CB9A772334C40100DC12AD /* LDShoppingHeadView.m in Sources */,
 				2658F0F1232BF3DD00F4C37A /* MKReaderViewController.m in Sources */,
 				265CB97B2320AAA600883FE2 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
+				26CDCBA3239A42AB005E924D /* UIButton+EnlargeEdge.m in Sources */,
 				26F3BB822330AD93001A645C /* LeftTableViewCell.m in Sources */,
 				26E8164923324AF400CECCE3 /* QMUIConfigurationTemplate.m in Sources */,
 				26869C41232106F6001DEDBA /* LDVideoViewController.m in Sources */,

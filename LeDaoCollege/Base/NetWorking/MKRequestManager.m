@@ -20,7 +20,7 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    manager.requestSerializer.timeoutInterval = 10;  // 超时时间设置为10s
+    manager.requestSerializer.timeoutInterval = 100;  // 超时时间设置为10s
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json", nil];
     if (headerParameters != nil)
     {

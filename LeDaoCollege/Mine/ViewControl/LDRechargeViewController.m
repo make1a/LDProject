@@ -356,6 +356,7 @@
         _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_backButton setImage:[UIImage imageNamed:@"nav_back_01"] forState:UIControlStateNormal];
         [_backButton addTarget:self action:@selector(clickBackAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_backButton setEnlargeEdgeWithTop:10 right:10 bottom:10 left:10];
     }
     return _backButton;
 }

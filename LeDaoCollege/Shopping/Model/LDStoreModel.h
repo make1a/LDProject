@@ -26,6 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 /** <#Description#> **/
 @property(nonatomic,copy) NSString *createDate;
 @property(nonatomic,copy) NSString *isPayFlag;
+@property(nonatomic,copy) NSString *bookId;
+@property(nonatomic,copy) NSString *courseId;
 @end
 
 @interface LDBookModel : NSObject

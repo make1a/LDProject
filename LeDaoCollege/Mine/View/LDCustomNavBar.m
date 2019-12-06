@@ -43,6 +43,7 @@
     if (!_backButton) {
         _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_backButton setImage:[UIImage imageNamed:@"btn_back_red"] forState:UIControlStateNormal];
+        [_backButton setEnlargeEdgeWithTop:10 right:10 bottom:10 left:10];
     }
     return _backButton;
 }

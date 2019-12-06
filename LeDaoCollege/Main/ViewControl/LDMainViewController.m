@@ -151,6 +151,9 @@
             {
                 vc = [[LDLiveViewController alloc] init];
             }
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                vc.netImages = self.imageArray;
+            });
             return vc;
         }
             break;

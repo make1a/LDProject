@@ -49,9 +49,13 @@
             NSArray *array = [NSArray yy_modelArrayWithClass:[LDTagModel class] json:responseObject[@"data"][0][@"itemList"]];
             self.tagArray = @[].mutableCopy;
             for (LDTagModel *model in array) {
-                [self.tagArray addObject:model.itemDesc];
+                [self.tagArray addObject:model];
+            }     
+            NSMutableArray *titles = @[].mutableCopy;
+            for (LDTagModel *model in self.tagArray) {
+                [titles addObject: model.itemDesc];
             }
-            self.tagView.titles = self.tagArray;
+            self.tagView.titles = titles;
         }
     } faild:^(NSError *error) {
         
@@ -88,11 +92,12 @@
     }];
 }
 #pragma mark - event response
-- (void)didSelectTagAction{
+- (void)didSelectTagAction {
     _weakself;
     self.tagView.didSelectButtonBlock = ^(NSInteger index) {
         [weakself isShowTagView:NO];
-        [weakself requestSource:@"" mark:[NSString stringWithFormat:@"%ld",(long)index] back:nil];
+        LDTagModel *model = weakself.tagArray[index];
+        [weakself requestSource:@"" mark:[NSString stringWithFormat:@"%@",model.tagId] back:nil];
     };
 }
 
@@ -117,7 +122,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     LDVoiceModel *model = self.dataSource[indexPath.row];
     LDWebViewViewController * vc = [LDWebViewViewController new];
-    vc.urlStrng = [NSString stringWithFormat:@"%@?id=%@",model.contentUrl,model.v_id];
+    vc.urlStrng = [NSString stringWithFormat:@"%@?id=%@&token=%@",model.contentUrl,model.v_id,[LDUserManager userID]];
     vc.s_id = model.v_id;
     vc.isCollection = [model.collectionFlag isEqualToString:@"Y"]?YES:NO;
     vc.collectionType = @"2";

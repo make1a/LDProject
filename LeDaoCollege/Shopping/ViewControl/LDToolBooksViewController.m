@@ -12,7 +12,6 @@
 @interface LDToolBooksViewController ()
 {
     NSInteger page;
-    
 }
 
 @end
