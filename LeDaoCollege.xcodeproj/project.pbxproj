@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -609,6 +609,7 @@
 				265CB94E2320A37100883FE2 /* Mine */,
 				265CB9522320A37100883FE2 /* Shopping */,
 				265CB9372320A2F400883FE2 /* AppDelegate.h */,
+				26CB9A692334BA2D00DC12AD /* LDShoppingDetailViewController.h */,
 				265CB9382320A2F400883FE2 /* AppDelegate.m */,
 				265CB93A2320A2F400883FE2 /* ViewController.h */,
 				265CB93B2320A2F400883FE2 /* ViewController.m */,
@@ -785,7 +786,6 @@
 				26CB9A702334C31F00DC12AD /* LDToolBooksViewController.m */,
 				26CB9A722334C32C00DC12AD /* LDSmallClassViewController.h */,
 				26CB9A732334C32C00DC12AD /* LDSmallClassViewController.m */,
-				26CB9A692334BA2D00DC12AD /* LDShoppingDetailViewController.h */,
 				26CB9A6A2334BA2D00DC12AD /* LDShoppingDetailViewController.m */,
 				26C8469B233895C900500B3F /* LDSmallClassDetailViewController.h */,
 				26C8469C233895C900500B3F /* LDSmallClassDetailViewController.m */,
@@ -1224,20 +1224,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-LeDaoCollege/Pods-LeDaoCollege-frameworks.sh",
-				"${PODS_ROOT}/LookinServer/LookinServer.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-LeDaoCollege/Pods-LeDaoCollege-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LookinServer.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-LeDaoCollege/Pods-LeDaoCollege-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LeDaoCollege/Pods-LeDaoCollege-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LeDaoCollege/Pods-LeDaoCollege-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5680EDE05B9CF16A550F9B91 /* [CP] Copy Pods Resources */ = {
@@ -1246,26 +1241,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-LeDaoCollege/Pods-LeDaoCollege-resources.sh",
-				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
-				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
-				"${PODS_ROOT}/QMUIKit/QMUIKit/QMUIResources/QMUIResources.bundle",
-				"${PODS_ROOT}/UMCShare/UMShare/UMSocialUI/UMSocialSDKResources.bundle",
+				"${PODS_ROOT}/Target Support Files/Pods-LeDaoCollege/Pods-LeDaoCollege-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/QMUIResources.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/UMSocialSDKResources.bundle",
+				"${PODS_ROOT}/Target Support Files/Pods-LeDaoCollege/Pods-LeDaoCollege-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LeDaoCollege/Pods-LeDaoCollege-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LeDaoCollege/Pods-LeDaoCollege-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		844ED49D1F2F510FFBED0FE3 /* [CP] Check Pods Manifest.lock */ = {

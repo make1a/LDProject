@@ -1,3 +1,4 @@
+platform :ios, '9.0'
 target 'LeDaoCollege' do
     
     inhibit_all_warnings!

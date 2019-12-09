@@ -238,13 +238,14 @@
     if (!_searchBar) {
         _searchBar = [[QMUISearchBar alloc]init];
         _searchBar.placeholder = @"搜索";
-        [_searchBar setCornerRadius:PtHeight(17)];
         _searchBar.searchBarStyle = UISearchBarStyleMinimal;
-        //        _searchBar.backgroundColor = [UIColor clearColor];
         _searchBar.delegate = self;
-        //        _searchBar.qmui_cancelButtonFont
+        _searchBar.backgroundColor = [UIColor clearColor];
+        UIImage *image = [UIImage qmui_imageWithColor:[UIColor whiteColor] size:CGSizeMake(200, 32) cornerRadius:0];
+        [_searchBar setBackgroundImage:image];
+        [_searchBar setBackgroundColor:[UIColor clearColor]];
+        [_searchBar setSearchFieldBackgroundImage:image forState:UIControlStateNormal];
         [UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[UISearchBar class]]].title = @"取消";
-        [_searchBar qmui_styledAsQMUISearchBar];
     }
     return _searchBar;
 }

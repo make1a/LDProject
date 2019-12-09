@@ -49,8 +49,8 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self leftTableView];
     [self rightTableView];
-    _isRelate = YES;
     [self requestDataSource];
+    [self.leftTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
 }
 - (void)requestDataSource {
     // type:收藏类型(1.资讯 2.音频 3.视频 4书籍 5课程)
@@ -185,50 +185,12 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 20;
 }
-////- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-////    if (tableView == self.rightTableView) {
-////        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 20)];
-////        view.backgroundColor = [UIColor whiteColor];
-////
-////        UILabel *lable = [[UILabel alloc]initWithFrame:view.bounds];
-////        lable.font = [UIFont systemFontOfSize:13];
-////        lable.text = self.leftTitles[section];
-////        [view addSubview:lable];
-////        return view;
-////
-////    } else {
-////        return [UIView new];
-////    }
-////}
-////- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-////    return [UIView new];
-////}
-////- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
-////
-////    if (_isRelate) {
-////        NSInteger topCellSection = [[[tableView indexPathsForVisibleRows] firstObject] section];
-////        if (tableView == self.rightTableView) {
-////            [self.leftTableView selectRowAtIndexPath:[NSIndexPath indexPathForItem:topCellSection inSection:0] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
-////        }
-////    }
-////}
-////
-////- (void)tableView:(UITableView *)tableView didEndDisplayingFooterView:(UIView *)view forSection:(NSInteger)section {
-////    if (_isRelate) {
-////        NSInteger topCellSection = [[[tableView indexPathsForVisibleRows] firstObject] section];
-////
-////        if (tableView == self.rightTableView) {
-////            [self.leftTableView selectRowAtIndexPath:[NSIndexPath indexPathForItem:topCellSection inSection:0] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
-////        }
-////    }
-////}
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (tableView == self.leftTableView) {
-        //        _isRelate = NO;
-        //        [self.leftTableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionMiddle];
-        //        [self.rightTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:indexPath.row] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+
         switch (indexPath.row) {
             case 0:
             {
@@ -309,12 +271,6 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
     }
-}
-
-#pragma mark - UIScrollViewDelegate
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    _isRelate = YES;
 }
 
 #pragma  mark - GET & SET

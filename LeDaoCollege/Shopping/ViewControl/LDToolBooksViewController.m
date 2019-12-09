@@ -9,7 +9,8 @@
 #import "LDToolBooksViewController.h"
 #import "LDShoppingTableViewCell.h"
 #import "LDShoppingDetailViewController.h"
-@interface LDToolBooksViewController ()
+#import "LDStoreViewController.h"
+@interface LDToolBooksViewController ()<UIScrollViewDelegate>
 {
     NSInteger page;
 }
@@ -20,6 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
     if (!self.isSearchModel) {
         [self requestAllStore];
     }
@@ -91,5 +93,18 @@
 }
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return PtHeight(80);
+}
+#pragma  mark - Scrollview
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGPoint point = scrollView.contentOffset;
+    LDStoreViewController *vc = (LDStoreViewController *)self.magicController.parentViewController;
+    
+    CGFloat maxY = CGRectGetMaxY(vc.headView.frame);
+    if (point.y > 0) {
+        [vc.scrollView setContentOffset:CGPointMake(0, maxY) animated:NO];
+    }else if (point.y < 0){
+        [vc.scrollView setContentOffset:point animated:NO];
+    }
+    
 }
 @end

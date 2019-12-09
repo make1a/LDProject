@@ -146,10 +146,6 @@ BeginIgnoreDeprecatedWarning
     [self.searchController loadViewIfNeeded];
 }
 
-- (void)dealloc {
-    NSLog(@".dealloc.");
-}
-
 - (void)setSearchResultsDelegate:(id<QMUISearchControllerDelegate>)searchResultsDelegate {
     _searchResultsDelegate = searchResultsDelegate;
     self.tableView.dataSource = _searchResultsDelegate;

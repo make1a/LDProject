@@ -11,7 +11,7 @@
 #import "LDStoreModel.h"
 #import "LDShoppingDetailViewController.h"
 #import "LDSmallClassDetailViewController.h"
-
+#import "LDStoreViewController.h"
 @interface LDAllshoppingViewController ()<UIScrollViewDelegate>
 {
     NSInteger page;
@@ -24,10 +24,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
     if (!self.isSearchModel) {
         [self requestAllStore];
     }
-    
 }
 - (void)requestAllStore {
     NSDictionary *dic = @{@"title":@"",
@@ -86,10 +86,19 @@
 }
 #pragma  mark - Scrollview
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    NSLog(@"scrollViewDidScroll");
-    CGPoint point=scrollView.contentOffset;
-    NSLog(@"%f,%f",point.x,point.y);
-//    self.magicController
-
+    CGPoint point = scrollView.contentOffset;
+    LDStoreViewController *vc = (LDStoreViewController *)self.magicController.parentViewController;
+    
+    CGFloat maxY = CGRectGetMaxY(vc.headView.frame);
+    
+    if (point.y > 0) {
+        if (iPhoneX) {
+            maxY -= 10;
+        }
+        [vc.scrollView setContentOffset:CGPointMake(0, maxY) animated:NO];
+    }else if (point.y < 0){
+        [vc.scrollView setContentOffset:point animated:NO];
+    }
 }
+
 @end
