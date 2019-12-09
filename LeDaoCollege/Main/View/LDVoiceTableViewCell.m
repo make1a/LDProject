@@ -68,7 +68,9 @@ NSString *const kLDVoiceTableViewCellIdentifier = @"kLDVoiceTableViewCellIdentif
     }];
 }
 
-
+- (void)addFreeLabel{
+    
+}
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code

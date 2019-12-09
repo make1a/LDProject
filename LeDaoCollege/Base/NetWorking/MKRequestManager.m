@@ -94,6 +94,7 @@
              success:(SuccessBlock)success
                faild:(FaildBlock)faild{
     AFHTTPSessionManager *manage  = [AFHTTPSessionManager manager];
+    manage.securityPolicy.validatesDomainName = NO;
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString: downloadURL]];
 
     NSURLSessionDownloadTask *downloadTask = [manage downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
@@ -106,6 +107,7 @@
         }else {
             bookName = response.suggestedFilename;
         }
+        bookName = [NSString stringWithFormat:@"%@.pdf",bookName];
         NSString *fullpath = [caches stringByAppendingPathComponent:bookName];
         NSURL *filePathUrl = [NSURL fileURLWithPath:fullpath];
         return filePathUrl;

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LDBookRackViewController : UIViewController
+@interface LDBookRackViewController : QMUICommonViewController
 
 @end

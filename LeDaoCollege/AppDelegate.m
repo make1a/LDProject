@@ -24,11 +24,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [UIApplication sharedApplication].statusBarHidden = NO;
     // 设置主窗口,并设置根控制器
+//    sleep(3);
     self.window = [[UIWindow alloc] init];
     self.window.frame = [UIScreen mainScreen].bounds;
     [self.window makeKeyAndVisible];
     [[QMUIConfiguration sharedInstance]applyInitialTemplate];
-
     [self configIQKeyboard];
     [self configMainView];
 //    if (@available(iOS 13.0, *)) {
@@ -41,6 +41,7 @@
     [self recharge];
     return YES;
 }
+
 - (void)setUMdata
 {
     //设置友盟appkey

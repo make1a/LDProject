@@ -12,7 +12,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LDTagModel : NSObject
 /** <#Description#> **/
-@property(nonatomic,copy) NSString *tagId;
+@property(nonatomic,copy) NSString *imgUrl;
+/** <#Description#> **/
+@property(nonatomic,copy) NSString *parantItemCode;
+/** <#Description#> **/
+@property(nonatomic,strong) NSArray *markList;
+/** <#Description#> **/
+@property(nonatomic,copy) NSString *parentItemDesc;
+
+@end
+
+@interface LDTagDetailModel : NSObject
+/** <#Description#> **/
+@property(nonatomic,strong) NSString *tagId;
 /** <#Description#> **/
 @property(nonatomic,copy) NSString *userId;
 /** <#Description#> **/
@@ -30,14 +42,11 @@ NS_ASSUME_NONNULL_BEGIN
 /** <#Description#> **/
 @property(nonatomic,copy) NSString *updateDate;
 /** <#Description#> **/
-@property(nonatomic,copy) NSString *parentItemId;
+@property(nonatomic,copy) NSString *parentId;
 /** <#Description#> **/
-@property(nonatomic,copy) NSString *itemCode;
+@property(nonatomic,copy) NSString *markCode;
 /** <#Description#> **/
-@property(nonatomic,copy) NSString *itemDesc;
-/** <#Description#> **/
-@property(nonatomic,strong) NSNumber *itemOrder;
+@property(nonatomic,copy) NSString *markDesc;
 
 @end
-
 NS_ASSUME_NONNULL_END

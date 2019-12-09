@@ -13,14 +13,17 @@
 #import "LDTagModel.h"
 #import "LDVideoModel.h"
 #import "LDWebViewViewController.h"
-@interface LDVideoViewController ()<SDCycleScrollViewDelegate,QMUITableViewDataSource,QMUITableViewDelegate>
+#import "LDTagCell.h"
+#import "LDHeadCollectionReusableView.h"
+#import "LDVideoListViewController.h"
+@interface LDVideoViewController ()<SDCycleScrollViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 {
     NSInteger currentIndex;
 }
 @property (nonatomic,strong)LDTagView * tagView;
-
+@property (nonatomic,strong)UICollectionView * collectionView;
 @property (nonatomic,strong)SDCycleScrollView* cycleScrollView;
-@property (nonatomic,strong)NSMutableArray * tagArray;
+@property (nonatomic,strong)NSArray * tagArray;
 
 @end
 
@@ -28,111 +31,25 @@
 #pragma mark - life cycle
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    if (!self.isSearchModel) {
-        [self isShowTagView:YES];
-    }
 }
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.netImages = @[];
-    [self didSelectTagAction];
     [self configUI];
-    if (self.isSearchModel) {
-        [self isShowTagView:NO];
-    }else {
-        [self requestTag];
-    }
+    [self requestTag];
 }
 - (void)requestTag {
-    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"item/getitem/2" requestParameters:@{@"id":@2} requestHeader:nil success:^(id responseObject) {
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"/audio/getAudioMark" requestParameters:@{@"id":@2} requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {
-            self.tagArray = [NSArray yy_modelArrayWithClass:[LDTagModel class] json:responseObject[@"data"][0][@"itemList"]].mutableCopy;
-            NSMutableArray *tags = @[].mutableCopy;
-            for (LDTagModel *model in self.tagArray) {
-                [tags addObject:model];
-            }
-            NSMutableArray *titles = @[].mutableCopy;
-            for (LDTagModel *model in self.tagArray) {
-                [titles addObject: model.itemDesc];
-            }
-            self.tagView.titles = titles;
-        }
-    } faild:^(NSError *error) {
-        
-    }];
-}
-- (void)requestSource:(NSString *)title mark:(NSString *)mark back:(backSourceCountBlock)blcok{
-    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"video/getlist" requestParameters:@{@"title":title,@"mark":mark,@"pageSize":@1000} requestHeader:nil success:^(id responseObject) {
-        if (kCODE == 200) {
-            self.dataSource = [NSArray yy_modelArrayWithClass:[LDVideoModel class] json:responseObject[@"data"][@"list"]];
-            [self.tableView reloadData];
-            if (blcok) {
-                blcok(self.dataSource.count);
-            }
-            
+            self.tagArray = [NSArray yy_modelArrayWithClass:[LDTagModel class] json:responseObject[@"data"]];
+            [self.collectionView reloadData];
         }
     } faild:^(NSError *error) {
         
     }];
 }
 
-- (void)requestCollection:(LDVideoModel*)model index:(NSInteger)index{
-    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:@"collection/addanddelete" requestParameters:@{@"collectionId":model.v_id,@"collectionType":@"3"} requestHeader:nil success:^(id responseObject) {
-        if (kCODE == 200) {
-            [QMUITips showSucceed:responseObject[@"returnMsg"]];
-            if ([model.collectionFlag isEqualToString:@"N"]) {
-                model.collectionFlag = @"Y";
-            } else {
-                model.collectionFlag = @"N";
-            }
-
-            [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
-        }
-    } faild:^(NSError *error) {
-
-    }];
-}
-#pragma mark - event response
-- (void)didSelectTagAction{
-    _weakself;
-    self.tagView.didSelectButtonBlock = ^(NSInteger index) {
-        [weakself isShowTagView:NO];
-        LDTagModel *model = weakself.tagArray[index];
-        [weakself requestSource:@"" mark:[NSString stringWithFormat:@"%@",model.tagId] back:nil];
-    };
-}
-#pragma  mark - TableView
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.dataSource.count;
-}
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    LDVideoTableViewCell *cell = [LDVideoTableViewCell dequeueReusableWithTableView:tableView];
-    LDVideoModel *model = self.dataSource[indexPath.row];
-    [cell refreshWithModel:model];
-    _weakself;
-    cell.didSelectCollectionActionBlock = ^{
-        [weakself requestCollection:model index:indexPath.row];
-    };
-    return cell;
-}
-- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return PtHeight(80);
-}
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    LDVideoModel *model = self.dataSource[indexPath.row];
-    LDWebViewViewController * vc = [LDWebViewViewController new];
-    vc.urlStrng = [NSString stringWithFormat:@"%@?id=%@&token=%@",model.contentUrl,model.v_id,[LDUserManager userID]];
-    vc.s_id = model.v_id;
-    vc.isCollection = [model.collectionFlag isEqualToString:@"Y"]?YES:NO;
-    vc.collectionType = @"3";
-    vc.didRefreshCollectionStateBlock = ^(BOOL isCollection) {
-        model.collectionFlag = isCollection?@"Y":@"N";
-        [tableView reloadData];
-    };
-    [self.navigationController pushViewController:vc animated:YES];
-}
 #pragma  mark - SDCyclesScrollview
 /** 点击图片回调 */
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
@@ -143,52 +60,65 @@
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index {
     
 }
+#pragma  mark - collectionView
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    return self.tagArray.count;
+}
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    LDTagModel *model = self.tagArray[section];
+    return model.markList.count;
+}
+- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    LDTagCell *cell = [collectionView  dequeueReusableCellWithReuseIdentifier:@"LDTagCell" forIndexPath:indexPath];\
+    LDTagModel *model = self.tagArray[indexPath.section];
+    LDTagDetailModel *detailModel = model.markList[indexPath.row];
+    cell.titleLabel.text = detailModel.markDesc;
+    return cell;
+}
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    LDTagModel *model = self.tagArray[indexPath.section];
+    LDTagDetailModel *detailModel = model.markList[indexPath.row];
+    LDVideoListViewController *vc = [LDVideoListViewController new];
+    [vc requestSource:@"" mark:[NSString stringWithFormat:@"%@",detailModel.tagId] back:nil];
+    vc.title = detailModel.markDesc;
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
+    return UIEdgeInsetsMake(PtWidth(20), PtWidth(20), PtWidth(20), PtWidth(20));
+}
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
+{
+    return CGSizeMake(SCREEN_WIDTH, 30);
+}
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
+    NSString *reuseIdentifier;
+    if ([kind isEqualToString:UICollectionElementKindSectionHeader])
+    { // header
+        reuseIdentifier = @"LDHeadCollectionReusableView";
+    }
+    LDHeadCollectionReusableView *headView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    LDTagModel *model = self.tagArray[indexPath.section];
+    headView.titleLabel.text = model.parentItemDesc;
+    [headView.headImageView sd_setImageWithURL:[NSURL URLWithString:model.imgUrl] placeholderImage:[UIImage imageNamed:@"mine_list_daily"]];
+    if ([kind isEqualToString:UICollectionElementKindSectionHeader])
+    {
+        
+    }
+    return headView;
+}
+
 #pragma mark - private method
 - (void)configUI {
     [self masLayoutSubviews];
-    [self.view addSubview:self.tagView];
-}
-- (void)isShowTagView:(BOOL)isShow {
-    if (isShow) {
-        self.tableView.hidden = YES;
-        self.cycleScrollView.hidden = YES;
-        self.tagView.hidden = NO;
-    }else {
-        self.tableView.hidden = !YES;
-        self.tagView.hidden = !NO;
-        self.cycleScrollView.hidden = NO;
-    }
 }
 #pragma  mark - LayoutSubviews
 - (void)masLayoutSubviews {
-    [self.view addSubview:self.tableView];
-
-    if (!self.isSearchModel) {
-        [self.view addSubview:self.cycleScrollView];
-        [self.cycleScrollView reloadInputViews];
-        [self.cycleScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.view).offset(PtWidth(20));
-            make.right.mas_equalTo(self.view).mas_offset(PtWidth(-20));
-            make.top.mas_equalTo(self.view);
-            make.height.mas_equalTo(PtHeight(120));
-        }];
-        
-        [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.view).offset(PtWidth(20));
-            make.right.mas_equalTo(self.view).mas_offset(PtWidth(-20));
-            make.top.mas_equalTo(self.cycleScrollView.mas_bottom);
-            if (@available(iOS 11.0, *)) {
-                make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom);
-            } else {
-                make.bottom.mas_equalTo(self.view);
-            }
-        }];
-        
-    }else {
-        [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.view);
-        }];
-    }
+    [self.view addSubview:self.collectionView];
+    [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.view).mas_offset(30);
+        make.left.right.bottom.mas_equalTo(self.view);
+    }];
 }
 #pragma mark - get and set
 
@@ -216,21 +146,32 @@
     _netImages = netImages;
     self.cycleScrollView.imageURLStringsGroup = netImages;
 }
-- (QMUITableView *)tableView {
-    if (!_tableView) {
-        _tableView = [[QMUITableView alloc]init];
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        _tableView.backgroundColor = [UIColor clearColor];
-        _tableView.showsHorizontalScrollIndicator = NO;
-        _tableView.showsVerticalScrollIndicator = NO;
-    }
-    return _tableView;
-}
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
 }
 
+- (UICollectionView *)collectionView{
+    if (!_collectionView) {
+        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+        flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
+        flowLayout.minimumInteritemSpacing = 12;
+        flowLayout.minimumLineSpacing = 12;
+        flowLayout.itemSize = CGSizeMake(PtWidth(100), PtHeight(40));
+        
+        _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:flowLayout];
+        _collectionView.delegate = self;
+        _collectionView.dataSource = self;
+        
+        _collectionView.showsVerticalScrollIndicator = NO;
+        _collectionView.showsHorizontalScrollIndicator = NO;
+        [_collectionView setBackgroundColor:[UIColor whiteColor]];
+        //注册cell
+        [_collectionView registerNib:[UINib nibWithNibName:@"LDTagCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"LDTagCell"];
+        //注册分区头标题;
+        [_collectionView registerNib:[UINib nibWithNibName:@"LDHeadCollectionReusableView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"LDHeadCollectionReusableView"];
+    }
+    return _collectionView;
+}
 @end

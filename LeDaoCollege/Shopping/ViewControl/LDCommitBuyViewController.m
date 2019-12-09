@@ -74,7 +74,7 @@
 - (void)requestBuy{
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:@"order/placeorder" requestParameters:@{@"goodsType":self.goodsType,@"goodsId":self.goodsId,@"goodsPrice":self.currentModel.discount} requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {
-            ShowMsgInfo;
+            [QMUITips showSucceed:@"购买成功"];
         } else if (kCODE == 608){ //余额不足 跳转
             [self showAlertView];
         }else {

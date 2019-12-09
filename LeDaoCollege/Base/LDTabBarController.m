@@ -28,7 +28,6 @@
                                                                                              context: nil];
     self = (LDTabBarController *)tabBarController;
     [self setTintColor:UIColorFromHEXA(0xFF07C062, 1)];
-    
     return self;
 }
 

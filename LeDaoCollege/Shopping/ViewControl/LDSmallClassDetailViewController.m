@@ -35,6 +35,7 @@
     [super viewDidLoad];
     [self masLayoutSubViews];
     [self requestDtasource];
+    self.title = @"商品详情";
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -82,6 +83,7 @@
             self.currenModel = [LDClassModel yy_modelWithJSON:responseObject[@"data"]];
             [self.tableView reloadData];
             [self addNouseView:self.currenModel.activeFlag];
+            self.headView.titleLabel.text = self.currenModel.title;
             self.headView.nameLabel.text = self.currenModel.lecturerName;
             self.headView.priceLabel.text = [NSString stringWithFormat:@"¥%@",self.currenModel.discount];
             self.headView.discountPriceLabel.text = [NSString stringWithFormat:@"¥%@",self.currenModel.originalPrice];
@@ -194,6 +196,15 @@
     }
     return 30;
 }
+//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+//    if (section == self.currenModel.chapterArray.count) {
+//        return 10;;
+//    }
+//    return CGFLOAT_MIN;
+//}
+//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+//    return  [UIView new];
+//}
 #pragma  mark - GET SET
 - (QMUITableView *)tableView {
     if (!_tableView) {
@@ -201,7 +212,7 @@
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        
+        _tableView.contentInset = UIEdgeInsetsMake(0, 0, 20, 0);
         [_tableView registerNib:[UINib nibWithNibName:@"LDSmallClassLessonCell" bundle:nil] forCellReuseIdentifier:@"LDSmallClassLessonCell"];
         [_tableView registerNib:[UINib nibWithNibName:@"LDSmallClassDetailIntroCell" bundle:nil] forCellReuseIdentifier:@"LDSmallClassDetailIntroCell"];
         
@@ -213,6 +224,7 @@
         _footView = [[NSBundle mainBundle]loadNibNamed:@"LDShoppingDetailFootView" owner:self options:nil].firstObject;
         [_footView.collectionButton addTarget:self action:@selector(clickCollectionAction:) forControlEvents:UIControlEventTouchUpInside];
         [_footView.buyButton addTarget:self action:@selector(clickBuyAction:) forControlEvents:UIControlEventTouchUpInside];
+        _footView.qmui_borderPosition = QMUIViewBorderPositionTop;
     }
     return _footView;
 }

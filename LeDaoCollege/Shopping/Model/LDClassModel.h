@@ -88,9 +88,9 @@ NS_ASSUME_NONNULL_BEGIN
 /** <#Description#> **/
 @property(nonatomic,copy) NSString *goodsImgVOS;
 /** <#Description#> **/
-@property(nonatomic,strong) NSNumber *courseId;
+@property(nonatomic,strong) NSString *courseId;
 /** <#Description#> **/
-@property(nonatomic,strong) NSNumber *chapterNo;
+@property(nonatomic,strong) NSString *chapterNo;
 /** <#Description#> **/
 @property(nonatomic,copy) NSString *chapterTitle;
 @property (nonatomic,strong)NSArray * sectionArray;

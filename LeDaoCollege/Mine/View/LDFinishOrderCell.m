@@ -79,19 +79,19 @@ NSString *const kLDFinishOrderCellIdentifier = @"kLDFinishOrderCellIdentifier";
     [self.contentView addSubview:self.safePriceLabel];
     
     [self.priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.safePriceLabel.mas_right).offset(5);
+        make.right.mas_equalTo(self.safePriceLabel.mas_left).offset(-10);
         make.bottom.mas_equalTo(self.safePriceLabel);
     }];
     
     [self.safePriceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.textLabel);
+        make.right.mas_equalTo(self.contentView).mas_offset(-PtWidth(12));
         make.top.mas_equalTo(self.tagLabel.mas_bottom).mas_offset(8);
     }];
 
     [self.contentView addSubview:self.timeLabel];
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.tagLabel.mas_right).offset(8);
-        make.centerY.mas_equalTo(self.tagLabel);
+        make.bottom.mas_equalTo(self.mas_bottom).mas_offset(-5);
+        make.left.mas_equalTo(self.textLabel);
         make.width.mas_equalTo(PtWidth(115));
         make.height.mas_equalTo(PtHeight(19));
     }];
@@ -119,8 +119,8 @@ NSString *const kLDFinishOrderCellIdentifier = @"kLDFinishOrderCellIdentifier";
         
         // 赋值
         _priceLabel.attributedText = attribtStr;
-        _priceLabel.textColor = UIColorFromHEXA(0x999999, 1);
-        _priceLabel.font = [UIFont systemFontOfSize:13];
+        _priceLabel.textColor = [UIColor darkGrayColor];
+        _priceLabel.font = [UIFont systemFontOfSize:PtHeight(13)];
     }
     return _priceLabel;
 }

@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LDWebViewViewController : UIViewController
+@interface LDWebViewViewController : QMUICommonViewController
 @property (nonatomic,copy)NSString * urlStrng;
 @property (nonatomic,assign)BOOL isCollection;
 @property (nonatomic,assign)NSString *s_id;

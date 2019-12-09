@@ -40,7 +40,7 @@ NSString *const kLDShoppingTableViewCell = @"LDShoppingTableViewCell";
     [self.contentView addSubview:self.cheapPriceLabel];
     [self.contentView addSubview:self.bigImageView];
     [self.contentView addSubview:self.titleLabel];
-//    [self.contentView addSubview:self.shopButton];
+    [self.contentView addSubview:self.watchLabel];
 
     [self.bigImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self).mas_offset(PtWidth(18));
@@ -59,15 +59,18 @@ NSString *const kLDShoppingTableViewCell = @"LDShoppingTableViewCell";
         make.width.mas_equalTo(PtWidth(50));
         make.height.mas_equalTo(PtHeight(18));
     }];
-    [self.cheapPriceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.titleLabel);
-        make.top.mas_equalTo(self.tagLabel.mas_bottom).mas_offset(PtHeight(9));
-    }];
     [self.priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.cheapPriceLabel.mas_right).mas_offset(PtWidth(6));
-        make.centerY.mas_equalTo(self.cheapPriceLabel);
+        make.right.mas_equalTo(self.cheapPriceLabel.mas_left).mas_offset(-10);
+        make.bottom.mas_equalTo(self.cheapPriceLabel);
     }];
-    
+    [self.cheapPriceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.contentView).mas_offset(PtWidth(-12));
+        make.bottom.mas_equalTo(self.watchLabel);
+    }];
+    [self.watchLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.tagLabel);
+        make.top.mas_equalTo(self.tagLabel.mas_bottom).mas_offset(10);
+    }];
 //    [self.shopButton mas_makeConstraints:^(MASConstraintMaker *make) {
 //        make.right.mas_equalTo(self.contentView).mas_offset(PtWidth(-17));
 //        make.centerY.mas_equalTo(self.contentView);
@@ -112,12 +115,14 @@ NSString *const kLDShoppingTableViewCell = @"LDShoppingTableViewCell";
         NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:textStr attributes:attribtDic];
         // 赋值
         _priceLabel.attributedText = attribtStr;
+        _priceLabel.textColor = [UIColor darkGrayColor];
+        _priceLabel.font = [UIFont systemFontOfSize:PtHeight(13)];
     }
     return _priceLabel;
 }
 - (QMUILabel *)cheapPriceLabel {
     if (!_cheapPriceLabel) {
-        _cheapPriceLabel = [[QMUILabel alloc]qmui_initWithFont:[UIFont systemFontOfSize:PtHeight(13)] textColor:[UIColor redColor]];
+        _cheapPriceLabel = [[QMUILabel alloc]qmui_initWithFont:[UIFont systemFontOfSize:PtHeight(15)] textColor:[UIColor colorWithRed:236/255.0 green:199/255.0 blue:100/255.0 alpha:1]];
         _cheapPriceLabel.text = @"18.88";
     }
     return _cheapPriceLabel;
@@ -146,4 +151,13 @@ NSString *const kLDShoppingTableViewCell = @"LDShoppingTableViewCell";
 //    }
 //    return _shopButton;
 //}
+- (UILabel *)watchLabel{
+    if (!_watchLabel) {
+        _watchLabel = [[UILabel alloc]init];
+        _watchLabel.text = @"20人已看";
+        _watchLabel.font = [UIFont systemFontOfSize:PtHeight(8)];
+        _watchLabel.textColor = UIColorFromHEXA(0x979797, 1);
+    }
+    return _watchLabel;
+}
 @end

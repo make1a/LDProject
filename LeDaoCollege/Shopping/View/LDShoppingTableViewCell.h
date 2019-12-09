@@ -19,6 +19,7 @@ extern NSString *const kLDShoppingTableViewCell;
 @property (nonatomic,strong)QMUILabel * cheapPriceLabel;
 @property (nonatomic,strong)QMUILabel * priceLabel;
 //@property (nonatomic,strong)UIButton * shopButton;
+@property (nonatomic,strong)UILabel * watchLabel;
 
 @property (nonatomic,copy)void (^addShopCarActionBlock)(void);
 

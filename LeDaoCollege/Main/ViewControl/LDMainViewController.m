@@ -20,6 +20,7 @@
 @property (nonatomic,strong)UIButton * searchButton;
 @property (nonatomic,strong)UIView * bgView;
 @property (nonatomic,strong)NSMutableArray * imageArray;
+@property (nonatomic,strong)UIImageView * logoImageView;
 @end
 
 @implementation LDMainViewController
@@ -29,7 +30,6 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.view addSubview:self.bgView];
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.bgView];
     [self masLayoutSubviews];
@@ -41,6 +41,7 @@
     [super viewDidAppear:animated];
     [self configMagicController];
 }
+
 #pragma  mark - ConfigUI
 - (void)configMagicController{
     [self addChildViewController:self.magicController];
@@ -49,17 +50,30 @@
 }
 - (void)masLayoutSubviews{
     [self.view addSubview:self.searchButton];
+    [self.view addSubview:self.logoImageView];
+    
     [self.searchButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view).mas_offset(PtWidth(21));
+        make.left.mas_equalTo(self.logoImageView.mas_right).mas_offset(PtWidth(12));
         make.right.mas_equalTo(self.view).mas_offset(PtWidth(-21));
         
         if (@available(iOS 11.0, *)) {
-            make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop).offset(10);
+            if (iPhoneX) {
+                make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop).offset(10);
+            }else{
+                make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop).offset(20);
+            }
+            
         } else {
             make.top.mas_equalTo(self.view);
             
         }
         make.height.mas_equalTo(PtHeight(32));
+    }];
+    
+    [self.logoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(self.searchButton);
+        make.height.width.mas_equalTo(self.searchButton.mas_height);
+        make.left.mas_equalTo(self.view).mas_offset(PtWidth(21));
     }];
 }
 - (void)requestBannerList {
@@ -189,7 +203,13 @@
         _magicController.magicView.layoutStyle = VTLayoutStyleDivide;
         _magicController.magicView.switchStyle = VTSwitchStyleDefault;
         _magicController.magicView.itemSpacing = 20;
-        _magicController.magicView.frame = CGRectMake(0,PtHeight(91), SCREEN_WIDTH, SCREEN_HEIGHT-PtHeight(91)-TabBarHeight);
+        CGFloat h = 0;
+        if (iPhoneX) {
+            h = PtHeight(91);
+        }else{
+            h = PtHeight(81);
+        }
+        _magicController.magicView.frame = CGRectMake(0,h, SCREEN_WIDTH, SCREEN_HEIGHT-PtHeight(91)-TabBarHeight);
         _magicController.magicView.dataSource = self;
         _magicController.magicView.delegate = self;
         _magicController.magicView.needPreloading = NO;
@@ -214,8 +234,22 @@
     if (!_bgView) {
         _bgView = [[UIView alloc]init];
         _bgView.backgroundColor = [UIColor colorWithRed:105/255.0 green:182/255.0 blue:129/255.0 alpha:1.0];
-        _bgView.frame = CGRectMake(0, 0, SCREEN_WIDTH, PtHeight(149));
+        CGFloat h = 0;
+        if (iPhoneX) {
+            h = PtHeight(149);
+        }else{
+            h = PtHeight(120);
+        }
+        _bgView.frame = CGRectMake(0, 0, SCREEN_WIDTH, h);
     }
     return _bgView;
+}
+- (UIImageView *)logoImageView{
+    if (!_logoImageView) {
+        _logoImageView = [[UIImageView alloc]init];
+        UIImage *image = [UIImage imageNamed:@"logo3"];
+        _logoImageView.image = image;
+    }
+    return _logoImageView;
 }
 @end

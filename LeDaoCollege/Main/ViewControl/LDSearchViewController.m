@@ -9,8 +9,8 @@
 #import "LDSearchViewController.h"
 
 #import "LDInfoMationViewController.h"
-#import "LDVoiceViewController.h"
-#import "LDVideoViewController.h"
+#import "LDVoiceListViewController.h"
+#import "LDVideoListViewController.h"
 #import "LDLiveViewController.h"
 
 @interface LDSearchViewController ()
@@ -136,11 +136,10 @@
         case 1:
         {
             static NSString *identifier = @"LDVoiceViewController.identifier";
-            LDVoiceViewController *vc = [magicView dequeueReusablePageWithIdentifier:identifier];
+            LDVoiceListViewController *vc = [magicView dequeueReusablePageWithIdentifier:identifier];
             if (!vc)
             {
-                vc = [[LDVoiceViewController alloc] init];
-                vc.isSearchModel = YES;
+                vc = [[LDVoiceListViewController alloc] init];
             }
             [vc requestSource:self.searchTitle mark:@"" back:^(NSInteger count) {
                 weakself.noticeView.titleLabel.text = [NSString stringWithFormat:@"共找到%ld个相关内容",vc.dataSource.count];
@@ -157,11 +156,10 @@
         case 2:
         {
             static NSString *identifier = @"LDVideoViewController.identifier";
-            LDVideoViewController *vc = [magicView dequeueReusablePageWithIdentifier:identifier];
+            LDVideoListViewController *vc = [magicView dequeueReusablePageWithIdentifier:identifier];
             if (!vc)
             {
-                vc = [[LDVideoViewController alloc] init];
-                vc.isSearchModel = YES;
+                vc = [[LDVideoListViewController alloc] init];
             }
             [vc requestSource:self.searchTitle mark:@"" back:^(NSInteger count) {
                 weakself.noticeView.titleLabel.text = [NSString stringWithFormat:@"共找到%lu个相关内容",(unsigned long)vc.dataSource.count];

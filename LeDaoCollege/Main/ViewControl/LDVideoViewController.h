@@ -13,7 +13,6 @@
  作为搜索界面复用标示
  */
 @property (nonatomic,assign)BOOL isSearchModel;
-@property (nonatomic,strong)QMUITableView * tableView;
 @property (nonatomic,strong)NSArray * dataSource;
 @property (nonatomic,strong)NSArray * netImages;
 - (void)requestSource:(NSString *)title mark:(NSString *)mark back:(backSourceCountBlock)blcok;

@@ -82,7 +82,9 @@ NSString *const kLDVideoTableViewCellIdentifier = @"kLDVideoTableViewCellIdentif
         make.height.mas_equalTo(PtHeight(8));
     }];
 }
-
+- (void)addFreeLabel{
+    
+}
 - (void)layoutSubviews {
     [super layoutSubviews];
     [self.contentView bringSubviewToFront:self.blackImageView];

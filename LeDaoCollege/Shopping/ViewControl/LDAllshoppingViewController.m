@@ -12,7 +12,7 @@
 #import "LDShoppingDetailViewController.h"
 #import "LDSmallClassDetailViewController.h"
 
-@interface LDAllshoppingViewController ()
+@interface LDAllshoppingViewController ()<UIScrollViewDelegate>
 {
     NSInteger page;
     
@@ -27,6 +27,7 @@
     if (!self.isSearchModel) {
         [self requestAllStore];
     }
+    
 }
 - (void)requestAllStore {
     NSDictionary *dic = @{@"title":@"",
@@ -82,5 +83,13 @@
 }
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return PtHeight(80);
+}
+#pragma  mark - Scrollview
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    NSLog(@"scrollViewDidScroll");
+    CGPoint point=scrollView.contentOffset;
+    NSLog(@"%f,%f",point.x,point.y);
+//    self.magicController
+
 }
 @end

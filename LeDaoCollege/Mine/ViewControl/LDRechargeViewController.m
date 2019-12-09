@@ -196,6 +196,10 @@
 - (void)requesLeBi{
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"wallet/getlebi" requestParameters:nil requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {
+            if ([responseObject[@"data"] isEqual:[NSNull null]]) {
+                [QMUITips showError:@"网络错误请稍微重试"];
+                return ;
+            }
             NSString *icon =[NSString stringWithFormat:@"%@",responseObject[@"data"][@"lecoin"]];
             self.balanceLabel.text = icon;
         }

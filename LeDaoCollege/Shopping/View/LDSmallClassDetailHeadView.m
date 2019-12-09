@@ -10,6 +10,10 @@
 
 @implementation LDSmallClassDetailHeadView
 
+- (void)awakeFromNib{
+    [super awakeFromNib];
+    self.qmui_borderPosition = QMUIToastViewPositionBottom;
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

@@ -68,7 +68,7 @@
                     [[NSOperationQueue mainQueue]addOperationWithBlock:^{
                         [QMUITips showError:@"PDF为空"];
                     }];
-                    return ;
+                    return;
                 }
                 [doc saveToPlist];
                 MKReaderViewController *vc = [[MKReaderViewController alloc]init];

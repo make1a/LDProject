@@ -14,6 +14,8 @@ extern NSString *const kLDNewsTableViewCellIdentifier;
 @property (nonatomic,strong)UIImageView * bigImageVIew;
 @property (nonatomic,strong)UILabel * titleLabel;
 @property (nonatomic,strong)UILabel * timeLabel;
+@property (nonatomic,strong)UILabel * freeLabel;
+@property (nonatomic,strong)UILabel * watchLabel;
 
 @property (nonatomic,copy) void (^didSelectCollectionActionBlock)(void);
 + (instancetype)dequeueReusableWithTableView:(UITableView *)tableView;

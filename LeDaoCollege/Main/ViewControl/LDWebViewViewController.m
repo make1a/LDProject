@@ -17,11 +17,12 @@
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.webView];
     [self.webView reload];
-
+    
     QMUINavigationButton *button = [QMUINavigationButton buttonWithType:UIButtonTypeCustom];
     [button setImage:[UIImage imageNamed:@"collect_default"] forState:UIControlStateNormal];
     [button setImage:[UIImage imageNamed:@"collect_sele"] forState:UIControlStateSelected];

@@ -61,7 +61,7 @@
 - (SDCycleScrollView *)cycleScrollView {
     if (!_cycleScrollView) {
         UIImage * placeholderImage = [UIImage imageNamed:@"seizeaseat_0"];
-        CGRect frame = CGRectMake(PtWidth(20), 0, PtWidth(335), PtHeight(120));
+        CGRect frame = CGRectMake(PtWidth(20), 0, PtWidth(335), PtHeight(160));
         _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:frame delegate:self placeholderImage:placeholderImage];
         _cycleScrollView.imageURLStringsGroup = self.netImages;
         _cycleScrollView.backgroundColor = [UIColor redColor];
