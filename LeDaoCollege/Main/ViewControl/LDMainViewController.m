@@ -79,6 +79,10 @@
 - (void)requestBannerList {
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"banner/getbytype/1" requestParameters:@{@"type":@"1"} requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {
+            if (![responseObject[@"data"]isKindOfClass:[NSArray class]]) {
+                DLog(@"数据格式错误");
+                return ;
+            }
             NSArray *array = responseObject[@"data"];
             self.imageArray = @[].mutableCopy;
             for (NSDictionary *dic in array) {
