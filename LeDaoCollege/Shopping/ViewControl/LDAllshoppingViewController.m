@@ -12,10 +12,9 @@
 #import "LDShoppingDetailViewController.h"
 #import "LDSmallClassDetailViewController.h"
 #import "LDStoreViewController.h"
-@interface LDAllshoppingViewController ()<UIScrollViewDelegate>
+@interface LDAllshoppingViewController ()
 {
     NSInteger page;
-    
 }
 
 @end
@@ -35,7 +34,7 @@
                           @"pageSize":@20};
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"goods/getallgoods" requestParameters:dic requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {
-           self.dataSource = [NSArray yy_modelArrayWithClass:[LDStoreModel class] json:responseObject[@"data"][@"list"]];
+            self.dataSource = [NSArray yy_modelArrayWithClass:[LDStoreModel class] json:responseObject[@"data"][@"list"]];
             [self.tableView reloadData];
         }
     } faild:^(NSError *error) {
@@ -47,7 +46,7 @@
         if (kCODE == 200) {
             self.dataSource = [NSArray yy_modelArrayWithClass:[LDStoreModel class] json:responseObject[@"data"][@"list"]];
             [self.tableView reloadData];
-                        if (blcok) {
+            if (blcok) {
                 blcok(self.dataSource.count);
             }
         }
@@ -83,22 +82,6 @@
 }
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return PtHeight(80);
-}
-#pragma  mark - Scrollview
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGPoint point = scrollView.contentOffset;
-    LDStoreViewController *vc = (LDStoreViewController *)self.magicController.parentViewController;
-    
-    CGFloat maxY = CGRectGetMaxY(vc.headView.frame);
-    
-    if (point.y > 0) {
-        if (iPhoneX) {
-            maxY -= 10;
-        }
-        [vc.scrollView setContentOffset:CGPointMake(0, maxY) animated:NO];
-    }else if (point.y < 0){
-        [vc.scrollView setContentOffset:point animated:NO];
-    }
 }
 
 @end

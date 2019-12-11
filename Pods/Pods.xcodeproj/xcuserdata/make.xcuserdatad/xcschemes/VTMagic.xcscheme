@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B71067EAE6A96088EADA19B119E5C4CE"
-               BuildableName = "libVTMagic.a"
+               BuildableName = "VTMagic.framework"
                BlueprintName = "VTMagic"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>

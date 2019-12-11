@@ -30,7 +30,6 @@
 
 #import <UIKit/UIImage.h>
 #import <UIKit/UILabel.h>
-#import <UIKit/UIScreen.h>
 #import <UIKit/UIAccessibility.h>
 
 @implementation IQBarButtonItemConfiguration
@@ -79,11 +78,13 @@
         NSBundle *mainBundle = [NSBundle bundleForClass:[IQKeyboardManager class]];
         
         // Check to see if the resource bundle exists inside the top level bundle
-        NSBundle *libraryBundle = [NSBundle bundleWithPath:[mainBundle pathForResource:@"IQKeyboardManager" ofType:@"bundle"]];
+        NSBundle *resourcesBundle = [NSBundle bundleWithPath:[mainBundle pathForResource:@"IQKeyboardManager" ofType:@"bundle"]];
         
-        if (libraryBundle == nil) libraryBundle = mainBundle;
+        if (resourcesBundle == nil) {
+            resourcesBundle = mainBundle;
+        }
         
-        keyboardPreviousiOS9Image = [UIImage imageNamed:@"IQButtonBarArrowLeft" inBundle:libraryBundle compatibleWithTraitCollection:nil];;
+        keyboardPreviousiOS9Image = [UIImage imageNamed:@"IQButtonBarArrowLeft" inBundle:resourcesBundle compatibleWithTraitCollection:nil];;
         
         //Support for RTL languages like Arabic, Persia etc... (Bug ID: #448)
         if (@available(iOS 9.0, *)) {
@@ -107,11 +108,13 @@
         NSBundle *mainBundle = [NSBundle bundleForClass:[IQKeyboardManager class]];
         
         // Check to see if the resource bundle exists inside the top level bundle
-        NSBundle *libraryBundle = [NSBundle bundleWithPath:[mainBundle pathForResource:@"IQKeyboardManager" ofType:@"bundle"]];
+        NSBundle *resourcesBundle = [NSBundle bundleWithPath:[mainBundle pathForResource:@"IQKeyboardManager" ofType:@"bundle"]];
         
-        if (libraryBundle == nil) libraryBundle = mainBundle;
-
-        keyboardNextiOS9Image = [UIImage imageNamed:@"IQButtonBarArrowRight" inBundle:libraryBundle compatibleWithTraitCollection:nil];
+        if (resourcesBundle == nil) {
+            resourcesBundle = mainBundle;
+        }
+        
+        keyboardNextiOS9Image = [UIImage imageNamed:@"IQButtonBarArrowRight" inBundle:resourcesBundle compatibleWithTraitCollection:nil];
         
         //Support for RTL languages like Arabic, Persia etc... (Bug ID: #448)
         if (@available(iOS 9.0, *)) {
@@ -135,11 +138,13 @@
         NSBundle *mainBundle = [NSBundle bundleForClass:[IQKeyboardManager class]];
         
         // Check to see if the resource bundle exists inside the top level bundle
-        NSBundle *libraryBundle = [NSBundle bundleWithPath:[mainBundle pathForResource:@"IQKeyboardManager" ofType:@"bundle"]];
+        NSBundle *resourcesBundle = [NSBundle bundleWithPath:[mainBundle pathForResource:@"IQKeyboardManager" ofType:@"bundle"]];
         
-        if (libraryBundle == nil) libraryBundle = mainBundle;
-
-        keyboardPreviousiOS10Image = [UIImage imageNamed:@"IQButtonBarArrowUp" inBundle:libraryBundle compatibleWithTraitCollection:nil];
+        if (resourcesBundle == nil) {
+            resourcesBundle = mainBundle;
+        }
+        
+        keyboardPreviousiOS10Image = [UIImage imageNamed:@"IQButtonBarArrowUp" inBundle:resourcesBundle compatibleWithTraitCollection:nil];
         
         //Support for RTL languages like Arabic, Persia etc... (Bug ID: #448)
         if (@available(iOS 9.0, *)) {
@@ -163,11 +168,13 @@
         NSBundle *mainBundle = [NSBundle bundleForClass:[IQKeyboardManager class]];
         
         // Check to see if the resource bundle exists inside the top level bundle
-        NSBundle *libraryBundle = [NSBundle bundleWithPath:[mainBundle pathForResource:@"IQKeyboardManager" ofType:@"bundle"]];
+        NSBundle *resourcesBundle = [NSBundle bundleWithPath:[mainBundle pathForResource:@"IQKeyboardManager" ofType:@"bundle"]];
         
-        if (libraryBundle == nil) libraryBundle = mainBundle;
-
-        keyboardNextiOS10Image = [UIImage imageNamed:@"IQButtonBarArrowDown" inBundle:libraryBundle compatibleWithTraitCollection:nil];
+        if (resourcesBundle == nil) {
+            resourcesBundle = mainBundle;
+        }
+        
+        keyboardNextiOS10Image = [UIImage imageNamed:@"IQButtonBarArrowDown" inBundle:resourcesBundle compatibleWithTraitCollection:nil];
         
         //Support for RTL languages like Arabic, Persia etc... (Bug ID: #448)
         if (@available(iOS 9.0, *)) {
@@ -224,9 +231,7 @@
         
         if (keyboardToolbar == nil)
         {
-            CGRect frame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 44);
-
-            keyboardToolbar = [[IQToolbar alloc] initWithFrame:frame];
+            keyboardToolbar = [[IQToolbar alloc] init];
             
             objc_setAssociatedObject(self, @selector(keyboardToolbar), keyboardToolbar, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         }
@@ -314,7 +319,6 @@
         if (prev.isSystemItem == NO && (previousBarButtonConfiguration.image || previousBarButtonConfiguration.title))
         {
             prev.title = previousBarButtonConfiguration.title;
-            prev.accessibilityLabel = previousBarButtonConfiguration.accessibilityLabel;
             prev.image = previousBarButtonConfiguration.image;
             prev.target = target;
             prev.action = previousBarButtonConfiguration.action;
@@ -323,7 +327,7 @@
         {
             prev = [[IQBarButtonItem alloc] initWithImage:previousBarButtonConfiguration.image style:UIBarButtonItemStylePlain target:target action:previousBarButtonConfiguration.action];
             prev.invocation = toolbar.previousBarButton.invocation;
-            prev.accessibilityLabel = previousBarButtonConfiguration.accessibilityLabel;
+            prev.accessibilityLabel = toolbar.previousBarButton.accessibilityLabel;
             prev.enabled = toolbar.previousBarButton.enabled;
             prev.tag = toolbar.previousBarButton.tag;
             toolbar.previousBarButton = prev;
@@ -332,7 +336,7 @@
         {
             prev = [[IQBarButtonItem alloc] initWithTitle:previousBarButtonConfiguration.title style:UIBarButtonItemStylePlain target:target action:previousBarButtonConfiguration.action];
             prev.invocation = toolbar.previousBarButton.invocation;
-            prev.accessibilityLabel = previousBarButtonConfiguration.accessibilityLabel;
+            prev.accessibilityLabel = toolbar.previousBarButton.accessibilityLabel;
             prev.enabled = toolbar.previousBarButton.enabled;
             prev.tag = toolbar.previousBarButton.tag;
             toolbar.previousBarButton = prev;
@@ -341,7 +345,7 @@
         {
             prev = [[IQBarButtonItem alloc] initWithBarButtonSystemItem:previousBarButtonConfiguration.barButtonSystemItem target:target action:previousBarButtonConfiguration.action];
             prev.invocation = toolbar.previousBarButton.invocation;
-            prev.accessibilityLabel = previousBarButtonConfiguration.accessibilityLabel;
+            prev.accessibilityLabel = toolbar.previousBarButton.accessibilityLabel;
             prev.enabled = toolbar.previousBarButton.enabled;
             prev.tag = toolbar.previousBarButton.tag;
             toolbar.previousBarButton = prev;
@@ -362,7 +366,6 @@
         if (next.isSystemItem == NO && (nextBarButtonConfiguration.image || nextBarButtonConfiguration.title))
         {
             next.title = nextBarButtonConfiguration.title;
-            next.accessibilityLabel = nextBarButtonConfiguration.accessibilityLabel;
             next.image = nextBarButtonConfiguration.image;
             next.target = target;
             next.action = nextBarButtonConfiguration.action;
@@ -371,7 +374,7 @@
         {
             next = [[IQBarButtonItem alloc] initWithImage:nextBarButtonConfiguration.image style:UIBarButtonItemStylePlain target:target action:nextBarButtonConfiguration.action];
             next.invocation = toolbar.nextBarButton.invocation;
-            next.accessibilityLabel = nextBarButtonConfiguration.accessibilityLabel;
+            next.accessibilityLabel = toolbar.nextBarButton.accessibilityLabel;
             next.enabled = toolbar.nextBarButton.enabled;
             next.tag = toolbar.nextBarButton.tag;
             toolbar.nextBarButton = next;
@@ -380,7 +383,7 @@
         {
             next = [[IQBarButtonItem alloc] initWithTitle:nextBarButtonConfiguration.title style:UIBarButtonItemStylePlain target:target action:nextBarButtonConfiguration.action];
             next.invocation = toolbar.nextBarButton.invocation;
-            next.accessibilityLabel = nextBarButtonConfiguration.accessibilityLabel;
+            next.accessibilityLabel = toolbar.nextBarButton.accessibilityLabel;
             next.enabled = toolbar.nextBarButton.enabled;
             next.tag = toolbar.nextBarButton.tag;
             toolbar.nextBarButton = next;
@@ -389,7 +392,7 @@
         {
             next = [[IQBarButtonItem alloc] initWithBarButtonSystemItem:nextBarButtonConfiguration.barButtonSystemItem target:target action:nextBarButtonConfiguration.action];
             next.invocation = toolbar.nextBarButton.invocation;
-            next.accessibilityLabel = nextBarButtonConfiguration.accessibilityLabel;
+            next.accessibilityLabel = toolbar.nextBarButton.accessibilityLabel;
             next.enabled = toolbar.nextBarButton.enabled;
             next.tag = toolbar.nextBarButton.tag;
             toolbar.nextBarButton = next;
@@ -423,7 +426,6 @@
         if (done.isSystemItem == NO && (rightBarButtonConfiguration.image || rightBarButtonConfiguration.title))
         {
             done.title = rightBarButtonConfiguration.title;
-            done.accessibilityLabel = rightBarButtonConfiguration.accessibilityLabel;
             done.image = rightBarButtonConfiguration.image;
             done.target = target;
             done.action = rightBarButtonConfiguration.action;
@@ -432,7 +434,7 @@
         {
             done = [[IQBarButtonItem alloc] initWithImage:rightBarButtonConfiguration.image style:UIBarButtonItemStylePlain target:target action:rightBarButtonConfiguration.action];
             done.invocation = toolbar.doneBarButton.invocation;
-            done.accessibilityLabel = rightBarButtonConfiguration.accessibilityLabel;
+            done.accessibilityLabel = toolbar.doneBarButton.accessibilityLabel;
             done.enabled = toolbar.doneBarButton.enabled;
             done.tag = toolbar.doneBarButton.tag;
             toolbar.doneBarButton = done;
@@ -441,7 +443,7 @@
         {
             done = [[IQBarButtonItem alloc] initWithTitle:rightBarButtonConfiguration.title style:UIBarButtonItemStylePlain target:target action:rightBarButtonConfiguration.action];
             done.invocation = toolbar.doneBarButton.invocation;
-            done.accessibilityLabel = rightBarButtonConfiguration.accessibilityLabel;
+            done.accessibilityLabel = toolbar.doneBarButton.accessibilityLabel;
             done.enabled = toolbar.doneBarButton.enabled;
             done.tag = toolbar.doneBarButton.tag;
             toolbar.doneBarButton = done;
@@ -450,7 +452,7 @@
         {
             done = [[IQBarButtonItem alloc] initWithBarButtonSystemItem:rightBarButtonConfiguration.barButtonSystemItem target:target action:rightBarButtonConfiguration.action];
             done.invocation = toolbar.doneBarButton.invocation;
-            done.accessibilityLabel = rightBarButtonConfiguration.accessibilityLabel;
+            done.accessibilityLabel = toolbar.doneBarButton.accessibilityLabel;
             done.enabled = toolbar.doneBarButton.enabled;
             done.tag = toolbar.doneBarButton.tag;
             toolbar.doneBarButton = done;

@@ -50,6 +50,7 @@
 - (void)configMagicController{
     CGFloat maxY = CGRectGetMaxY(self.headView.frame)+10;
     self.magicController.magicView.frame = CGRectMake(0,maxY, SCREEN_WIDTH, SCREEN_HEIGHT-TabBarHeight);
+    self.scrollView.contentSize = CGSizeMake(0, SCREEN_HEIGHT+maxY);
     [self addChildViewController:self.magicController];
     [self.scrollView addSubview:self.magicController.view];
     [self.magicController.magicView reloadData];
@@ -122,6 +123,7 @@
             {
                 vc = [[LDAllshoppingViewController alloc] init];
             }
+            
             return vc;
         }
             break;
@@ -133,6 +135,7 @@
             {
                 vc = [[LDToolBooksViewController alloc] init];
             }
+            
             return vc;
         }
             break;
@@ -176,6 +179,10 @@
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index {
     
 }
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    NSLog(@"%@",scrollView);
+}
 #pragma mark - private method
 
 #pragma mark - get and set
@@ -213,6 +220,7 @@
 - (UIScrollView *)scrollView{
     if (!_scrollView) {
         _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        _scrollView.delegate = self;
     }
     return _scrollView;
 }

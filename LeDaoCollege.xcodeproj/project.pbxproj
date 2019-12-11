@@ -18,6 +18,7 @@
 		2633EA502372649E00F78BFB /* LDFirstLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2633EA4E2372649E00F78BFB /* LDFirstLoginViewController.xib */; };
 		2633EA532372A92100F78BFB /* LDScoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2633EA522372A92100F78BFB /* LDScoreModel.m */; };
 		2633EA562372C13500F78BFB /* LDCustomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2633EA552372C13500F78BFB /* LDCustomModel.m */; };
+		26374E9523A0D1EE00A54763 /* LDVoiceDetailViewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 26374E9423A0D1EE00A54763 /* LDVoiceDetailViewcontroller.m */; };
 		2638A5C82351791500D4DC55 /* MKRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2638A5C72351791500D4DC55 /* MKRequestManager.m */; };
 		2638A5CB23517ADC00D4DC55 /* LDAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 2638A5CA23517ADC00D4DC55 /* LDAPI.m */; };
 		2640F06A232771760015F7A6 /* LDTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2640F069232771760015F7A6 /* LDTagView.m */; };
@@ -181,7 +182,7 @@
 		26F67A292375611D00B1D71C /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F67A212375611C00B1D71C /* SFHFKeychainUtils.m */; };
 		26F67A2A2375611D00B1D71C /* IAPShare.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F67A262375611C00B1D71C /* IAPShare.m */; };
 		26F67A2E237591D300B1D71C /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26F67A2D237591D300B1D71C /* StoreKit.framework */; };
-		5EBFFAD28375ED4CCCBD420A /* libPods-LeDaoCollege.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 51F34611335481E74543E6CB /* libPods-LeDaoCollege.a */; };
+		384523623456FD5045221397 /* Pods_LeDaoCollege.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0DCB1AEC81172DFDA4DD155 /* Pods_LeDaoCollege.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -207,6 +208,8 @@
 		2633EA522372A92100F78BFB /* LDScoreModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDScoreModel.m; sourceTree = "<group>"; };
 		2633EA542372C13500F78BFB /* LDCustomModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDCustomModel.h; sourceTree = "<group>"; };
 		2633EA552372C13500F78BFB /* LDCustomModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDCustomModel.m; sourceTree = "<group>"; };
+		26374E9323A0D1EE00A54763 /* LDVoiceDetailViewcontroller.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDVoiceDetailViewcontroller.h; sourceTree = "<group>"; };
+		26374E9423A0D1EE00A54763 /* LDVoiceDetailViewcontroller.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDVoiceDetailViewcontroller.m; sourceTree = "<group>"; };
 		2638A5C62351791500D4DC55 /* MKRequestManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKRequestManager.h; sourceTree = "<group>"; };
 		2638A5C72351791500D4DC55 /* MKRequestManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKRequestManager.m; sourceTree = "<group>"; };
 		2638A5C923517ADC00D4DC55 /* LDAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDAPI.h; sourceTree = "<group>"; };
@@ -514,8 +517,8 @@
 		26F67A252375611C00B1D71C /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
 		26F67A262375611C00B1D71C /* IAPShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPShare.m; sourceTree = "<group>"; };
 		26F67A2D237591D300B1D71C /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		51F34611335481E74543E6CB /* libPods-LeDaoCollege.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LeDaoCollege.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFEFE78EDB4F924076740AF8 /* Pods-LeDaoCollege.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeDaoCollege.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LeDaoCollege/Pods-LeDaoCollege.debug.xcconfig"; sourceTree = "<group>"; };
+		C0DCB1AEC81172DFDA4DD155 /* Pods_LeDaoCollege.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LeDaoCollege.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -524,8 +527,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				26B6758E237D42AF00031749 /* CoreGraphics.framework in Frameworks */,
-				5EBFFAD28375ED4CCCBD420A /* libPods-LeDaoCollege.a in Frameworks */,
 				26F67A2E237591D300B1D71C /* StoreKit.framework in Frameworks */,
+				384523623456FD5045221397 /* Pods_LeDaoCollege.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -863,6 +866,8 @@
 				2643A0B3239CB0060055B320 /* LDVoiceListViewController.m */,
 				2643A0B5239CB7300055B320 /* LDVideoListViewController.h */,
 				2643A0B6239CB7300055B320 /* LDVideoListViewController.m */,
+				26374E9323A0D1EE00A54763 /* LDVoiceDetailViewcontroller.h */,
+				26374E9423A0D1EE00A54763 /* LDVoiceDetailViewcontroller.m */,
 			);
 			path = ViewControl;
 			sourceTree = "<group>";
@@ -1120,7 +1125,7 @@
 				26B6758F237D42BA00031749 /* libsqlite3.0.tbd */,
 				26B6758D237D42AE00031749 /* CoreGraphics.framework */,
 				26F67A2D237591D300B1D71C /* StoreKit.framework */,
-				51F34611335481E74543E6CB /* libPods-LeDaoCollege.a */,
+				C0DCB1AEC81172DFDA4DD155 /* Pods_LeDaoCollege.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1381,6 +1386,7 @@
 				26E816352332395100CECCE3 /* LDNavigationController.m in Sources */,
 				2633E3D8235D53D8002DEA26 /* LDVideoModel.m in Sources */,
 				2638A5C82351791500D4DC55 /* MKRequestManager.m in Sources */,
+				26374E9523A0D1EE00A54763 /* LDVoiceDetailViewcontroller.m in Sources */,
 				26BA0655232735E200992FFD /* LDAlterNameViewController.m in Sources */,
 				265CB9812320AAA600883FE2 /* View+MASAdditions.m in Sources */,
 				26AAE4DD2334D8C700B9C5D3 /* LDShoppingDetailNameViewCell.m in Sources */,

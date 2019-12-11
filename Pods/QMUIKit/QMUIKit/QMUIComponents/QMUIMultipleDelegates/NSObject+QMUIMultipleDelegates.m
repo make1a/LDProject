@@ -17,7 +17,6 @@
 #import "QMUIMultipleDelegates.h"
 #import "QMUICore.h"
 #import "NSPointerArray+QMUI.h"
-#import "NSString+QMUI.h"
 #import <objc/runtime.h>
 
 @interface NSObject ()
@@ -55,7 +54,7 @@ static char kAssociatedObjectKey_qmuiMultipleDelegatesEnabled;
     }
     
     Class targetClass = [self class];
-    SEL originDelegateSetter = setterWithGetter(getter);
+    SEL originDelegateSetter = [self originSetterWithGetter:getter];
     SEL newDelegateSetter = [self newSetterWithGetter:getter];
     Method originMethod = class_getInstanceMethod(targetClass, originDelegateSetter);
     if (!originMethod) {
@@ -165,9 +164,20 @@ static char kAssociatedObjectKey_qmuiMultipleDelegatesEnabled;
     EndIgnorePerformSelectorLeaksWarning
 }
 
+// 根据 delegate property 的 getter，得到它对应的 setter
+- (SEL)originSetterWithGetter:(SEL)getter {
+    NSString *getterString = NSStringFromSelector(getter);
+    NSMutableString *setterString = [[NSMutableString alloc] initWithString:@"set"];
+    [setterString appendString:[getterString substringToIndex:1].uppercaseString];
+    [setterString appendString:[getterString substringFromIndex:1]];
+    [setterString appendString:@":"];
+    SEL setter = NSSelectorFromString(setterString);
+    return setter;
+}
+
 // 根据 delegate property 的 getter，得到 QMUIMultipleDelegates 为它的 setter 创建的新 setter 方法，最终交换原方法，因此利用这个方法返回的 SEL，可以调用到原来的 delegate property setter 的实现
 - (SEL)newSetterWithGetter:(SEL)getter {
-    return NSSelectorFromString([NSString stringWithFormat:@"qmuimd_%@", NSStringFromSelector(setterWithGetter(getter))]);
+    return NSSelectorFromString([NSString stringWithFormat:@"qmuimd_%@", NSStringFromSelector([self originSetterWithGetter:getter])]);
 }
 
 @end

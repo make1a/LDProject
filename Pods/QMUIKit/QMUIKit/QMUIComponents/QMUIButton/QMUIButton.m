@@ -560,12 +560,15 @@
 }
 
 - (void)setTintColorAdjustsTitleAndImage:(UIColor *)tintColorAdjustsTitleAndImage {
-    _tintColorAdjustsTitleAndImage = tintColorAdjustsTitleAndImage;
     if (tintColorAdjustsTitleAndImage) {
         self.tintColor = tintColorAdjustsTitleAndImage;
         self.adjustsTitleTintColorAutomatically = YES;
         self.adjustsImageTintColorAutomatically = YES;
     }
+}
+
+- (UIColor *)tintColorAdjustsTitleAndImage {
+    return self.tintColor;
 }
 
 @end

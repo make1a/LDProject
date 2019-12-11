@@ -67,15 +67,20 @@ QMUISynthesizeNSIntegerProperty(qimgv_currentAnimatedImageIndex, setQimgv_curren
                     originSelectorIMP(selfObject, originCMD, aImage);
                 };
                 
-                if (selfObject.qmui_smoothAnimation && image.images) {
-                    if (image != selfObject.qimgv_animatedImage) {
-                        callSuperBlock(nil);
-                        selfObject.qimgv_animatedImage = image;
-                        [selfObject qimgv_requestToStartAnimation];
+                // avoid superclass
+                if ([selfObject isKindOfClass:originClass]) {
+                    if (selfObject.qmui_smoothAnimation && image.images) {
+                        if (image != selfObject.qimgv_animatedImage) {
+                            callSuperBlock(nil);
+                            selfObject.qimgv_animatedImage = image;
+                            [selfObject qimgv_requestToStartAnimation];
+                        }
+                    } else {
+                        selfObject.qimgv_animatedImage = nil;
+                        [selfObject qimgv_stopAnimating];
+                        callSuperBlock(image);
                     }
                 } else {
-                    selfObject.qimgv_animatedImage = nil;
-                    [selfObject qimgv_stopAnimating];
                     callSuperBlock(image);
                 }
             };
@@ -83,8 +88,11 @@ QMUISynthesizeNSIntegerProperty(qimgv_currentAnimatedImageIndex, setQimgv_curren
         
         OverrideImplementation([UIImageView class], @selector(image), ^id(__unsafe_unretained Class originClass, SEL originCMD, IMP (^originalIMPProvider)(void)) {
             return ^UIImage *(UIImageView *selfObject) {
-                if (selfObject.qimgv_animatedImage) {
-                    return selfObject.qimgv_animatedImage;
+                // avoid superclass
+                if ([selfObject isKindOfClass:originClass]) {
+                    if (selfObject.qimgv_animatedImage) {
+                        return selfObject.qimgv_animatedImage;
+                    }
                 }
                 
                 // call super
@@ -121,8 +129,11 @@ QMUISynthesizeNSIntegerProperty(qimgv_currentAnimatedImageIndex, setQimgv_curren
         OverrideImplementation([UIImageView class], @selector(sizeThatFits:), ^id(__unsafe_unretained Class originClass, SEL originCMD, IMP (^originalIMPProvider)(void)) {
             return ^CGSize(UIImageView *selfObject, CGSize size) {
                 
-                if (selfObject.qimgv_animatedImage) {
-                    return selfObject.qimgv_animatedImage.size;
+                // avoid superclass
+                if ([selfObject isKindOfClass:originClass]) {
+                    if (selfObject.qimgv_animatedImage) {
+                        return selfObject.qimgv_animatedImage.size;
+                    }
                 }
                 
                 // call super

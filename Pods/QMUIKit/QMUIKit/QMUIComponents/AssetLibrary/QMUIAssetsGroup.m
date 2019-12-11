@@ -30,7 +30,8 @@
 - (instancetype)initWithPHCollection:(PHAssetCollection *)phAssetCollection fetchAssetsOptions:(PHFetchOptions *)pHFetchOptions {
     self = [super init];
     if (self) {
-        self.phFetchResult = [PHAsset fetchAssetsInAssetCollection:phAssetCollection options:pHFetchOptions];
+        PHFetchResult *phFetchResult = [PHAsset fetchAssetsInAssetCollection:phAssetCollection options:pHFetchOptions];
+        self.phFetchResult = phFetchResult;
         self.phAssetCollection = phAssetCollection;
     }
     return self;

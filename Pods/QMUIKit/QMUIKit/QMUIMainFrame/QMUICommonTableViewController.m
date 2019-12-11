@@ -171,13 +171,20 @@ NSString *const QMUICommonTableViewControllerSectionFooterIdentifier = @"QMUISec
 }
 
 - (void)showEmptyView {
+    if (!self.emptyView) {
+        self.emptyView = [[QMUIEmptyView alloc] init];
+    }
     [self.tableView addSubview:self.emptyView];
     [self layoutEmptyView];
 }
 
+- (void)hideEmptyView {
+    [self.emptyView removeFromSuperview];
+}
+
 // 注意，emptyView 的布局依赖于 tableView.contentInset，因此我们必须监听 tableView.contentInset 的变化以及时更新 emptyView 的布局
 - (BOOL)layoutEmptyView {
-    if (!_emptyView || !_emptyView.superview) {
+    if (!self.emptyView || !self.emptyView.superview) {
         return NO;
     }
     

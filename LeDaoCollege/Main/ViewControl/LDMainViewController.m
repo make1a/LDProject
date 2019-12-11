@@ -9,7 +9,7 @@
 #import "LDMainViewController.h"
 #import <VTMagic/VTMagic.h>
 #import "LDInfoMationViewController.h"
-#import "LDVoiceViewController.h"
+#import "LDVoiceListViewController.h"
 #import "LDVideoViewController.h"
 #import "LDLiveViewController.h"
 #import "LDSearchViewController.h"
@@ -132,13 +132,13 @@
         case 1:
         {
             static NSString *identifier = @"LDVoiceViewController.identifier";
-            LDVoiceViewController *vc = [magicView dequeueReusablePageWithIdentifier:identifier];
+            LDVoiceListViewController *vc = [magicView dequeueReusablePageWithIdentifier:identifier];
             if (!vc)
             {
-                vc = [[LDVoiceViewController alloc] init];
+                vc = [[LDVoiceListViewController alloc] init];
             }
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                vc.netImages = self.imageArray;
+//                vc.netImages = self.imageArray;
             });
             return vc;
         }

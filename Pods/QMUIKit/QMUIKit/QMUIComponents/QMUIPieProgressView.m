@@ -19,23 +19,16 @@
 @interface QMUIPieProgressLayer : CALayer
 
 @property(nonatomic, strong) UIColor *fillColor;
-@property(nonatomic, strong) UIColor *strokeColor;
 @property(nonatomic, assign) float progress;
 @property(nonatomic, assign) CFTimeInterval progressAnimationDuration;
 @property(nonatomic, assign) BOOL shouldChangeProgressWithAnimation; // default is YES
 @property(nonatomic, assign) CGFloat borderInset;
-@property(nonatomic, assign) CGFloat lineWidth;
-@property(nonatomic, assign) QMUIPieProgressViewShape shape;
-
 @end
 
 @implementation QMUIPieProgressLayer
 // 加dynamic才能让自定义的属性支持动画
 @dynamic fillColor;
-@dynamic strokeColor;
 @dynamic progress;
-@dynamic shape;
-@dynamic lineWidth;
 
 - (instancetype)init {
     if (self = [super init]) {
@@ -63,35 +56,16 @@
         return;
     }
     
+    // 绘制扇形进度区域
     CGPoint center = CGPointGetCenterWithRect(self.bounds);
     CGFloat radius = MIN(center.x, center.y) - self.borderWidth - self.borderInset;
     CGFloat startAngle = -M_PI_2;
     CGFloat endAngle = M_PI * 2 * self.progress + startAngle;
-    
-    switch (self.shape) {
-        case QMUIPieProgressViewShapeSector: {
-            // 绘制扇形进度区域
-            
-            CGContextSetFillColorWithColor(context, self.fillColor.CGColor);
-            CGContextMoveToPoint(context, center.x, center.y);
-            CGContextAddArc(context, center.x, center.y, radius, startAngle, endAngle, 0);
-            CGContextClosePath(context);
-            CGContextFillPath(context);
-        }
-            break;
-            
-        case QMUIPieProgressViewShapeRing: {
-            // 绘制环形进度区域
-            
-            radius -= self.lineWidth;
-            CGContextSetLineWidth(context, self.lineWidth);
-            CGContextSetStrokeColorWithColor(context, self.strokeColor.CGColor);
-            CGContextAddArc(context, center.x, center.y, radius, startAngle, endAngle, 0);
-            CGContextStrokePath(context);
-            CGContextClosePath(context);
-        }
-            break;
-    }
+    CGContextSetFillColorWithColor(context, self.fillColor.CGColor);
+    CGContextMoveToPoint(context, center.x, center.y);
+    CGContextAddArc(context, center.x, center.y, radius, startAngle, endAngle, 0);
+    CGContextClosePath(context);
+    CGContextFillPath(context);
     
     [super drawInContext:context];
 }
@@ -144,8 +118,9 @@
 
 - (void)setProgress:(float)progress animated:(BOOL)animated {
     _progress = fmax(0.0, fmin(1.0, progress));
-    self.progressLayer.shouldChangeProgressWithAnimation = animated;
-    self.progressLayer.progress = _progress;
+    QMUIPieProgressLayer *layer = (QMUIPieProgressLayer *)self.layer;
+    layer.shouldChangeProgressWithAnimation = animated;
+    layer.progress = _progress;
     
     [self sendActionsForControlEvents:UIControlEventValueChanged];
 }
@@ -157,7 +132,7 @@
 
 - (void)setBorderWidth:(CGFloat)borderWidth {
     _borderWidth = borderWidth;
-    self.progressLayer.borderWidth = borderWidth;
+    self.layer.borderWidth = borderWidth;
 }
 
 - (void)setBorderInset:(CGFloat)borderInset {
@@ -165,22 +140,10 @@
     self.progressLayer.borderInset = borderInset;
 }
 
-- (void)setLineWidth:(CGFloat)lineWidth {
-    _lineWidth = lineWidth;
-    self.progressLayer.lineWidth = lineWidth;
-}
-
 - (void)tintColorDidChange {
     [super tintColorDidChange];
     self.progressLayer.fillColor = self.tintColor;
-    self.progressLayer.strokeColor = self.tintColor;
     self.progressLayer.borderColor = self.tintColor.CGColor;
-}
-
-- (void)setShape:(QMUIPieProgressViewShape)shape {
-    _shape = shape;
-    self.progressLayer.shape = shape;
-    [self setBorderWidth:_borderWidth];
 }
 
 - (QMUIPieProgressLayer *)progressLayer {

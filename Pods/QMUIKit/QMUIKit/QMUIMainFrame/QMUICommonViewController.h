@@ -39,9 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @see QMUINavigationTitleView
  *  @see QMUIEmptyView
  */
-@interface QMUICommonViewController : UIViewController {
-    QMUIEmptyView *_emptyView;
-}
+@interface QMUICommonViewController : UIViewController
 
 - (instancetype)initWithNibName:(nullable NSString *)nibNameOrNil bundle:(nullable NSBundle *)nibBundleOrNil NS_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
@@ -65,7 +63,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, assign) UIInterfaceOrientationMask supportedOrientationMask;
 
 /**
- *  空列表控件，支持显示提示文字、loading、操作按钮，该属性懒加载
+ *  空列表控件，支持显示提示文字、loading、操作按钮
  */
 @property(nullable, nonatomic, strong) QMUIEmptyView *emptyView;
 

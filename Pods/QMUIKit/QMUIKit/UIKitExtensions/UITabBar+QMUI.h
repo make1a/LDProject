@@ -15,8 +15,6 @@
 
 #import <UIKit/UIKit.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface UITabBar (QMUI)
 
 /**
@@ -34,17 +32,3 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong, readonly) UIImageView *qmui_shadowImageView;
 
 @end
-
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 130000
-
-UIKIT_EXTERN API_AVAILABLE(ios(13.0), tvos(13.0)) @interface UITabBarAppearance (QMUI)
-
-/**
- 同时设置 stackedLayoutAppearance、inlineLayoutAppearance、compactInlineLayoutAppearance 三个状态下的 itemAppearance
- */
-- (void)qmui_applyItemAppearanceWithBlock:(void (^)(UITabBarItemAppearance *itemAppearance))block;
-@end
-
-#endif
-
-NS_ASSUME_NONNULL_END

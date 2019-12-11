@@ -45,7 +45,8 @@ QMUISynthesizeIdCopyProperty(qmui_setHighlightedBlock, setQmui_setHighlightedBlo
         OverrideImplementation([UIControl class], @selector(pointInside:withEvent:), ^id(__unsafe_unretained Class originClass, SEL originCMD, IMP (^originalIMPProvider)(void)) {
             return ^BOOL(UIControl *selfObject, CGPoint point, UIEvent *event) {
                 
-                if (event.type != UIEventTypeTouches) {
+                // avoid superclass
+                if ((![selfObject isKindOfClass:originClass]) || (event.type != UIEventTypeTouches)) {
                     // call super
                     BOOL (*originSelectorIMP)(id, SEL, CGPoint, UIEvent *);
                     originSelectorIMP = (BOOL (*)(id, SEL, CGPoint, UIEvent *))originalIMPProvider();
@@ -67,6 +68,9 @@ QMUISynthesizeIdCopyProperty(qmui_setHighlightedBlock, setQmui_setHighlightedBlo
                 originSelectorIMP = (void (*)(id, SEL, id, SEL, UIControlEvents))originalIMPProvider();
                 originSelectorIMP(selfObject, originCMD, target, action, controlEvents);
                 
+                // avoid superclass
+                if (![selfObject isKindOfClass:originClass]) return;
+                
                 BOOL isTouchUpInsideEvent = controlEvents & UIControlEventTouchUpInside;
                 BOOL shouldRemoveTouchUpInsideSelector = (action == @selector(qmui_handleTouchUpInside:)) || (target == selfObject && !action) || (!target && !action);
                 if (isTouchUpInsideEvent && shouldRemoveTouchUpInsideSelector) {
@@ -86,6 +90,12 @@ QMUISynthesizeIdCopyProperty(qmui_setHighlightedBlock, setQmui_setHighlightedBlo
                     originSelectorIMP(selfObject, originCMD, touches, event);
                 };
                 
+                // avoid superclass
+                if (![selfObject isKindOfClass:originClass]) {
+                    callSuperBlock();
+                    return;
+                }
+                
                 selfObject.touchEndCount = 0;
                 if (selfObject.qmui_automaticallyAdjustTouchHighlightedInScrollView) {
                     selfObject.canSetHighlighted = YES;
@@ -104,8 +114,11 @@ QMUISynthesizeIdCopyProperty(qmui_setHighlightedBlock, setQmui_setHighlightedBlo
         OverrideImplementation([UIControl class], @selector(touchesMoved:withEvent:), ^id(__unsafe_unretained Class originClass, SEL originCMD, IMP (^originalIMPProvider)(void)) {
             return ^(UIControl *selfObject, NSSet *touches, UIEvent *event) {
                 
-                if (selfObject.qmui_automaticallyAdjustTouchHighlightedInScrollView) {
-                    selfObject.canSetHighlighted = NO;
+                // avoid superclass
+                if ([selfObject isKindOfClass:originClass]) {
+                    if (selfObject.qmui_automaticallyAdjustTouchHighlightedInScrollView) {
+                        selfObject.canSetHighlighted = NO;
+                    }
                 }
                 
                 // call super
@@ -118,23 +131,26 @@ QMUISynthesizeIdCopyProperty(qmui_setHighlightedBlock, setQmui_setHighlightedBlo
         OverrideImplementation([UIControl class], @selector(touchesEnded:withEvent:), ^id(__unsafe_unretained Class originClass, SEL originCMD, IMP (^originalIMPProvider)(void)) {
             return ^(UIControl *selfObject, NSSet *touches, UIEvent *event) {
                 
-                if (selfObject.qmui_automaticallyAdjustTouchHighlightedInScrollView) {
-                    selfObject.canSetHighlighted = NO;
-                    if (selfObject.touchInside) {
-                        [selfObject setHighlighted:YES];
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.02 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                            // 如果延迟时间太长，会导致快速点击两次，事件会触发两次
-                            // 对于 3D Touch 的机器，如果点击按钮的时候在按钮上停留事件稍微长一点点，那么 touchesEnded 会被调用两次
-                            // 把 super touchEnded 放到延迟里调用会导致长按无法触发点击，先这么改，再想想怎么办。// [selfObject qmui_touchesEnded:touches withEvent:event];
-                            [selfObject sendActionsForAllTouchEventsIfCan];
-                            if (selfObject.highlighted) {
-                                [selfObject setHighlighted:NO];
-                            }
-                        });
-                    } else {
-                        [selfObject setHighlighted:NO];
+                // avoid superclass
+                if ([selfObject isKindOfClass:originClass]) {
+                    if (selfObject.qmui_automaticallyAdjustTouchHighlightedInScrollView) {
+                        selfObject.canSetHighlighted = NO;
+                        if (selfObject.touchInside) {
+                            [selfObject setHighlighted:YES];
+                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.02 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                                // 如果延迟时间太长，会导致快速点击两次，事件会触发两次
+                                // 对于 3D Touch 的机器，如果点击按钮的时候在按钮上停留事件稍微长一点点，那么 touchesEnded 会被调用两次
+                                // 把 super touchEnded 放到延迟里调用会导致长按无法触发点击，先这么改，再想想怎么办。// [selfObject qmui_touchesEnded:touches withEvent:event];
+                                [selfObject sendActionsForAllTouchEventsIfCan];
+                                if (selfObject.highlighted) {
+                                    [selfObject setHighlighted:NO];
+                                }
+                            });
+                        } else {
+                            [selfObject setHighlighted:NO];
+                        }
+                        return;
                     }
-                    return;
                 }
                 
                 // call super
@@ -154,13 +170,16 @@ QMUISynthesizeIdCopyProperty(qmui_setHighlightedBlock, setQmui_setHighlightedBlo
                     originSelectorIMP(selfObject, originCMD, touches, event);
                 };
                 
-                if (selfObject.qmui_automaticallyAdjustTouchHighlightedInScrollView) {
-                    selfObject.canSetHighlighted = NO;
-                    callSuperBlock();
-                    if (selfObject.highlighted) {
-                        [selfObject setHighlighted:NO];
+                // avoid superclass
+                if ([selfObject isKindOfClass:originClass]) {
+                    if (selfObject.qmui_automaticallyAdjustTouchHighlightedInScrollView) {
+                        selfObject.canSetHighlighted = NO;
+                        callSuperBlock();
+                        if (selfObject.highlighted) {
+                            [selfObject setHighlighted:NO];
+                        }
+                        return;
                     }
-                    return;
                 }
                 callSuperBlock();
             };

@@ -61,28 +61,20 @@
     [super drawTextInRect:rect];
 }
 
+- (void)setHighlightedBackgroundColor:(UIColor *)highlightedBackgroundColor {
+    _highlightedBackgroundColor = highlightedBackgroundColor;
+    
+    if (highlightedBackgroundColor) {
+        self.originalBackgroundColor = self.backgroundColor;
+    }
+}
+
 - (void)setHighlighted:(BOOL)highlighted {
     [super setHighlighted:highlighted];
     
     if (self.highlightedBackgroundColor) {
-        [super setBackgroundColor:highlighted ? self.highlightedBackgroundColor : self.originalBackgroundColor];
+        self.backgroundColor = highlighted ? self.highlightedBackgroundColor : self.originalBackgroundColor;
     }
-}
-
-- (void)setBackgroundColor:(UIColor *)backgroundColor {
-    self.originalBackgroundColor = backgroundColor;
-    
-    // 在出现 menu 的时候 backgroundColor 被修改，此时也不应该立马显示新的 backgroundColor
-    if (self.highlighted && self.highlightedBackgroundColor) {
-        return;
-    }
-    
-    [super setBackgroundColor:backgroundColor];
-}
-
-// 当 label.highlighted = YES 时 backgroundColor 的 getter 会返回 self.highlightedBackgroundColor，因此如果在 highlighted = YES 时外部刚好执行了 `label.backgroundColor = label.backgroundColor` 就会导致 label 的背景色被错误地设置为高亮时的背景色，所以这里需要重写 getter 返回内部记录的 originalBackgroundColor
-- (UIColor *)backgroundColor {
-    return self.originalBackgroundColor;
 }
 
 #pragma mark - 长按复制功能
@@ -95,6 +87,10 @@
         [self addGestureRecognizer:self.longGestureRecognizer];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleMenuWillHideNotification:) name:UIMenuControllerWillHideMenuNotification object:nil];
+        
+        if (!self.highlightedBackgroundColor) {
+            self.highlightedBackgroundColor = TableViewCellSelectedBackgroundColor; // 设置个默认值
+        }
     } else if (!_canPerformCopyAction && self.longGestureRecognizer) {
         [self removeGestureRecognizer:self.longGestureRecognizer];
         self.longGestureRecognizer = nil;
@@ -140,9 +136,9 @@
         [menuController setTargetRect:self.frame inView:self.superview];
         [menuController setMenuVisible:YES animated:YES];
         
-        self.highlighted = YES;
+        [self setHighlighted:YES];
     } else if (gestureRecognizer.state == UIGestureRecognizerStatePossible) {
-        self.highlighted = NO;
+        [self setHighlighted:NO];
     }
 }
 

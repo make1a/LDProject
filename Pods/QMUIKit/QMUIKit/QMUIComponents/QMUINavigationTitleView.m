@@ -19,7 +19,6 @@
 #import "UIImage+QMUI.h"
 #import "UILabel+QMUI.h"
 #import "UIActivityIndicatorView+QMUI.h"
-#import "UIViewController+QMUI.h"
 #import "UIView+QMUI.h"
 
 @interface UINavigationBar (TitleView)
@@ -34,27 +33,30 @@
         OverrideImplementation([UINavigationBar class], @selector(layoutSubviews), ^id(__unsafe_unretained Class originClass, SEL originCMD, IMP (^originalIMPProvider)(void)) {
             return ^(UINavigationBar *selfObject) {
                 
-                QMUINavigationTitleView *titleView = (QMUINavigationTitleView *)selfObject.topItem.titleView;
-                
-                if ([titleView isKindOfClass:[QMUINavigationTitleView class]]) {
-                    CGFloat titleViewMaximumWidth = CGRectGetWidth(titleView.bounds);// 初始状态下titleView会被设置为UINavigationBar允许的最大宽度
-                    CGSize titleViewSize = [titleView sizeThatFits:CGSizeMake(titleViewMaximumWidth, CGFLOAT_MAX)];
-                    titleViewSize.height = ceil(titleViewSize.height);// titleView的高度如果非pt整数，会导致计算出来的y值时多时少，所以干脆做一下pt取整，这个策略不要改，改了要重新测试push过程中titleView是否会跳动
+                // avoid superclass
+                if ([selfObject isKindOfClass:originClass]) {
+                    QMUINavigationTitleView *titleView = (QMUINavigationTitleView *)selfObject.topItem.titleView;
                     
-                    // 当在UINavigationBar里使用自定义的titleView时，就算titleView的sizeThatFits:返回正确的高度，navigationBar也不会帮你设置高度（但会帮你设置宽度），所以我们需要自己更新高度并且修正y值
-                    if (CGRectGetHeight(titleView.bounds) != titleViewSize.height) {
-                        CGFloat titleViewMinY = flat(CGRectGetMinY(titleView.frame) - ((titleViewSize.height - CGRectGetHeight(titleView.bounds)) / 2.0));// 系统对titleView的y值布局是flat，注意，不能改，改了要测试
-                        titleView.frame = CGRectMake(CGRectGetMinX(titleView.frame), titleViewMinY, MIN(titleViewMaximumWidth, titleViewSize.width), titleViewSize.height);
-                    }
-                    
-                    // iOS 11 之后（iOS 11 Beta 5 测试过） titleView 的布局发生了一些变化，如果不主动设置宽度，titleView 里的内容就可能无法完整展示
-                    if (@available(iOS 11, *)) {
-                        if (CGRectGetWidth(titleView.bounds) != titleViewSize.width) {
-                            titleView.frame = CGRectSetWidth(titleView.frame, titleViewSize.width);
+                    if ([titleView isKindOfClass:[QMUINavigationTitleView class]]) {
+                        CGFloat titleViewMaximumWidth = CGRectGetWidth(titleView.bounds);// 初始状态下titleView会被设置为UINavigationBar允许的最大宽度
+                        CGSize titleViewSize = [titleView sizeThatFits:CGSizeMake(titleViewMaximumWidth, CGFLOAT_MAX)];
+                        titleViewSize.height = ceil(titleViewSize.height);// titleView的高度如果非pt整数，会导致计算出来的y值时多时少，所以干脆做一下pt取整，这个策略不要改，改了要重新测试push过程中titleView是否会跳动
+                        
+                        // 当在UINavigationBar里使用自定义的titleView时，就算titleView的sizeThatFits:返回正确的高度，navigationBar也不会帮你设置高度（但会帮你设置宽度），所以我们需要自己更新高度并且修正y值
+                        if (CGRectGetHeight(titleView.bounds) != titleViewSize.height) {
+                            CGFloat titleViewMinY = flat(CGRectGetMinY(titleView.frame) - ((titleViewSize.height - CGRectGetHeight(titleView.bounds)) / 2.0));// 系统对titleView的y值布局是flat，注意，不能改，改了要测试
+                            titleView.frame = CGRectMake(CGRectGetMinX(titleView.frame), titleViewMinY, MIN(titleViewMaximumWidth, titleViewSize.width), titleViewSize.height);
                         }
+                        
+                        // iOS 11 之后（iOS 11 Beta 5 测试过） titleView 的布局发生了一些变化，如果不主动设置宽度，titleView 里的内容就可能无法完整展示
+                        if (@available(iOS 11, *)) {
+                            if (CGRectGetWidth(titleView.bounds) != titleViewSize.width) {
+                                titleView.frame = CGRectSetWidth(titleView.frame, titleViewSize.width);
+                            }
+                        }
+                    } else {
+                        titleView = nil;
                     }
-                } else {
-                    titleView = nil;
                 }
                 
                 // call super
@@ -70,7 +72,6 @@
 
 @interface QMUINavigationTitleView ()
 
-@property(nonatomic, strong, readonly) UIView *contentView;
 @property(nonatomic, assign) CGSize titleLabelSize;
 @property(nonatomic, assign) CGSize subtitleLabelSize;
 @property(nonatomic, strong) UIImageView *accessoryTypeView;
@@ -94,19 +95,15 @@
         
         [self addTarget:self action:@selector(handleTouchTitleViewEvent) forControlEvents:UIControlEventTouchUpInside];
         
-        _contentView = [[UIView alloc] init];
-        _contentView.userInteractionEnabled = NO;
-        [self addSubview:self.contentView];
-        
         _titleLabel = [[UILabel alloc] init];
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
         self.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
-        [self.contentView addSubview:self.titleLabel];
+        [self addSubview:self.titleLabel];
         
         _subtitleLabel = [[UILabel alloc] init];
         self.subtitleLabel.textAlignment = NSTextAlignmentCenter;
         self.subtitleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
-        [self.contentView addSubview:self.subtitleLabel];
+        [self addSubview:self.subtitleLabel];
         
         self.userInteractionEnabled = NO;
         self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
@@ -128,8 +125,6 @@
         self.verticalSubtitleFont = appearance.verticalSubtitleFont;
         self.accessoryViewOffset = appearance.accessoryViewOffset;
         self.subAccessoryViewOffset = appearance.subAccessoryViewOffset;
-        
-        self.adjustsSubviewsTintColorAutomatically = YES;
         self.tintColor = QMUICMIActivated ? NavBarTitleColor : [UINavigationBar appearance].titleTextAttributes[NSForegroundColorAttributeName];
     }
     return self;
@@ -264,8 +259,6 @@
     }
     
     [super layoutSubviews];
-    
-    self.contentView.frame = self.bounds;
     
     BOOL alignLeft = self.contentHorizontalAlignment == UIControlContentHorizontalAlignmentLeft;
     BOOL alignRight = self.contentHorizontalAlignment == UIControlContentHorizontalAlignmentRight;
@@ -536,7 +529,7 @@
     
     // 经过上面的 setImage 和 sizeToFit 之后再 addSubview，因为 addSubview 会触发系统来询问你的 sizeThatFits:
     if (self.accessoryTypeView.superview != self) {
-        [self.contentView addSubview:self.accessoryTypeView];
+        [self addSubview:self.accessoryTypeView];
     }
     
     [self refreshLayout];
@@ -551,7 +544,7 @@
         _accessoryView = accessoryView;
         self.accessoryType = QMUINavigationTitleViewAccessoryTypeNone;
         [self.accessoryView sizeToFit];
-        [self.contentView addSubview:self.accessoryView];
+        [self addSubview:self.accessoryView];
     }
     [self refreshLayout];
 }
@@ -564,7 +557,7 @@
     if (subAccessoryView) {
         _subAccessoryView = subAccessoryView;
         [self.subAccessoryView sizeToFit];
-        [self.contentView addSubview:self.subAccessoryView];
+        [self addSubview:self.subAccessoryView];
     }
     
     [self updateSubAccessoryViewHidden];
@@ -586,7 +579,7 @@
             _loadingView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:NavBarActivityIndicatorViewStyle size:self.loadingViewSize];
             self.loadingView.color = self.tintColor;
             [self.loadingView stopAnimating];
-            [self.contentView addSubview:self.loadingView];
+            [self addSubview:self.loadingView];
         }
     } else {
         if (self.loadingView) {
@@ -651,12 +644,10 @@
 - (void)tintColorDidChange {
     [super tintColorDidChange];
     
-    if (self.adjustsSubviewsTintColorAutomatically) {
-        UIColor *color = self.tintColor;
-        self.titleLabel.textColor = color;
-        self.subtitleLabel.textColor = color;
-        self.loadingView.color = color;
-    }
+    UIColor *color = self.tintColor;
+    self.titleLabel.textColor = color;
+    self.subtitleLabel.textColor = color;
+    self.loadingView.color = color;
 }
 
 #pragma mark - Events
@@ -692,7 +683,6 @@
 
 + (void)setDefaultAppearance {
     QMUINavigationTitleView *appearance = [QMUINavigationTitleView appearance];
-    appearance.adjustsSubviewsTintColorAutomatically = YES;
     appearance.maximumWidth = CGFLOAT_MAX;
     appearance.loadingViewSize = CGSizeMake(18, 18);
     appearance.loadingViewMarginRight = 3;
@@ -705,74 +695,5 @@
     appearance.titleEdgeInsets = UIEdgeInsetsZero;
     appearance.subtitleEdgeInsets = UIEdgeInsetsZero;
 }
-
-@end
-
-#pragma mark - LargeTitle 兼容
-
-@implementation QMUINavigationTitleView (LargeTitleCompatibility)
-
-- (void)setAlpha:(BOOL)alpha animated:(BOOL)animated {
-    // 在 push 和 pop 过渡期间系统会对自定义的 titleView 的 alpha 进行调整，了避免和系统的设置冲突（比如设置 alpha 为 0 又被系统还原为 1）这里通过设置 contentView 的 alpha 来控制整个 QMUINavigationTitleView 显示与隐藏。
-    [UIView qmui_animateWithAnimated:animated duration:0.25f animations:^{
-        self.contentView.alpha = alpha;
-    }];
-}
-
-@end
-
-@implementation UINavigationBar (LargeTitleCompatibility)
-
-- (UIView *)qmui_largeTitleView {
-    for (UIView *subview in self.subviews) {
-        if ([NSStringFromClass(subview.class) hasSuffix:@"LargeTitleView"]) {
-            return subview;
-        }
-    }
-    return nil;
-}
-
-@end
-
-
-@implementation UINavigationController(LargeTitleCompatibility)
-
-+ (void)load {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        if (@available(iOS 11.0, *)) {
-            OverrideImplementation([UINavigationController class], sel_registerName("_updateTopViewFramesToMatchScrollOffsetInViewController:contentScrollView:topLayoutType:"), ^id(__unsafe_unretained Class originClass, SEL originCMD, IMP (^originalIMPProvider)(void)) {
-                return ^(UINavigationController *selfObject, UIViewController *viewController, UIScrollView *scrollView, NSUInteger topLayoutType) {
-                    
-                    // call super
-                    void (*originSelectorIMP)(id, SEL, UIViewController *, UIScrollView *, NSUInteger);
-                    originSelectorIMP = (void (*)(id, SEL,  UIViewController *, UIScrollView *, NSUInteger))originalIMPProvider();
-                    originSelectorIMP(selfObject, originCMD, viewController, scrollView, topLayoutType);
-                    
-                    [selfObject qmui_updateTitleViewToMatchScrollOffsetInViewController:viewController contentScrollView:scrollView topLayoutType:topLayoutType];
-                };
-            });
-        }
-    });
-}
-
-- (void)qmui_updateTitleViewToMatchScrollOffsetInViewController:(UIViewController *)viewController contentScrollView:(UIScrollView *)contentScrollView topLayoutType:(NSInteger)topLayoutType {
-    if (@available(iOS 11.0, *)) {
-        UIView *titleView = viewController.navigationItem.titleView;
-        if (!titleView || ![titleView isKindOfClass:[QMUINavigationTitleView class]]) {
-            return;
-        }
-        
-        NSAssert(viewController.navigationController == self, @"navigationController is nil");
-        
-        QMUINavigationTitleView *navigationTitleView = (QMUINavigationTitleView *)titleView;
-        UIView *largeTitleView = self.navigationBar.qmui_largeTitleView;
-        BOOL largeTitleLabelVisable = self.navigationBar.prefersLargeTitles && viewController.qmui_prefersLargeTitleDisplayed && largeTitleView.alpha != 0;
-        BOOL titleViewAlpha = largeTitleLabelVisable ? 0 : 1;
-        BOOL animated = contentScrollView.layer.presentationLayer && !CGRectEqualToRect(contentScrollView.layer.presentationLayer.bounds, contentScrollView.layer.bounds);
-        [navigationTitleView setAlpha:titleViewAlpha animated:animated];
-    }
-}
-
 
 @end

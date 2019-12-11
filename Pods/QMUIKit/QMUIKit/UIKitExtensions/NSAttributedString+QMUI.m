@@ -27,7 +27,10 @@
         OverrideImplementation([[[NSAttributedString alloc] initWithString:@""] class], @selector(initWithString:), ^id(__unsafe_unretained Class originClass, SEL originCMD, IMP (^originalIMPProvider)(void)) {
             return ^NSAttributedString *(NSAttributedString *selfObject, NSString *str) {
                 
-                str = str ?: @"";
+                // avoid superclass
+                if ([selfObject isKindOfClass:originClass]) {
+                    str = str ?: @"";
+                }
                 
                 // call super
                 NSAttributedString *(*originSelectorIMP)(id, SEL, NSString *);
@@ -40,7 +43,10 @@
         
         OverrideImplementation([[[NSAttributedString alloc] initWithString:@"" attributes:nil] class], @selector(initWithString:attributes:), ^id(__unsafe_unretained Class originClass, SEL originCMD, IMP (^originalIMPProvider)(void)) {
             return ^NSAttributedString *(NSAttributedString *selfObject, NSString *str, NSDictionary<NSString *,id> *attrs) {
-                str = str ?: @"";
+                // avoid superclass
+                if ([selfObject isKindOfClass:originClass]) {
+                    str = str ?: @"";
+                }
                 
                 // call super
                 NSAttributedString *(*originSelectorIMP)(id, SEL, NSString *, NSDictionary<NSString *,id> *);
@@ -97,7 +103,10 @@
         OverrideImplementation([[[NSMutableAttributedString alloc] initWithString:@""] class], @selector(initWithString:), ^id(__unsafe_unretained Class originClass, SEL originCMD, IMP (^originalIMPProvider)(void)) {
             return ^NSMutableAttributedString *(NSMutableAttributedString *selfObject, NSString *str) {
                 
-                str = str ?: @"";
+                // avoid superclass
+                if ([selfObject isKindOfClass:originClass]) {
+                    str = str ?: @"";
+                }
                 
                 // call super
                 NSMutableAttributedString *(*originSelectorIMP)(id, SEL, NSString *);
@@ -110,7 +119,10 @@
         
         OverrideImplementation([[[NSMutableAttributedString alloc] initWithString:@"" attributes:nil] class], @selector(initWithString:attributes:), ^id(__unsafe_unretained Class originClass, SEL originCMD, IMP (^originalIMPProvider)(void)) {
             return ^NSMutableAttributedString *(NSMutableAttributedString *selfObject, NSString *str, NSDictionary<NSString *,id> *attrs) {
-                str = str ?: @"";
+                // avoid superclass
+                if ([selfObject isKindOfClass:originClass]) {
+                    str = str ?: @"";
+                }
                 
                 // call super
                 NSMutableAttributedString *(*originSelectorIMP)(id, SEL, NSString *, NSDictionary<NSString *,id> *);
