@@ -187,6 +187,7 @@
                 cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
                 self.myWebView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
                 self.myWebView.delegate = self;
+                self.myWebView.backgroundColor = [UIColor whiteColor];
                 [cell addSubview:self.myWebView];
                 
             }

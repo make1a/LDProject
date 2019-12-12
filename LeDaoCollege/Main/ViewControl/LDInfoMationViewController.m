@@ -139,8 +139,6 @@
         _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:frame delegate:self placeholderImage:placeholderImage];
         _cycleScrollView.imageURLStringsGroup = self.netImages;
         _cycleScrollView.showPageControl = YES;
-        _cycleScrollView.layer.masksToBounds = YES;
-        _cycleScrollView.layer.cornerRadius = 10;
     }
     return _cycleScrollView;
 }

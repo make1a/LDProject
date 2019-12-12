@@ -37,7 +37,7 @@
 }
 - (void)clickShareAction{
     QMUIMoreOperationController *moreOperationController = [[QMUIMoreOperationController alloc] init];
-    
+    moreOperationController.view.backgroundColor = [UIColor whiteColor];
     NSMutableArray *array = @[].mutableCopy;
     
    QMUIMoreOperationItemView *wx = [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"wechat") title:@"分享给微信好友" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
@@ -103,6 +103,7 @@
         _webView = [[UIWebView alloc]initWithFrame:self.view.bounds];
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.urlStrng]];
         [_webView loadRequest:request];
+        _webView.backgroundColor = [UIColor whiteColor];
     }
     return _webView;
 }

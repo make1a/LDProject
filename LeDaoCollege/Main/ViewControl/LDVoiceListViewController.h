@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LDVoiceListViewController : QMUICommonTableViewController
 @property (nonatomic,strong)NSArray * dataSource;
+@property (nonatomic,strong)NSArray * netImages;
 - (void)requestSource:(NSString *)title mark:(NSString *)mark back:(backSourceCountBlock)blcok;
 @end
 

@@ -46,6 +46,10 @@ NS_ASSUME_NONNULL_BEGIN
 /** <#Description#> **/
 @property(nonatomic,strong) NSNumber *mark;
 @property (nonatomic,copy)NSString * contentUrl;
+@property (nonatomic,copy)NSString * audioUrl;
+
+@property (nonatomic,assign)BOOL isPlaying;
+
 @end
 
 NS_ASSUME_NONNULL_END

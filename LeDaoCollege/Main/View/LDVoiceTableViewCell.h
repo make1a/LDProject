@@ -17,6 +17,8 @@ extern NSString *const kLDVoiceTableViewCellIdentifier;
 @property (nonatomic,strong)UILabel * watchLabel;
 
 @property (nonatomic,copy) void (^didSelectCollectionActionBlock)(void);
+
+@property (nonatomic,copy) void (^didSelectPlayMusicActionBlock)(BOOL Play);
 + (instancetype)dequeueReusableWithTableView:(UITableView *)tableView;
 
 - (void)refreshWithModel:(LDVoiceModel *)model;

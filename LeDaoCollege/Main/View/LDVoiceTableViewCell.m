@@ -45,6 +45,7 @@ NSString *const kLDVoiceTableViewCellIdentifier = @"kLDVoiceTableViewCellIdentif
     }
     self.timeLabel.text = model.createdDate;
     self.collectionButton.selected = [model.collectionFlag isEqualToString:@"Y"]?YES:NO;
+    self.playButton.selected = model.isPlaying;
 }
 - (void)clickCollectionButtonAction{
     if (self.didSelectCollectionActionBlock) {
@@ -82,6 +83,7 @@ NSString *const kLDVoiceTableViewCellIdentifier = @"kLDVoiceTableViewCellIdentif
     [self.playButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self.bigImageVIew);
         make.centerX.mas_equalTo(self.bigImageVIew);
+        make.width.height.mas_equalTo(PtWidth(27));
     }];
     
     [self.collectionButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -89,7 +91,12 @@ NSString *const kLDVoiceTableViewCellIdentifier = @"kLDVoiceTableViewCellIdentif
         make.centerY.mas_equalTo(self.contentView);
     }];
 }
-
+- (void)clickPlayAction:(UIButton *)sender{
+    if (self.didSelectPlayMusicActionBlock) {
+        self.didSelectPlayMusicActionBlock(sender.selected);
+    }
+    sender.selected = !sender.selected;
+}
 - (void)addFreeLabel{
     
 }
@@ -133,9 +140,10 @@ NSString *const kLDVoiceTableViewCellIdentifier = @"kLDVoiceTableViewCellIdentif
 - (UIButton *)playButton {
     if (!_playButton) {
         _playButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_playButton setImage:[UIImage imageNamed:@"play_icon"] forState:UIControlStateNormal];
-        [_playButton setImage:[UIImage imageNamed:@"pause_icon"] forState:UIControlStateSelected];
+        [_playButton setImage:[UIImage imageNamed:@"play_icon_black_01"] forState:UIControlStateNormal];
+        [_playButton setImage:[UIImage imageNamed:@"play_pause_icon"] forState:UIControlStateSelected];
         [_playButton setEnlargeEdgeWithTop:20 right:20 bottom:20 left:20];
+        [_playButton addTarget:self action:@selector(clickPlayAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _playButton;
 }
