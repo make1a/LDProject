@@ -72,6 +72,7 @@
 		268EEDF82325F1640014F971 /* PickerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 268EEDF52325F1630014F971 /* PickerViewCell.m */; };
 		268EEDF92325F1640014F971 /* ClickPickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 268EEDF62325F1640014F971 /* ClickPickerCell.m */; };
 		268EEDFC2325F2670014F971 /* LDHeadImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 268EEDFB2325F2670014F971 /* LDHeadImageCell.m */; };
+		2690FE6B23A1DAEB003DF77D /* LDVoiceDetailViewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 2690FE6A23A1DAEB003DF77D /* LDVoiceDetailViewcontroller.m */; };
 		2698FFA02379380200883FE7 /* LDShujiaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2698FF9F2379380200883FE7 /* LDShujiaModel.m */; };
 		2698FFA3237949AD00883FE7 /* LDSmallClassSectionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2698FFA2237949AD00883FE7 /* LDSmallClassSectionDetailViewController.m */; };
 		26AAE4DD2334D8C700B9C5D3 /* LDShoppingDetailNameViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26AAE4DB2334D8C700B9C5D3 /* LDShoppingDetailNameViewCell.m */; };
@@ -316,6 +317,8 @@
 		268EEDF62325F1640014F971 /* ClickPickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickPickerCell.m; sourceTree = "<group>"; };
 		268EEDFA2325F2670014F971 /* LDHeadImageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDHeadImageCell.h; sourceTree = "<group>"; };
 		268EEDFB2325F2670014F971 /* LDHeadImageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDHeadImageCell.m; sourceTree = "<group>"; };
+		2690FE6923A1DAEB003DF77D /* LDVoiceDetailViewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDVoiceDetailViewcontroller.h; sourceTree = "<group>"; };
+		2690FE6A23A1DAEB003DF77D /* LDVoiceDetailViewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDVoiceDetailViewcontroller.m; sourceTree = "<group>"; };
 		2698FF9E2379380200883FE7 /* LDShujiaModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDShujiaModel.h; sourceTree = "<group>"; };
 		2698FF9F2379380200883FE7 /* LDShujiaModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDShujiaModel.m; sourceTree = "<group>"; };
 		2698FFA1237949AD00883FE7 /* LDSmallClassSectionDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDSmallClassSectionDetailViewController.h; sourceTree = "<group>"; };
@@ -863,6 +866,8 @@
 				2643A0B3239CB0060055B320 /* LDVoiceListViewController.m */,
 				2643A0B5239CB7300055B320 /* LDVideoListViewController.h */,
 				2643A0B6239CB7300055B320 /* LDVideoListViewController.m */,
+				2690FE6923A1DAEB003DF77D /* LDVoiceDetailViewcontroller.h */,
+				2690FE6A23A1DAEB003DF77D /* LDVoiceDetailViewcontroller.m */,
 			);
 			path = ViewControl;
 			sourceTree = "<group>";
@@ -1381,6 +1386,7 @@
 				26E816352332395100CECCE3 /* LDNavigationController.m in Sources */,
 				2633E3D8235D53D8002DEA26 /* LDVideoModel.m in Sources */,
 				2638A5C82351791500D4DC55 /* MKRequestManager.m in Sources */,
+				2690FE6B23A1DAEB003DF77D /* LDVoiceDetailViewcontroller.m in Sources */,
 				26BA0655232735E200992FFD /* LDAlterNameViewController.m in Sources */,
 				265CB9812320AAA600883FE2 /* View+MASAdditions.m in Sources */,
 				26AAE4DD2334D8C700B9C5D3 /* LDShoppingDetailNameViewCell.m in Sources */,

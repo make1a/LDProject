@@ -10,7 +10,7 @@
 #import "LDVoiceTableViewCell.h"
 #import "LDVoiceModel.h"
 #import "LDWebViewViewController.h"
-
+#import "LDVoiceDetailViewcontroller.h"
 @interface LDVoiceListViewController ()
 
 @end
@@ -18,16 +18,16 @@
 @implementation LDVoiceListViewController
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationController.navigationBar.hidden = NO;
+    self.navigationController.navigationBar.hidden = YES;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self requestSource:@"" mark:@"" back:nil];
 }
 #pragma  mark - Request
 - (void)requestSource:(NSString *)title mark:(NSString *)mark back:(backSourceCountBlock)blcok{
-    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"audio/getaudios" requestParameters:@{@"title":title,@"mark":mark,@"pageSize":@1000} requestHeader:nil success:^(id responseObject) {
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"audio/getaudios" requestParameters:@{@"title":title,@"pageSize":@1000} requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {
             self.dataSource = [NSArray yy_modelArrayWithClass:[LDVoiceModel class] json:responseObject[@"data"][@"list"]];
             [self.tableView reloadData];
@@ -75,16 +75,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     LDVoiceModel *model = self.dataSource[indexPath.row];
-    LDWebViewViewController * vc = [LDWebViewViewController new];
+    LDVoiceDetailViewcontroller * vc = [LDVoiceDetailViewcontroller new];
     vc.title = model.title;
-    vc.urlStrng = [NSString stringWithFormat:@"%@?id=%@&token=%@",model.contentUrl,model.v_id,[LDUserManager userID]];
-    vc.s_id = model.v_id;
-    vc.isCollection = [model.collectionFlag isEqualToString:@"Y"]?YES:NO;
-    vc.collectionType = @"2";
-    vc.didRefreshCollectionStateBlock = ^(BOOL isCollection) {
-        model.collectionFlag = isCollection?@"Y":@"N";
-        [tableView reloadData];
-    };
+//    vc.urlStrng = [NSString stringWithFormat:@"%@?id=%@&token=%@",model.contentUrl,model.v_id,[LDUserManager userID]];
+//    vc.s_id = model.v_id;
+//    vc.isCollection = [model.collectionFlag isEqualToString:@"Y"]?YES:NO;
+//    vc.collectionType = @"2";
+//    vc.didRefreshCollectionStateBlock = ^(BOOL isCollection) {
+//        model.collectionFlag = isCollection?@"Y":@"N";
+//        [tableView reloadData];
+//    };
     [self.navigationController pushViewController:vc animated:YES];
 }
 @end

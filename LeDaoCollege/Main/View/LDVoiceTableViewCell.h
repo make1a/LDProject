@@ -9,11 +9,14 @@
 #import "LDNewsTableViewCell.h"
 #import "LDVoiceModel.h"
 extern NSString *const kLDVoiceTableViewCellIdentifier;
-@interface LDVoiceTableViewCell : LDNewsTableViewCell
+@interface LDVoiceTableViewCell : UITableViewCell
 @property (nonatomic,strong)UIButton * collectionButton;
+@property (nonatomic,strong)UIImageView * bigImageVIew;
+@property (nonatomic,strong)UILabel * timeLabel;
+@property (nonatomic,strong)UILabel * titleLabel;
+@property (nonatomic,strong)UILabel * watchLabel;
 
-
-
+@property (nonatomic,copy) void (^didSelectCollectionActionBlock)(void);
 + (instancetype)dequeueReusableWithTableView:(UITableView *)tableView;
 
 - (void)refreshWithModel:(LDVoiceModel *)model;
