@@ -54,6 +54,7 @@ NSString *const kLDNewsTableViewCellIdentifier = @"kLDNewsTableViewCellIdentifie
     }
     self.timeLabel.text = model.createdDate;
     self.titleLabel.text = model.title;
+    self.watchLabel.text = model.numOfVisiter;
 }
 
 #pragma  mark - masLayoutSuviews
@@ -75,7 +76,6 @@ NSString *const kLDNewsTableViewCellIdentifier = @"kLDNewsTableViewCellIdentifie
         make.left.mas_equalTo(self.bigImageVIew.mas_right).mas_offset(PtWidth(17));
         make.top.equalTo(self.bigImageVIew);
         make.right.mas_equalTo(self).mas_offset(PtWidth(-31));
-        
     }];
     
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {

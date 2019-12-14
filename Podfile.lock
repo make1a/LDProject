@@ -19,6 +19,7 @@ PODS:
   - CYLTabBarController/Core (1.28.4)
   - IQKeyboardManager (6.5.4)
   - LookinServer (1.0.0)
+  - Masonry (1.1.0)
   - MJRefresh (3.2.3)
   - QMUIKit (4.0.3):
     - QMUIKit/QMUIComponents (= 4.0.3)
@@ -310,12 +311,63 @@ PODS:
     - QMUIKit/QMUICore
     - QMUIKit/QMUILog
   - QMUIKit/QMUIWeakObjectContainer (4.0.3)
+  - Reachability (3.2)
   - ReactiveObjC (3.1.1)
   - SDCycleScrollView (1.80):
     - SDWebImage (>= 5.0.0)
   - SDWebImage (5.4.0):
     - SDWebImage/Core (= 5.4.0)
   - SDWebImage/Core (5.4.0)
+  - SJBaseVideoPlayer (3.1.7):
+    - Masonry
+    - Reachability
+    - SJBaseVideoPlayer/AVPlayer (= 3.1.7)
+    - SJBaseVideoPlayer/Common (= 3.1.7)
+    - SJUIKit/AttributesFactory (>= 0.0.0.38)
+    - SJUIKit/ObserverHelper (>= 0.0.0.38)
+    - SJUIKit/Queues (>= 0.0.0.38)
+  - SJBaseVideoPlayer/AVPlayer (3.1.7):
+    - Masonry
+    - Reachability
+    - SJBaseVideoPlayer/Common
+    - SJUIKit/AttributesFactory (>= 0.0.0.38)
+    - SJUIKit/ObserverHelper (>= 0.0.0.38)
+    - SJUIKit/Queues (>= 0.0.0.38)
+  - SJBaseVideoPlayer/Common (3.1.7):
+    - Masonry
+    - Reachability
+    - SJBaseVideoPlayer/ResourceLoader
+    - SJUIKit/AttributesFactory (>= 0.0.0.38)
+    - SJUIKit/ObserverHelper (>= 0.0.0.38)
+    - SJUIKit/Queues (>= 0.0.0.38)
+  - SJBaseVideoPlayer/ResourceLoader (3.1.7):
+    - Masonry
+    - Reachability
+    - SJUIKit/AttributesFactory (>= 0.0.0.38)
+    - SJUIKit/ObserverHelper (>= 0.0.0.38)
+    - SJUIKit/Queues (>= 0.0.0.38)
+  - SJUIKit/AttributesFactory (0.0.0.39):
+    - SJUIKit/AttributesFactory/Deprecated (= 0.0.0.39)
+    - SJUIKit/AttributesFactory/UIKitText (= 0.0.0.39)
+  - SJUIKit/AttributesFactory/Deprecated (0.0.0.39)
+  - SJUIKit/AttributesFactory/UIKitText (0.0.0.39)
+  - SJUIKit/ObserverHelper (0.0.0.39)
+  - SJUIKit/Queues (0.0.0.39)
+  - SJVideoPlayer (3.1.1):
+    - SJBaseVideoPlayer (>= 3.1.7)
+    - SJVideoPlayer/Common (= 3.1.1)
+    - SJVideoPlayer/ControlLayers (= 3.1.1)
+    - SJVideoPlayer/ResourceLoader (= 3.1.1)
+  - SJVideoPlayer/Common (3.1.1):
+    - Masonry
+    - SJBaseVideoPlayer (>= 3.1.7)
+    - SJUIKit/AttributesFactory
+    - SJVideoPlayer/ResourceLoader
+  - SJVideoPlayer/ControlLayers (3.1.1):
+    - SJBaseVideoPlayer (>= 3.1.7)
+    - SJVideoPlayer/Common
+  - SJVideoPlayer/ResourceLoader (3.1.1):
+    - SJBaseVideoPlayer (>= 3.1.7)
   - UMCCommon (2.1.1)
   - UMCSecurityPlugins (1.0.6)
   - UMCShare/Core (6.9.6):
@@ -348,6 +400,7 @@ DEPENDENCIES:
   - ReactiveObjC
   - SDCycleScrollView
   - SDWebImage
+  - SJVideoPlayer
   - UMCCommon
   - UMCSecurityPlugins
   - UMCShare/Social/ReducedSina
@@ -362,11 +415,16 @@ SPEC REPOS:
     - CYLTabBarController
     - IQKeyboardManager
     - LookinServer
+    - Masonry
     - MJRefresh
     - QMUIKit
+    - Reachability
     - ReactiveObjC
     - SDCycleScrollView
     - SDWebImage
+    - SJBaseVideoPlayer
+    - SJUIKit
+    - SJVideoPlayer
     - UMCCommon
     - UMCSecurityPlugins
     - UMCShare
@@ -378,17 +436,22 @@ SPEC CHECKSUMS:
   CYLTabBarController: d7160abd77b3a94626cff123fdfaa4f3badde20d
   IQKeyboardManager: 72b359cd7e777e3a984cedbe05f8da45320cbb63
   LookinServer: 0002891cd3cec5e082a910e897dfe71b4f06b89e
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJRefresh: 2b1214a2dc8f4df4c5dcb028ea2ad4e245425fb7
   QMUIKit: 92b1ac5112562aa4a788d786940c3e84f054aa1e
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
   SDCycleScrollView: b3c9a5ed840c771c4938978174c7c9d9feefeb96
   SDWebImage: 5bf6aec6481ae2a062bdc59f9d6c1d1e552090e0
+  SJBaseVideoPlayer: 9e18423fd106835ce84a882e7ac65959a2dec212
+  SJUIKit: 5479a150083e606937a796801ecaae6317e046f5
+  SJVideoPlayer: 02bafffeb014806167be201f2860462fdc4d9e87
   UMCCommon: 971f324a5a99c9d662ae040a815e7e3d7ef8b2a8
   UMCSecurityPlugins: 0831a08f3988f3cea9f1d3a7626cd9bee4fef150
   UMCShare: e0cef55c0fd6051254c8cda1d0630eb578b27bad
   VTMagic: b49e5f456dbcbfd9a3588ba92417233a105bc193
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: 509d3cb729fbeed55419d8e2781501bc1f9546fb
+PODFILE CHECKSUM: 861f9ef2f06d17729f9fdc4b024f67026e28bb52
 
 COCOAPODS: 1.8.4

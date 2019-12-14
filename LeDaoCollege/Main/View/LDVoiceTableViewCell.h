@@ -15,7 +15,7 @@ extern NSString *const kLDVoiceTableViewCellIdentifier;
 @property (nonatomic,strong)UILabel * timeLabel;
 @property (nonatomic,strong)UILabel * titleLabel;
 @property (nonatomic,strong)UILabel * watchLabel;
-
+@property (nonatomic,strong)UIButton * playButton;
 @property (nonatomic,copy) void (^didSelectCollectionActionBlock)(void);
 
 @property (nonatomic,copy) void (^didSelectPlayMusicActionBlock)(BOOL Play);

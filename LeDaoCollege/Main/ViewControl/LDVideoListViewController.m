@@ -10,7 +10,7 @@
 #import "LDVideoTableViewCell.h"
 #import "LDVideoModel.h"
 #import "LDWebViewViewController.h"
-
+#import "LDVideoDetailViewController.h"
 @interface LDVideoListViewController ()
 
 @end
@@ -22,16 +22,26 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshStatus:) name:@"collectionPost" object:nil];
 }
-
+- (void)refreshStatus:(NSNotification *)noti{
+    LDVideoModel *selectModel = noti.object;
+    for (LDVideoModel *model in self.dataSource) {
+        if (model.v_id == selectModel.v_id) {
+            NSInteger index = [self.dataSource indexOfObject:model];
+            LDVideoTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+            cell.collectionButton.selected = [model.collectionFlag isEqualToString:@"Y"]?YES:NO;
+            break;
+        }
+    }
+}
 #pragma mark - Request
 - (void)requestSource:(NSString *)title mark:(NSString *)mark back:(backSourceCountBlock)blcok{
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"video/getlist" requestParameters:@{@"title":title,@"mark":mark,@"pageSize":@1000} requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {
             self.dataSource = [NSArray yy_modelArrayWithClass:[LDVideoModel class] json:responseObject[@"data"][@"list"]];
             [self.tableView reloadData];
-                        if (blcok) {
+            if (blcok) {
                 blcok(self.dataSource.count);
             }
         }
@@ -77,16 +87,18 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     LDVideoModel *model = self.dataSource[indexPath.row];
-    LDWebViewViewController * vc = [LDWebViewViewController new];
-    vc.urlStrng = [NSString stringWithFormat:@"%@?id=%@&token=%@",model.contentUrl,model.v_id,[LDUserManager userID]];
-    vc.s_id = model.v_id;
-    vc.isCollection = [model.collectionFlag isEqualToString:@"Y"]?YES:NO;
-    vc.collectionType = @"3";
-    vc.didRefreshCollectionStateBlock = ^(BOOL isCollection) {
-        model.collectionFlag = isCollection?@"Y":@"N";
-        [tableView reloadData];
-    };
-    vc.title = model.title;
+    //    LDWebViewViewController * vc = [LDWebViewViewController new];
+    //    vc.urlStrng = [NSString stringWithFormat:@"%@?id=%@&token=%@",model.contentUrl,model.v_id,[LDUserManager userID]];
+    //    vc.s_id = model.v_id;
+    //    vc.isCollection = [model.collectionFlag isEqualToString:@"Y"]?YES:NO;
+    //    vc.collectionType = @"3";
+    //    vc.didRefreshCollectionStateBlock = ^(BOOL isCollection) {
+    //        model.collectionFlag = isCollection?@"Y":@"N";
+    //        [tableView reloadData];
+    //    };
+    //    vc.title = model.title;
+    LDVideoDetailViewController *vc = [[LDVideoDetailViewController alloc]init];
+    vc.videoID = model.v_id;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

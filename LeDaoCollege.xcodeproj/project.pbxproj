@@ -26,8 +26,9 @@
 		2643A0AC239CA7C40055B320 /* LDTagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2643A0AA239CA7C40055B320 /* LDTagCell.xib */; };
 		2643A0B0239CAB500055B320 /* LDHeadCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2643A0AE239CAB500055B320 /* LDHeadCollectionReusableView.m */; };
 		2643A0B1239CAB500055B320 /* LDHeadCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2643A0AF239CAB500055B320 /* LDHeadCollectionReusableView.xib */; };
-		2643A0B4239CB0060055B320 /* LDVoiceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2643A0B3239CB0060055B320 /* LDVoiceListViewController.m */; };
 		2643A0B7239CB7300055B320 /* LDVideoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2643A0B6239CB7300055B320 /* LDVideoListViewController.m */; };
+		264D626A23A4B25F0015F253 /* LDCatalogCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 264D626823A4B25F0015F253 /* LDCatalogCell.m */; };
+		264D626B23A4B25F0015F253 /* LDCatalogCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 264D626923A4B25F0015F253 /* LDCatalogCell.xib */; };
 		2657FBE8233CA66700D316E3 /* LDRechargeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2657FBE6233CA66700D316E3 /* LDRechargeCell.m */; };
 		2657FBE9233CA66700D316E3 /* LDRechargeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2657FBE7233CA66700D316E3 /* LDRechargeCell.xib */; };
 		2658F0E22327D02300F4C37A /* LDCollectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2658F0E12327D02300F4C37A /* LDCollectViewController.m */; };
@@ -45,16 +46,6 @@
 		265CB9442320A2F500883FE2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 265CB9422320A2F500883FE2 /* LaunchScreen.storyboard */; };
 		265CB9472320A2F500883FE2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 265CB9462320A2F500883FE2 /* main.m */; };
 		265CB95F2320A96100883FE2 /* MYConstansManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 265CB95E2320A96100883FE2 /* MYConstansManager.m */; };
-		265CB97B2320AAA600883FE2 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 265CB9622320AAA600883FE2 /* NSLayoutConstraint+MASDebugAdditions.m */; };
-		265CB97C2320AAA600883FE2 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 265CB96B2320AAA600883FE2 /* ViewController+MASAdditions.m */; };
-		265CB97D2320AAA600883FE2 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 265CB96F2320AAA600883FE2 /* MASCompositeConstraint.m */; };
-		265CB97E2320AAA600883FE2 /* MASConstraintMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 265CB9702320AAA600883FE2 /* MASConstraintMaker.m */; };
-		265CB97F2320AAA600883FE2 /* MASLayoutConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 265CB9712320AAA600883FE2 /* MASLayoutConstraint.m */; };
-		265CB9802320AAA600883FE2 /* NSArray+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 265CB9722320AAA600883FE2 /* NSArray+MASAdditions.m */; };
-		265CB9812320AAA600883FE2 /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 265CB9732320AAA600883FE2 /* View+MASAdditions.m */; };
-		265CB9822320AAA600883FE2 /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 265CB9762320AAA600883FE2 /* MASConstraint.m */; };
-		265CB9832320AAA600883FE2 /* MASViewConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 265CB9782320AAA600883FE2 /* MASViewConstraint.m */; };
-		265CB9842320AAA600883FE2 /* MASViewAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 265CB9792320AAA600883FE2 /* MASViewAttribute.m */; };
 		265CB9932320AE6700883FE2 /* LDTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 265CB9922320AE6700883FE2 /* LDTabBarController.m */; };
 		265CB9962320B2AA00883FE2 /* LDMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 265CB9952320B2AA00883FE2 /* LDMineViewController.m */; };
 		265CB9992320B2BC00883FE2 /* LDMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 265CB9982320B2BC00883FE2 /* LDMainViewController.m */; };
@@ -83,10 +74,13 @@
 		2690FE8C23A1DBD9003DF77D /* DFPlayerLyricsTableview.m in Sources */ = {isa = PBXBuildFile; fileRef = 2690FE8123A1DBD9003DF77D /* DFPlayerLyricsTableview.m */; };
 		2690FE8D23A1DBD9003DF77D /* DFPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2690FE8223A1DBD9003DF77D /* DFPlayer.m */; };
 		2690FE8E23A1DBD9003DF77D /* DFPlayer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2690FE8323A1DBD9003DF77D /* DFPlayer.bundle */; };
+		26960D6D23A4745C002B1662 /* LDCatalogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26960D6C23A4745C002B1662 /* LDCatalogViewController.m */; };
+		26960D7123A47A19002B1662 /* LDVideoDetailContenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26960D6F23A47A19002B1662 /* LDVideoDetailContenViewController.m */; };
+		26960D7623A4808C002B1662 /* LDShoppingDetailNameViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26960D7423A4808C002B1662 /* LDShoppingDetailNameViewCell.m */; };
+		26960D7723A4808C002B1662 /* LDShoppingDetailNameViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26960D7523A4808C002B1662 /* LDShoppingDetailNameViewCell.xib */; };
+		26960D7923A4CEF7002B1662 /* LDVoiceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26960D7823A4CEF7002B1662 /* LDVoiceListViewController.m */; };
 		2698FFA02379380200883FE7 /* LDShujiaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2698FF9F2379380200883FE7 /* LDShujiaModel.m */; };
 		2698FFA3237949AD00883FE7 /* LDSmallClassSectionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2698FFA2237949AD00883FE7 /* LDSmallClassSectionDetailViewController.m */; };
-		26AAE4DD2334D8C700B9C5D3 /* LDShoppingDetailNameViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26AAE4DB2334D8C700B9C5D3 /* LDShoppingDetailNameViewCell.m */; };
-		26AAE4DE2334D8C700B9C5D3 /* LDShoppingDetailNameViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26AAE4DC2334D8C700B9C5D3 /* LDShoppingDetailNameViewCell.xib */; };
 		26AAE4E22334DD8B00B9C5D3 /* LDShoppingTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26AAE4E02334DD8B00B9C5D3 /* LDShoppingTitleCell.m */; };
 		26AAE4E32334DD8B00B9C5D3 /* LDShoppingTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26AAE4E12334DD8B00B9C5D3 /* LDShoppingTitleCell.xib */; };
 		26B0D4DF2356B9400064205B /* LDNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B0D4DE2356B9400064205B /* LDNewsModel.m */; };
@@ -149,6 +143,7 @@
 		26CBF8912325275C005139EF /* LoginEnableButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CBF88F2325275C005139EF /* LoginEnableButton.m */; };
 		26CBF89423252A98005139EF /* JKCountDownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CBF89323252A97005139EF /* JKCountDownButton.m */; };
 		26CDCBA3239A42AB005E924D /* UIButton+EnlargeEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CDCBA2239A42AB005E924D /* UIButton+EnlargeEdge.m */; };
+		26D2F86E23A381BE00EB7347 /* LDVideoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26D2F86D23A381BD00EB7347 /* LDVideoDetailViewController.m */; };
 		26D93F8023372E2700B31DAB /* LDShoppingImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26D93F7E23372E2700B31DAB /* LDShoppingImageCell.m */; };
 		26D93F8123372E2700B31DAB /* LDShoppingImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26D93F7F23372E2700B31DAB /* LDShoppingImageCell.xib */; };
 		26D93F8423372F1300B31DAB /* LDShoppingDetailFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = 26D93F8323372F1300B31DAB /* LDShoppingDetailFootView.m */; };
@@ -232,9 +227,11 @@
 		2643A0AE239CAB500055B320 /* LDHeadCollectionReusableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDHeadCollectionReusableView.m; sourceTree = "<group>"; };
 		2643A0AF239CAB500055B320 /* LDHeadCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LDHeadCollectionReusableView.xib; sourceTree = "<group>"; };
 		2643A0B2239CB0060055B320 /* LDVoiceListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDVoiceListViewController.h; sourceTree = "<group>"; };
-		2643A0B3239CB0060055B320 /* LDVoiceListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDVoiceListViewController.m; sourceTree = "<group>"; };
 		2643A0B5239CB7300055B320 /* LDVideoListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDVideoListViewController.h; sourceTree = "<group>"; };
 		2643A0B6239CB7300055B320 /* LDVideoListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDVideoListViewController.m; sourceTree = "<group>"; };
+		264D626723A4B25F0015F253 /* LDCatalogCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDCatalogCell.h; sourceTree = "<group>"; };
+		264D626823A4B25F0015F253 /* LDCatalogCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDCatalogCell.m; sourceTree = "<group>"; };
+		264D626923A4B25F0015F253 /* LDCatalogCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LDCatalogCell.xib; sourceTree = "<group>"; };
 		2657FBE5233CA66700D316E3 /* LDRechargeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDRechargeCell.h; sourceTree = "<group>"; };
 		2657FBE6233CA66700D316E3 /* LDRechargeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDRechargeCell.m; sourceTree = "<group>"; };
 		2657FBE7233CA66700D316E3 /* LDRechargeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LDRechargeCell.xib; sourceTree = "<group>"; };
@@ -269,31 +266,6 @@
 		265CB95C2320A96000883FE2 /* MYConstansManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYConstansManager.h; sourceTree = "<group>"; };
 		265CB95D2320A96100883FE2 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		265CB95E2320A96100883FE2 /* MYConstansManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYConstansManager.m; sourceTree = "<group>"; };
-		265CB9612320AAA600883FE2 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
-		265CB9622320AAA600883FE2 /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
-		265CB9632320AAA600883FE2 /* MASConstraint+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASConstraint+Private.h"; sourceTree = "<group>"; };
-		265CB9642320AAA600883FE2 /* MASLayoutConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASLayoutConstraint.h; sourceTree = "<group>"; };
-		265CB9652320AAA600883FE2 /* NSArray+MASShorthandAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+MASShorthandAdditions.h"; sourceTree = "<group>"; };
-		265CB9662320AAA600883FE2 /* MASConstraintMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASConstraintMaker.h; sourceTree = "<group>"; };
-		265CB9672320AAA600883FE2 /* View+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+MASAdditions.h"; sourceTree = "<group>"; };
-		265CB9682320AAA600883FE2 /* NSArray+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+MASAdditions.h"; sourceTree = "<group>"; };
-		265CB9692320AAA600883FE2 /* MASUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASUtilities.h; sourceTree = "<group>"; };
-		265CB96A2320AAA600883FE2 /* MASViewAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASViewAttribute.h; sourceTree = "<group>"; };
-		265CB96B2320AAA600883FE2 /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ViewController+MASAdditions.m"; sourceTree = "<group>"; };
-		265CB96C2320AAA600883FE2 /* MASViewConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASViewConstraint.h; sourceTree = "<group>"; };
-		265CB96D2320AAA600883FE2 /* MASConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASConstraint.h; sourceTree = "<group>"; };
-		265CB96E2320AAA600883FE2 /* NSLayoutConstraint+MASDebugAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+MASDebugAdditions.h"; sourceTree = "<group>"; };
-		265CB96F2320AAA600883FE2 /* MASCompositeConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASCompositeConstraint.m; sourceTree = "<group>"; };
-		265CB9702320AAA600883FE2 /* MASConstraintMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASConstraintMaker.m; sourceTree = "<group>"; };
-		265CB9712320AAA600883FE2 /* MASLayoutConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASLayoutConstraint.m; sourceTree = "<group>"; };
-		265CB9722320AAA600883FE2 /* NSArray+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+MASAdditions.m"; sourceTree = "<group>"; };
-		265CB9732320AAA600883FE2 /* View+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "View+MASAdditions.m"; sourceTree = "<group>"; };
-		265CB9742320AAA600883FE2 /* View+MASShorthandAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+MASShorthandAdditions.h"; sourceTree = "<group>"; };
-		265CB9752320AAA600883FE2 /* Masonry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Masonry.h; sourceTree = "<group>"; };
-		265CB9762320AAA600883FE2 /* MASConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASConstraint.m; sourceTree = "<group>"; };
-		265CB9772320AAA600883FE2 /* ViewController+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ViewController+MASAdditions.h"; sourceTree = "<group>"; };
-		265CB9782320AAA600883FE2 /* MASViewConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewConstraint.m; sourceTree = "<group>"; };
-		265CB9792320AAA600883FE2 /* MASViewAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewAttribute.m; sourceTree = "<group>"; };
 		265CB9912320AE6700883FE2 /* LDTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDTabBarController.h; sourceTree = "<group>"; };
 		265CB9922320AE6700883FE2 /* LDTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDTabBarController.m; sourceTree = "<group>"; };
 		265CB9942320B2AA00883FE2 /* LDMineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDMineViewController.h; sourceTree = "<group>"; };
@@ -348,13 +320,18 @@
 		2690FE8123A1DBD9003DF77D /* DFPlayerLyricsTableview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFPlayerLyricsTableview.m; sourceTree = "<group>"; };
 		2690FE8223A1DBD9003DF77D /* DFPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFPlayer.m; sourceTree = "<group>"; };
 		2690FE8323A1DBD9003DF77D /* DFPlayer.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DFPlayer.bundle; sourceTree = "<group>"; };
+		26960D6B23A4745C002B1662 /* LDCatalogViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDCatalogViewController.h; sourceTree = "<group>"; };
+		26960D6C23A4745C002B1662 /* LDCatalogViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDCatalogViewController.m; sourceTree = "<group>"; };
+		26960D6E23A47A19002B1662 /* LDVideoDetailContenViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDVideoDetailContenViewController.h; sourceTree = "<group>"; };
+		26960D6F23A47A19002B1662 /* LDVideoDetailContenViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDVideoDetailContenViewController.m; sourceTree = "<group>"; };
+		26960D7323A4808C002B1662 /* LDShoppingDetailNameViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDShoppingDetailNameViewCell.h; sourceTree = "<group>"; };
+		26960D7423A4808C002B1662 /* LDShoppingDetailNameViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDShoppingDetailNameViewCell.m; sourceTree = "<group>"; };
+		26960D7523A4808C002B1662 /* LDShoppingDetailNameViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LDShoppingDetailNameViewCell.xib; sourceTree = "<group>"; };
+		26960D7823A4CEF7002B1662 /* LDVoiceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDVoiceListViewController.m; sourceTree = "<group>"; };
 		2698FF9E2379380200883FE7 /* LDShujiaModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDShujiaModel.h; sourceTree = "<group>"; };
 		2698FF9F2379380200883FE7 /* LDShujiaModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDShujiaModel.m; sourceTree = "<group>"; };
 		2698FFA1237949AD00883FE7 /* LDSmallClassSectionDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDSmallClassSectionDetailViewController.h; sourceTree = "<group>"; };
 		2698FFA2237949AD00883FE7 /* LDSmallClassSectionDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDSmallClassSectionDetailViewController.m; sourceTree = "<group>"; };
-		26AAE4DA2334D8C700B9C5D3 /* LDShoppingDetailNameViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDShoppingDetailNameViewCell.h; sourceTree = "<group>"; };
-		26AAE4DB2334D8C700B9C5D3 /* LDShoppingDetailNameViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDShoppingDetailNameViewCell.m; sourceTree = "<group>"; };
-		26AAE4DC2334D8C700B9C5D3 /* LDShoppingDetailNameViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LDShoppingDetailNameViewCell.xib; sourceTree = "<group>"; };
 		26AAE4DF2334DD8B00B9C5D3 /* LDShoppingTitleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDShoppingTitleCell.h; sourceTree = "<group>"; };
 		26AAE4E02334DD8B00B9C5D3 /* LDShoppingTitleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDShoppingTitleCell.m; sourceTree = "<group>"; };
 		26AAE4E12334DD8B00B9C5D3 /* LDShoppingTitleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LDShoppingTitleCell.xib; sourceTree = "<group>"; };
@@ -469,6 +446,8 @@
 		26CBF89323252A97005139EF /* JKCountDownButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKCountDownButton.m; sourceTree = "<group>"; };
 		26CDCBA1239A42AA005E924D /* UIButton+EnlargeEdge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+EnlargeEdge.h"; sourceTree = "<group>"; };
 		26CDCBA2239A42AB005E924D /* UIButton+EnlargeEdge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+EnlargeEdge.m"; sourceTree = "<group>"; };
+		26D2F86C23A381BD00EB7347 /* LDVideoDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDVideoDetailViewController.h; sourceTree = "<group>"; };
+		26D2F86D23A381BD00EB7347 /* LDVideoDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDVideoDetailViewController.m; sourceTree = "<group>"; };
 		26D93F7D23372E2700B31DAB /* LDShoppingImageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDShoppingImageCell.h; sourceTree = "<group>"; };
 		26D93F7E23372E2700B31DAB /* LDShoppingImageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDShoppingImageCell.m; sourceTree = "<group>"; };
 		26D93F7F23372E2700B31DAB /* LDShoppingImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LDShoppingImageCell.xib; sourceTree = "<group>"; };
@@ -836,9 +815,6 @@
 				26CB9A782334C40E00DC12AD /* LDShoppingHeadView.xib */,
 				26CB9A7A2334CE2000DC12AD /* LDShoppingTableViewCell.h */,
 				26CB9A7B2334CE2000DC12AD /* LDShoppingTableViewCell.m */,
-				26AAE4DA2334D8C700B9C5D3 /* LDShoppingDetailNameViewCell.h */,
-				26AAE4DB2334D8C700B9C5D3 /* LDShoppingDetailNameViewCell.m */,
-				26AAE4DC2334D8C700B9C5D3 /* LDShoppingDetailNameViewCell.xib */,
 				26AAE4DF2334DD8B00B9C5D3 /* LDShoppingTitleCell.h */,
 				26AAE4E02334DD8B00B9C5D3 /* LDShoppingTitleCell.m */,
 				26AAE4E12334DD8B00B9C5D3 /* LDShoppingTitleCell.xib */,
@@ -860,6 +836,9 @@
 				26BCBDD723697A1000C568A0 /* LDNoUseView.h */,
 				26BCBDDA23697A2300C568A0 /* LDNoUseView.xib */,
 				26BCBDD823697A1000C568A0 /* LDNoUseView.m */,
+				26960D7323A4808C002B1662 /* LDShoppingDetailNameViewCell.h */,
+				26960D7423A4808C002B1662 /* LDShoppingDetailNameViewCell.m */,
+				26960D7523A4808C002B1662 /* LDShoppingDetailNameViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -878,26 +857,32 @@
 		265CB9572320A37100883FE2 /* ViewControl */ = {
 			isa = PBXGroup;
 			children = (
-				265CB9972320B2BC00883FE2 /* LDMainViewController.h */,
-				265CB9982320B2BC00883FE2 /* LDMainViewController.m */,
+				26960D6B23A4745C002B1662 /* LDCatalogViewController.h */,
+				26960D6C23A4745C002B1662 /* LDCatalogViewController.m */,
 				26869C3923210672001DEDBA /* LDInfoMationViewController.h */,
 				26869C3A23210672001DEDBA /* LDInfoMationViewController.m */,
-				26869C3C232106A9001DEDBA /* LDVoiceViewController.h */,
-				26869C3D232106A9001DEDBA /* LDVoiceViewController.m */,
-				26869C3F232106F6001DEDBA /* LDVideoViewController.h */,
-				26869C40232106F6001DEDBA /* LDVideoViewController.m */,
 				26869C4523210879001DEDBA /* LDLiveViewController.h */,
 				26869C4623210879001DEDBA /* LDLiveViewController.m */,
+				265CB9972320B2BC00883FE2 /* LDMainViewController.h */,
+				265CB9982320B2BC00883FE2 /* LDMainViewController.m */,
 				2613780C2322448300228261 /* LDSearchViewController.h */,
 				2613780D2322448300228261 /* LDSearchViewController.m */,
-				26B38DAA236EE51B00578D89 /* LDWebViewViewController.h */,
-				26B38DAB236EE51B00578D89 /* LDWebViewViewController.m */,
-				2643A0B2239CB0060055B320 /* LDVoiceListViewController.h */,
-				2643A0B3239CB0060055B320 /* LDVoiceListViewController.m */,
+				26960D6E23A47A19002B1662 /* LDVideoDetailContenViewController.h */,
+				26960D6F23A47A19002B1662 /* LDVideoDetailContenViewController.m */,
+				26D2F86C23A381BD00EB7347 /* LDVideoDetailViewController.h */,
+				26D2F86D23A381BD00EB7347 /* LDVideoDetailViewController.m */,
 				2643A0B5239CB7300055B320 /* LDVideoListViewController.h */,
 				2643A0B6239CB7300055B320 /* LDVideoListViewController.m */,
+				26869C3F232106F6001DEDBA /* LDVideoViewController.h */,
+				26869C40232106F6001DEDBA /* LDVideoViewController.m */,
 				2690FE6923A1DAEB003DF77D /* LDVoiceDetailViewcontroller.h */,
 				2690FE6A23A1DAEB003DF77D /* LDVoiceDetailViewcontroller.m */,
+				2643A0B2239CB0060055B320 /* LDVoiceListViewController.h */,
+				26960D7823A4CEF7002B1662 /* LDVoiceListViewController.m */,
+				26869C3C232106A9001DEDBA /* LDVoiceViewController.h */,
+				26869C3D232106A9001DEDBA /* LDVoiceViewController.m */,
+				26B38DAA236EE51B00578D89 /* LDWebViewViewController.h */,
+				26B38DAB236EE51B00578D89 /* LDWebViewViewController.m */,
 			);
 			path = ViewControl;
 			sourceTree = "<group>";
@@ -939,6 +924,9 @@
 				2643A0AD239CAB500055B320 /* LDHeadCollectionReusableView.h */,
 				2643A0AE239CAB500055B320 /* LDHeadCollectionReusableView.m */,
 				2643A0AF239CAB500055B320 /* LDHeadCollectionReusableView.xib */,
+				264D626723A4B25F0015F253 /* LDCatalogCell.h */,
+				264D626823A4B25F0015F253 /* LDCatalogCell.m */,
+				264D626923A4B25F0015F253 /* LDCatalogCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -947,7 +935,6 @@
 			isa = PBXGroup;
 			children = (
 				26F558112325F694006D826D /* AlterView */,
-				265CB9602320AAA600883FE2 /* Masonry */,
 				265CB95D2320A96100883FE2 /* PrefixHeader.pch */,
 				265CB95B2320A96000883FE2 /* Marcros.h */,
 				265CB95C2320A96000883FE2 /* MYConstansManager.h */,
@@ -956,38 +943,6 @@
 				26B7022A232F642500156116 /* UIView+CornerRadius.m */,
 			);
 			path = GlobalTool;
-			sourceTree = "<group>";
-		};
-		265CB9602320AAA600883FE2 /* Masonry */ = {
-			isa = PBXGroup;
-			children = (
-				265CB9612320AAA600883FE2 /* MASCompositeConstraint.h */,
-				265CB9622320AAA600883FE2 /* NSLayoutConstraint+MASDebugAdditions.m */,
-				265CB9632320AAA600883FE2 /* MASConstraint+Private.h */,
-				265CB9642320AAA600883FE2 /* MASLayoutConstraint.h */,
-				265CB9652320AAA600883FE2 /* NSArray+MASShorthandAdditions.h */,
-				265CB9662320AAA600883FE2 /* MASConstraintMaker.h */,
-				265CB9672320AAA600883FE2 /* View+MASAdditions.h */,
-				265CB9682320AAA600883FE2 /* NSArray+MASAdditions.h */,
-				265CB9692320AAA600883FE2 /* MASUtilities.h */,
-				265CB96A2320AAA600883FE2 /* MASViewAttribute.h */,
-				265CB96B2320AAA600883FE2 /* ViewController+MASAdditions.m */,
-				265CB96C2320AAA600883FE2 /* MASViewConstraint.h */,
-				265CB96D2320AAA600883FE2 /* MASConstraint.h */,
-				265CB96E2320AAA600883FE2 /* NSLayoutConstraint+MASDebugAdditions.h */,
-				265CB96F2320AAA600883FE2 /* MASCompositeConstraint.m */,
-				265CB9702320AAA600883FE2 /* MASConstraintMaker.m */,
-				265CB9712320AAA600883FE2 /* MASLayoutConstraint.m */,
-				265CB9722320AAA600883FE2 /* NSArray+MASAdditions.m */,
-				265CB9732320AAA600883FE2 /* View+MASAdditions.m */,
-				265CB9742320AAA600883FE2 /* View+MASShorthandAdditions.h */,
-				265CB9752320AAA600883FE2 /* Masonry.h */,
-				265CB9762320AAA600883FE2 /* MASConstraint.m */,
-				265CB9772320AAA600883FE2 /* ViewController+MASAdditions.h */,
-				265CB9782320AAA600883FE2 /* MASViewConstraint.m */,
-				265CB9792320AAA600883FE2 /* MASViewAttribute.m */,
-			);
-			path = Masonry;
 			sourceTree = "<group>";
 		};
 		265CB9902320AE2400883FE2 /* Base */ = {
@@ -1273,12 +1228,13 @@
 				26CB9A792334C40E00DC12AD /* LDShoppingHeadView.xib in Resources */,
 				26EE3ED5233B5A64003FEA7B /* LDMyIconViewController.xib in Resources */,
 				2690FE8E23A1DBD9003DF77D /* DFPlayer.bundle in Resources */,
-				26AAE4DE2334D8C700B9C5D3 /* LDShoppingDetailNameViewCell.xib in Resources */,
 				26EE3ED0233B0923003FEA7B /* LDAddressBookCell.xib in Resources */,
 				265CB9442320A2F500883FE2 /* LaunchScreen.storyboard in Resources */,
 				2643A0B1239CAB500055B320 /* LDHeadCollectionReusableView.xib in Resources */,
+				264D626B23A4B25F0015F253 /* LDCatalogCell.xib in Resources */,
 				26BCBDDB23697A2300C568A0 /* LDNoUseView.xib in Resources */,
 				26B6CD5D233A080D00E94520 /* LDEmptyViewXIB.xib in Resources */,
+				26960D7723A4808C002B1662 /* LDShoppingDetailNameViewCell.xib in Resources */,
 				26F3BB942330B44B001A645C /* LDScoreCell.xib in Resources */,
 				26D93F8623372F2B00B31DAB /* LDShoppingDetailFootView.xib in Resources */,
 				26C846A22338990C00500B3F /* LDSmallClassDetailHeadView.xib in Resources */,
@@ -1366,7 +1322,6 @@
 				26EE3ED9233B5F0E003FEA7B /* LDRechargeViewController.m in Sources */,
 				26CBF8782323BC6E005139EF /* PinyinFormatter.m in Sources */,
 				26D93F8023372E2700B31DAB /* LDShoppingImageCell.m in Sources */,
-				2643A0B4239CB0060055B320 /* LDVoiceListViewController.m in Sources */,
 				26B0D4E22356BEEA0064205B /* LDUserModel.m in Sources */,
 				26B70234232F828A00156116 /* LDShoppingCartModel.m in Sources */,
 				26EC9E492328970200364943 /* LDUnfinishOrderViewController.m in Sources */,
@@ -1385,9 +1340,7 @@
 				26CBF87F2323D2F4005139EF /* LDCustomerDetailViewController.m in Sources */,
 				265CB99C2320B2DF00883FE2 /* LDStoreViewController.m in Sources */,
 				2658F0F7232BF8F100F4C37A /* MKPdfDocumentManager.m in Sources */,
-				265CB9832320AAA600883FE2 /* MASViewConstraint.m in Sources */,
 				26F558172325F7B4006D826D /* HNTools.m in Sources */,
-				265CB9842320AAA600883FE2 /* MASViewAttribute.m in Sources */,
 				265CB9932320AE6700883FE2 /* LDTabBarController.m in Sources */,
 				26F3BB972330B67A001A645C /* LDScoreView.m in Sources */,
 				26B70231232F7C9E00156116 /* LDShoppingCartCell.m in Sources */,
@@ -1414,14 +1367,12 @@
 				26E8162D23321FAC00CECCE3 /* LDVideoTableViewCell.m in Sources */,
 				265CB93C2320A2F400883FE2 /* ViewController.m in Sources */,
 				26C8469D233895C900500B3F /* LDSmallClassDetailViewController.m in Sources */,
-				265CB9802320AAA600883FE2 /* NSArray+MASAdditions.m in Sources */,
 				2657FBE8233CA66700D316E3 /* LDRechargeCell.m in Sources */,
 				26CB9A7C2334CE2000DC12AD /* LDShoppingTableViewCell.m in Sources */,
 				26BCBDD923697A1000C568A0 /* LDNoUseView.m in Sources */,
 				268EEDF92325F1640014F971 /* ClickPickerCell.m in Sources */,
 				26B70237232F858E00156116 /* LDShoppingCartPaymentView.m in Sources */,
 				26C846B12338CAEE00500B3F /* LDCommitBuyViewController.m in Sources */,
-				265CB97C2320AAA600883FE2 /* ViewController+MASAdditions.m in Sources */,
 				26869C4723210879001DEDBA /* LDLiveViewController.m in Sources */,
 				2658F0FA232C8F8700F4C37A /* MKDrawPDFView.m in Sources */,
 				2643A0B0239CAB500055B320 /* LDHeadCollectionReusableView.m in Sources */,
@@ -1432,11 +1383,12 @@
 				26D93F8423372F1300B31DAB /* LDShoppingDetailFootView.m in Sources */,
 				26B7022E232F735C00156116 /* LDShoppingCartViewController.m in Sources */,
 				268EEDF02325EDFC0014F971 /* LDConfigTableViewController.m in Sources */,
+				26960D6D23A4745C002B1662 /* LDCatalogViewController.m in Sources */,
 				26F67A2A2375611D00B1D71C /* IAPShare.m in Sources */,
 				268EEDF72325F1640014F971 /* DatePickerCell.m in Sources */,
+				26960D7623A4808C002B1662 /* LDShoppingDetailNameViewCell.m in Sources */,
 				26CB9A742334C32C00DC12AD /* LDSmallClassViewController.m in Sources */,
 				2643A0B7239CB7300055B320 /* LDVideoListViewController.m in Sources */,
-				265CB97D2320AAA600883FE2 /* MASCompositeConstraint.m in Sources */,
 				2638A5CB23517ADC00D4DC55 /* LDAPI.m in Sources */,
 				26B7022B232F642500156116 /* UIView+CornerRadius.m in Sources */,
 				26CBF8822323D4A8005139EF /* LDBusinessCardView.m in Sources */,
@@ -1444,6 +1396,7 @@
 				26CBF8882323E127005139EF /* LDCustormHistoryViewController.m in Sources */,
 				26B6CD60233A13BF00E94520 /* LDCustomManagerListViewController.m in Sources */,
 				26CBF8762323BC6E005139EF /* ZYPinYinSearch.m in Sources */,
+				26D2F86E23A381BE00EB7347 /* LDVideoDetailViewController.m in Sources */,
 				26CBF8702323BC6E005139EF /* UIAlertController+HCAdd.m in Sources */,
 				2698FFA02379380200883FE7 /* LDShujiaModel.m in Sources */,
 				2633EA562372C13500F78BFB /* LDCustomModel.m in Sources */,
@@ -1466,28 +1419,26 @@
 				2638A5C82351791500D4DC55 /* MKRequestManager.m in Sources */,
 				2690FE6B23A1DAEB003DF77D /* LDVoiceDetailViewcontroller.m in Sources */,
 				26BA0655232735E200992FFD /* LDAlterNameViewController.m in Sources */,
-				265CB9812320AAA600883FE2 /* View+MASAdditions.m in Sources */,
-				26AAE4DD2334D8C700B9C5D3 /* LDShoppingDetailNameViewCell.m in Sources */,
 				266DC86A23740BD30036A767 /* LDBookDetailViewController.m in Sources */,
 				26CBF8792323BC6E005139EF /* PinYinForObjc.m in Sources */,
 				26EE3ED4233B5A64003FEA7B /* LDMyIconViewController.m in Sources */,
-				265CB97E2320AAA600883FE2 /* MASConstraintMaker.m in Sources */,
+				26960D7923A4CEF7002B1662 /* LDVoiceListViewController.m in Sources */,
 				2633EA4F2372649E00F78BFB /* LDFirstLoginViewController.m in Sources */,
 				26F67A292375611D00B1D71C /* SFHFKeychainUtils.m in Sources */,
 				26EE3ECF233B0923003FEA7B /* LDAddressBookCell.m in Sources */,
 				26F3BB732330ACF4001A645C /* LDBookRackViewController.m in Sources */,
 				26B7BE1D235ABB7600CA16F3 /* LDTagModel.m in Sources */,
+				264D626A23A4B25F0015F253 /* LDCatalogCell.m in Sources */,
 				26F3BB762330AD09001A645C /* CollectionViewHeaderView.m in Sources */,
 				2690FE8723A1DBD9003DF77D /* DFPlayerRequestManager.m in Sources */,
 				26CBF89423252A98005139EF /* JKCountDownButton.m in Sources */,
-				265CB9822320AAA600883FE2 /* MASConstraint.m in Sources */,
 				2633E3D5235D48C6002DEA26 /* LDVoiceModel.m in Sources */,
 				26DD09842333600400E1B5E2 /* LDNoticeView.m in Sources */,
 				26869C3B23210672001DEDBA /* LDInfoMationViewController.m in Sources */,
 				26CBF86F2323BC6E005139EF /* HCSortString.m in Sources */,
 				26CB9A772334C40100DC12AD /* LDShoppingHeadView.m in Sources */,
 				2658F0F1232BF3DD00F4C37A /* MKReaderViewController.m in Sources */,
-				265CB97B2320AAA600883FE2 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
+				26960D7123A47A19002B1662 /* LDVideoDetailContenViewController.m in Sources */,
 				26CDCBA3239A42AB005E924D /* UIButton+EnlargeEdge.m in Sources */,
 				26F3BB822330AD93001A645C /* LeftTableViewCell.m in Sources */,
 				2690FE8523A1DBD9003DF77D /* DFPlayerModel.m in Sources */,
@@ -1497,7 +1448,6 @@
 				26CBF8772323BC6E005139EF /* ChineseToPinyinResource.m in Sources */,
 				2633EA532372A92100F78BFB /* LDScoreModel.m in Sources */,
 				26AAE4E22334DD8B00B9C5D3 /* LDShoppingTitleCell.m in Sources */,
-				265CB97F2320AAA600883FE2 /* MASLayoutConstraint.m in Sources */,
 				26CB9A6B2334BA2D00DC12AD /* LDShoppingDetailViewController.m in Sources */,
 				2690FE8C23A1DBD9003DF77D /* DFPlayerLyricsTableview.m in Sources */,
 				26F67A282375611D00B1D71C /* NSString+Base64.m in Sources */,

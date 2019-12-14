@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 /** <#Description#> **/
 @property(nonatomic,copy) NSString *collectionFlag;
 @property (nonatomic,copy)NSString * contentUrl;
-
+@property (nonatomic,copy)NSString * numOfVisiter;
 @end
 
 NS_ASSUME_NONNULL_END

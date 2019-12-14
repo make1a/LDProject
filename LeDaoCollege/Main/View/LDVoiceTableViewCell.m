@@ -11,7 +11,7 @@
 NSString *const kLDVoiceTableViewCellIdentifier = @"kLDVoiceTableViewCellIdentifier";
 
 @interface LDVoiceTableViewCell ()
-@property (nonatomic,strong)UIButton * playButton;
+
 @end
 @implementation LDVoiceTableViewCell
 
@@ -69,7 +69,7 @@ NSString *const kLDVoiceTableViewCellIdentifier = @"kLDVoiceTableViewCellIdentif
     }];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.bigImageVIew.mas_right).mas_offset(PtWidth(17));
-        make.top.equalTo(self.bigImageVIew);
+        make.top.equalTo(self.bigImageVIew).mas_offset(5);
         make.right.mas_equalTo(self).mas_offset(PtWidth(-31));
     }];
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -159,7 +159,7 @@ NSString *const kLDVoiceTableViewCellIdentifier = @"kLDVoiceTableViewCellIdentif
 - (UILabel *)watchLabel{
     if (!_watchLabel) {
         _watchLabel = [[UILabel alloc]init];
-        _watchLabel.text = @"20人已看";
+//        _watchLabel.text = @"20人已看";
         _watchLabel.font = [UIFont systemFontOfSize:PtHeight(12)];
         _watchLabel.textColor = UIColorFromHEXA(0x979797, 1);
     }

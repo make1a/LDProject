@@ -45,10 +45,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong) NSNumber *mark;
 /** <#Description#> **/
 @property(nonatomic,copy) NSString *markName;
+@property (nonatomic,copy)NSString * isPayFlag;
 /** <#Description#> **/
 @property(nonatomic,copy) NSString *collectionFlag;
 @property (nonatomic,copy)NSString * contentUrl;
 @property (nonatomic,strong)NSArray * detailArray;
+@property (nonatomic,copy)NSString * duration;
+@property (nonatomic,copy)NSString * numOfVisiter;
 @end
 
 

@@ -23,8 +23,12 @@
 #import "LDWebViewViewController.h"
 #import "LDShoppingDetailViewController.h"
 #import "LDSmallClassDetailViewController.h"
+#import "LDVoiceListViewController.h"
+#import "LDVoiceDetailViewcontroller.h"
 
-@interface LDCollectViewController ()<QMUITableViewDataSource, QMUITableViewDelegate> {
+#import "LDVideoDetailViewController.h"
+#import "DFPlayer.h"
+@interface LDCollectViewController ()<QMUITableViewDataSource, QMUITableViewDelegate,DFPlayerDataSource> {
     NSArray *_dataArray;
     BOOL _isRelate;
 }
@@ -39,18 +43,30 @@
 @property (nonatomic,strong)NSArray * dataSource4;
 @property (nonatomic,strong)NSArray * dataSource5;
 @property (nonatomic,strong)NSArray * dataSource;
+
+@property (nonatomic,strong)NSMutableArray * musicArray;
 @end
 
 @implementation LDCollectViewController
-
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = NO;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"我的收藏";
     self.view.backgroundColor = [UIColor whiteColor];
+    [self createPlayer];
     [self leftTableView];
     [self rightTableView];
     [self requestDataSource];
     [self.leftTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+}
+- (void)createPlayer{
+    [DFPlayer shareInstance].dataSource  = self;
+    [DFPlayer shareInstance].category    = DFPlayerAudioSessionCategoryPlayback;
+    [DFPlayer shareInstance].isObserveWWAN = YES;
+    [[DFPlayer shareInstance] df_initPlayerWithUserId:nil];
 }
 - (void)requestDataSource {
     // type:收藏类型(1.资讯 2.音频 3.视频 4书籍 5课程)
@@ -70,6 +86,14 @@
             self.dataSource2 = [NSArray yy_modelArrayWithClass:[LDVoiceModel class] json:responseObject[@"data"][@"list"]];
             self.dataSource = self.dataSource2;
             [self.rightTableView reloadData];
+            self.musicArray = @[].mutableCopy;
+            for (LDVoiceModel *model in self.dataSource) {
+                DFPlayerModel *playModel = [[DFPlayerModel alloc] init];
+                playModel.audioId = [model.v_id intValue];
+                playModel.audioUrl = [NSURL URLWithString:model.audioUrl];
+                [self.musicArray addObject:playModel];
+            }
+            [[DFPlayer shareInstance] df_reloadData];
         }
     } faild:^(NSError *error) {
         
@@ -108,6 +132,10 @@
         
     }];
 }
+#pragma  mark - 音频播放
+- (NSArray<DFPlayerModel *> *)df_playerModelArray{
+    return self.musicArray;
+}
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -131,15 +159,23 @@
     if (tableView == self.leftTableView) {
         LeftTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier_Left];
         cell.name.text = self.leftTitles[indexPath.row];
+        
         return cell;
     } else {
         if (self.dataSource == self.dataSource1) {
             LDNewsTableViewCell *cell = [LDNewsTableViewCell dequeueReusableWithTableView:tableView];
             [cell refreshWithModel:self.dataSource1[indexPath.row]];
+            [cell.bigImageVIew mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.mas_equalTo(cell.contentView).mas_offset(0);
+                make.top.mas_equalTo(cell.contentView).mas_offset(5);
+                make.width.mas_equalTo(PtWidth(120));
+                make.height.mas_equalTo(PtHeight(75));
+            }];
             return cell;
         } else if (self.dataSource == self.dataSource2) {
             LDVoiceTableViewCell *cell = [LDVoiceTableViewCell dequeueReusableWithTableView:tableView];
             cell.collectionButton.hidden = YES;
+            cell.playButton.hidden = YES;
             [cell refreshWithModel:self.dataSource2[indexPath.row]];
             return cell;
         } else if (self.dataSource == self.dataSource3) {
@@ -171,7 +207,7 @@
     if (tableView == self.leftTableView) {
         return PtHeight(100);
     } else {
-        return PtHeight(77);
+        return PtHeight(87);
     }
 }
 
@@ -224,37 +260,47 @@
         [self.rightTableView deselectRowAtIndexPath:indexPath animated:NO];
         
         if (self.dataSource == self.dataSource1) {
-            LDNewsModel *model = self.dataSource1[indexPath.row];
+            LDNewsModel *model = self.dataSource1[indexPath.row];  
             LDWebViewViewController * vc = [LDWebViewViewController new];
-            vc.urlStrng = model.contentUrl;
+            vc.urlStrng = [NSString stringWithFormat:@"%@?id=%@&token=%@",model.contentUrl,model.newsId,[LDUserManager userID]];
             vc.s_id = model.newsId;
-            vc.isCollection =YES;
+            vc.isCollection = [model.collectionFlag isEqualToString:@"Y"]?YES:NO;
             vc.collectionType = @"1";
+            vc.title = model.title;
             vc.didRefreshCollectionStateBlock = ^(BOOL isCollection) {
-                [tableView reloadData];
+                model.collectionFlag = isCollection?@"Y":@"N";
             };
             [self.navigationController pushViewController:vc animated:YES];
         } else if (self.dataSource == self.dataSource2) {
             LDVoiceModel *model = self.dataSource2[indexPath.row];
-            LDWebViewViewController * vc = [LDWebViewViewController new];
-            vc.urlStrng = [NSString stringWithFormat:@"%@?id=%@&token=%@",model.contentUrl,model.v_id,[LDUserManager userID]];
-            vc.s_id = model.v_id;
-            vc.isCollection = YES;
-            vc.collectionType = @"2";
-            vc.didRefreshCollectionStateBlock = ^(BOOL isCollection) {
-                [tableView reloadData];
-            };
-            [self.navigationController pushViewController:vc animated:YES];
+            LDVoiceDetailViewcontroller * vc = [LDVoiceDetailViewcontroller new];
+              vc.title = model.title;
+              vc.urlStrng = [NSString stringWithFormat:@"%@?id=%@&token=%@",model.contentUrl,model.v_id,[LDUserManager userID]];
+              vc.s_id = model.v_id;
+              vc.isCollection = [model.collectionFlag isEqualToString:@"Y"]?YES:NO;
+              vc.collectionType = @"2";
+              vc.didRefreshCollectionStateBlock = ^(BOOL isCollection) {
+                  model.collectionFlag = isCollection?@"Y":@"N";
+                  [tableView reloadData];
+              };
+              vc.didRefreshPlayStateBlock = ^(BOOL isPlaying) {
+                  model.isPlaying = isPlaying;
+                  [tableView reloadData];
+              };
+              vc.isPlaying = model.isPlaying;
+              if (model.isPlaying == NO) {
+                  for ( LDVoiceModel *m in self.dataSource) {
+                      m.isPlaying = NO;
+                  }
+                  model.isPlaying = YES;
+                  [tableView reloadData];
+              }
+              [self.navigationController pushViewController:vc animated:YES];
+            
         } else if (self.dataSource == self.dataSource3) {
             LDVideoModel *model = self.dataSource3[indexPath.row];
-            LDWebViewViewController * vc = [LDWebViewViewController new];
-            vc.urlStrng = [NSString stringWithFormat:@"%@?id=%@&token=%@",model.contentUrl,model.v_id,[LDUserManager userID]];
-            vc.s_id = model.v_id;
-            vc.isCollection = YES;
-            vc.collectionType = @"3";
-            vc.didRefreshCollectionStateBlock = ^(BOOL isCollection) {
-                [tableView reloadData];
-            };
+            LDVideoDetailViewController *vc = [[LDVideoDetailViewController alloc]init];
+            vc.videoID = model.v_id;
             [self.navigationController pushViewController:vc animated:YES];
         } else if (self.dataSource == self.dataSource4) {
             LDShoppingDetailViewController *vc = [LDShoppingDetailViewController new];

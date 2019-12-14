@@ -2,19 +2,20 @@
 //  LDShoppingDetailNameViewCell.h
 //  LeDaoCollege
 //
-//  Created by Make on 2019/9/20.
+//  Created by Make on 2019/12/14.
 //  Copyright © 2019 Make. All rights reserved.
 //
 
-#import "QMUITableViewCell.h"
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LDShoppingDetailNameViewCell : QMUITableViewCell
-
+@interface LDShoppingDetailNameViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *salePriceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *watchLabel;
+
 @end
 
 NS_ASSUME_NONNULL_END

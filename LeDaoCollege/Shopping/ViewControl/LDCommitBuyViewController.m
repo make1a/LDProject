@@ -9,6 +9,8 @@
 #import "LDCommitBuyViewController.h"
 #import "HNAlertView.h"
 #import "LDRechargeViewController.h"
+#import "LDVideoModel.h"
+
 @interface LDCommitBuyViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *bigPayLabel;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
@@ -41,12 +43,20 @@
 }
 
 - (void)configInfo {
+    
+    if ([self.currentModel isKindOfClass:[LDVideoModel class]]) {
+        self.typeLabel.text = @" 视频 ";
+        return;
+    }else {
+        self.typeLabel.text = @"工具书";
+    }
+    
     NSString *salePrice = [NSString stringWithFormat:@"¥%@",self.currentModel.discount];
     self.bigPayLabel.text = salePrice;
     self.usernameLabel.text = [LDUserManager userName];
     NSLog(@"%@",[LDUserManager shareInstance].currentUser);
     [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@img/%@",BaseAPI,self.currentModel.coverImg]] placeholderImage:[UIImage imageNamed:@"seizeaseat_0"]];
-    self.typeLabel.text = @"工具书";
+    
     self.shopNameLabel.text = self.currentModel.title;
     self.saleLabel.text = salePrice;
     self.originLabel.text = [NSString stringWithFormat:@"¥%@",self.currentModel.originalPrice];
@@ -74,7 +84,7 @@
 - (void)requestBuy{
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:@"order/placeorder" requestParameters:@{@"goodsType":self.goodsType,@"goodsId":self.goodsId,@"goodsPrice":self.currentModel.discount} requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {
-            [QMUITips showSucceed:@"购买成功,请稍后到书架上查看..."];
+            [QMUITips showSucceed:@"购买成功"];
         } else if (kCODE == 608){ //余额不足 跳转
             [self showAlertView];
         }else {

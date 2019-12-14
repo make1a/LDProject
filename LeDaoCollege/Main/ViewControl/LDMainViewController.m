@@ -80,6 +80,9 @@
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"banner/getbytype/1" requestParameters:@{@"type":@"1"} requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {
             NSArray *array = responseObject[@"data"];
+            if (![responseObject[@"data"] isKindOfClass:[NSArray class]]) {
+                return ;
+            }
             self.imageArray = @[].mutableCopy;
             for (NSDictionary *dic in array) {
                 NSString *url = dic[@"imgUrl"];
