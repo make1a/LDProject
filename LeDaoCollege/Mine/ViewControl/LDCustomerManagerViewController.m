@@ -28,12 +28,14 @@
     self.title = @"客户列表";
     self.tableView.tableFooterView = [UIView new];
     
-    self.tableView.backgroundColor = UIColorFromHEXA(0xF9F9F9, 1);
-    if (@available(iOS 11.0, *)) {
-        self.navigationItem.searchController = self.searchController;
-    } else {
-        self.tableView.tableHeaderView = self.searchController.searchBar;
-    }
+    
+    NSMutableDictionary * dict =[NSMutableDictionary dictionaryWithObjects:@[[UIColor whiteColor]]forKeys:@[NSForegroundColorAttributeName]];
+
+    [self.navigationController.navigationBar setTitleTextAttributes:dict];
+
+    self.navigationController.navigationBar.barTintColor = MainThemeColor;
+    
+    self.tableView.tableHeaderView = self.searchController.searchBar;
     [self requestData];
 }
 
@@ -64,23 +66,6 @@
     _indexDataSource = [HCSortString sortForStringAry:[_allDataSource allKeys]];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"LDAddressBookCell" bundle:nil] forCellReuseIdentifier:@"LDAddressBookCell"];
-}
-
-- (UISearchController *)searchController {
-    if (!_searchController) {
-        _searchController = [[UISearchController alloc]initWithSearchResultsController:nil];
-        _searchController.searchResultsUpdater = self;
-        _searchController.dimsBackgroundDuringPresentation = NO;
-        _searchController.hidesNavigationBarDuringPresentation = YES;
-        _searchController.searchBar.placeholder = @"搜索";
-        _searchController.searchBar.barStyle = UISearchBarStyleMinimal;
-        [_searchController.searchBar qmui_styledAsQMUISearchBar];
-        [_searchController.searchBar sizeToFit];
-        _searchController.searchBar.backgroundColor = [UIColor whiteColor];
-        _searchController.searchBar.qmui_textField.backgroundColor = self.tableView.backgroundColor;
-        [UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[UISearchBar class]]].title = @"取消";
-    }
-    return _searchController;
 }
 
 #pragma mark - UITableViewDataSource
@@ -144,12 +129,19 @@
 }
 #pragma mark - Table View Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    self.searchController.active = NO;
+    if (!self.searchController.active) {
     LDCustomerDetailViewController *vc = [LDCustomerDetailViewController new];
      NSArray *value = [_allDataSource objectForKey:_indexDataSource[indexPath.section]];
     LDCustomModel *model = value[indexPath.row];
     vc.c_id = model.c_id;
     [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        LDCustomerDetailViewController *vc = [LDCustomerDetailViewController new];
+        LDCustomModel *model = _searchDataSource[indexPath.row];
+        vc.c_id = model.c_id;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    self.searchController.active = NO;
 }
 
 #pragma mark - UISearchDelegate
@@ -166,5 +158,24 @@
     [self.tableView reloadData];
 }
 
+
+- (UISearchController *)searchController {
+    if (!_searchController) {
+        _searchController = [[UISearchController alloc]initWithSearchResultsController:nil];
+        _searchController.searchResultsUpdater = self;
+        _searchController.dimsBackgroundDuringPresentation = NO;
+        _searchController.hidesNavigationBarDuringPresentation = NO;
+        _searchController.searchBar.placeholder = @"搜索";
+        _searchController.searchBar.barStyle = UISearchBarStyleMinimal;
+        [_searchController.searchBar qmui_styledAsQMUISearchBar];
+        [_searchController.searchBar sizeToFit];
+                UIImage *image = [UIImage qmui_imageWithColor:[UIColor whiteColor] size:CGSizeMake(200, 32) cornerRadius:0];
+        [_searchController.searchBar setBackgroundImage:image];
+        [_searchController.searchBar setBackgroundColor:[UIColor clearColor]];
+        _searchController.searchBar.qmui_textField.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        [UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[UISearchBar class]]].title = @"取消";
+    }
+    return _searchController;
+}
 
 @end

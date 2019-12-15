@@ -62,6 +62,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     LDScoreCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LDScoreCell" forIndexPath:indexPath];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     LDScoreModel *model = self.dataSource[indexPath.row];
     [cell refreshView:model];
     return cell;

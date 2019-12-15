@@ -85,20 +85,5 @@
     return PtHeight(80);
 }
 #pragma  mark - Scrollview
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGPoint point = scrollView.contentOffset;
-    LDStoreViewController *vc = (LDStoreViewController *)self.magicController.parentViewController;
-    
-    CGFloat maxY = CGRectGetMaxY(vc.headView.frame);
-    
-    if (point.y > 0) {
-        if (iPhoneX) {
-            maxY -= 10;
-        }
-        [vc.scrollView setContentOffset:CGPointMake(0, maxY) animated:NO];
-    }else if (point.y < 0){
-        [vc.scrollView setContentOffset:point animated:NO];
-    }
-}
 
 @end

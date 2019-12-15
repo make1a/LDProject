@@ -41,7 +41,10 @@
     [super viewWillDisappear:animated];
     self.navigationController.navigationBar.hidden = YES;
 }
-
+- (void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    self.headView.frame = CGRectMake(0, 0, SCREEN_WIDTH, QMUIViewSelfSizingHeight);
+}
 - (void)masLayoutSubViews{
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.tableView];
@@ -94,6 +97,7 @@
             }else {
                 self.footView.collectionButton.selected = !YES;
             }
+            [self.view setNeedsLayout];
         }
     } faild:^(NSError *error) {
         

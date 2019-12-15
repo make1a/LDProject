@@ -91,6 +91,13 @@
             self.currentModel = model;
             [self.magicController.magicView reloadData];
             
+            UIImageView *imageView = [[UIImageView alloc]init];
+            [imageView sd_setImageWithURL:[NSURL URLWithString:model.coverImg] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                    SJVideoPlayer.update(^(SJVideoPlayerSettings * _Nonnull commonSettings) {
+                        commonSettings.placeholder = image;
+                    });
+            }];
+            
             LDVideoDetailModel *detailMdel = self.currentModel.detailArray.firstObject;
             if (detailMdel) {
                 if ([self.currentModel.isFreeFlag isEqualToString:@"Y"] || [self.currentModel.isPayFlag isEqualToString:@"Y"] ) {

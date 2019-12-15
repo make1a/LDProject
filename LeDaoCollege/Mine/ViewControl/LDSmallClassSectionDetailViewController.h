@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LDSmallClassSectionDetailViewController : UIViewController
+@interface LDSmallClassSectionDetailViewController : QMUICommonViewController
 @property (nonatomic,copy)NSString * urlStrng;
 
 @end

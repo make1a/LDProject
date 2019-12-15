@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MKPdfViewController : UIViewController
+@interface MKPdfViewController : QMUICommonViewController
 
 /**
  当前页数

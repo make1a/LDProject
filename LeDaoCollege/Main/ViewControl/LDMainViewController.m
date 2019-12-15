@@ -210,7 +210,7 @@
         if (iPhoneX) {
             h = PtHeight(91);
         }else{
-            h = PtHeight(81);
+            h = PtHeight(75);
         }
         _magicController.magicView.frame = CGRectMake(0,h, SCREEN_WIDTH, SCREEN_HEIGHT-PtHeight(91)-TabBarHeight);
         _magicController.magicView.dataSource = self;

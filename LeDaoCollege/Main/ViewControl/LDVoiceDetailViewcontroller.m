@@ -50,7 +50,7 @@
 }
 - (void)createMusicPlayer{
     [DFPlayer shareInstance].delegate    = self;
-
+    
     DFPlayerControlManager *manager = [DFPlayerControlManager shareInstance];
     
     //进度条
@@ -160,13 +160,13 @@
             LDVoiceModel *model = [LDVoiceModel yy_modelWithJSON:responseObject[@"data"]];
             self.titleLabel.text = model.title;
             self.timeLabel.text = model.createdDate;
-                if ([model.coverImg containsString:@"http"]) {
+            if ([model.coverImg containsString:@"http"]) {
                 [self.bigImageView sd_setImageWithURL:[NSURL URLWithString:model.coverImg] placeholderImage:[UIImage imageNamed:@"seizeaseat_0"]];
             }else{
                 [self.bigImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@img/%@",BaseAPI,model.coverImg]] placeholderImage:[UIImage imageNamed:@"seizeaseat_0"]];
             }
             
-//            [[DFPlayer shareInstance] df_playerPlayWithAudioId:[model.v_id intValue]];
+            //            [[DFPlayer shareInstance] df_playerPlayWithAudioId:[model.v_id intValue]];
             
             [self.webview loadHTMLString:model.audioContent baseURL:nil];
         }
@@ -207,7 +207,7 @@
     if (!_bigImageView) {
         _bigImageView = [[UIImageView alloc]init];
         _bigImageView.image = [UIImage imageNamed:@"seizeaseat_0"];
-
+        
     }
     return _bigImageView;
 }

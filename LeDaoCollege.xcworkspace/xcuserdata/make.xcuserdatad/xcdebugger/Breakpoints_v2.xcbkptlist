@@ -31,34 +31,34 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "01E6C4C2-6588-4B40-A45C-78612CB5B638 - 70cbd34a0302ec77"
+                  uuid = "01E6C4C2-6588-4B40-A45C-78612CB5B638 - 6810182c43860db"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "-[LDLoginViewController regiserAPP]"
                   moduleName = "&#x884c;&#x77e9;&#x9635;"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/make/Desktop/LeDaoCollege/LeDaoCollege/Login/ViewControl/LDLoginViewController.m"
+                  urlString = "file:///Users/make/Documents/GitHub/LDProject/LeDaoCollege/Login/ViewControl/LDLoginViewController.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "173"
                   endingLineNumber = "173"
-                  offsetFromSymbolStart = "624">
+                  offsetFromSymbolStart = "565">
                </Location>
                <Location
-                  uuid = "01E6C4C2-6588-4B40-A45C-78612CB5B638 - a09112a24fa2f0eb"
+                  uuid = "01E6C4C2-6588-4B40-A45C-78612CB5B638 - d6dbc06a88987c47"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "__35-[LDLoginViewController regiserAPP]_block_invoke"
                   moduleName = "&#x884c;&#x77e9;&#x9635;"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/make/Desktop/LeDaoCollege/LeDaoCollege/Login/ViewControl/LDLoginViewController.m"
+                  urlString = "file:///Users/make/Documents/GitHub/LDProject/LeDaoCollege/Login/ViewControl/LDLoginViewController.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "174"
                   endingLineNumber = "174"
-                  offsetFromSymbolStart = "96">
+                  offsetFromSymbolStart = "68">
                </Location>
             </Locations>
          </BreakpointContent>

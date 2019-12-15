@@ -46,7 +46,6 @@
     
     if ([self.currentModel isKindOfClass:[LDVideoModel class]]) {
         self.typeLabel.text = @" 视频 ";
-        return;
     }else {
         self.typeLabel.text = @"工具书";
     }
@@ -55,7 +54,12 @@
     self.bigPayLabel.text = salePrice;
     self.usernameLabel.text = [LDUserManager userName];
     NSLog(@"%@",[LDUserManager shareInstance].currentUser);
-    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@img/%@",BaseAPI,self.currentModel.coverImg]] placeholderImage:[UIImage imageNamed:@"seizeaseat_0"]];
+    
+    if ([self.currentModel.coverImg containsString:@"http"]) {
+        [self.headImageView sd_setImageWithURL:[NSURL URLWithString:self.currentModel.coverImg] placeholderImage:[UIImage imageNamed:@"seizeaseat_0"]];
+    }else{
+        [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@img/%@",BaseAPI,self.currentModel.coverImg]] placeholderImage:[UIImage imageNamed:@"seizeaseat_0"]];
+    }
     
     self.shopNameLabel.text = self.currentModel.title;
     self.saleLabel.text = salePrice;

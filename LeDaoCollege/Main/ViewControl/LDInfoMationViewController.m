@@ -38,26 +38,40 @@
 #pragma mark - NetWork
 
 - (void)requestDatasource {
+    QMUITips *tip = [QMUITips showLoadingInView:self.view];
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"information/getlists" requestParameters:@{@"pageSize":@(1000)} requestHeader:nil success:^(id responseObject) {
+        [tip hideAnimated:YES];
         if (kCODE == 200) {
             self.dataSource = [NSArray yy_modelArrayWithClass:[LDNewsModel class] json:responseObject[@"data"][@"list"]];
             [self.tableView reloadData];
+            
+        }else{
+            [tip hideAnimated:YES];
+            [QMUITips showError:@"网络错误,请稍微再试"];
         }
-    } faild:^(NSError *error) {
         
+    } faild:^(NSError *error) {
+        [tip hideAnimated:YES];
+        [QMUITips showError:@"网络错误,请稍微再试"];
     }];
 }
 - (void)requestSource:(NSString *)title back:(backSourceCountBlock)blcok {
+    QMUITips *tip = [QMUITips showLoadingInView:self.view];
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"information/getlists" requestParameters:@{@"title":title,@"pageSize":@(1000)} requestHeader:nil success:^(id responseObject) {
+        [tip hideAnimated:YES];
         if (kCODE == 200) {
             self.dataSource = [NSArray yy_modelArrayWithClass:[LDNewsModel class] json:responseObject[@"data"][@"list"]];
             [self.tableView reloadData];
             if (blcok) {
                 blcok(self.dataSource.count);
             }
+        }else{
+            [tip hideAnimated:YES];
+            [QMUITips showError:@"网络错误,请稍微再试"];
         }
     } faild:^(NSError *error) {
-        
+        [tip hideAnimated:YES];
+        [QMUITips showError:@"网络错误,请稍微再试"];
     }];
 }
 //- (void)requestBannerList{

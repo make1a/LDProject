@@ -41,6 +41,7 @@
 }
 #pragma  mark - Request
 - (void)requestSource:(NSString *)title mark:(NSString *)mark back:(backSourceCountBlock)blcok{
+    QMUITips *tip = [QMUITips showLoadingInView:self.view];
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"audio/getaudios" requestParameters:@{@"title":title,@"pageSize":@1000} requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {
             self.dataSource = [NSArray yy_modelArrayWithClass:[LDVoiceModel class] json:responseObject[@"data"][@"list"]];
@@ -56,9 +57,13 @@
                 [self.musicArray addObject:playModel];
             }
             [[DFPlayer shareInstance] df_reloadData];
+        }else{
+            [tip hideAnimated:YES];
+            [QMUITips showError:@"网络错误,请稍微再试"];
         }
     }faild:^(NSError *error) {
-        
+        [tip hideAnimated:YES];
+        [QMUITips showError:@"网络错误,请稍微再试"];
     }];
 }
 - (void)requestCollection:(LDVoiceModel*)model index:(NSInteger)index{

@@ -10,7 +10,7 @@
 @class MKPdfDocumentManager;
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MKReaderViewController : UIViewController
+@interface MKReaderViewController : QMUICommonViewController
 @property (nonatomic,strong)MKPdfDocumentManager * pdfInfo;
 @end
 

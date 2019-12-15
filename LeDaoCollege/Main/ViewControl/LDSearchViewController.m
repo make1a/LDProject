@@ -77,7 +77,7 @@
 }
 - (void)addSearchBar{
     [self.navigationController.navigationBar addSubview:self.searchBar];
-    self.searchBar.frame = CGRectMake((375-280)/2, 0, 280, PtHeight(32));
+    self.searchBar.frame = CGRectMake((375-280)/2, 5, 280, PtHeight(32));
     
 }
 - (void)addHistoryView {
