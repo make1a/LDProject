@@ -14,6 +14,11 @@ extern NSString *const kLDVideoTableViewCellIdentifier;
 @property (nonatomic,strong)UIImageView *playImageView ;
 @property (nonatomic,strong)UILabel *durationLabel ;
 @property (nonatomic,strong)UIButton * collectionButton;
+@property (nonatomic,strong)QMUILabel * priceLabel;
+@property (nonatomic,strong)QMUILabel * cheapPriceLabel;
+@property (nonatomic,strong)UIImageView * priceImageView;
+@property (nonatomic,strong)UIImageView * cheapImageView;
+
 + (instancetype)dequeueReusableWithTableView:(UITableView *)tableView;
 
 - (void)refreshWithModel:(LDVideoModel *)model;

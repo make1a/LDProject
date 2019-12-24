@@ -61,12 +61,15 @@
     [self rightTableView];
     [self requestDataSource];
     [self.leftTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+    [[DFPlayer sharedPlayer]df_pause];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"playerPause" object:nil];
 }
 - (void)createPlayer{
-    [DFPlayer shareInstance].dataSource  = self;
-    [DFPlayer shareInstance].category    = DFPlayerAudioSessionCategoryPlayback;
-    [DFPlayer shareInstance].isObserveWWAN = YES;
-    [[DFPlayer shareInstance] df_initPlayerWithUserId:nil];
+    [DFPlayer sharedPlayer].dataSource  = self;
+//    [DFPlayer sharedPlayer].category    = DFPlayerAudioSessionCategoryPlayback;
+    [DFPlayer sharedPlayer].playMode = DFPlayerModeOnlyOnce;
+    [DFPlayer sharedPlayer].isObserveWWAN = YES;
+    [[DFPlayer sharedPlayer] df_initPlayerWithUserId:nil];
 }
 - (void)requestDataSource {
     // type:收藏类型(1.资讯 2.音频 3.视频 4书籍 5课程)
@@ -93,13 +96,13 @@
                 playModel.audioUrl = [NSURL URLWithString:model.audioUrl];
                 [self.musicArray addObject:playModel];
             }
-            [[DFPlayer shareInstance] df_reloadData];
+            [[DFPlayer sharedPlayer] df_reloadData];
         }
     } faild:^(NSError *error) {
         
     }];
 }
-- (void)requestDataSource3{
+- (void)requestDataSource3 {
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"collection/mycollection" requestParameters:@{@"page":@1,@"pageSize":@1000,@"type":@3} requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {
             self.dataSource3 = [NSArray yy_modelArrayWithClass:[LDVideoModel class] json:responseObject[@"data"][@"list"]];
@@ -182,6 +185,13 @@
             LDVideoTableViewCell *cell = [LDVideoTableViewCell dequeueReusableWithTableView:tableView];
             cell.collectionButton.hidden = YES;
             [cell refreshWithModel:self.dataSource3[indexPath.row]];
+            [cell.bigImageVIew mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.mas_equalTo(cell.contentView).mas_offset(0);
+                make.top.mas_equalTo(cell.contentView).mas_offset(5);
+                make.width.mas_equalTo(PtWidth(120));
+                make.height.mas_equalTo(PtHeight(75));
+            }];
+            
             return cell;
         } else if (self.dataSource == self.dataSource4) {
             LDShoppingTableViewCell *cell = [LDShoppingTableViewCell dequeueReusableWithTableView:tableView];

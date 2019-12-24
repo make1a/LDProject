@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LDVideoListViewController : QMUICommonTableViewController
 @property (nonatomic,strong)NSArray * dataSource;
+@property (nonatomic,assign)BOOL isSearchModel;
+
+@property (nonatomic,copy)NSString * tagID;
 - (void)requestSource:(NSString *)title mark:(NSString *)mark back:(backSourceCountBlock)blcok;
 @end
 

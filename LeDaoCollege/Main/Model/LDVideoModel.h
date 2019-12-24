@@ -38,9 +38,9 @@ NS_ASSUME_NONNULL_BEGIN
 /** <#Description#> **/
 @property(nonatomic,copy) NSString *briefIntroduction;
 /** <#Description#> **/
-@property(nonatomic,strong) NSNumber *originalPrice;
+@property(nonatomic,strong) NSString *originalPrice;
 /** <#Description#> **/
-@property(nonatomic,strong) NSNumber *discount;
+@property(nonatomic,strong) NSString *discount;
 /** <#Description#> **/
 @property(nonatomic,strong) NSNumber *mark;
 /** <#Description#> **/

@@ -32,8 +32,11 @@
     [self masLayoutSubviews];
     if (!self.isSearchModel) {
         [self requestDatasource];
-        //        [self requestBannerList];
+        self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            [self requestDatasource];
+        }];
     }
+    
 }
 #pragma mark - NetWork
 
@@ -49,10 +52,11 @@
             [tip hideAnimated:YES];
             [QMUITips showError:@"网络错误,请稍微再试"];
         }
-        
+        [self.tableView.mj_header endRefreshing];
     } faild:^(NSError *error) {
         [tip hideAnimated:YES];
         [QMUITips showError:@"网络错误,请稍微再试"];
+        [self.tableView.mj_header endRefreshing];
     }];
 }
 - (void)requestSource:(NSString *)title back:(backSourceCountBlock)blcok {

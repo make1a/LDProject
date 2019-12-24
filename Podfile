@@ -24,4 +24,5 @@ target 'LeDaoCollege' do
     pod 'UMCShare/Social/ReducedSina'
     
     pod 'SJVideoPlayer'
+    pod 'MJRefresh'
 end

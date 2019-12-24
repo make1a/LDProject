@@ -54,7 +54,7 @@ NSString *const kLDNewsTableViewCellIdentifier = @"kLDNewsTableViewCellIdentifie
     }
     self.timeLabel.text = model.createdDate;
     self.titleLabel.text = model.title;
-    self.watchLabel.text = model.numOfVisiter;
+    self.watchLabel.text = [NSString stringWithFormat:@"%@人已看",model.numOfVisiter];
 }
 
 #pragma  mark - masLayoutSuviews
@@ -122,7 +122,7 @@ NSString *const kLDNewsTableViewCellIdentifier = @"kLDNewsTableViewCellIdentifie
         _timeLabel = [[UILabel alloc]init];
         _timeLabel.textColor = [UIColor grayColor];
         _timeLabel.text = @"2018.18.18 18：30";
-        _timeLabel.font = [UIFont systemFontOfSize:PtHeight(8)];
+        _timeLabel.font = [UIFont systemFontOfSize:PtHeight(12)];
     }
     return _timeLabel;
 }
@@ -144,7 +144,7 @@ NSString *const kLDNewsTableViewCellIdentifier = @"kLDNewsTableViewCellIdentifie
     if (!_watchLabel) {
         _watchLabel = [[UILabel alloc]init];
         _watchLabel.text = @"20人已看";
-        _watchLabel.font = [UIFont systemFontOfSize:PtHeight(8)];
+        _watchLabel.font = [UIFont systemFontOfSize:PtHeight(12)];
         _watchLabel.textColor = UIColorFromHEXA(0x979797, 1);
     }
     return _watchLabel;

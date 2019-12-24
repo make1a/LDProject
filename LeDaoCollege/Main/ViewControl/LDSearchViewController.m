@@ -140,6 +140,7 @@
             if (!vc)
             {
                 vc = [[LDVoiceListViewController alloc] init];
+                vc.isSearchModel = YES;
             }
             [vc requestSource:self.searchTitle mark:@"" back:^(NSInteger count) {
                 weakself.noticeView.titleLabel.text = [NSString stringWithFormat:@"共找到%ld个相关内容",vc.dataSource.count];
@@ -160,6 +161,7 @@
             if (!vc)
             {
                 vc = [[LDVideoListViewController alloc] init];
+                vc.isSearchModel = YES;
             }
             [vc requestSource:self.searchTitle mark:@"" back:^(NSInteger count) {
                 weakself.noticeView.titleLabel.text = [NSString stringWithFormat:@"共找到%lu个相关内容",(unsigned long)vc.dataSource.count];

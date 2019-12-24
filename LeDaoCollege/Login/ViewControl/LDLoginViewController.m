@@ -118,7 +118,7 @@
             }];
         }
     } faild:^(NSError *error) {
-
+        [QMUITips showError:error.localizedDescription];
     }];
 }
 - (void)bindApp {
@@ -135,8 +135,8 @@
     }
     NSDictionary *dic = @{@"phone":phone,@"msgCode":pwd};
     NSString *url = [NSString stringWithFormat:@"msg/validmsg/%@/%@",phone,pwd];
-//    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:url requestParameters:dic requestHeader:nil success:^(id responseObject) {
-//        if (kCODE == 200) {
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:url requestParameters:dic requestHeader:nil success:^(id responseObject) {
+        if (kCODE == 200) {
             [self.WXInfoDic setValue:phone forKey:@"phone"];
             [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:@"wxlogin/bindphone" requestParameters:self.WXInfoDic requestHeader:nil success:^(id  _Nonnull responseObject) {
                 if (kCODE == 200) {
@@ -149,13 +149,14 @@
                 }
             } faild:^(NSError * _Nonnull error) {
                 DLog(@"%@",error);
+                [QMUITips showError:error.localizedDescription];
             }];
-//        }else{
-//            ShowMsgInfo;
-//        }
-//    } faild:^(NSError *error) {
-//
-//    }];
+        }else{
+            ShowMsgInfo;
+        }
+    } faild:^(NSError *error) {
+[QMUITips showError:error.localizedDescription];
+    }];
 }
 - (void)regiserAPP {
     NSString *phone = self.nameTextField.text;
@@ -185,7 +186,7 @@
             }];
         }
     } faild:^(NSError *error) {
-
+[QMUITips showError:error.localizedDescription];
     }];
 }
 - (void)pushMain{
@@ -219,7 +220,7 @@
                     }
                 }
             } faild:^(NSError *error) {
-                
+                [QMUITips showError:error.localizedDescription];
             }];
         }
     }];

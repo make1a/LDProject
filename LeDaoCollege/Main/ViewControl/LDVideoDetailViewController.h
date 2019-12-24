@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LDVideoDetailViewController : QMUICommonViewController
 @property (nonatomic,copy)NSString * videoID;
+
 @end
 
 NS_ASSUME_NONNULL_END

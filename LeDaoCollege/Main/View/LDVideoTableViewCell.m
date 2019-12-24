@@ -43,8 +43,10 @@ NSString *const kLDVideoTableViewCellIdentifier = @"kLDVideoTableViewCellIdentif
     self.timeLabel.text = model.createdDate;
     self.titleLabel.text = model.title;
     self.collectionButton.selected = [model.collectionFlag isEqualToString:@"Y"]?YES:NO;
-    self.durationLabel.text = model.duration;
-    self.watchLabel.text = model.numOfVisiter;
+//    self.durationLabel.text = model.duration;
+    self.watchLabel.text = [NSString stringWithFormat:@"%@人已看",model.numOfVisiter];
+    self.priceLabel.text = model.originalPrice;
+    self.cheapPriceLabel.text = model.discount;
 }
 - (void)clickCollectionButtonAction{
     if (self.didSelectCollectionActionBlock) {
@@ -54,33 +56,46 @@ NSString *const kLDVideoTableViewCellIdentifier = @"kLDVideoTableViewCellIdentif
 - (void)masLayoutSubview
 {
     [super masLayoutSubview];
-    [self.contentView addSubview:self.blackImageView];
-    [self.blackImageView addSubview:self.playImageView];
-    [self.blackImageView addSubview:self.durationLabel];
+    [self.contentView addSubview:self.cheapImageView];
+[self.contentView addSubview:self.cheapPriceLabel];
+    [self.contentView addSubview:self.priceLabel];
+    [self.contentView addSubview:self.priceImageView];
+    
     [self.contentView addSubview:self.collectionButton];
 
     [self.collectionButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.contentView).mas_offset(PtWidth(-17));
         make.centerY.mas_equalTo(self.titleLabel);
     }];
-    [self.blackImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.bigImageVIew).mas_offset(-1);
-        make.bottom.mas_equalTo(self.bigImageVIew).mas_offset(-2);
-        make.width.mas_equalTo(PtWidth(PtWidth(71)));
-        make.height.mas_equalTo(PtHeight(16));
+    [self.cheapPriceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.contentView).mas_offset(-10);
+        make.bottom.mas_equalTo(self.contentView).mas_offset(-10);
+    }];
+    [self.cheapImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.cheapPriceLabel.mas_left).mas_offset(-5);
+        make.centerY.mas_equalTo(self.cheapPriceLabel);
+    }];
+    [self.priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.cheapImageView.mas_left).mas_offset(-15);
+        make.centerY.mas_equalTo(self.cheapPriceLabel);
+    }];
+    [self.priceImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.priceLabel.mas_left).mas_offset(-5);
+        make.centerY.mas_equalTo(self.cheapPriceLabel);
     }];
     
-    [self.playImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.blackImageView).mas_offset(PtWidth(8));
-        make.centerY.mas_equalTo(self.blackImageView);
-        make.width.mas_equalTo(PtWidth(PtWidth(6)));
-        make.height.mas_equalTo(PtHeight(7));
+    [self.watchLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(self.cheapPriceLabel);
+        make.left.mas_equalTo(self.titleLabel);
     }];
-    [self.durationLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.playImageView.mas_right).mas_offset(PtWidth(5));
-        make.centerY.mas_equalTo(self.blackImageView);
-        make.width.mas_equalTo(PtWidth(PtWidth(44)));
-        make.height.mas_equalTo(PtHeight(8));
+    UIView *lineView = [UIView new];
+    lineView.backgroundColor = UIColorFromHEXA(0x999999, 1);
+    [self.contentView addSubview:lineView];
+    [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(self.priceLabel);
+        make.left.mas_equalTo(self.priceImageView).mas_offset(-5);
+        make.right.mas_equalTo(self.priceLabel).mas_offset(5);
+        make.height.mas_equalTo(PtHeight(1));
     }];
 }
 - (void)addFreeLabel{
@@ -135,4 +150,35 @@ NSString *const kLDVideoTableViewCellIdentifier = @"kLDVideoTableViewCellIdentif
     }
     return _collectionButton;
 }
+- (QMUILabel *)priceLabel {
+    if (!_priceLabel) {
+        _priceLabel = [[QMUILabel alloc]init];
+        _priceLabel.font = [UIFont systemFontOfSize:PtHeight(13)];
+        _priceLabel.textColor = UIColorFromHEXA(0x999999, 1);
+        _priceLabel.text = @"0";
+    }
+    return _priceLabel;
+}
+- (QMUILabel *)cheapPriceLabel {
+    if (!_cheapPriceLabel) {
+        _cheapPriceLabel = [[QMUILabel alloc]qmui_initWithFont:[UIFont systemFontOfSize:PtHeight(15)] textColor:[UIColor colorWithRed:236/255.0 green:199/255.0 blue:100/255.0 alpha:1]];
+        _cheapPriceLabel.text = @"0";
+    }
+    return _cheapPriceLabel;
+}
+- (UIImageView *)priceImageView{
+    if (!_priceImageView) {
+        _priceImageView = [[UIImageView alloc]init];
+        _priceImageView.image = [UIImage imageNamed:@"grayYuan"];
+    }
+    return _priceImageView;
+}
+- (UIImageView *)cheapImageView{
+    if (!_cheapImageView) {
+        _cheapImageView = [[UIImageView alloc]init];
+        _cheapImageView.image = [UIImage imageNamed:@"yellowYuan"];
+    }
+    return _cheapImageView;
+}
+
 @end

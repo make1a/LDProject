@@ -35,6 +35,10 @@
     [self maslayoutSubviews];
     [self reqeustDatsSource];
 }
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"playerPause" object:nil];
+    [[DFPlayer sharedPlayer]df_deallocPlayer];
+}
 - (void)createNavbutton{
     QMUINavigationButton *button = [QMUINavigationButton buttonWithType:UIButtonTypeCustom];
     [button setImage:[UIImage imageNamed:@"collect_default"] forState:UIControlStateNormal];
@@ -49,9 +53,9 @@
     }
 }
 - (void)createMusicPlayer{
-    [DFPlayer shareInstance].delegate    = self;
+    [DFPlayer sharedPlayer].delegate    = self;
     
-    DFPlayerControlManager *manager = [DFPlayerControlManager shareInstance];
+    DFPlayerControlManager *manager = [DFPlayerControlManager sharedManager];
     
     //进度条
     [manager df_sliderWithFrame:CGRectMake(PtWidth(56.5), PtHeight(115.5), PtWidth(262), PtHeight(40)) minimumTrackTintColor:HDFGreenColor maximumTrackTintColor:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0] trackHeight:4 thumbSize:(CGSizeMake(25, 25)) superView:self.view];
@@ -67,20 +71,29 @@
     _weakself;
     //播放模式按钮
     [manager df_playPauseBtnWithFrame:CGRectMake(PtWidth(67.5), PtHeight(33.5), PtWidth(47), PtWidth(47)) superView:self.view block:^{
-        if ([DFPlayer shareInstance].state == DFPlayerStatePlaying) {
+        if ([DFPlayer sharedPlayer].state == DFPlayerStatePlaying) {
             weakself.didRefreshPlayStateBlock(YES);
-        }else if ([DFPlayer shareInstance].state == DFPlayerStatePause){
+        }else if ([DFPlayer sharedPlayer].state == DFPlayerStatePause){
             weakself.didRefreshPlayStateBlock(NO);
         }
     }];
-    
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePlayButtonState) name:@"DFPlayerNotificationProgressSliderDragEnd" object:nil];
     if (self.isPlaying) {
-        [[DFPlayer shareInstance]df_audioPlay];
+        [[DFPlayer sharedPlayer] df_play];
+        NSInteger time = (NSInteger)[[DFPlayer sharedPlayer]totalTime];
+        int seconds = time % 60;
+        int minutes = (time / 60) % 60;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            totLabel.text = [NSString stringWithFormat:@"%02d:%02d",minutes,seconds];
+        });
     }else{
-        [[DFPlayer shareInstance]df_playerPlayWithAudioId:[self.s_id intValue]];
+        [[DFPlayer sharedPlayer]df_playWithAudioId:[self.s_id intValue]];
     }
 }
-
+- (void)updatePlayButtonState{
+    self.didRefreshPlayStateBlock(YES);
+}
 #pragma  mark - ACtion
 - (void)clickShareAction{
     QMUIMoreOperationController *moreOperationController = [[QMUIMoreOperationController alloc] init];
@@ -133,6 +146,7 @@
 #pragma  mark - 音频
 //播放进度代理
 - (void)df_player:(DFPlayer *)player progress:(CGFloat)progress currentTime:(CGFloat)currentTime totalTime:(CGFloat)totalTime{
+
     NSLog(@"%@",[NSString stringWithFormat:@"当前进度%lf--当前时间%.0f--总时长%.0f",progress,currentTime,totalTime]);
 }
 - (void)df_player:(DFPlayer *)player bufferProgress:(CGFloat)bufferProgress totalTime:(CGFloat)totalTime{
@@ -166,7 +180,7 @@
                 [self.bigImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@img/%@",BaseAPI,model.coverImg]] placeholderImage:[UIImage imageNamed:@"seizeaseat_0"]];
             }
             
-            //            [[DFPlayer shareInstance] df_playerPlayWithAudioId:[model.v_id intValue]];
+            //            [[DFPlayer sharedPlayer] df_playerPlayWithAudioId:[model.v_id intValue]];
             
             [self.webview loadHTMLString:model.audioContent baseURL:nil];
         }

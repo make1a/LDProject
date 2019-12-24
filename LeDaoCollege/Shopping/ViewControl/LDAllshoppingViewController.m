@@ -27,23 +27,34 @@
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
     if (!self.isSearchModel) {
         [self requestAllStore];
+        self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            [self requestAllStore];
+        }];
     }
 }
 - (void)requestAllStore {
     NSDictionary *dic = @{@"title":@"",
                           @"page":@(page),
                           @"pageSize":@20};
+    QMUITips *tip = [QMUITips showLoadingInView:self.view];
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"goods/getallgoods" requestParameters:dic requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {
            self.dataSource = [NSArray yy_modelArrayWithClass:[LDStoreModel class] json:responseObject[@"data"][@"list"]];
             [self.tableView reloadData];
+            [tip hideAnimated:YES];
+        }else{
+            [tip hideAnimated:YES];
+            [QMUITips showError:@"网络错误,请稍微再试"];
         }
+        [self.tableView.mj_header endRefreshing];
     } faild:^(NSError *error) {
-        
+        [tip hideAnimated:YES];
+        [QMUITips showError:@"网络错误,请稍微再试"];
+        [self.tableView.mj_header endRefreshing];
     }];
 }
 - (void)requestSource:(NSString *)title back:(backSourceCountBlock)blcok {
-    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"information/getlists" requestParameters:@{@"title":title} requestHeader:nil success:^(id responseObject) {
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"goods/getallgoods" requestParameters:@{@"title":title} requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {
             self.dataSource = [NSArray yy_modelArrayWithClass:[LDStoreModel class] json:responseObject[@"data"][@"list"]];
             [self.tableView reloadData];

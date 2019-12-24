@@ -22,8 +22,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
-        if (!self.isSearchModel) {
+    if (!self.isSearchModel) {
         [self requestAllStore];
+        self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            [self requestAllStore];
+        }];
     }
 }
 - (void)requestAllStore {
@@ -32,13 +35,20 @@
                           @"pageSize":@20,
                           @"type": @2, //1书籍 2课程
     };
+    QMUITips *tip = [QMUITips showLoadingInView:self.view];
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"goods/getallgoods" requestParameters:dic requestHeader:nil success:^(id responseObject) {
+        [tip hideAnimated:YES];
         if (kCODE == 200) {
-           self.dataSource = [NSArray yy_modelArrayWithClass:[LDStoreModel class] json:responseObject[@"data"][@"list"]];
+            self.dataSource = [NSArray yy_modelArrayWithClass:[LDStoreModel class] json:responseObject[@"data"][@"list"]];
             [self.tableView reloadData];
+        }else{
+            [QMUITips showError:@"网络错误,请稍微再试"];
         }
+        [self.tableView.mj_header endRefreshing];
     } faild:^(NSError *error) {
-        
+        [tip hideAnimated:YES];
+        [QMUITips showError:@"网络错误,请稍微再试"];
+        [self.tableView.mj_header endRefreshing];
     }];
 }
 - (void)requestSource:(NSString *)title back:(backSourceCountBlock)blcok {
@@ -51,7 +61,7 @@
         if (kCODE == 200) {
             self.dataSource = [NSArray yy_modelArrayWithClass:[LDStoreModel class] json:responseObject[@"data"][@"list"]];
             [self.tableView reloadData];
-                        if (blcok) {
+            if (blcok) {
                 blcok(self.dataSource.count);
             }
         }

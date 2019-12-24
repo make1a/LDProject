@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy)NSString * originalPrice;
 @property (nonatomic,copy)NSString * title;
 @property (nonatomic,copy)NSString * type;
-
+@property (nonatomic,copy)NSString * numOfVisiter;
 @end
 
 NS_ASSUME_NONNULL_END

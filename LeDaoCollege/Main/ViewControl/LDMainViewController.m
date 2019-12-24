@@ -212,7 +212,7 @@
         }else{
             h = PtHeight(75);
         }
-        _magicController.magicView.frame = CGRectMake(0,h, SCREEN_WIDTH, SCREEN_HEIGHT-PtHeight(91)-TabBarHeight);
+        _magicController.magicView.frame = CGRectMake(0,h, SCREEN_WIDTH, SCREEN_HEIGHT-PtHeight(91)-TabBarHeight-5);
         _magicController.magicView.dataSource = self;
         _magicController.magicView.delegate = self;
         _magicController.magicView.needPreloading = NO;

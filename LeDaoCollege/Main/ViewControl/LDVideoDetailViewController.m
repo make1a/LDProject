@@ -14,6 +14,9 @@
 #import "LDVideoModel.h"
 #import "LDShoppingDetailFootView.h"
 #import "LDCommitBuyViewController.h"
+#import <UMShare/UMShare.h>
+#import "DFPlayer.h"
+
 @interface LDVideoDetailViewController()<VTMagicViewDelegate,VTMagicViewDataSource>
 {
     UIView *_bgView;
@@ -32,6 +35,10 @@
 }
 - (void)viewDidLoad{
     [super viewDidLoad];
+    
+    [[DFPlayer sharedPlayer]df_deallocPlayer];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"playerPause" object:nil];
+    
     self.view.backgroundColor = [UIColor whiteColor];
     [self configPlayer];
     [self createMagic];
@@ -58,11 +65,19 @@
         make.edges.offset(0);
     }];
     
+    SJEdgeControlButtonItem *item = [[SJEdgeControlButtonItem alloc] initWithImage:[UIImage imageNamed:@"share_default"] target:self action:@selector(shareAction) tag:100];
+    [_player.defaultEdgeControlLayer.topAdapter addItem:item];
+    [_player.defaultEdgeControlLayer.topAdapter reload];
+    
     __weak typeof(self) _self = self;
     _player.controlLayerAppearObserver.appearStateDidChangeExeBlock = ^(id<SJControlLayerAppearManager>  _Nonnull mgr) {
         __strong typeof(_self) self = _self;
         if ( !self ) return ;
         self.player.popPromptController.bottomMargin = mgr.isAppeared ? self.player.defaultEdgeControlLayer.bottomContainerView.bounds.size.height : 16;
+    };
+    
+    self.player.playbackObserver.didPlayToEndTimeExeBlock = ^(__kindof SJBaseVideoPlayer * _Nonnull player) {
+        [[DFPlayer sharedPlayer]df_deallocPlayer];
     };
 }
 - (void)createMagic{
@@ -91,13 +106,8 @@
             self.currentModel = model;
             [self.magicController.magicView reloadData];
             
-            UIImageView *imageView = [[UIImageView alloc]init];
-            [imageView sd_setImageWithURL:[NSURL URLWithString:model.coverImg] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-                    SJVideoPlayer.update(^(SJVideoPlayerSettings * _Nonnull commonSettings) {
-                        commonSettings.placeholder = image;
-                    });
-            }];
             
+            [self.player.presentView.placeholderImageView sd_setImageWithURL:[NSURL URLWithString:model.coverImg] placeholderImage:[UIImage imageNamed:@"seizeaseat_0"]];
             LDVideoDetailModel *detailMdel = self.currentModel.detailArray.firstObject;
             if (detailMdel) {
                 if ([self.currentModel.isFreeFlag isEqualToString:@"Y"] || [self.currentModel.isPayFlag isEqualToString:@"Y"] ) {
@@ -120,6 +130,34 @@
     }];
 }
 #pragma  mark - ACtion
+- (void)shareAction{
+     QMUIMoreOperationController *moreOperationController = [[QMUIMoreOperationController alloc] init];
+     moreOperationController.view.backgroundColor = [UIColor whiteColor];
+     NSMutableArray *array = @[].mutableCopy;
+     
+    QMUIMoreOperationItemView *wx = [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"wechat") title:@"分享给微信好友" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+         [self share:UMSocialPlatformType_WechatSession];
+         [moreOperationController hideToBottom];
+     }];
+    QMUIMoreOperationItemView *wxp = [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"pyq") title:@"分享到朋友圈" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+         [self share:UMSocialPlatformType_WechatTimeLine];
+         [moreOperationController hideToBottom];
+     }];
+    QMUIMoreOperationItemView *sina = [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"weibo") title:@"分享到微博" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
+         [self share:UMSocialPlatformType_Sina];
+         [moreOperationController hideToBottom];
+     }];
+     if ([[UMSocialManager defaultManager]isInstall:UMSocialPlatformType_WechatSession]) {
+         [array addObject:wx];
+         [array addObject:wxp];
+     }
+     if ([[UMSocialManager defaultManager]isInstall:UMSocialPlatformType_Sina]) {
+         [array addObject:sina];
+     }
+     moreOperationController.items = @[array];
+     [moreOperationController showFromBottom];
+
+}
 - (void)clickBuyAction:(id)sender{
     LDCommitBuyViewController *vc = [[LDCommitBuyViewController alloc]initWithNibName:@"LDCommitBuyViewController" bundle:[NSBundle mainBundle]];
     vc.currentModel = self.currentModel;
@@ -146,6 +184,23 @@
         }
     } faild:^(NSError *error) {
         
+    }];
+}
+- (void)share:(UMSocialPlatformType)shareType{
+    UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
+    UIImage *image = [UIImage imageNamed:@"ledao_logo_2"];
+    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"乐道分享" descr:nil thumImage:image];
+    //设置网页地址
+    shareObject.webpageUrl = [NSString stringWithFormat:@"%@?id=%@",self.currentModel.contentUrl,self.currentModel.v_id];
+    messageObject.shareObject = shareObject;
+    
+    //调用分享接口
+    [[UMSocialManager defaultManager] shareToPlatform:shareType messageObject:messageObject currentViewController:nil completion:^(id data, NSError *error) {
+        if (error) {
+            NSLog(@"%@",error);
+        }else{
+            NSLog(@"%@",data);
+        }
     }];
 }
 #pragma  mark - 屏幕移动
@@ -269,6 +324,7 @@
         _freeLabel.textColor = [UIColor whiteColor];
         _freeLabel.font = [UIFont systemFontOfSize:16];
         _freeLabel.text = @"请购买后观看";
+        _freeLabel.backgroundColor = [UIColor blackColor];
     }
     return _freeLabel;
 }

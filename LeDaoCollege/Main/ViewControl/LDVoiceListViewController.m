@@ -13,7 +13,7 @@
 #import "LDVoiceDetailViewcontroller.h"
 #import <SDCycleScrollView.h>
 #import "DFPlayer.h"
-@interface LDVoiceListViewController ()<SDCycleScrollViewDelegate,DFPlayerDelegate,DFPlayerDataSource>
+@interface LDVoiceListViewController ()<SDCycleScrollViewDelegate,DFPlayerDataSource>
 @property (nonatomic,strong)SDCycleScrollView* cycleScrollView;
 @property (nonatomic,strong)NSMutableArray * musicArray;
 @property (nonatomic,strong)NSArray * playArray;
@@ -23,7 +23,8 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
-
+    [DFPlayer sharedPlayer].dataSource  = self;
+    [[DFPlayer sharedPlayer]df_reloadData];
 }
 
 - (void)viewDidLoad {
@@ -31,13 +32,24 @@
     self.tableView.tableHeaderView = self.cycleScrollView;
     [self createPlayer];
     [self requestSource:@"" mark:@"" back:nil];
+    if (!_isSearchModel) {
+        self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            [self requestSource:@"" mark:@"" back:nil];
+        }];
+    }
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(pauseRefresh) name:@"playerPause" object:nil];
 }
 - (void)createPlayer{
-    [DFPlayer shareInstance].dataSource  = self;
-    [DFPlayer shareInstance].delegate    = self;
-    [DFPlayer shareInstance].category    = DFPlayerAudioSessionCategoryPlayback;
-    [DFPlayer shareInstance].isObserveWWAN = YES;
-    [[DFPlayer shareInstance] df_initPlayerWithUserId:nil];
+//    [DFPlayer sharedPlayer].category    = DFPlayerModeOnlyOnce;
+    [DFPlayer sharedPlayer].playMode = DFPlayerModeOnlyOnce;
+    [DFPlayer sharedPlayer].isObserveWWAN = YES;
+    [[DFPlayer sharedPlayer] df_initPlayerWithUserId:nil];
+}
+- (void)pauseRefresh{
+    for ( LDVoiceModel *m in self.dataSource) {
+        m.isPlaying = NO;
+    }
+    [self.tableView reloadData];
 }
 #pragma  mark - Request
 - (void)requestSource:(NSString *)title mark:(NSString *)mark back:(backSourceCountBlock)blcok{
@@ -46,7 +58,7 @@
         if (kCODE == 200) {
             self.dataSource = [NSArray yy_modelArrayWithClass:[LDVoiceModel class] json:responseObject[@"data"][@"list"]];
             [self.tableView reloadData];
-                        if (blcok) {
+            if (blcok) {
                 blcok(self.dataSource.count);
             }
             self.musicArray = @[].mutableCopy;
@@ -56,14 +68,17 @@
                 playModel.audioUrl = [self translateIllegalCharacterWtihUrlStr:model.audioUrl];
                 [self.musicArray addObject:playModel];
             }
-            [[DFPlayer shareInstance] df_reloadData];
+            [[DFPlayer sharedPlayer] df_reloadData];
+            [tip hideAnimated:YES];
         }else{
             [tip hideAnimated:YES];
             [QMUITips showError:@"网络错误,请稍微再试"];
         }
+        [self.tableView.mj_header endRefreshing];
     }faild:^(NSError *error) {
         [tip hideAnimated:YES];
         [QMUITips showError:@"网络错误,请稍微再试"];
+        [self.tableView.mj_header endRefreshing];
     }];
 }
 - (void)requestCollection:(LDVoiceModel*)model index:(NSInteger)index{
@@ -84,11 +99,11 @@
 }
 - (NSURL *)translateIllegalCharacterWtihUrlStr:(NSString *)yourUrl{
     //如果链接中存在中文或某些特殊字符，需要通过以下代码转译
-//    NSString *encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef)yourUrl, (CFStringRef)@"!NULL,'()*+,-./:;=?@_~%#[]", NULL, kCFStringEncodingUTF8));
+    //    NSString *encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef)yourUrl, (CFStringRef)@"!NULL,'()*+,-./:;=?@_~%#[]", NULL, kCFStringEncodingUTF8));
     return [NSURL URLWithString:yourUrl];
 }
 #pragma  mark - 音频播放
-- (NSArray<DFPlayerModel *> *)df_playerModelArray{
+- (NSArray<DFPlayerModel *> *)df_audioDataForPlayer:(DFPlayer *)player{
     return self.musicArray;
 }
 #pragma  mark - SDCyclesScrollview
@@ -119,10 +134,10 @@
             m.isPlaying = NO;
         }
         if (Play) { //正在播放
-            [[DFPlayer shareInstance]df_audioPause];
+            [[DFPlayer sharedPlayer]df_pause];
         } else {
             DFPlayerModel *playModel = self.musicArray[indexPath.row];
-            [[DFPlayer shareInstance] df_playerPlayWithAudioId:playModel.audioId];
+            [[DFPlayer sharedPlayer] df_playWithAudioId:playModel.audioId];
             model.isPlaying = YES;
         }
         [tableView reloadData];

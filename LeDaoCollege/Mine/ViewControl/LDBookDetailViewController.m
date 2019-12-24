@@ -77,7 +77,7 @@
                 [self presentViewController:vc animated:YES completion:nil];
                 
             } faild:^(NSError *error) {
-                
+                [QMUITips showError:error.localizedDescription];
             }];
             
         }else {

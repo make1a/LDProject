@@ -305,7 +305,7 @@
 - (QMUILabel *)balanceLabel {
     if (!_balanceLabel) {
         _balanceLabel = [[QMUILabel alloc]init];
-        _balanceLabel.text = @"100";
+        _balanceLabel.text = @"0";
         _balanceLabel.font = [UIFont boldSystemFontOfSize:PtHeight(46)];
         _balanceLabel.textColor = [UIColor whiteColor];
         _balanceLabel.textAlignment = NSTextAlignmentCenter;

@@ -13,6 +13,8 @@
 #import "LDVideoDetailViewController.h"
 @interface LDVideoListViewController ()
 
+
+
 @end
 
 @implementation LDVideoListViewController
@@ -23,6 +25,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshStatus:) name:@"collectionPost" object:nil];
+    
+    if (!_isSearchModel) {
+        [self requestSource:@"" mark:self.tagID back:^(NSInteger count) {}];
+        self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            [self requestSource:@"" mark:self.tagID back:^(NSInteger count){}];
+        }];
+    }
+    
+    
 }
 - (void)refreshStatus:(NSNotification *)noti{
     LDVideoModel *selectModel = noti.object;
@@ -45,8 +56,9 @@
                 blcok(self.dataSource.count);
             }
         }
+        [self.tableView.mj_header endRefreshing];
     } faild:^(NSError *error) {
-        
+        [self.tableView.mj_header endRefreshing];
     }];
 }
 
@@ -87,16 +99,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     LDVideoModel *model = self.dataSource[indexPath.row];
-    //    LDWebViewViewController * vc = [LDWebViewViewController new];
-    //    vc.urlStrng = [NSString stringWithFormat:@"%@?id=%@&token=%@",model.contentUrl,model.v_id,[LDUserManager userID]];
-    //    vc.s_id = model.v_id;
-    //    vc.isCollection = [model.collectionFlag isEqualToString:@"Y"]?YES:NO;
-    //    vc.collectionType = @"3";
-    //    vc.didRefreshCollectionStateBlock = ^(BOOL isCollection) {
-    //        model.collectionFlag = isCollection?@"Y":@"N";
-    //        [tableView reloadData];
-    //    };
-    //    vc.title = model.title;
     LDVideoDetailViewController *vc = [[LDVideoDetailViewController alloc]init];
     vc.videoID = model.v_id;
     [self.navigationController pushViewController:vc animated:YES];

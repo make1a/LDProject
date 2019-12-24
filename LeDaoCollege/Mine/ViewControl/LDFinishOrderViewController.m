@@ -27,6 +27,9 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self configUI];
     [self requestData];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self requestData];
+    }];
 }
 
 - (void)configUI {
@@ -35,13 +38,20 @@
     self.view.backgroundColor = [UIColor whiteColor];
 }
 - (void)requestData{
+    QMUITips *tip = [QMUITips showLoadingInView:self.view];
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"order/orderlist" requestParameters:nil requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {
             self.dataSource = [NSArray yy_modelArrayWithClass:[LDOrderModel class] json:responseObject[@"data"][@"list"]];
             [self.tableView reloadData];
+        }else{
+            [QMUITips showError:@"网络错误,请稍微再试"];
         }
+        [tip hideAnimated:YES];
+        [self.tableView.mj_header endRefreshing];
     } faild:^(NSError *error) {
-        
+        [tip hideAnimated:YES];
+        [QMUITips showError:@"网络错误,请稍微再试"];
+        [self.tableView.mj_header endRefreshing];
     }];
 }
 #pragma mark - event response

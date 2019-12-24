@@ -39,7 +39,9 @@
     [self configUI];
     [self requestTag];
 }
+
 - (void)requestTag {
+//    getVideoMark
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"/audio/getAudioMark" requestParameters:@{@"id":@2} requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {
             self.tagArray = [NSArray yy_modelArrayWithClass:[LDTagModel class] json:responseObject[@"data"]];
@@ -79,7 +81,7 @@
     LDTagModel *model = self.tagArray[indexPath.section];
     LDTagDetailModel *detailModel = model.markList[indexPath.row];
     LDVideoListViewController *vc = [LDVideoListViewController new];
-    [vc requestSource:@"" mark:[NSString stringWithFormat:@"%@",detailModel.tagId] back:nil];
+    vc.tagID =  [NSString stringWithFormat:@"%@",detailModel.tagId];
     vc.title = detailModel.markDesc;
     [self.navigationController pushViewController:vc animated:YES];
     

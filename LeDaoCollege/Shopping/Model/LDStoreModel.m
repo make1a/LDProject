@@ -12,7 +12,25 @@
 + (NSDictionary *)modelCustomPropertyMapper {
     return @{@"s_id": @[@"id",@"goodsId"]};
 }
+
+
+- (NSString *)numOfVisiter{
+    if (!_numOfVisiter) {
+        return @"0";
+    }
+    NSInteger num = [_numOfVisiter intValue];
+    if ( num >= 10000) {
+        
+        return @"9999+";
+    }
+    return _numOfVisiter;
+}
 @end
+
+
+
+
+
 
 @implementation LDBookModel
 + (NSDictionary *)modelCustomPropertyMapper {
@@ -24,6 +42,7 @@
 + (nullable NSDictionary<NSString *, id> *)modelContainerPropertyGenericClass{
     return @{@"detailArray":[goodsImgVOSModel class]};
 }
+
 @end
 
 

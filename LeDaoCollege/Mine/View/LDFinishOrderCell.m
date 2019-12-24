@@ -48,8 +48,8 @@ NSString *const kLDFinishOrderCellIdentifier = @"kLDFinishOrderCellIdentifier";
         self.tagLabel.text = @"微课";
     }
     
-    self.priceLabel.text = [NSString stringWithFormat:@"¥%@",model.originalPrice];
-    self.safePriceLabel.text = [NSString stringWithFormat:@"¥%@",model.discount];
+    self.priceLabel.text = [NSString stringWithFormat:@"%@",model.originalPrice];
+    self.safePriceLabel.text = [NSString stringWithFormat:@"%@",model.discount];
     self.timeLabel.text = model.createDate;
 }
 - (void)masLayoutSubview

@@ -66,7 +66,6 @@
 		2690FE6B23A1DAEB003DF77D /* LDVoiceDetailViewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 2690FE6A23A1DAEB003DF77D /* LDVoiceDetailViewcontroller.m */; };
 		2690FE8423A1DBD9003DF77D /* DFPlayerControlManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2690FE6E23A1DBD9003DF77D /* DFPlayerControlManager.m */; };
 		2690FE8523A1DBD9003DF77D /* DFPlayerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2690FE7123A1DBD9003DF77D /* DFPlayerModel.m */; };
-		2690FE8623A1DBD9003DF77D /* DFPlayerRemoteApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 2690FE7523A1DBD9003DF77D /* DFPlayerRemoteApplication.m */; };
 		2690FE8723A1DBD9003DF77D /* DFPlayerRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2690FE7623A1DBD9003DF77D /* DFPlayerRequestManager.m */; };
 		2690FE8823A1DBD9003DF77D /* DFPlayerResourceLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2690FE7723A1DBD9003DF77D /* DFPlayerResourceLoader.m */; };
 		2690FE8923A1DBD9003DF77D /* DFPlayerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2690FE7823A1DBD9003DF77D /* DFPlayerTool.m */; };
@@ -306,13 +305,11 @@
 		2690FE7023A1DBD9003DF77D /* DFPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFPlayer.h; sourceTree = "<group>"; };
 		2690FE7123A1DBD9003DF77D /* DFPlayerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFPlayerModel.m; sourceTree = "<group>"; };
 		2690FE7223A1DBD9003DF77D /* DFPlayerControlManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFPlayerControlManager.h; sourceTree = "<group>"; };
-		2690FE7523A1DBD9003DF77D /* DFPlayerRemoteApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFPlayerRemoteApplication.m; sourceTree = "<group>"; };
 		2690FE7623A1DBD9003DF77D /* DFPlayerRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFPlayerRequestManager.m; sourceTree = "<group>"; };
 		2690FE7723A1DBD9003DF77D /* DFPlayerResourceLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFPlayerResourceLoader.m; sourceTree = "<group>"; };
 		2690FE7823A1DBD9003DF77D /* DFPlayerTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFPlayerTool.m; sourceTree = "<group>"; };
 		2690FE7923A1DBD9003DF77D /* DFPlayerFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFPlayerFileManager.h; sourceTree = "<group>"; };
 		2690FE7A23A1DBD9003DF77D /* DFPlayerLyricsTableview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFPlayerLyricsTableview.h; sourceTree = "<group>"; };
-		2690FE7B23A1DBD9003DF77D /* DFPlayerRemoteApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFPlayerRemoteApplication.h; sourceTree = "<group>"; };
 		2690FE7D23A1DBD9003DF77D /* DFPlayerTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFPlayerTool.h; sourceTree = "<group>"; };
 		2690FE7E23A1DBD9003DF77D /* DFPlayerResourceLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFPlayerResourceLoader.h; sourceTree = "<group>"; };
 		2690FE7F23A1DBD9003DF77D /* DFPlayerRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFPlayerRequestManager.h; sourceTree = "<group>"; };
@@ -986,13 +983,11 @@
 		2690FE7323A1DBD9003DF77D /* supplement */ = {
 			isa = PBXGroup;
 			children = (
-				2690FE7523A1DBD9003DF77D /* DFPlayerRemoteApplication.m */,
 				2690FE7623A1DBD9003DF77D /* DFPlayerRequestManager.m */,
 				2690FE7723A1DBD9003DF77D /* DFPlayerResourceLoader.m */,
 				2690FE7823A1DBD9003DF77D /* DFPlayerTool.m */,
 				2690FE7923A1DBD9003DF77D /* DFPlayerFileManager.h */,
 				2690FE7A23A1DBD9003DF77D /* DFPlayerLyricsTableview.h */,
-				2690FE7B23A1DBD9003DF77D /* DFPlayerRemoteApplication.h */,
 				2690FE7D23A1DBD9003DF77D /* DFPlayerTool.h */,
 				2690FE7E23A1DBD9003DF77D /* DFPlayerResourceLoader.h */,
 				2690FE7F23A1DBD9003DF77D /* DFPlayerRequestManager.h */,
@@ -1358,7 +1353,6 @@
 				26CBF88E23252566005139EF /* LDLoginViewController.m in Sources */,
 				26B6CD5B233A07FA00E94520 /* LDEmptyView.m in Sources */,
 				26F3BB932330B44B001A645C /* LDScoreCell.m in Sources */,
-				2690FE8623A1DBD9003DF77D /* DFPlayerRemoteApplication.m in Sources */,
 				26CBF8912325275C005139EF /* LoginEnableButton.m in Sources */,
 				265CB95F2320A96100883FE2 /* MYConstansManager.m in Sources */,
 				261CBB53237179EA00134E6D /* LDAlterPhoneViewController.m in Sources */,

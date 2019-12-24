@@ -49,7 +49,7 @@
 #pragma  mark - ConfigUI
 - (void)configMagicController{
     CGFloat maxY = CGRectGetMaxY(self.headView.frame)+10;
-    self.magicController.magicView.frame = CGRectMake(0,maxY, SCREEN_WIDTH, SCREEN_HEIGHT-TabBarHeight);
+    self.magicController.magicView.frame = CGRectMake(0,maxY, SCREEN_WIDTH, SCREEN_HEIGHT-TabBarHeight-maxY);
     [self addChildViewController:self.magicController];
     [self.scrollView addSubview:self.magicController.view];
     [self.magicController.magicView reloadData];

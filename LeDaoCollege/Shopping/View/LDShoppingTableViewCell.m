@@ -36,8 +36,12 @@ NSString *const kLDShoppingTableViewCell = @"LDShoppingTableViewCell";
 {
     
     [self.contentView addSubview:self.tagLabel];
-    [self.contentView addSubview:self.priceLabel];
+    
+        [self.contentView addSubview:self.cheapImageView];
     [self.contentView addSubview:self.cheapPriceLabel];
+        [self.contentView addSubview:self.priceLabel];
+        [self.contentView addSubview:self.priceImageView];
+    
     [self.contentView addSubview:self.bigImageView];
     [self.contentView addSubview:self.titleLabel];
     [self.contentView addSubview:self.watchLabel];
@@ -59,34 +63,53 @@ NSString *const kLDShoppingTableViewCell = @"LDShoppingTableViewCell";
         make.width.mas_equalTo(PtWidth(50));
         make.height.mas_equalTo(PtHeight(18));
     }];
-    [self.priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.cheapPriceLabel.mas_left).mas_offset(-10);
-        make.bottom.mas_equalTo(self.cheapPriceLabel);
-    }];
     [self.cheapPriceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.contentView).mas_offset(PtWidth(-12));
-        make.bottom.mas_equalTo(self.watchLabel);
+        make.right.mas_equalTo(self.contentView).mas_offset(-10);
+        make.bottom.mas_equalTo(self.contentView).mas_offset(-10);
     }];
-    [self.watchLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.tagLabel);
-        make.top.mas_equalTo(self.tagLabel.mas_bottom).mas_offset(10);
+    [self.cheapImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.cheapPriceLabel.mas_left).mas_offset(-5);
+        make.centerY.mas_equalTo(self.cheapPriceLabel);
+    }];
+    [self.priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.cheapImageView.mas_left).mas_offset(-15);
+        make.centerY.mas_equalTo(self.cheapPriceLabel);
+    }];
+    [self.priceImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.priceLabel.mas_left).mas_offset(-5);
+        make.centerY.mas_equalTo(self.cheapPriceLabel);
+    }];
+    [self.watchLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(self.cheapPriceLabel);
+        make.left.mas_equalTo(self.titleLabel);
     }];
 //    [self.shopButton mas_makeConstraints:^(MASConstraintMaker *make) {
 //        make.right.mas_equalTo(self.contentView).mas_offset(PtWidth(-17));
 //        make.centerY.mas_equalTo(self.contentView);
 //    }];
+    
+    UIView *lineView = [UIView new];
+    lineView.backgroundColor = UIColorFromHEXA(0x999999, 1);
+    [self.contentView addSubview:lineView];
+    [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(self.priceLabel);
+        make.left.mas_equalTo(self.priceImageView).mas_offset(-5);
+        make.right.mas_equalTo(self.priceLabel).mas_offset(5);
+        make.height.mas_equalTo(PtHeight(1));
+    }];
 }
 - (void)refreshWithModel:(LDStoreModel *)model {
     
     [self.bigImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@img/%@",BaseAPI,model.coverImg]] placeholderImage:[UIImage imageNamed:@"seizeaseat_0"]];
     self.titleLabel.text = model.title;
-    self.priceLabel.text = [NSString stringWithFormat:@"¥%@",model.originalPrice];
-    self.cheapPriceLabel.text = [NSString stringWithFormat:@"¥%@",model.discount];;
+    self.priceLabel.text = [NSString stringWithFormat:@"%@",model.originalPrice];
+    self.cheapPriceLabel.text = [NSString stringWithFormat:@"%@",model.discount];;
     if ([model.type intValue] == 2) {
         self.tagLabel.text = @"微课";
     }else {
         self.tagLabel.text = @"工具书";
     }
+    self.watchLabel.text = [NSString stringWithFormat:@"%@人已看",model.numOfVisiter];
 }
 - (void)clickShopAction{
     if (self.addShopCarActionBlock) {
@@ -109,21 +132,16 @@ NSString *const kLDShoppingTableViewCell = @"LDShoppingTableViewCell";
 - (QMUILabel *)priceLabel {
     if (!_priceLabel) {
         _priceLabel = [[QMUILabel alloc]init];
-        //中划线
-        NSString *textStr = @"18.88";
-        NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
-        NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:textStr attributes:attribtDic];
-        // 赋值
-        _priceLabel.attributedText = attribtStr;
-        _priceLabel.textColor = [UIColor darkGrayColor];
         _priceLabel.font = [UIFont systemFontOfSize:PtHeight(13)];
+        _priceLabel.textColor = UIColorFromHEXA(0x999999, 1);
+        _priceLabel.text = @"0";
     }
     return _priceLabel;
 }
 - (QMUILabel *)cheapPriceLabel {
     if (!_cheapPriceLabel) {
         _cheapPriceLabel = [[QMUILabel alloc]qmui_initWithFont:[UIFont systemFontOfSize:PtHeight(15)] textColor:[UIColor colorWithRed:236/255.0 green:199/255.0 blue:100/255.0 alpha:1]];
-        _cheapPriceLabel.text = @"18.88";
+        _cheapPriceLabel.text = @"0";
     }
     return _cheapPriceLabel;
 }
@@ -138,7 +156,7 @@ NSString *const kLDShoppingTableViewCell = @"LDShoppingTableViewCell";
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc]init];
-        _titleLabel.text = @"UI设计零基础入门教学";
+        _titleLabel.text = @"";
         _titleLabel.numberOfLines = 1;
     }
     return _titleLabel;
@@ -155,9 +173,23 @@ NSString *const kLDShoppingTableViewCell = @"LDShoppingTableViewCell";
     if (!_watchLabel) {
         _watchLabel = [[UILabel alloc]init];
         _watchLabel.text = @"20人已看";
-        _watchLabel.font = [UIFont systemFontOfSize:PtHeight(8)];
-        _watchLabel.textColor = UIColorFromHEXA(0x979797, 1);
+        _watchLabel.font = [UIFont systemFontOfSize:PtHeight(12)];
+        _watchLabel.textColor = UIColorFromHEXA(0x999999, 1);
     }
     return _watchLabel;
+}
+- (UIImageView *)priceImageView{
+    if (!_priceImageView) {
+        _priceImageView = [[UIImageView alloc]init];
+        _priceImageView.image = [UIImage imageNamed:@"grayYuan"];
+    }
+    return _priceImageView;
+}
+- (UIImageView *)cheapImageView{
+    if (!_cheapImageView) {
+        _cheapImageView = [[UIImageView alloc]init];
+        _cheapImageView.image = [UIImage imageNamed:@"yellowYuan"];
+    }
+    return _cheapImageView;
 }
 @end

@@ -13,4 +13,12 @@
     return @{@"newsId": @"id"};
 }
 
+
+- (NSString *)numOfVisiter{
+    NSInteger num = [_numOfVisiter intValue];
+    if ( num >= 10000) {
+        return @"9999+";
+    }
+    return _numOfVisiter;
+}
 @end

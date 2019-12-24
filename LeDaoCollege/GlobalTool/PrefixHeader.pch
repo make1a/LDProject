@@ -32,6 +32,7 @@
 #import <MJRefresh.h>
 #import "UIButton+EnlargeEdge.h"
 #import <VTMagic/VTMagic.h>
+#import <MJRefresh.h>
 #endif
 #endif /* PrefixHeader_pch */
 

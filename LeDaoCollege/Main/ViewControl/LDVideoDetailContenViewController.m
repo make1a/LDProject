@@ -40,8 +40,9 @@
         LDShoppingDetailNameViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LDShoppingDetailNameViewCell" forIndexPath:indexPath];
         if (self.currentModel) {
             cell.nameLabel.text = self.currentModel.title;
-            cell.priceLabel.text = [NSString stringWithFormat:@"¥%@",self.currentModel.originalPrice];
-            cell.salePriceLabel.text = [NSString stringWithFormat:@"¥%@",self.currentModel.discount];
+            cell.priceLabel.text = [NSString stringWithFormat:@"%@",self.currentModel.originalPrice];
+            cell.salePriceLabel.text = [NSString stringWithFormat:@"%@",self.currentModel.discount];
+            cell.watchLabel.text = [NSString stringWithFormat:@"%@人已看",self.currentModel.numOfVisiter];
         }
         return cell;
     } else{
