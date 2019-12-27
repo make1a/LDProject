@@ -42,7 +42,7 @@
 
 - (void)requestTag {
 //    getVideoMark
-    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"/audio/getAudioMark" requestParameters:@{@"id":@2} requestHeader:nil success:^(id responseObject) {
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"/video/getVideoMark" requestParameters:@{@"id":@2} requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {
             self.tagArray = [NSArray yy_modelArrayWithClass:[LDTagModel class] json:responseObject[@"data"]];
             [self.collectionView reloadData];

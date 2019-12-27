@@ -30,7 +30,12 @@
                 [QMUITips showError:@"网络错误请稍微重试"];
                 return ;
             }
-            NSString *icon =[NSString stringWithFormat:@"%@",responseObject[@"data"][@"lecoin"]];
+            NSString *icon;
+            if ([responseObject[@"data"] isKindOfClass:[NSString class]]) {
+                icon = @"0";
+            }else{
+                icon =[NSString stringWithFormat:@"%@",responseObject[@"data"][@"lecoin"]];
+            }
             self.numberLabel.text = icon;
         }
     } faild:^(NSError *error) {
