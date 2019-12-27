@@ -72,7 +72,7 @@
             LDUserModel *model = [LDUserModel yy_modelWithDictionary:responseObject[@"data"][@"user"]];
             [LDUserManager shareInstance].currentUser = model;
             NSString *f = responseObject[@"data"][@"firstLogin"];
-            if ([f isEqualToString:@"Y"]) { //第一次登陆
+            if ([f isEqualToString:@"Y"]) { //第一次登录
                 LDFirstLoginViewController *vc = [LDFirstLoginViewController new];
                 AppDelegate  *delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
                 delegate.window.rootViewController = vc;

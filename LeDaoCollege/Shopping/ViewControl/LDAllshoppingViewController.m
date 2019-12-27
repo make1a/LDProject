@@ -12,6 +12,8 @@
 #import "LDShoppingDetailViewController.h"
 #import "LDSmallClassDetailViewController.h"
 #import "LDStoreViewController.h"
+#import "LDVideoDetailViewController.h"
+
 @interface LDAllshoppingViewController ()<UIScrollViewDelegate>
 {
     NSInteger page;
@@ -86,9 +88,10 @@
         vc.shopID = model.s_id;
         [self.navigationController pushViewController:vc animated:YES];
     }else {
-        LDSmallClassDetailViewController *vc = [LDSmallClassDetailViewController new];
+        LDVideoDetailViewController *vc = [LDVideoDetailViewController new];
         LDStoreModel *model = self.dataSource[indexPath.row];
-        vc.classID = model.s_id;
+        vc.videoID = model.s_id;
+        vc.isSmallClass = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

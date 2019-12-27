@@ -20,6 +20,7 @@
 #import "LDSmallClassDetailViewController.h"
 #import "LDShujiaModel.h"
 #import "LDShoppingTableViewCell.h"
+#import "LDVideoDetailViewController.h"
 
 @interface LDBookRackViewController () <QMUITableViewDataSource, QMUITableViewDelegate>
 
@@ -151,10 +152,10 @@
             vc.bookID = model.goodsId;
             [self.navigationController pushViewController:vc animated:YES];
         } else {
-            LDSmallClassDetailViewController *vc = [[LDSmallClassDetailViewController alloc]init];
-            vc.isPay = YES;
+            LDVideoDetailViewController *vc = [LDVideoDetailViewController new];
             LDShujiaModel *model =self.smallClassArray[indexPath.item];
-            vc.classID = model.goodsId;
+            vc.videoID = model.goodsId;
+            vc.isSmallClass = YES;
             [self.navigationController pushViewController:vc animated:YES];
         }
     }

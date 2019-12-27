@@ -318,12 +318,10 @@
             vc.shopID = model.bookId;
             [self.navigationController pushViewController:vc animated:YES];
         } else {
-            LDSmallClassDetailViewController *vc = [LDSmallClassDetailViewController new];
-            LDStoreModel *model = self.dataSource5[indexPath.row];
-            vc.classID = model.courseId;
-            if ([model.isPayFlag isEqualToString:@"Y"]) {
-                vc.isPay = YES;
-            }
+            LDVideoDetailViewController *vc = [LDVideoDetailViewController new];
+            LDStoreModel *model = self.dataSource[indexPath.row];
+            vc.videoID = model.s_id;
+            vc.isSmallClass = YES;
             [self.navigationController pushViewController:vc animated:YES];
         }
     }

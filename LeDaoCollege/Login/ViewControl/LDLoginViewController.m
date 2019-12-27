@@ -87,7 +87,7 @@
     }];
 
 }
-//登陆
+//登录
 - (void)loginApp {
     
     NSString *phone = self.nameTextField.text;
@@ -108,7 +108,7 @@
                 if (kCODE == 200) {
                     LDUserModel *model = [LDUserModel yy_modelWithDictionary:responseObject[@"data"][@"user"]];
                     [LDUserManager shareInstance].currentUser = model;
-                    [QMUITips showSucceed:@"登陆成功"];
+                    [QMUITips showSucceed:@"登录成功"];
                     [self pushMain];
                 }else {
                     ShowMsgInfo;
@@ -236,7 +236,7 @@
             [self.view addSubview:backButton];
             backButton.frame = CGRectMake(15, kSTATUSBAR_HEIGHT+20, 20, 20);
             
-            self.titleLabel.text  = @"加入乐道";
+            self.titleLabel.text  = @"注册";
             [self.loginButton setTitle:@"完成注册并登录" forState:UIControlStateNormal];
         }
             break;
@@ -255,7 +255,7 @@
         default:
         {
             [self.loginButton setTitle:@"登录" forState:UIControlStateNormal];
-            self.titleLabel.text = @"手机短信登陆";
+            self.titleLabel.text = @"手机短信登录";
         }
             break;
     }
@@ -308,13 +308,16 @@
             make.top.mas_equalTo(self.view).mas_offset(10);
         }
     }];
-    [self creatLineView];
+    
     if (self.currentPageType == LDCurrentPageIsLogin) {
         [self.view addSubview:self.WXLoginButton];
         if ([[UMSocialManager defaultManager]isInstall:UMSocialPlatformType_WechatSession]) {
             _WXLoginButton.hidden = NO;
+            self.bottomLabel.hidden = NO;
+            [self creatLineView];
         }else{
             _WXLoginButton.hidden = YES;
+            self.bottomLabel.hidden = YES;
         }
     }
 }

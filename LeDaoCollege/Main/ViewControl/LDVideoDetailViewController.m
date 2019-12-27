@@ -100,7 +100,13 @@
     }];
 }
 - (void)requestDataSource{
-    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"video/get" requestParameters:@{@"id":self.videoID} requestHeader:nil success:^(id responseObject) {
+    NSString *url;
+    if (self.isSmallClass == YES) {
+        url = [NSString stringWithFormat:@"course/getcourseinfo/%@",self.videoID];
+    }else{
+        url = @"video/get";
+    }
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:url requestParameters:@{@"id":self.videoID} requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {
             LDVideoModel *model = [LDVideoModel yy_modelWithJSON:responseObject[@"data"]];
             self.currentModel = model;
@@ -114,7 +120,8 @@
                     SJVideoPlayerURLAsset *asset1 = [[SJVideoPlayerURLAsset alloc] initWithURL:[NSURL URLWithString:detailMdel.sectionContent]];
                     self.player.URLAsset = asset1;
                     [self.freeLabel removeFromSuperview];
-                    [self.footView removeFromSuperview];
+//                    [self.footView removeFromSuperview];
+                    self.footView.buyButton.hidden = YES;
                 }else {
                     [self->_bgView addSubview:self.freeLabel];
                     [self.freeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
