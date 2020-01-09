@@ -52,6 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong)NSArray * detailArray;
 @property (nonatomic,copy)NSString * duration;
 @property (nonatomic,copy)NSString * numOfVisiter;
+@property (nonatomic,copy)NSString * author;
 @end
 
 
@@ -82,5 +83,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy) NSString *sectionName;
 /** <#Description#> **/
 @property(nonatomic,copy) NSString *sectionContent;
+@property(nonatomic,copy) NSString *isFreeFlag;
 @end
 NS_ASSUME_NONNULL_END

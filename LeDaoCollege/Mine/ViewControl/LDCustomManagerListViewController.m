@@ -23,6 +23,7 @@
     [super viewDidLoad];
     self.tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.tableView.separatorColor = UIColorFromHEXA(0xf1f1f1, 1);
+    self.title = @"我的管理";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

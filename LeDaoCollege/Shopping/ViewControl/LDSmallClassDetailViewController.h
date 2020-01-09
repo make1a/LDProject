@@ -11,9 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LDSmallClassDetailViewController : QMUICommonViewController
-@property (nonatomic,copy)NSString * classID;
-@property (nonatomic,assign)BOOL isPay;
-
+@property (nonatomic,copy)NSString * videoID;
+- (void)reload;
 @end
 
 NS_ASSUME_NONNULL_END

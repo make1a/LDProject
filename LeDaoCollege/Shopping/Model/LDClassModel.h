@@ -38,6 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy) NSString *originalPrice;
 /** <#Description#> **/
 @property(nonatomic,copy) NSString *discount;
+@property(nonatomic,copy) NSString *numOfVisiter;
 /** <#Description#> **/
 @property(nonatomic,copy) NSString *bookInfo;
 /** <#Description#> **/
@@ -52,6 +53,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy) NSString *briefIntroduction;
 
 @property (nonatomic,strong)NSArray * chapterArray;
+@property (nonatomic,copy)NSString * isFreeFlag;
+@property (nonatomic,copy)NSString * isPayFlag;
+@property (nonatomic,copy)NSString * contentUrl;
 @end
 
 @interface LDClassChapterModel : NSObject
@@ -140,5 +144,6 @@ NS_ASSUME_NONNULL_BEGIN
 /** <#Description#> **/
 @property(nonatomic,copy) NSString *sectionContent;
 @property (nonatomic,copy)NSString * duration;
+@property (nonatomic,copy)NSString * isFreeFlag;
 @end
 NS_ASSUME_NONNULL_END

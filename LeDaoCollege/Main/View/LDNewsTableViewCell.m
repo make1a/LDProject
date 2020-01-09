@@ -52,7 +52,7 @@ NSString *const kLDNewsTableViewCellIdentifier = @"kLDNewsTableViewCellIdentifie
     }else{
         [self.bigImageVIew sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@img/%@",BaseAPI,model.coverImg]] placeholderImage:[UIImage imageNamed:@"seizeaseat_0"]];
     }
-    self.timeLabel.text = model.createdDate;
+    self.timeLabel.text = model.author;
     self.titleLabel.text = model.title;
     self.watchLabel.text = [NSString stringWithFormat:@"%@人已看",model.numOfVisiter];
 }
@@ -103,7 +103,7 @@ NSString *const kLDNewsTableViewCellIdentifier = @"kLDNewsTableViewCellIdentifie
     if (!_bigImageVIew) {
         _bigImageVIew = [[UIImageView alloc]init];
         _bigImageVIew.layer.masksToBounds = YES;
-        _bigImageVIew.layer.cornerRadius = 10.f;
+        _bigImageVIew.layer.cornerRadius = 5.f;
         _bigImageVIew.image = [UIImage imageNamed:@"seizeaseat_0"];
     }
     return _bigImageVIew;

@@ -40,10 +40,14 @@
         return;
     }
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:@"customerlog/addlog" requestParameters:@{@"customerId":self.c_id,@"content":self.textView.text} requestHeader:nil success:^(id responseObject) {
-        ShowMsgInfo;
+        
         if (kCODE == 200) {
             self.textView.text = @"";
+            [QMUITips showSucceed:responseObject[@"returnMsg"]];
+        }else{
+            [QMUITips showError:responseObject[@"returnMsg"]];
         }
+        
     } faild:^(NSError *error) {
         
     }];

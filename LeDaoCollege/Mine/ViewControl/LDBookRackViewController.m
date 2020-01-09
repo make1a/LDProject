@@ -148,14 +148,13 @@
         [tableView deselectRowAtIndexPath:indexPath animated:NO];
         if (self.dataSource == self.bookArray) {
             LDBookDetailViewController *vc = [[LDBookDetailViewController alloc]initWithNibName:@"LDBookDetailViewController" bundle:[NSBundle mainBundle]];
-            LDShujiaModel *model =self.smallClassArray[indexPath.item];
+            LDShujiaModel *model =self.bookArray[indexPath.item];
             vc.bookID = model.goodsId;
             [self.navigationController pushViewController:vc animated:YES];
         } else {
-            LDVideoDetailViewController *vc = [LDVideoDetailViewController new];
+            LDSmallClassDetailViewController *vc = [LDSmallClassDetailViewController new];
             LDShujiaModel *model =self.smallClassArray[indexPath.item];
             vc.videoID = model.goodsId;
-            vc.isSmallClass = YES;
             [self.navigationController pushViewController:vc animated:YES];
         }
     }

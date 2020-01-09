@@ -31,6 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy) NSString *goodsType;
 /** <#Description#> **/
 @property(nonatomic,copy) NSString *createDate;
+@property(nonatomic,copy) NSString *isPayFlag;
 
 @end
 

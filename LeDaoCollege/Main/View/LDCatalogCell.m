@@ -12,7 +12,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    [self.darkView setCornerRadius:10];
+    [self.darkView setCornerRadius:5];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

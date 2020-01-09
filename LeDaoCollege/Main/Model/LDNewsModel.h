@@ -41,6 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy) NSString *collectionFlag;
 @property (nonatomic,copy)NSString * contentUrl;
 @property (nonatomic,copy)NSString * numOfVisiter;
+@property (nonatomic,copy)NSString * author;
 @end
 
 NS_ASSUME_NONNULL_END

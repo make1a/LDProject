@@ -24,7 +24,7 @@
         self.imageV = [[UIImageView alloc] initWithFrame:CGRectMake(2, 2, PtWidth(77), PtHeight(100))];
         self.imageV.contentMode = UIViewContentModeScaleToFill;
         [self.contentView addSubview:self.imageV];
-        [self.imageV setCornerRadius:10];
+        [self.imageV setCornerRadius:5];
         
         self.name = [[UILabel alloc] initWithFrame:CGRectMake(2, CGRectGetMaxY(self.imageV.frame)+PtHeight(22), self.frame.size.width - 4, 20)];
         self.name.font = [UIFont systemFontOfSize:13];

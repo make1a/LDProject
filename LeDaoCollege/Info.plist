@@ -45,7 +45,7 @@
 			<string>ledao</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>ledao998</string>
+				<string>luanchApp</string>
 			</array>
 		</dict>
 	</array>

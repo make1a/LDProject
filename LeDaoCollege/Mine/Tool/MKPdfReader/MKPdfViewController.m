@@ -40,6 +40,24 @@
 - (void)scrollToNormal {
     [self.scrollView setZoomScale:1.0 animated:YES];
 }
+- (void)scrollToBig{
+    CGFloat scale = self.scrollView.zoomScale;
+    if (scale >= 2) {
+        return;
+    }
+    scale += 0.5;
+    [self.scrollView setZoomScale:scale animated:NO];
+}
+- (void)scrollToSmall{
+    CGFloat scale = self.scrollView.zoomScale;
+    
+    if (scale <= 1.0) {
+        [QMUITips showInfo:@"已经是最小状态"];
+        return;
+    }
+    scale -= 0.5;
+    [self.scrollView setZoomScale:scale animated:NO];
+}
 #pragma  mark - Private
 
 #pragma  mark - UIScrollView Delegate

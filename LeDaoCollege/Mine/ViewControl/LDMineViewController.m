@@ -42,7 +42,6 @@
     [self masLayoutSubviews];
     [self requestScore];
 }
-
 - (void)masLayoutSubviews{
     [self.view addSubview:self.headView];
     [self.view addSubview:self.tableView];

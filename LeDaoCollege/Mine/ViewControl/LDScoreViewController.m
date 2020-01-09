@@ -22,10 +22,6 @@
     self.navigationController.navigationBar.hidden = YES;
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    self.navigationController.navigationBar.hidden = NO;
-}
 - (BOOL)prefersStatusBarHidden {
     return YES;
 }
@@ -38,6 +34,7 @@
     if (iPhoneX) {
         self.tableView.contentInset = UIEdgeInsetsMake(-kSTATUSBAR_HEIGHT, 0, 0, 0);
     }
+    [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
 }
 
 - (void)requestDataSource {

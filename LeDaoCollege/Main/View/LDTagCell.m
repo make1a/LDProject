@@ -13,7 +13,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    [self setCornerRadius:10];
+    [self setCornerRadius:5];
 }
 
 @end

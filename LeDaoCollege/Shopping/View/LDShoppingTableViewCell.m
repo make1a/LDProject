@@ -80,7 +80,7 @@ NSString *const kLDShoppingTableViewCell = @"LDShoppingTableViewCell";
         make.centerY.mas_equalTo(self.cheapPriceLabel);
     }];
     [self.watchLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(self.cheapPriceLabel);
+        make.top.mas_equalTo(self.tagLabel.mas_bottom).mas_offset(5);
         make.left.mas_equalTo(self.titleLabel);
     }];
 //    [self.shopButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -95,7 +95,7 @@ NSString *const kLDShoppingTableViewCell = @"LDShoppingTableViewCell";
         make.centerY.mas_equalTo(self.priceLabel);
         make.left.mas_equalTo(self.priceImageView).mas_offset(-5);
         make.right.mas_equalTo(self.priceLabel).mas_offset(5);
-        make.height.mas_equalTo(PtHeight(1));
+        make.height.mas_equalTo(PtHeight(0.5));
     }];
 }
 - (void)refreshWithModel:(LDStoreModel *)model {
@@ -149,7 +149,7 @@ NSString *const kLDShoppingTableViewCell = @"LDShoppingTableViewCell";
     if (!_bigImageView) {
         _bigImageView = [[UIImageView alloc]init];
         _bigImageView.image = [UIImage imageNamed:@"seizeaseat_0"];
-        [_bigImageView setCornerRadius:10];
+        [_bigImageView setCornerRadius:5];
     }
     return _bigImageView;
 }

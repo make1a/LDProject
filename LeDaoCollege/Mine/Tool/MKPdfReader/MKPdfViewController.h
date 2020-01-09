@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithDocumentManager:(MKPdfDocumentManager *)doc currentPage:(NSInteger)currentPage;
 
 - (void)scrollToNormal;
+- (void)scrollToBig;
+- (void)scrollToSmall;
 @end
 
 NS_ASSUME_NONNULL_END

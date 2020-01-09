@@ -52,6 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong) NSNumber *updateBy;
 /** <#Description#> **/
 @property(nonatomic,copy) NSString *updateDate;
+@property(nonatomic,copy) NSString *isPayFlag;
 /** <#Description#> **/
 @property(nonatomic,copy) NSString *title;
 /** <#Description#> **/
@@ -65,6 +66,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy) NSString *bookUrl;
 @property(nonatomic,copy) NSString *collectionFlag;
 @property (nonatomic,strong)NSArray * detailArray;
+@property(nonatomic,copy) NSString *briefIntroduction;
 @end
 
 

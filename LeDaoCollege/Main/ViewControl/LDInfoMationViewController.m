@@ -140,7 +140,7 @@
                 make.bottom.mas_equalTo(self.view);
             }
         }];
-        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, PtHeight(160))];
+        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH*9/16)];
         [view addSubview:self.cycleScrollView];
         self.tableView.tableHeaderView = view;
     }else {
@@ -153,7 +153,7 @@
 - (SDCycleScrollView *)cycleScrollView {
     if (!_cycleScrollView) {
         UIImage * placeholderImage = [UIImage imageNamed:@"seizeaseat_1"];
-        CGRect frame = CGRectMake(0, 0, SCREEN_WIDTH, PtHeight(160));
+        CGRect frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH*9/16);
         _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:frame delegate:self placeholderImage:placeholderImage];
         _cycleScrollView.imageURLStringsGroup = self.netImages;
         _cycleScrollView.showPageControl = YES;

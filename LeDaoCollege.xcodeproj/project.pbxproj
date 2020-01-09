@@ -52,6 +52,7 @@
 		265CB99C2320B2DF00883FE2 /* LDStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 265CB99B2320B2DF00883FE2 /* LDStoreViewController.m */; };
 		266DC86A23740BD30036A767 /* LDBookDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 266DC86823740BD30036A767 /* LDBookDetailViewController.m */; };
 		266DC86B23740BD30036A767 /* LDBookDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 266DC86923740BD30036A767 /* LDBookDetailViewController.xib */; };
+		266FE34B23BF0EAB00CD23BE /* UIViewController+RotationControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 266FE34A23BF0EAB00CD23BE /* UIViewController+RotationControl.m */; };
 		268543662373C445003083EE /* LDChargeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 268543652373C445003083EE /* LDChargeModel.m */; };
 		26869C3B23210672001DEDBA /* LDInfoMationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26869C3A23210672001DEDBA /* LDInfoMationViewController.m */; };
 		26869C3E232106A9001DEDBA /* LDVoiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26869C3D232106A9001DEDBA /* LDVoiceViewController.m */; };
@@ -150,6 +151,7 @@
 		26DD09842333600400E1B5E2 /* LDNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 26DD09832333600400E1B5E2 /* LDNoticeView.m */; };
 		26DD09862333602000E1B5E2 /* LDNoticeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26DD09852333602000E1B5E2 /* LDNoticeView.xib */; };
 		26DD0989233368A500E1B5E2 /* LDStoreSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26DD0988233368A500E1B5E2 /* LDStoreSearchViewController.m */; };
+		26E7F92223C5BD99003FE788 /* LDClassCatalogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E7F92123C5BD99003FE788 /* LDClassCatalogViewController.m */; };
 		26E8162A23321BD100CECCE3 /* LDVoiceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E8162923321BD100CECCE3 /* LDVoiceTableViewCell.m */; };
 		26E8162D23321FAC00CECCE3 /* LDVideoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E8162C23321FAC00CECCE3 /* LDVideoTableViewCell.m */; };
 		26E816302332267400CECCE3 /* LDMineCustomHead.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E8162F2332267400CECCE3 /* LDMineCustomHead.m */; };
@@ -276,6 +278,8 @@
 		266DC86723740BD30036A767 /* LDBookDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDBookDetailViewController.h; sourceTree = "<group>"; };
 		266DC86823740BD30036A767 /* LDBookDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDBookDetailViewController.m; sourceTree = "<group>"; };
 		266DC86923740BD30036A767 /* LDBookDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LDBookDetailViewController.xib; sourceTree = "<group>"; };
+		266FE34923BF0EAB00CD23BE /* UIViewController+RotationControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RotationControl.h"; sourceTree = "<group>"; };
+		266FE34A23BF0EAB00CD23BE /* UIViewController+RotationControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RotationControl.m"; sourceTree = "<group>"; };
 		268543642373C445003083EE /* LDChargeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDChargeModel.h; sourceTree = "<group>"; };
 		268543652373C445003083EE /* LDChargeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDChargeModel.m; sourceTree = "<group>"; };
 		26869C3923210672001DEDBA /* LDInfoMationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDInfoMationViewController.h; sourceTree = "<group>"; };
@@ -456,6 +460,8 @@
 		26DD09852333602000E1B5E2 /* LDNoticeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LDNoticeView.xib; sourceTree = "<group>"; };
 		26DD0987233368A500E1B5E2 /* LDStoreSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDStoreSearchViewController.h; sourceTree = "<group>"; };
 		26DD0988233368A500E1B5E2 /* LDStoreSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDStoreSearchViewController.m; sourceTree = "<group>"; };
+		26E7F92023C5BD99003FE788 /* LDClassCatalogViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDClassCatalogViewController.h; sourceTree = "<group>"; };
+		26E7F92123C5BD99003FE788 /* LDClassCatalogViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDClassCatalogViewController.m; sourceTree = "<group>"; };
 		26E8162823321BD100CECCE3 /* LDVoiceTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDVoiceTableViewCell.h; sourceTree = "<group>"; };
 		26E8162923321BD100CECCE3 /* LDVoiceTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDVoiceTableViewCell.m; sourceTree = "<group>"; };
 		26E8162B23321FAC00CECCE3 /* LDVideoTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDVideoTableViewCell.h; sourceTree = "<group>"; };
@@ -617,7 +623,6 @@
 				265CB94E2320A37100883FE2 /* Mine */,
 				265CB9522320A37100883FE2 /* Shopping */,
 				265CB9372320A2F400883FE2 /* AppDelegate.h */,
-				26CB9A692334BA2D00DC12AD /* LDShoppingDetailViewController.h */,
 				265CB9382320A2F400883FE2 /* AppDelegate.m */,
 				265CB93A2320A2F400883FE2 /* ViewController.h */,
 				265CB93B2320A2F400883FE2 /* ViewController.m */,
@@ -794,6 +799,7 @@
 				26CB9A702334C31F00DC12AD /* LDToolBooksViewController.m */,
 				26CB9A722334C32C00DC12AD /* LDSmallClassViewController.h */,
 				26CB9A732334C32C00DC12AD /* LDSmallClassViewController.m */,
+				26CB9A692334BA2D00DC12AD /* LDShoppingDetailViewController.h */,
 				26CB9A6A2334BA2D00DC12AD /* LDShoppingDetailViewController.m */,
 				26C8469B233895C900500B3F /* LDSmallClassDetailViewController.h */,
 				26C8469C233895C900500B3F /* LDSmallClassDetailViewController.m */,
@@ -880,6 +886,10 @@
 				26869C3D232106A9001DEDBA /* LDVoiceViewController.m */,
 				26B38DAA236EE51B00578D89 /* LDWebViewViewController.h */,
 				26B38DAB236EE51B00578D89 /* LDWebViewViewController.m */,
+				266FE34923BF0EAB00CD23BE /* UIViewController+RotationControl.h */,
+				266FE34A23BF0EAB00CD23BE /* UIViewController+RotationControl.m */,
+				26E7F92023C5BD99003FE788 /* LDClassCatalogViewController.h */,
+				26E7F92123C5BD99003FE788 /* LDClassCatalogViewController.m */,
 			);
 			path = ViewControl;
 			sourceTree = "<group>";
@@ -1357,6 +1367,7 @@
 				265CB95F2320A96100883FE2 /* MYConstansManager.m in Sources */,
 				261CBB53237179EA00134E6D /* LDAlterPhoneViewController.m in Sources */,
 				26CB9A712334C31F00DC12AD /* LDToolBooksViewController.m in Sources */,
+				26E7F92223C5BD99003FE788 /* LDClassCatalogViewController.m in Sources */,
 				26E816302332267400CECCE3 /* LDMineCustomHead.m in Sources */,
 				26E8162D23321FAC00CECCE3 /* LDVideoTableViewCell.m in Sources */,
 				265CB93C2320A2F400883FE2 /* ViewController.m in Sources */,
@@ -1414,6 +1425,7 @@
 				2690FE6B23A1DAEB003DF77D /* LDVoiceDetailViewcontroller.m in Sources */,
 				26BA0655232735E200992FFD /* LDAlterNameViewController.m in Sources */,
 				266DC86A23740BD30036A767 /* LDBookDetailViewController.m in Sources */,
+				266FE34B23BF0EAB00CD23BE /* UIViewController+RotationControl.m in Sources */,
 				26CBF8792323BC6E005139EF /* PinYinForObjc.m in Sources */,
 				26EE3ED4233B5A64003FEA7B /* LDMyIconViewController.m in Sources */,
 				26960D7923A4CEF7002B1662 /* LDVoiceListViewController.m in Sources */,
@@ -1602,7 +1614,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = Q94RAKWUSW;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/LeDaoCollege/GlobalTool/PrefixHeader.pch";
@@ -1674,7 +1686,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = Q94RAKWUSW;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/LeDaoCollege/GlobalTool/PrefixHeader.pch";

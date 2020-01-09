@@ -11,7 +11,7 @@
 @implementation LDVideoModel
 + (NSDictionary *)modelCustomPropertyMapper {
     return @{@"v_id": @"id",
-             @"detailArray":@"videoSectionVOS"
+             @"detailArray":@[@"videoSectionVOS",@"courseChapterVOS"]
     };
 }
 

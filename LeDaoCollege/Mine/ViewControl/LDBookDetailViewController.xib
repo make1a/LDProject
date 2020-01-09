@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LDBookDetailViewController">
             <connections>
+                <outlet property="backButton" destination="K7v-gM-CYa" id="TlR-fj-Tap"/>
                 <outlet property="descLabel" destination="CSc-cL-luv" id="Yuc-61-ir9"/>
                 <outlet property="headImageView" destination="x6S-4I-zhY" id="h9I-v4-iyI"/>
                 <outlet property="titleLabel" destination="gxe-Na-3YL" id="0Jt-hm-fgb"/>
@@ -22,17 +23,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5TU-Am-dC8">
-                    <rect key="frame" x="0.0" y="44" width="414" height="225"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="233"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="x6S-4I-zhY">
-                            <rect key="frame" x="147" y="32.5" width="120" height="160"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="120" id="O63-EJ-nFS"/>
-                                <constraint firstAttribute="height" constant="160" id="Pgi-or-4Kb"/>
-                            </constraints>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="seizeaseat_0" translatesAutoresizingMaskIntoConstraints="NO" id="x6S-4I-zhY">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="233"/>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K7v-gM-CYa">
-                            <rect key="frame" x="15" y="12" width="16" height="22"/>
+                            <rect key="frame" x="15" y="49" width="16" height="22"/>
                             <state key="normal" image="nav_black"/>
                             <connections>
                                 <action selector="backAction:" destination="-1" eventType="touchUpInside" id="euh-3B-ynV"/>
@@ -41,42 +38,54 @@
                     </subviews>
                     <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstItem="x6S-4I-zhY" firstAttribute="centerY" secondItem="5TU-Am-dC8" secondAttribute="centerY" id="1k4-Ph-F7o"/>
-                        <constraint firstItem="x6S-4I-zhY" firstAttribute="centerX" secondItem="5TU-Am-dC8" secondAttribute="centerX" id="BcS-Bc-ZU9"/>
-                        <constraint firstItem="K7v-gM-CYa" firstAttribute="top" secondItem="5TU-Am-dC8" secondAttribute="top" constant="12" id="UgQ-F6-zC8"/>
-                        <constraint firstAttribute="height" constant="225" id="UvV-yY-jWF"/>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="225" id="Xms-M1-4M8"/>
+                        <constraint firstAttribute="width" secondItem="x6S-4I-zhY" secondAttribute="height" multiplier="16:9" id="BOd-2Z-fNY"/>
+                        <constraint firstItem="x6S-4I-zhY" firstAttribute="leading" secondItem="5TU-Am-dC8" secondAttribute="leading" id="Q8E-MW-RRs"/>
+                        <constraint firstAttribute="trailing" secondItem="x6S-4I-zhY" secondAttribute="trailing" id="Qzf-qr-lVb"/>
+                        <constraint firstItem="x6S-4I-zhY" firstAttribute="top" secondItem="5TU-Am-dC8" secondAttribute="top" id="a0a-pt-cjT"/>
                         <constraint firstItem="K7v-gM-CYa" firstAttribute="leading" secondItem="5TU-Am-dC8" secondAttribute="leading" constant="15" id="cv5-nM-lyd"/>
+                        <constraint firstAttribute="bottom" secondItem="x6S-4I-zhY" secondAttribute="bottom" id="eXl-bg-Tz4"/>
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="书籍简介" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gxe-Na-3YL">
-                    <rect key="frame" x="16" y="293" width="73.5" height="21.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <rect key="frame" x="16" y="253" width="77.5" height="23"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CSc-cL-luv">
-                    <rect key="frame" x="16" y="327" width="33" height="16"/>
+                    <rect key="frame" x="16" y="288.5" width="382" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <color key="textColor" systemColor="systemGrayColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QBB-CI-sRB">
+                    <rect key="frame" x="101" y="249.5" width="62" height="30"/>
+                    <state key="normal" title="点击阅读"/>
+                    <connections>
+                        <action selector="readAction:" destination="-1" eventType="touchUpInside" id="NDA-e3-dDr"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="gxe-Na-3YL" firstAttribute="top" secondItem="5TU-Am-dC8" secondAttribute="bottom" constant="24" id="SEp-gt-h6G"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="top" secondItem="K7v-gM-CYa" secondAttribute="top" constant="-5" id="4aI-r4-ULU"/>
+                <constraint firstItem="gxe-Na-3YL" firstAttribute="top" secondItem="5TU-Am-dC8" secondAttribute="bottom" constant="20" id="SEp-gt-h6G"/>
                 <constraint firstItem="5TU-Am-dC8" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="SYw-oJ-CPF"/>
                 <constraint firstItem="5TU-Am-dC8" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="UHE-Hj-zHN"/>
+                <constraint firstItem="QBB-CI-sRB" firstAttribute="centerY" secondItem="gxe-Na-3YL" secondAttribute="centerY" id="ccL-O7-4Sh"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="CSc-cL-luv" secondAttribute="trailing" constant="16" id="dYO-gE-Xt4"/>
                 <constraint firstItem="gxe-Na-3YL" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="16" id="dpC-Bf-g7U"/>
-                <constraint firstItem="5TU-Am-dC8" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="iLI-jL-gPj"/>
+                <constraint firstItem="5TU-Am-dC8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="iLI-jL-gPj"/>
+                <constraint firstItem="QBB-CI-sRB" firstAttribute="leading" secondItem="gxe-Na-3YL" secondAttribute="trailing" constant="7.5" id="kTX-xc-LLJ"/>
                 <constraint firstItem="CSc-cL-luv" firstAttribute="top" secondItem="gxe-Na-3YL" secondAttribute="bottom" constant="12.5" id="qAv-Qo-mkp"/>
                 <constraint firstItem="CSc-cL-luv" firstAttribute="leading" secondItem="gxe-Na-3YL" secondAttribute="leading" id="qRD-q2-JgB"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
-            <point key="canvasLocation" x="112" y="-149"/>
+            <point key="canvasLocation" x="-614.49275362318849" y="-160.04464285714286"/>
         </view>
     </objects>
     <resources>
         <image name="nav_black" width="16" height="17.5"/>
+        <image name="seizeaseat_0" width="112" height="64"/>
     </resources>
 </document>

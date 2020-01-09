@@ -19,7 +19,7 @@
 @property (nonatomic,strong)JKCountDownButton * vfButton;
 @property (nonatomic,strong)QMUILabel * bottomLabel;
 @property (nonatomic,strong)UIButton * wxButton;
-@property (nonatomic,strong)UIButton * registerButton;
+//@property (nonatomic,strong)UIButton * registerButton;
 @property (nonatomic,strong)UIButton * WXLoginButton;
 
 @end
@@ -37,7 +37,7 @@
     [_vfButton countDownButtonHandler:^(JKCountDownButton*sender, NSInteger tag) {
         sender.enabled = NO;
         
-        [sender startCountDownWithSecond:10];
+        [sender startCountDownWithSecond:60];
         [self sendCode];
         
         [sender countDownChanging:^NSString *(JKCountDownButton *countDownButton,NSUInteger second) {
@@ -81,7 +81,11 @@
     NSDictionary *dic = @{@"phone":phone,@"bizType":@"1"};
     NSString *url = [NSString stringWithFormat:@"msg/sendmsg/%@/%@",phone,@"1"];
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:url requestParameters:dic requestHeader:nil success:^(id responseObject) {
-        ShowMsgInfo;
+        if (kCODE == 200) {
+            ShowMsgInfo;
+        }else{
+            [QMUITips showError:responseObject[@"returnMsg"]];
+        }
     } faild:^(NSError *error) {
         
     }];
@@ -111,7 +115,7 @@
                     [QMUITips showSucceed:@"登录成功"];
                     [self pushMain];
                 }else {
-                    ShowMsgInfo;
+                    [QMUITips showError:responseObject[@"returnMsg"]];
                 }
             } faild:^(NSError * _Nonnull error) {
                 DLog(@"%@",error);
@@ -145,14 +149,14 @@
                     [QMUITips showSucceed:@"绑定成功"];
                     [self pushMain];
                 }else {
-                    ShowMsgInfo;
+                    [QMUITips showError:responseObject[@"returnMsg"]];
                 }
             } faild:^(NSError * _Nonnull error) {
                 DLog(@"%@",error);
                 [QMUITips showError:error.localizedDescription];
             }];
         }else{
-            ShowMsgInfo;
+            [QMUITips showError:responseObject[@"returnMsg"]];
         }
     } faild:^(NSError *error) {
 [QMUITips showError:error.localizedDescription];
@@ -268,7 +272,7 @@
     [self.view addSubview:self.vfButton];
     [self.view addSubview:self.bottomLabel];
     [self.view addSubview:self.wxButton];
-    [self.view addSubview:self.registerButton];
+//    [self.view addSubview:self.registerButton];
     
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.view);
@@ -300,14 +304,14 @@
         make.bottom.mas_equalTo(self.pwdTextField.mas_bottom).mas_offset(PtHeight(-12));
     }];
     
-    [self.registerButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.view).mas_offset(-10);
-        if (@available(iOS 11.0, *)) {
-            make.top.mas_equalTo(self.view.mas_safeAreaLayoutGuideTop).mas_offset(10);
-        } else {
-            make.top.mas_equalTo(self.view).mas_offset(10);
-        }
-    }];
+//    [self.registerButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.right.mas_equalTo(self.view).mas_offset(-10);
+//        if (@available(iOS 11.0, *)) {
+//            make.top.mas_equalTo(self.view.mas_safeAreaLayoutGuideTop).mas_offset(10);
+//        } else {
+//            make.top.mas_equalTo(self.view).mas_offset(10);
+//        }
+//    }];
     
     if (self.currentPageType == LDCurrentPageIsLogin) {
         [self.view addSubview:self.WXLoginButton];
@@ -335,7 +339,7 @@
     label.numberOfLines = 0;
     [self.view addSubview:label];
     
-    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"快速注册" attributes:@{NSFontAttributeName: [UIFont systemFontOfSize: PtHeight(12)],NSForegroundColorAttributeName: [UIColor colorWithRed:153/255.0 green:153/255.0 blue:153/255.0 alpha:1.0]}];
+    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"微信登录" attributes:@{NSFontAttributeName: [UIFont systemFontOfSize: PtHeight(12)],NSForegroundColorAttributeName: [UIColor colorWithRed:153/255.0 green:153/255.0 blue:153/255.0 alpha:1.0]}];
     label.attributedText = string;
     [label sizeToFit];
     
@@ -408,20 +412,20 @@
     }
     return _wxButton;
 }
-- (UIButton *)registerButton{
-    if (!_registerButton) {
-        _registerButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_registerButton setTitle:@"注册" forState:UIControlStateNormal];
-        [_registerButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [_registerButton addTarget:self action:@selector(clickRegisterAction:) forControlEvents:UIControlEventTouchUpInside];
-        if (self.currentPageType == 0) {
-            _registerButton.hidden = NO;
-        }else {
-            _registerButton.hidden = !NO;
-        }
-    }
-    return _registerButton;
-}
+//- (UIButton *)registerButton{
+//    if (!_registerButton) {
+//        _registerButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//        [_registerButton setTitle:@"注册" forState:UIControlStateNormal];
+//        [_registerButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//        [_registerButton addTarget:self action:@selector(clickRegisterAction:) forControlEvents:UIControlEventTouchUpInside];
+//        if (self.currentPageType == 0) {
+//            _registerButton.hidden = NO;
+//        }else {
+//            _registerButton.hidden = !NO;
+//        }
+//    }
+//    return _registerButton;
+//}
 - (UIButton *)WXLoginButton{
     if (!_WXLoginButton) {
         _WXLoginButton = [UIButton buttonWithType:UIButtonTypeCustom];

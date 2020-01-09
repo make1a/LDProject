@@ -54,7 +54,7 @@ NSString *const kLDFinishOrderCellIdentifier = @"kLDFinishOrderCellIdentifier";
 }
 - (void)masLayoutSubview
 {
-    [self.imageView setCornerRadius:10];
+    [self.imageView setCornerRadius:5];
     [self.imageView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self).mas_offset(17);
         make.top.mas_equalTo(self).mas_offset(5);

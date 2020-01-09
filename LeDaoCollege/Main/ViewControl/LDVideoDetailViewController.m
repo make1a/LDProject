@@ -26,23 +26,31 @@
 @property (nonatomic,strong)LDVideoModel * currentModel;
 @property (nonatomic,strong)LDShoppingDetailFootView * footView;
 @property (nonatomic,strong)UILabel * freeLabel;
+
 @end
 @implementation LDVideoDetailViewController
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
-    [self requestDataSource];
 }
-- (void)viewDidLoad{
+- (void)viewDidLoad {
     [super viewDidLoad];
-    
     [[DFPlayer sharedPlayer]df_deallocPlayer];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"playerPause" object:nil];
-    
     self.view.backgroundColor = [UIColor whiteColor];
     [self configPlayer];
     [self createMagic];
     [self createFootView];
+    [self requestDataSource];
+}
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [self.player stop];
+    self.player = nil;
+}
+- (void)reload{
+    [self configPlayer];
+    [self requestDataSource];
 }
 - (void)configPlayer{
     UIView *bgView = [[UIView alloc]init];
@@ -79,6 +87,12 @@
     self.player.playbackObserver.didPlayToEndTimeExeBlock = ^(__kindof SJBaseVideoPlayer * _Nonnull player) {
         [[DFPlayer sharedPlayer]df_deallocPlayer];
     };
+    
+    [self->_bgView addSubview:self.freeLabel];
+    [self.freeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self->_bgView);
+        make.centerY.mas_equalTo(self->_bgView);
+    }];
 }
 - (void)createMagic{
     CGFloat maxY = kSTATUSBAR_HEIGHT+ SCREEN_WIDTH*9.0/16.0;
@@ -111,26 +125,31 @@
             LDVideoModel *model = [LDVideoModel yy_modelWithJSON:responseObject[@"data"]];
             self.currentModel = model;
             [self.magicController.magicView reloadData];
-            
-            
-            [self.player.presentView.placeholderImageView sd_setImageWithURL:[NSURL URLWithString:model.coverImg] placeholderImage:[UIImage imageNamed:@"seizeaseat_0"]];
+            if ([model.coverImg containsString:@"http"]) {
+                [self.player.presentView.placeholderImageView sd_setImageWithURL:[NSURL URLWithString:model.coverImg] placeholderImage:[UIImage imageNamed:@"seizeaseat_0"]];
+            }else{
+                [self.player.presentView.placeholderImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@img/%@",BaseAPI,model.coverImg]] placeholderImage:[UIImage imageNamed:@"seizeaseat_0"]];
+            }
             LDVideoDetailModel *detailMdel = self.currentModel.detailArray.firstObject;
             if (detailMdel) {
-                if ([self.currentModel.isFreeFlag isEqualToString:@"Y"] || [self.currentModel.isPayFlag isEqualToString:@"Y"] ) {
+                if (![self.currentModel.isPayFlag isEqualToString:@"Y"] ) {
+
+self.freeLabel.hidden = NO;
+                    if ([detailMdel.isFreeFlag isEqualToString:@"Y"]) {
+                        SJVideoPlayerURLAsset *asset1 = [[SJVideoPlayerURLAsset alloc] initWithURL:[NSURL URLWithString:detailMdel.sectionContent]];
+                        self.player.URLAsset = asset1;
+                        self.freeLabel.hidden = YES;
+                        self.footView.buyButton.hidden = YES;
+                    }
+                }else {
                     SJVideoPlayerURLAsset *asset1 = [[SJVideoPlayerURLAsset alloc] initWithURL:[NSURL URLWithString:detailMdel.sectionContent]];
                     self.player.URLAsset = asset1;
-                    [self.freeLabel removeFromSuperview];
-//                    [self.footView removeFromSuperview];
+                    self.freeLabel.hidden = YES;
                     self.footView.buyButton.hidden = YES;
-                }else {
-                    [self->_bgView addSubview:self.freeLabel];
-                    [self.freeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-                        make.centerX.mas_equalTo(self->_bgView);
-                        make.centerY.mas_equalTo(self->_bgView);
-                    }];
                 }
             }
             self.footView.collectionButton.selected = [model.collectionFlag isEqualToString:@"Y"]?YES:NO;
+            
         }
     } faild:^(NSError *error) {
         
@@ -165,17 +184,21 @@
      [moreOperationController showFromBottom];
 
 }
-- (void)clickBuyAction:(id)sender{
+- (void)clickBuyAction:(id)sender {
     LDCommitBuyViewController *vc = [[LDCommitBuyViewController alloc]initWithNibName:@"LDCommitBuyViewController" bundle:[NSBundle mainBundle]];
     vc.currentModel = self.currentModel;
     vc.title = @"确认购买";
     vc.goodsId = self.currentModel.v_id;
-    vc.goodsType = @"2";
+    if (self.isSmallClass) {
+        vc.goodsType = @"4";
+    }else{
+        vc.goodsType = @"2";
+    }
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)clickCollectionAction:(UIButton *)sender{
     sender.selected = !sender.selected;
-    [self collectionAction];
+    [self collectionAction];    
 }
 - (void)collectionAction{
     
@@ -187,12 +210,12 @@
             } else {
                 self.currentModel.collectionFlag = @"N";
             }
-            [[NSNotificationCenter defaultCenter]postNotificationName:@"collectionPost" object:self.currentModel];
         }
     } faild:^(NSError *error) {
         
     }];
 }
+
 - (void)share:(UMSocialPlatformType)shareType{
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
     UIImage *image = [UIImage imageNamed:@"ledao_logo_2"];
@@ -259,10 +282,13 @@
                 vc = [[LDCatalogViewController alloc] init];
                 _weakself;
                 vc.didSelectBlock = ^(NSInteger row) {
-                    if ([self.currentModel.isFreeFlag isEqualToString:@"Y"] || [self.currentModel.isPayFlag isEqualToString:@"Y"] ) {
-                        LDVideoDetailModel *model = weakself.currentModel.detailArray[row];
+                    LDVideoDetailModel *model = weakself.currentModel.detailArray[row];
+                    if ([model.isFreeFlag isEqualToString:@"Y"] || [self.currentModel.isPayFlag isEqualToString:@"Y"] ) {
                         SJVideoPlayerURLAsset *asset1 = [[SJVideoPlayerURLAsset alloc] initWithURL:[NSURL URLWithString:model.sectionContent]];
                         weakself.player.URLAsset = asset1;
+                        self.freeLabel.hidden = YES;
+                    }else{
+                        self.freeLabel.hidden = NO;
                     }
                 };
             }
@@ -286,10 +312,12 @@
     return menuItem;
 }
 #pragma  mark - GET SET
-- (SJVideoPlayer *)player{
+- (SJVideoPlayer *)player {
     if (!_player) {
         _player = [SJVideoPlayer player];
-        
+        _player.rotationManager.disabledAutorotation = YES;
+        _player.defaultEdgeControlLayer.showResidentBackButton = YES;
+        _player.autoplayWhenSetNewAsset = NO;
     }
     return _player;
 }

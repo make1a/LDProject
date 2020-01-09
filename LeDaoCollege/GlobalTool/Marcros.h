@@ -28,7 +28,7 @@
 #define kUDID     [[NSUserDefaults standardUserDefaults]objectForKey:@"UDID"]
 #define kTOKEN    [[NSUserDefaults standardUserDefaults]objectForKey:@"token"]
 
-#define ShowMsgInfo [QMUITips showInfo:responseObject[@"returnMsg"]]
+#define ShowMsgInfo [QMUITips showSucceed:responseObject[@"returnMsg"]]
 #define _weakself __weak typeof(self) weakself = self
 
 #define kRequestFailMsg    @"充值失败,请稍后再试"

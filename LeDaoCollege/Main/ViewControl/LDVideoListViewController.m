@@ -21,10 +21,6 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
-}
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshStatus:) name:@"collectionPost" object:nil];
     
     if (!_isSearchModel) {
         [self requestSource:@"" mark:self.tagID back:^(NSInteger count) {}];
@@ -32,19 +28,9 @@
             [self requestSource:@"" mark:self.tagID back:^(NSInteger count){}];
         }];
     }
-    
-    
 }
-- (void)refreshStatus:(NSNotification *)noti{
-    LDVideoModel *selectModel = noti.object;
-    for (LDVideoModel *model in self.dataSource) {
-        if (model.v_id == selectModel.v_id) {
-            NSInteger index = [self.dataSource indexOfObject:model];
-            LDVideoTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
-            cell.collectionButton.selected = [model.collectionFlag isEqualToString:@"Y"]?YES:NO;
-            break;
-        }
-    }
+- (void)viewDidLoad {
+    [super viewDidLoad];
 }
 #pragma mark - Request
 - (void)requestSource:(NSString *)title mark:(NSString *)mark back:(backSourceCountBlock)blcok{

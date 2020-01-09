@@ -10,7 +10,11 @@
 #import "HNAlertView.h"
 #import "LDRechargeViewController.h"
 #import "LDVideoModel.h"
-
+#import "LDVideoDetailViewController.h"
+#import "LDBookRackViewController.h"
+#import "LDBookDetailViewController.h"
+#import "LDClassModel.h"
+#import "LDSmallClassDetailViewController.h"
 @interface LDCommitBuyViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *bigPayLabel;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
@@ -30,6 +34,10 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
+    
+    if ([self.currentModel.isPayFlag isEqualToString:@"Y"]) {
+        self.footView.hidden = YES;
+    }
 }
 
 - (void)viewDidLoad {
@@ -88,11 +96,38 @@
 - (void)requestBuy{
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:@"order/placeorder" requestParameters:@{@"goodsType":self.goodsType,@"goodsId":self.goodsId,@"goodsPrice":self.currentModel.discount} requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {
+            self.currentModel.isPayFlag = @"Y";
             [QMUITips showSucceed:@"购买成功"];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                if ([self.currentModel isKindOfClass:[LDVideoModel class]] ) {
+                    for (UIViewController *vc in self.navigationController.viewControllers) {
+                        if ([vc isKindOfClass:[LDVideoDetailViewController class]]) {
+                            LDVideoDetailViewController *detailVC = (LDVideoDetailViewController *)vc;
+                            [detailVC reload];
+                        }
+                    }
+                    [self.navigationController popViewControllerAnimated:NO];
+                } else if ([self.goodsType isEqualToString:@"3"]) {
+                    
+                    LDBookDetailViewController *vc = [[LDBookDetailViewController alloc]initWithNibName:@"LDBookDetailViewController" bundle:[NSBundle mainBundle]];
+                    vc.bookID = self.goodsId;
+                    [self.navigationController pushViewController:vc animated:YES];
+
+                } else if ([self.currentModel isKindOfClass:[LDClassModel class]]){
+                    for (UIViewController *vc in self.navigationController.viewControllers) {
+                        if ([vc isKindOfClass:[LDSmallClassDetailViewController class]]) {
+                            LDSmallClassDetailViewController *detailVC = (LDSmallClassDetailViewController *)vc;
+                            [detailVC reload];
+                        }
+                    }
+                    [self.navigationController popViewControllerAnimated:NO];
+                }
+            });
+
         } else if (kCODE == 608){ //余额不足 跳转
             [self showAlertView];
         }else {
-            ShowMsgInfo;
+            [QMUITips showError:responseObject[@"returnMsg"]];
         }
     } faild:^(NSError *error) {
         

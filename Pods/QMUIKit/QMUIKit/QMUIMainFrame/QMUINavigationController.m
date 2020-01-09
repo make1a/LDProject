@@ -136,6 +136,7 @@ static char kAssociatedObjectKey_qmui_viewWillAppearNotifyDelegate;
         self.navigationBar.tintColor = NavBarTintColor;
         self.toolbar.tintColor = ToolBarTintColor;
     }
+    
 }
 
 - (void)dealloc {

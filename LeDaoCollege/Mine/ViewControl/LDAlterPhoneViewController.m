@@ -58,8 +58,11 @@
                     countDownButton.enabled = YES;
                     return @"重新获取";
                 }];
+                [QMUITips showSucceed:responseObject[@"returnMsg"]];
+            }else{
+                [QMUITips showError:responseObject[@"returnMsg"]];
             }
-            ShowMsgInfo;
+            
         } faild:^(NSError *error) {
             
         }];
@@ -116,12 +119,12 @@
         if (kCODE == 200) {
             [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:alterUrl requestParameters:@{@"phone":phone} requestHeader:nil success:^(id  _Nonnull responseObject) {
                 if (kCODE == 200) {
-                    ShowMsgInfo;
+                    [QMUITips showSucceed:responseObject[@"returnMsg"]];
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                         [self.navigationController popViewControllerAnimated:YES];
                     });
                 }else {
-                    ShowMsgInfo;
+                    [QMUITips showError:responseObject[@"returnMsg"]];
                 }
             } faild:^(NSError * _Nonnull error) {
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -33,27 +33,22 @@
                                 <action selector="pushToOrderVCAction:" destination="-1" eventType="touchUpInside" id="LXb-Mb-TeL"/>
                             </connections>
                         </button>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ibz-8h-v3y" customClass="SDCycleScrollView">
+                            <rect key="frame" x="37" y="72" width="341" height="120"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" red="0.48368191719055176" green="0.70686835050582886" blue="0.52192550897598267" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="150" id="ebf-AC-3rH"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ibz-8h-v3y" customClass="SDCycleScrollView">
-                    <rect key="frame" x="36.5" y="90" width="341" height="120"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="120" id="NEy-ha-Wzg"/>
-                        <constraint firstAttribute="width" constant="341" id="Wgp-0v-2tD"/>
-                    </constraints>
-                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="ibz-8h-v3y" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="80W-o6-Msd"/>
                 <constraint firstItem="4yk-MB-DKu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Mhm-Zh-DcO"/>
                 <constraint firstItem="4yk-MB-DKu" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Y2B-Lr-Zqn"/>
-                <constraint firstItem="ibz-8h-v3y" firstAttribute="centerY" secondItem="4yk-MB-DKu" secondAttribute="bottom" id="h0m-Rz-B9g"/>
                 <constraint firstAttribute="trailing" secondItem="4yk-MB-DKu" secondAttribute="trailing" id="zDN-SQ-alj"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
@@ -62,8 +57,6 @@
                 <outlet property="cycleScrollView" destination="ibz-8h-v3y" id="UjT-9E-hde"/>
                 <outlet property="docButton" destination="jCZ-l0-AZp" id="meC-Fg-9Nj"/>
                 <outlet property="greenViewHeight" destination="ebf-AC-3rH" id="CvA-BN-SGg"/>
-                <outlet property="scrollViewHeight" destination="NEy-ha-Wzg" id="nrk-7a-onk"/>
-                <outlet property="scrollViewWidth" destination="Wgp-0v-2tD" id="VZb-lD-61w"/>
                 <outlet property="searchButton" destination="QSO-pb-MhX" id="Kt5-tJ-sEh"/>
             </connections>
             <point key="canvasLocation" x="-288" y="-47"/>

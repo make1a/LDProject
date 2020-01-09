@@ -16,7 +16,7 @@ typedef enum : NSUInteger {
     LDCurrentPageIsBindPhone,
 } LDCurrentPageEnum;
 
-@interface LDLoginViewController : QMUICommonViewController
+@interface LDLoginViewController : UIViewController
 @property (nonatomic,assign)LDCurrentPageEnum currentPageType;
 @property (nonatomic,strong)NSMutableDictionary * WXInfoDic;
 @end

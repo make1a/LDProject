@@ -51,6 +51,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
+    [self requestDataSource];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -59,7 +60,6 @@
     [self createPlayer];
     [self leftTableView];
     [self rightTableView];
-    [self requestDataSource];
     [self.leftTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
     [[DFPlayer sharedPlayer]df_pause];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"playerPause" object:nil];

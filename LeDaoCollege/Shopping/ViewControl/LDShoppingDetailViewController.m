@@ -16,7 +16,8 @@
 #import "LDCommitBuyViewController.h"
 #import "LDStoreModel.h"
 #import "LDNoUseView.h"
-
+#import "LDBookRackViewController.h"
+#import "LDBookDetailViewController.h"
 @interface LDShoppingDetailViewController ()<SDCycleScrollViewDelegate,QMUITableViewDelegate,QMUITableViewDataSource,UIWebViewDelegate>
 {
     BOOL isLoadData;
@@ -36,12 +37,16 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
+    [self requestDataSource];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if (@available(iOS 11, *)) {
+        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
     [self masLayoutSubviews];
     [self footerViewActions];
-    [self requestDataSource];
+    
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -72,6 +77,10 @@
                 [self.netImages addObject:imageURL];
             }
             self.cycleScrollView.imageURLStringsGroup = self.netImages;
+            if ([self.currentModel.isPayFlag isEqualToString:@"Y"]) {
+                [self.footView.buyButton setTitle:@"查看" forState:UIControlStateNormal];
+            }
+            [QMUITips hideAllTips];
         }
     } faild:^(NSError *error) {
         
@@ -142,13 +151,20 @@
     sender.selected = !sender.selected;
     [self collectionAction];
 }
-- (void)pushToBuyVC{
-    LDCommitBuyViewController *vc = [[LDCommitBuyViewController alloc]initWithNibName:@"LDCommitBuyViewController" bundle:[NSBundle mainBundle]];
-    vc.currentModel = self.currentModel;
-    vc.title = @"确认购买";
-    vc.goodsId = self.currentModel.b_id;
-    vc.goodsType = @"3";
-    [self.navigationController pushViewController:vc animated:YES];
+- (void)pushToBuyVC:(UIButton *)sender{
+    if ([self.currentModel.isPayFlag isEqualToString:@"Y"]) {
+        LDBookDetailViewController *vc = [[LDBookDetailViewController alloc]initWithNibName:@"LDBookDetailViewController" bundle:[NSBundle mainBundle]];
+        vc.bookID = self.shopID;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+
+        LDCommitBuyViewController *vc = [[LDCommitBuyViewController alloc]initWithNibName:@"LDCommitBuyViewController" bundle:[NSBundle mainBundle]];
+        vc.currentModel = self.currentModel;
+        vc.title = @"确认购买";
+        vc.goodsId = self.currentModel.b_id;
+        vc.goodsType = @"3";
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 - (void)clickBackAction {
     [self.navigationController popViewControllerAnimated:YES];
@@ -233,11 +249,11 @@
 - (SDCycleScrollView *)cycleScrollView {
     if (!_cycleScrollView) {
         UIImage * placeholderImage = [UIImage imageNamed:@"seizeaseat_0"];
-        CGRect frame = CGRectMake(0, kSTATUSBAR_HEIGHT, SCREEN_WIDTH, PtHeight(225));
+        CGRect frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH*9/16);
         _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:frame delegate:self placeholderImage:placeholderImage];
         _cycleScrollView.imageURLStringsGroup = self.netImages;
         _cycleScrollView.showPageControl = YES;
-        [_cycleScrollView setCornerRadius:10];
+        [_cycleScrollView setCornerRadius:5];
     }
     return _cycleScrollView;
 }
@@ -252,15 +268,13 @@
         
         [_tableView registerNib:[UINib nibWithNibName:@"LDShoppingDetailNameViewCell" bundle:nil] forCellReuseIdentifier:@"LDShoppingDetailNameViewCell"];
         [_tableView registerNib:[UINib nibWithNibName:@"LDShoppingTitleCell" bundle:nil] forCellReuseIdentifier:@"LDShoppingTitleCell"];
-        //        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
-        
     }
     return _tableView;
 }
 - (LDShoppingDetailFootView *)footView {
     if (!_footView) {
         _footView = [[NSBundle mainBundle]loadNibNamed:@"LDShoppingDetailFootView" owner:self options:nil].firstObject;
-        [_footView.buyButton addTarget:self action:@selector(pushToBuyVC) forControlEvents:UIControlEventTouchUpInside];
+        [_footView.buyButton addTarget:self action:@selector(pushToBuyVC:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _footView;
 }

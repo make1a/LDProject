@@ -11,6 +11,7 @@
 @interface LDMyIconViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *numberLabel;
 @property (weak, nonatomic) IBOutlet UIButton *czButton;
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
 
 @end
 
@@ -22,6 +23,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.backButton setEnlargeEdgeWithTop:10 right:10 bottom:10 left:10];
 }
 - (void)requestData{
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"wallet/getlebi" requestParameters:nil requestHeader:nil success:^(id responseObject) {

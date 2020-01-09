@@ -30,9 +30,9 @@
     [super awakeFromNib];
     
     self.greenViewHeight.constant = kSTATUSBAR_HEIGHT+PtHeight(110);
-    self.scrollViewHeight.constant = PtHeight(120);
-    self.scrollViewWidth.constant = PtWidth(355);
-    [self.cycleScrollView setCornerRadius:10];
+//    self.scrollViewHeight.constant = SCREEN_WIDTH * 9/16;
+//    self.scrollViewWidth.constant = SCREEN_WIDTH;
+    [self.cycleScrollView setCornerRadius:5];
     self.frame = CGRectMake(0, 0, SCREEN_WIDTH, self.greenViewHeight.constant + self.cycleScrollView.frame.size.height/2);
     
     self.searchButton.frame = CGRectMake(PtWidth(18), kSTATUSBAR_HEIGHT+8, PtWidth(290), PtHeight(32));
@@ -41,6 +41,7 @@
     self.searchButton.imagePosition = QMUIButtonImagePositionLeft;
     self.searchButton.spacingBetweenImageAndTitle = 15;
     
+    self.cycleScrollView.frame = CGRectMake(0, CGRectGetMaxY(self.searchButton.frame)+20, SCREEN_WIDTH, SCREEN_WIDTH*9/16);
     
     CGFloat y = self.searchButton.center.y - 20/2;
     self.docButton.frame = CGRectMake(PtWidth(335), y, 20, 20);

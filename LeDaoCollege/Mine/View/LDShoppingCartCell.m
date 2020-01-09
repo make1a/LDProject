@@ -133,7 +133,7 @@ NSString *const kLDShoppingCartCellIdentifier = @"kLDShoppingCartCellIdentifier"
     if (!_bigImageView) {
         _bigImageView = [[UIImageView alloc]init];
         _bigImageView.image = [UIImage imageNamed:@"seizeaseat_0"];
-        [_bigImageView setCornerRadius:10];
+        [_bigImageView setCornerRadius:5];
     }
     return _bigImageView;
 }

@@ -15,6 +15,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *descLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (nonatomic,strong)LDBookModel * currentModel;
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
+
 @end
 
 @implementation LDBookDetailViewController
@@ -25,6 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self requestDataSource];
+    [self.backButton setEnlargeEdgeWithTop:10 right:10 bottom:10 left:10];
     UISwipeGestureRecognizer * recognizer = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(handleSwipeFrom:)];
     [recognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)];
     [self.view addGestureRecognizer:recognizer];
@@ -37,13 +40,16 @@
         [self readww];
     }
 }
+- (IBAction)readAction:(id)sender {
+    [self readww];
+}
+
 - (void)requestDataSource{
-    self.bookID = @"1";
     NSString *url = [NSString stringWithFormat:@"book/book/%@",self.bookID];
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:url requestParameters:@{@"id":self.bookID} requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {
             self.currentModel = [LDBookModel yy_modelWithJSON:responseObject[@"data"]];
-            self.descLabel.text = self.currentModel.title;
+            self.descLabel.text = self.currentModel.briefIntroduction;
             [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@img/%@",BaseAPI,self.currentModel.coverImg]]];
             
         }

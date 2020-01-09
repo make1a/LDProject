@@ -43,7 +43,7 @@
     MKPdfViewController *vc = [[MKPdfViewController alloc]initWithDocumentManager:self.pdfInfo currentPage:index];
     return vc;
 }
-- (void)clickBackAction{
+- (void)clickBackAction {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 #pragma  mark - Private
@@ -95,7 +95,36 @@
 
 }
 #pragma  mark - Touch Event
-
+- (void)pageUpAction:(UIButton *)sender{
+    if (self.currentIndex == 1 || self.currentIndex == 0) {
+        return;
+    }
+    self.currentIndex -= 1;
+    [self.pageViewController setViewControllers:@[[self getPdfControllerWithIndex:self.currentIndex]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+    self.pageIndexView.label.text = [NSString stringWithFormat:@"%.0ld/%.0ld",(long)self.currentIndex,(long)self.progressView.totalPage];
+    [self.progressView.slider setValue:self.currentIndex animated:NO];
+}
+- (void)pageNextAction:(UIButton *)sender{
+    if (self.currentIndex == self.progressView.totalPage) {
+        return;
+    }
+    self.currentIndex += 1;
+    [self.pageViewController setViewControllers:@[[self getPdfControllerWithIndex:self.currentIndex]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+    self.pageIndexView.label.text = [NSString stringWithFormat:@"%.0ld/%.0ld",(long)self.currentIndex,(long)self.progressView.totalPage];
+    [self.progressView.slider setValue:self.currentIndex animated:NO];
+}
+- (void)bigAction:(UIButton *)sender{
+    MKPdfViewController *vc = (MKPdfViewController *)self.pageViewController.viewControllers.firstObject;
+    [vc scrollToBig];
+}
+- (void)smallAction:(UIButton *)sender{
+    MKPdfViewController *vc = (MKPdfViewController *)self.pageViewController.viewControllers.firstObject;
+    [vc scrollToSmall];
+}
+- (void)normalAction:(UIButton *)sender{
+    MKPdfViewController *vc = (MKPdfViewController *)self.pageViewController.viewControllers.firstObject;
+    [vc scrollToNormal];
+}
 - (void)singleTapAction:(UIGestureRecognizer *)gesture{
     if (gesture.state == UIGestureRecognizerStateEnded) {
         [UIView animateWithDuration:0.3 animations:^{
@@ -201,6 +230,11 @@
         [_progressView.slider addTarget:self action:@selector(pageingEndAction:) forControlEvents:UIControlEventTouchUpInside];
 
         [_progressView.slider addTarget:self action:@selector(pagingAction:) forControlEvents:UIControlEventValueChanged];
+        [_progressView.upButton addTarget:self action:@selector(pageUpAction:) forControlEvents:UIControlEventTouchDown];
+        [_progressView.nextButton addTarget:self action:@selector(pageNextAction:) forControlEvents:UIControlEventTouchDown];
+        [_progressView.bigButton addTarget:self action:@selector(bigAction:) forControlEvents:UIControlEventTouchDown];
+        [_progressView.smallButton addTarget:self action:@selector(smallAction:) forControlEvents:UIControlEventTouchDown];
+        [_progressView.normalButton addTarget:self action:@selector(normalAction:) forControlEvents:UIControlEventTouchDown];
     }
     return _progressView;
 }
