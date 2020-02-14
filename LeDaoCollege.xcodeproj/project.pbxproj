@@ -50,6 +50,7 @@
 		265CB9962320B2AA00883FE2 /* LDMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 265CB9952320B2AA00883FE2 /* LDMineViewController.m */; };
 		265CB9992320B2BC00883FE2 /* LDMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 265CB9982320B2BC00883FE2 /* LDMainViewController.m */; };
 		265CB99C2320B2DF00883FE2 /* LDStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 265CB99B2320B2DF00883FE2 /* LDStoreViewController.m */; };
+		265FCA5223EE8652000497CE /* LDPrivateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 265FCA5123EE8652000497CE /* LDPrivateViewController.m */; };
 		266DC86A23740BD30036A767 /* LDBookDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 266DC86823740BD30036A767 /* LDBookDetailViewController.m */; };
 		266DC86B23740BD30036A767 /* LDBookDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 266DC86923740BD30036A767 /* LDBookDetailViewController.xib */; };
 		266FE34B23BF0EAB00CD23BE /* UIViewController+RotationControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 266FE34A23BF0EAB00CD23BE /* UIViewController+RotationControl.m */; };
@@ -275,6 +276,8 @@
 		265CB9982320B2BC00883FE2 /* LDMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDMainViewController.m; sourceTree = "<group>"; };
 		265CB99A2320B2DF00883FE2 /* LDStoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDStoreViewController.h; sourceTree = "<group>"; };
 		265CB99B2320B2DF00883FE2 /* LDStoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDStoreViewController.m; sourceTree = "<group>"; };
+		265FCA5023EE8652000497CE /* LDPrivateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDPrivateViewController.h; sourceTree = "<group>"; };
+		265FCA5123EE8652000497CE /* LDPrivateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDPrivateViewController.m; sourceTree = "<group>"; };
 		266DC86723740BD30036A767 /* LDBookDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDBookDetailViewController.h; sourceTree = "<group>"; };
 		266DC86823740BD30036A767 /* LDBookDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDBookDetailViewController.m; sourceTree = "<group>"; };
 		266DC86923740BD30036A767 /* LDBookDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LDBookDetailViewController.xib; sourceTree = "<group>"; };
@@ -1099,6 +1102,8 @@
 				2633EA4C2372649E00F78BFB /* LDFirstLoginViewController.h */,
 				2633EA4D2372649E00F78BFB /* LDFirstLoginViewController.m */,
 				2633EA4E2372649E00F78BFB /* LDFirstLoginViewController.xib */,
+				265FCA5023EE8652000497CE /* LDPrivateViewController.h */,
+				265FCA5123EE8652000497CE /* LDPrivateViewController.m */,
 			);
 			path = ViewControl;
 			sourceTree = "<group>";
@@ -1470,6 +1475,7 @@
 				265CB9392320A2F400883FE2 /* AppDelegate.m in Sources */,
 				26B38DAC236EE51B00578D89 /* LDWebViewViewController.m in Sources */,
 				26DD0989233368A500E1B5E2 /* LDStoreSearchViewController.m in Sources */,
+				265FCA5223EE8652000497CE /* LDPrivateViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1614,7 +1620,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = Q94RAKWUSW;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/LeDaoCollege/GlobalTool/PrefixHeader.pch";
@@ -1686,7 +1692,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = Q94RAKWUSW;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/LeDaoCollege/GlobalTool/PrefixHeader.pch";

@@ -11,6 +11,8 @@
 #import "JKCountDownButton.h"
 #import "LDTabBarController.h"
 #import <UMShare/UMShare.h>
+#import "LDPrivateViewController.h"
+
 @interface LDLoginViewController ()
 @property (nonatomic,strong)UILabel * titleLabel;
 @property (nonatomic,strong)QMUITextField * nameTextField;
@@ -21,11 +23,15 @@
 @property (nonatomic,strong)UIButton * wxButton;
 //@property (nonatomic,strong)UIButton * registerButton;
 @property (nonatomic,strong)UIButton * WXLoginButton;
-
+@property (nonatomic,strong)UIButton * registerAgreeBtn;
+@property (nonatomic,strong)UIButton * AgreeBtn;
 @end
 
 @implementation LDLoginViewController
-
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
@@ -57,7 +63,19 @@
     vc.currentPageType = LDCurrentPageIsRegister;
     [self presentViewController:vc animated:YES completion:nil];
 }
+- (void)agreeButClick:(UIButton *)sender{
+    sender.selected = !sender.selected;
+    if (sender.selected) {
+        self.loginButton.backgroundColor = MainThemeColor;
+    }else{
+        self.loginButton.backgroundColor = [UIColor grayColor];
+    }
+}
 - (void)clickLoginAction:(UIButton *)sender{
+    if (self.AgreeBtn.isSelected == NO) {
+        [QMUITips showError:@"请先同意服务及隐私政策"];
+        return;
+    }
     if (self.currentPageType == LDCurrentPageIsLogin) {
         [self loginApp];
     } else if (self.currentPageType == LDCurrentPageIsRegister){
@@ -68,6 +86,11 @@
 }
 - (void)clickBackButton:(UIButton *)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+- (void)clickPushAgreeAction{
+    LDPrivateViewController *vc = [[LDPrivateViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+//    [self presentViewController:vc animated:YES completion:nil];
 }
 #pragma  mark - Private
 - (void)sendCode {
@@ -273,6 +296,9 @@
     [self.view addSubview:self.bottomLabel];
     [self.view addSubview:self.wxButton];
 //    [self.view addSubview:self.registerButton];
+    [self.view addSubview:self.AgreeBtn];
+    [self.view addSubview:self.registerAgreeBtn];
+    
     
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.view);
@@ -304,6 +330,14 @@
         make.bottom.mas_equalTo(self.pwdTextField.mas_bottom).mas_offset(PtHeight(-12));
     }];
     
+    [self.AgreeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.pwdTextField);
+        make.top.mas_equalTo(self.pwdTextField.mas_bottom).mas_offset(15);
+    }];
+    [self.registerAgreeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.AgreeBtn.mas_right).mas_offset(5);
+        make.centerY.mas_equalTo(self.AgreeBtn);
+    }];
 //    [self.registerButton mas_makeConstraints:^(MASConstraintMaker *make) {
 //        make.right.mas_equalTo(self.view).mas_offset(-10);
 //        if (@available(iOS 11.0, *)) {
@@ -436,4 +470,34 @@
     }
     return _WXLoginButton;
 }
+- (UIButton *)AgreeBtn
+{
+    if(!_AgreeBtn)
+    {
+        _AgreeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_AgreeBtn setImage:[UIImage imageNamed:@"not_checked_registration"] forState:UIControlStateNormal];
+        [_AgreeBtn setImage:[UIImage imageNamed:@"elect_registration"] forState:UIControlStateSelected];
+        _AgreeBtn.selected = YES;
+        [_AgreeBtn addTarget:self action:@selector(agreeButClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _AgreeBtn;
+}
+- (UIButton *)registerAgreeBtn
+{
+    if(!_registerAgreeBtn)
+    {
+        NSString *allString = [NSString stringWithFormat:@"登录代表您已同意服务及隐私条款"];
+        NSString *agreeString = [NSString stringWithFormat:@"服务及隐私条款"];
+        _registerAgreeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_registerAgreeBtn setTitle:allString forState:UIControlStateNormal];
+        [_registerAgreeBtn setTitleColor:UIColorFromHEXA(0x999999, 1.0) forState:UIControlStateNormal];
+        _registerAgreeBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+        
+        [_registerAgreeBtn addTarget:self action:@selector(clickPushAgreeAction) forControlEvents:UIControlEventTouchUpInside];
+        NSAttributedString *string = [HNTools getAttributedString:allString withStringAttributedDic:@{NSForegroundColorAttributeName : UIColorFromHEXA(0x999999, 1.0)} withSubString:agreeString withSubStringAttributeDic:@{NSForegroundColorAttributeName : [UIColor redColor],NSUnderlineStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]}];
+        [_registerAgreeBtn setAttributedTitle:string forState:UIControlStateNormal];
+    }
+    return _registerAgreeBtn;
+}
+
 @end

@@ -14,6 +14,7 @@
 #import "IAPShare.h"
 #import <UMShare/UMShare.h>
 #import <UMCommon/UMCommon.h>
+#import "LDNavigationController.h"
 @interface AppDelegate ()
 
 @end
@@ -52,14 +53,20 @@
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Sina appKey:WBAPPKEY  appSecret:WBAPPSecret redirectURL:BaseAPI];
 }
 - (void)configMainView{
-    if ([LDUserManager isLogin]) {
-        LDTabBarController *rootViewController = [[LDTabBarController alloc] init];
-        AppDelegate  *delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
-        delegate.window.rootViewController = rootViewController;
-    }else {
-        LDLoginViewController *vc = [LDLoginViewController new];
-        [self.window setRootViewController:vc];
-    }
+    
+    LDTabBarController *rootViewController = [[LDTabBarController alloc] init];
+    AppDelegate  *delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
+    delegate.window.rootViewController = rootViewController;
+    
+//    if ([LDUserManager isLogin]) {
+//        LDTabBarController *rootViewController = [[LDTabBarController alloc] init];
+//        AppDelegate  *delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
+//        delegate.window.rootViewController = rootViewController;
+//    }else {
+//        LDLoginViewController *vc = [LDLoginViewController new];
+//        LDNavigationController *nav = [[LDNavigationController alloc]initWithRootViewController:vc];
+//        [self.window setRootViewController:nav];
+//    }
 }
 - (void)configIQKeyboard {
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
@@ -82,12 +89,14 @@
                 delegate.window.rootViewController = rootViewController;
             }
         }else {
-            LDLoginViewController *vc = [LDLoginViewController new];
-            [self.window setRootViewController:vc];
+//            LDLoginViewController *vc = [LDLoginViewController new];
+//            LDNavigationController *nav = [[LDNavigationController alloc]initWithRootViewController:vc];
+//            [self.window setRootViewController:nav];
         }
     } faild:^(NSError *error) {
-        LDLoginViewController *vc = [LDLoginViewController new];
-        [self.window setRootViewController:vc];
+//        LDLoginViewController *vc = [LDLoginViewController new];
+//        LDNavigationController *nav = [[LDNavigationController alloc]initWithRootViewController:vc];
+//        [self.window setRootViewController:nav];
     }];
 }
 - (void)recharge{
