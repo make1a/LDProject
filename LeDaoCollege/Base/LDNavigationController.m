@@ -7,7 +7,7 @@
 //
 
 #import "LDNavigationController.h"
-
+#import "LDLoginViewController.h"
 @interface LDNavigationController ()<UIGestureRecognizerDelegate>
 
 @end
@@ -16,8 +16,14 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
 }
+
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
     if (self.viewControllers.count > 0) {
+        if (![LDUserManager isLogin]) {
+            LDLoginViewController *vc = [LDLoginViewController new];
+            vc.hidesBottomBarWhenPushed = YES;
+            [super pushViewController:vc animated:YES];
+        }
         viewController.hidesBottomBarWhenPushed = YES;
     } else {
         viewController.hidesBottomBarWhenPushed = NO;

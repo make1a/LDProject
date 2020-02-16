@@ -25,6 +25,8 @@
 @property (nonatomic,strong)UIButton * WXLoginButton;
 @property (nonatomic,strong)UIButton * registerAgreeBtn;
 @property (nonatomic,strong)UIButton * AgreeBtn;
+
+@property (nonatomic,strong)UIButton * backButton;
 @end
 
 @implementation LDLoginViewController
@@ -221,7 +223,13 @@
     AppDelegate  *delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
     delegate.window.rootViewController = rootViewController;
 }
-
+- (void)clickBackAction:(UIButton *)sender{
+    if (self.navigationController.viewControllers.count > 1) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }else{
+        [self pushMain];
+    }
+}
 - (void)WXlogin{
     [[UMSocialManager defaultManager]getUserInfoWithPlatform:UMSocialPlatformType_WechatSession currentViewController:nil completion:^(id result, NSError *error) {
         if (error) {
@@ -298,8 +306,16 @@
 //    [self.view addSubview:self.registerButton];
     [self.view addSubview:self.AgreeBtn];
     [self.view addSubview:self.registerAgreeBtn];
+    [self.view addSubview:self.backButton];
     
-    
+    [self.backButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.view).mas_offset(15);
+        if (@available(iOS 11.0, *)) {
+            make.top.mas_equalTo(self.view.mas_safeAreaLayoutGuideTop).mas_offset(12);
+        } else {
+            make.top.mas_equalTo(self.view).mas_offset(12);
+        }
+    }];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.view);
         make.top.mas_equalTo(self.view).mas_offset(PtHeight(76));
@@ -445,6 +461,14 @@
         _wxButton = [UIButton buttonWithType:UIButtonTypeCustom];
     }
     return _wxButton;
+}
+- (UIButton *)backButton{
+    if (!_backButton) {
+        _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_backButton setImage:[UIImage imageNamed:@"nav_black"] forState:UIControlStateNormal];
+        [_backButton addTarget:self action:@selector(clickBackAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _backButton;
 }
 //- (UIButton *)registerButton{
 //    if (!_registerButton) {
