@@ -27,7 +27,7 @@
                                                                              titlePositionAdjustment: UIOffsetZero
                                                                                              context: nil];
     self = (LDTabBarController *)tabBarController;
-    [self setTintColor:UIColorFromHEXA(0xFF07C062, 1)];
+    [self setTintColor:UIColorFromHEXA(0x2686EA, 1)];
     return self;
 }
 
@@ -55,20 +55,20 @@
 
 - (NSArray *)tabBarItemsAttributesForController {
     NSDictionary *firstTabBarItemsAttributes = @{
-        CYLTabBarItemTitle : @"学院",
-        CYLTabBarItemImage : @"nav_button_xueyuan_default",
-        CYLTabBarItemSelectedImage : @"nav_button_xueyuan_pre",
+        CYLTabBarItemTitle : @"院",
+        CYLTabBarItemImage : @"nav_button_xueyuan_pre",
+        CYLTabBarItemSelectedImage : @"nav_button_xueyuan_pre 2",
     };
     NSDictionary *secondTabBarItemsAttributes = @{
-        CYLTabBarItemTitle : @"商城",
+        CYLTabBarItemTitle : @"城",
         CYLTabBarItemImage : @"nav_button_shangcheng_default",
-        CYLTabBarItemSelectedImage : @"nav_button_shangcheng_pre",
+        CYLTabBarItemSelectedImage : @"nav_button_shangcheng_default 2",
     };
     
     NSDictionary *thirdTabBarItemsAttributes = @{
-        CYLTabBarItemTitle : @"我的",
+        CYLTabBarItemTitle : @"我",
         CYLTabBarItemImage : @"nav_button_mine_default",
-        CYLTabBarItemSelectedImage : @"nav_button_mine_pre",
+        CYLTabBarItemSelectedImage : @"nav_button_mine_default 2",
     };
     
     NSArray *tabBarItemsAttributes = @[

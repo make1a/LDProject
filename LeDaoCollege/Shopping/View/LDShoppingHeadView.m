@@ -41,7 +41,7 @@
     self.searchButton.imagePosition = QMUIButtonImagePositionLeft;
     self.searchButton.spacingBetweenImageAndTitle = 15;
     
-    self.cycleScrollView.frame = CGRectMake(0, CGRectGetMaxY(self.searchButton.frame)+20, SCREEN_WIDTH, SCREEN_WIDTH*9/16);
+    self.cycleScrollView.frame = CGRectMake(0, CGRectGetMaxY(self.searchButton.frame)+20, SCREEN_WIDTH, 180);
     
     CGFloat y = self.searchButton.center.y - 20/2;
     self.docButton.frame = CGRectMake(PtWidth(335), y, 20, 20);

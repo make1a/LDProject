@@ -25,7 +25,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [UIApplication sharedApplication].statusBarHidden = NO;
     // 设置主窗口,并设置根控制器
-    sleep(3);
+//    sleep(3);
     self.window = [[UIWindow alloc] init];
     self.window.frame = [UIScreen mainScreen].bounds;
     [self.window makeKeyAndVisible];

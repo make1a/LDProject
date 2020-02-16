@@ -13,7 +13,7 @@
 #import "LDVideoViewController.h"
 #import "LDLiveViewController.h"
 #import "LDSearchViewController.h"
-
+#import "LDBookDicViewController.h"
 @interface LDMainViewController ()<VTMagicViewDelegate,VTMagicViewDataSource>
 
 @property (nonatomic, strong)VTMagicController *magicController;
@@ -53,27 +53,24 @@
     [self.view addSubview:self.logoImageView];
     
     [self.searchButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.logoImageView.mas_right).mas_offset(PtWidth(12));
-        make.right.mas_equalTo(self.view).mas_offset(PtWidth(-21));
-        
+        make.left.mas_equalTo(self.view).mas_offset(48.5);
+        make.right.mas_equalTo(self.view).mas_offset(-20);
         if (@available(iOS 11.0, *)) {
             if (iPhoneX) {
-                make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop).offset(10);
+                make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop).offset(15);
             }else{
                 make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop).offset(20);
             }
-            
         } else {
             make.top.mas_equalTo(self.view);
-            
         }
-        make.height.mas_equalTo(PtHeight(32));
+        make.height.mas_equalTo(32);
     }];
     
     [self.logoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self.searchButton);
-        make.height.width.mas_equalTo(self.searchButton.mas_height);
-        make.left.mas_equalTo(self.view).mas_offset(PtWidth(21));
+        make.height.width.mas_equalTo(30);
+        make.left.mas_equalTo(self.view).mas_offset(10);
     }];
 }
 - (void)requestBannerList {
@@ -106,7 +103,7 @@
 }
 #pragma mark - VTMagicViewDelegate
 - (NSArray<__kindof NSString *> *)menuTitlesForMagicView:(VTMagicView *)magicView{
-    return @[@"资讯",@"音频",@"视频",@"直播"];
+    return @[@"资讯",@"视频",@"直播",@"宝典"];
 }
 
 - (void)magicView:(VTMagicView *)magicView didSelectItemAtIndex:(NSUInteger)itemIndex
@@ -132,13 +129,27 @@
             return vc;
         }
             break;
+//        case 1:
+//        {
+//            static NSString *identifier = @"LDVoiceViewController.identifier";
+//            LDVoiceListViewController *vc = [magicView dequeueReusablePageWithIdentifier:identifier];
+//            if (!vc)
+//            {
+//                vc = [[LDVoiceListViewController alloc] init];
+//            }
+//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                vc.netImages = self.imageArray;
+//            });
+//            return vc;
+//        }
+//            break;
         case 1:
         {
-            static NSString *identifier = @"LDVoiceViewController.identifier";
-            LDVoiceListViewController *vc = [magicView dequeueReusablePageWithIdentifier:identifier];
+            static NSString *identifier = @"LDVideoViewController.identifier";
+            LDVideoViewController *vc = [magicView dequeueReusablePageWithIdentifier:identifier];
             if (!vc)
             {
-                vc = [[LDVoiceListViewController alloc] init];
+                vc = [[LDVideoViewController alloc] init];
             }
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 vc.netImages = self.imageArray;
@@ -146,13 +157,13 @@
             return vc;
         }
             break;
-        case 2:
+        case 3:
         {
-            static NSString *identifier = @"LDVideoViewController.identifier";
-            LDVideoViewController *vc = [magicView dequeueReusablePageWithIdentifier:identifier];
+            static NSString *identifier = @"LDBookDicViewController.identifier";
+            LDBookDicViewController *vc = [magicView dequeueReusablePageWithIdentifier:identifier];
             if (!vc)
             {
-                vc = [[LDVideoViewController alloc] init];
+                vc = [[LDBookDicViewController alloc] init];
             }
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 vc.netImages = self.imageArray;
@@ -183,8 +194,9 @@
     if (!menuItem) {
         menuItem = [UIButton buttonWithType:UIButtonTypeCustom];
         [menuItem setTitleColor:UIColorFromRGBA(145, 226, 192, 1) forState:UIControlStateNormal];
-        [menuItem setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-        menuItem.titleLabel.font = [UIFont systemFontOfSize:15];
+        [menuItem setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+        menuItem.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+//        menuItem.titleLabel.font = [UIFont systemFontOfSize:18];
     }
     return menuItem;
 }
@@ -194,25 +206,24 @@
     if (!_magicController) {
         _magicController = [[VTMagicController alloc] init];
         _magicController.magicView.navigationColor = [UIColor clearColor];
-        _magicController.magicView.navigationHeight = PtHeight(35);
-        _magicController.magicView.sliderHidden = NO;
-        
-        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, PtWidth(20), 5)];
-        view.backgroundColor = [UIColor whiteColor];
-        [view setCornerRadius:5.0/2];
-        [_magicController.magicView setSliderView:view];
-        _magicController.magicView.sliderWidth = PtWidth(20);
-        _magicController.magicView.sliderHeight = 5;
+        _magicController.magicView.navigationHeight = PtHeight(40);
+        _magicController.magicView.sliderHidden = YES;
+//        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, PtWidth(20), 5)];
+//        view.backgroundColor = [UIColor whiteColor];
+//        [view setCornerRadius:5.0/2];
+//        [_magicController.magicView setSliderView:view];
+//        _magicController.magicView.sliderWidth = PtWidth(20);
+//        _magicController.magicView.sliderHeight = 5;
         _magicController.magicView.layoutStyle = VTLayoutStyleDivide;
         _magicController.magicView.switchStyle = VTSwitchStyleDefault;
         _magicController.magicView.itemSpacing = 20;
         CGFloat h = 0;
         if (iPhoneX) {
-            h = PtHeight(91);
+            h = 100;
         }else{
-            h = PtHeight(75);
+            h = 80;
         }
-        _magicController.magicView.frame = CGRectMake(0,h, SCREEN_WIDTH, SCREEN_HEIGHT-h-TabBarHeight-5);
+        _magicController.magicView.frame = CGRectMake(0,h, SCREEN_WIDTH, SCREEN_HEIGHT-h-TabBarHeight);
         _magicController.magicView.dataSource = self;
         _magicController.magicView.delegate = self;
         _magicController.magicView.needPreloading = NO;
@@ -226,9 +237,13 @@
         _searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _searchButton.backgroundColor = UIColorFromHEXA(0xFBFBFB, 1);
         _searchButton.layer.masksToBounds = YES;
-        _searchButton.layer.cornerRadius = PtHeight(32/2);
+        _searchButton.layer.cornerRadius = 32/2;
         [_searchButton setTitle:@"搜索" forState:UIControlStateNormal];
+        [_searchButton setImage:[UIImage imageNamed:@"nav_search"] forState:UIControlStateNormal];
         [_searchButton setTitleColor:UIColorFromRGBA(165, 165, 165, 1) forState:UIControlStateNormal];
+        _searchButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        [_searchButton setImageEdgeInsets:UIEdgeInsetsMake(0, 19, 0, 0)];
+        [_searchButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 29, 0, 0)];
         [_searchButton addTarget:self action:@selector(clickSearchAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _searchButton;
@@ -236,7 +251,7 @@
 - (UIView *)bgView {
     if (!_bgView) {
         _bgView = [[UIView alloc]init];
-        _bgView.backgroundColor = [UIColor colorWithRed:105/255.0 green:182/255.0 blue:129/255.0 alpha:1.0];
+        _bgView.backgroundColor = MainThemeColor;
         CGFloat h = 0;
         if (iPhoneX) {
             h = PtHeight(149);

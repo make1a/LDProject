@@ -68,14 +68,14 @@ NSString *const kLDNewsTableViewCellIdentifier = @"kLDNewsTableViewCellIdentifie
     [self.bigImageVIew mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self).mas_offset(12);
         make.top.mas_equalTo(self).mas_offset(5);
-        make.width.mas_equalTo(PtWidth(138));
-        make.height.mas_equalTo(PtHeight(77));
+        make.width.mas_equalTo(140);
+        make.height.mas_equalTo(100);
     }];
     
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.bigImageVIew.mas_right).mas_offset(PtWidth(17));
         make.top.equalTo(self.bigImageVIew);
-        make.right.mas_equalTo(self).mas_offset(PtWidth(-31));
+        make.right.mas_equalTo(self).mas_offset(PtWidth(-14));
     }];
     
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -111,18 +111,19 @@ NSString *const kLDNewsTableViewCellIdentifier = @"kLDNewsTableViewCellIdentifie
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc]init];
+        _titleLabel.textColor = UIColorFromHEXA(0x101010, 1);
         _titleLabel.text = @"makemakemakemakemakemakemakemake";
         _titleLabel.numberOfLines = 2;
-        _titleLabel.font = [UIFont systemFontOfSize:PtHeight(15)];
+        _titleLabel.font = [UIFont systemFontOfSize:15];
     }
     return _titleLabel;
 }
 - (UILabel *)timeLabel {
     if (!_timeLabel) {
         _timeLabel = [[UILabel alloc]init];
-        _timeLabel.textColor = [UIColor grayColor];
+        _timeLabel.textColor = UIColorFromHEXA(0xA1A1A1, 1);
         _timeLabel.text = @"2018.18.18 18：30";
-        _timeLabel.font = [UIFont systemFontOfSize:PtHeight(12)];
+        _timeLabel.font = [UIFont systemFontOfSize:13];
     }
     return _timeLabel;
 }
@@ -130,11 +131,8 @@ NSString *const kLDNewsTableViewCellIdentifier = @"kLDNewsTableViewCellIdentifie
     if (!_freeLabel) {
         _freeLabel = [[UILabel alloc]init];
         _freeLabel.layer.masksToBounds = YES;
-        _freeLabel.layer.cornerRadius = 5;
-        _freeLabel.layer.borderColor = UIColorFromHEXA(0xE76757, 1).CGColor;
-        _freeLabel.layer.borderWidth = 1;
-        _freeLabel.textColor = UIColorFromHEXA(0xF9615E, 1);
-        _freeLabel.font = [UIFont systemFontOfSize:11];
+        _freeLabel.textColor = UIColorFromHEXA(0xEEC64A, 1);
+        _freeLabel.font = [UIFont systemFontOfSize:13];
         _freeLabel.text = @"免费";
         _freeLabel.textAlignment = NSTextAlignmentCenter;
     }
@@ -144,8 +142,8 @@ NSString *const kLDNewsTableViewCellIdentifier = @"kLDNewsTableViewCellIdentifie
     if (!_watchLabel) {
         _watchLabel = [[UILabel alloc]init];
         _watchLabel.text = @"20人已看";
-        _watchLabel.font = [UIFont systemFontOfSize:PtHeight(12)];
-        _watchLabel.textColor = UIColorFromHEXA(0x979797, 1);
+        _watchLabel.font = [UIFont systemFontOfSize:13];
+        _watchLabel.textColor = UIColorFromHEXA(0xA1A1A1, 1);
     }
     return _watchLabel;
 }

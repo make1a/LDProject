@@ -59,22 +59,22 @@ NSString *const kLDVoiceTableViewCellIdentifier = @"kLDVoiceTableViewCellIdentif
     [self.contentView addSubview:self.titleLabel];
     [self.contentView addSubview:self.timeLabel];
     [self.contentView addSubview:self.watchLabel];
-    [self.contentView addSubview:self.collectionButton];
+//    [self.contentView addSubview:self.collectionButton];
     [self.contentView addSubview:self.playButton];
     
     [self.bigImageVIew mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.contentView).mas_offset(PtWidth(15));
+        make.left.mas_equalTo(self.contentView).mas_offset(10);
         make.centerY.mas_equalTo(self.contentView);
-        make.width.height.mas_equalTo(PtHeight(72));
+        make.width.height.mas_equalTo(70);
     }];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.bigImageVIew.mas_right).mas_offset(PtWidth(17));
-        make.top.equalTo(self.bigImageVIew).mas_offset(5);
+        make.top.equalTo(self.bigImageVIew);
         make.right.mas_equalTo(self).mas_offset(PtWidth(-31));
     }];
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.titleLabel);
-        make.top.mas_equalTo(self.titleLabel.mas_bottom).mas_offset(PtHeight(6.5));
+        make.top.mas_equalTo(self.titleLabel.mas_bottom).mas_offset(6.5);
     }];
     [self.watchLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.timeLabel);
@@ -86,9 +86,18 @@ NSString *const kLDVoiceTableViewCellIdentifier = @"kLDVoiceTableViewCellIdentif
         make.width.height.mas_equalTo(PtWidth(27));
     }];
     
-    [self.collectionButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.contentView).mas_offset(PtWidth(-17));
-        make.centerY.mas_equalTo(self.contentView);
+//    [self.collectionButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.right.mas_equalTo(self.contentView).mas_offset(PtWidth(-17));
+//        make.centerY.mas_equalTo(self.contentView);
+//    }];
+    
+    UIView *bottomView = [UIView new];
+    bottomView.backgroundColor = UIColorFromHEXA(0xF2F2F2, 1.0);
+    [self.contentView addSubview:bottomView];
+    [bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(self.contentView);
+        make.height.mas_equalTo(5);
+        make.left.right.mas_equalTo(self.contentView);
     }];
 }
 - (void)clickPlayAction:(UIButton *)sender{
@@ -115,7 +124,7 @@ NSString *const kLDVoiceTableViewCellIdentifier = @"kLDVoiceTableViewCellIdentif
     if (!_bigImageVIew) {
         _bigImageVIew = [[UIImageView alloc]init];
         _bigImageVIew.image = [UIImage imageNamed:@"seizeaseat_0"];
-        [_bigImageVIew setCornerRadius:PtHeight(36)];
+        [_bigImageVIew setCornerRadius:35];
     }
     return _bigImageVIew;
 }
@@ -124,16 +133,17 @@ NSString *const kLDVoiceTableViewCellIdentifier = @"kLDVoiceTableViewCellIdentif
         _titleLabel = [[UILabel alloc]init];
         _titleLabel.text = @"makemakemakemakemakemakemakemake";
         _titleLabel.numberOfLines = 2;
-        _titleLabel.font = [UIFont systemFontOfSize:PtHeight(15)];
+        _titleLabel.textColor = UIColorFromHEXA(0x101010, 1);
+        _titleLabel.font = [UIFont systemFontOfSize:15];
     }
     return _titleLabel;
 }
 - (UILabel *)timeLabel {
     if (!_timeLabel) {
         _timeLabel = [[UILabel alloc]init];
-        _timeLabel.textColor = [UIColor grayColor];
+        _timeLabel.textColor = UIColorFromHEXA(0xA1A1A1, 1);
         _timeLabel.text = @"make";
-        _timeLabel.font = [UIFont systemFontOfSize:PtHeight(12)];
+        _timeLabel.font = [UIFont systemFontOfSize:13];
     }
     return _timeLabel;
 }
@@ -160,7 +170,7 @@ NSString *const kLDVoiceTableViewCellIdentifier = @"kLDVoiceTableViewCellIdentif
     if (!_watchLabel) {
         _watchLabel = [[UILabel alloc]init];
 //        _watchLabel.text = @"20人已看";
-        _watchLabel.font = [UIFont systemFontOfSize:PtHeight(12)];
+        _watchLabel.font = [UIFont systemFontOfSize:13];
         _watchLabel.textColor = UIColorFromHEXA(0x979797, 1);
     }
     return _watchLabel;

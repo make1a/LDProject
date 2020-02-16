@@ -249,7 +249,7 @@
 - (SDCycleScrollView *)cycleScrollView {
     if (!_cycleScrollView) {
         UIImage * placeholderImage = [UIImage imageNamed:@"seizeaseat_0"];
-        CGRect frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH*9/16);
+        CGRect frame = CGRectMake(0, 0, SCREEN_WIDTH, 180);
         _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:frame delegate:self placeholderImage:placeholderImage];
         _cycleScrollView.imageURLStringsGroup = self.netImages;
         _cycleScrollView.showPageControl = YES;

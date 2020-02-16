@@ -46,7 +46,7 @@
 #define rgba(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:a] //适配蓝湖
 
 // app主色调
-#define MainThemeColor [UIColor colorWithRed:105/255.0 green:182/255.0 blue:129/255.0 alpha:1.0]
+#define MainThemeColor [UIColor colorWithRed:38/255.0 green:134/255.0 blue:234/255.0 alpha:1.0]
 #define DisableMainThmeColor UIColorFromHEXA(0xC1E1CB, 1.0)
 #define SCREEN_WIDTH  ([[UIScreen mainScreen] bounds].size.width)
 #define SCREEN_HEIGHT ([[UIScreen mainScreen] bounds].size.height)

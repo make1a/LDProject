@@ -25,7 +25,6 @@
 @implementation LDVoiceListViewController
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationController.navigationBar.hidden = YES;
     [DFPlayer sharedPlayer].dataSource  = self;
     [[DFPlayer sharedPlayer]df_reloadData];
     if (!_isSearchModel) {
@@ -35,7 +34,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tableView.tableHeaderView = self.cycleScrollView;
     [self createPlayer];
     self.currenIndex = -1;
 
@@ -43,6 +41,10 @@
         self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
             [self requestSource:@"" mark:@"" back:nil];
         }];
+        
+        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 180)];
+        [view addSubview:self.cycleScrollView];
+        self.tableView.tableHeaderView = view;
     }
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(pauseRefresh) name:@"playerPause" object:nil];
 }
@@ -199,7 +201,7 @@
 - (SDCycleScrollView *)cycleScrollView {
     if (!_cycleScrollView) {
         UIImage * placeholderImage = [UIImage imageNamed:@"seizeaseat_1"];
-        CGRect frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH*9/16);
+        CGRect frame = CGRectMake(0, 0, SCREEN_WIDTH, 180);
         _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:frame delegate:self placeholderImage:placeholderImage];
         _cycleScrollView.imageURLStringsGroup = self.netImages;
         _cycleScrollView.showPageControl = YES;

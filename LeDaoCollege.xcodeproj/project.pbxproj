@@ -20,6 +20,8 @@
 		2633EA562372C13500F78BFB /* LDCustomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2633EA552372C13500F78BFB /* LDCustomModel.m */; };
 		2638A5C82351791500D4DC55 /* MKRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2638A5C72351791500D4DC55 /* MKRequestManager.m */; };
 		2638A5CB23517ADC00D4DC55 /* LDAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 2638A5CA23517ADC00D4DC55 /* LDAPI.m */; };
+		263D100B23F7D076009A6FEB /* LDDicBookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 263D100A23F7D076009A6FEB /* LDDicBookCell.m */; };
+		263D100E23F7D566009A6FEB /* LDBookDicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 263D100D23F7D566009A6FEB /* LDBookDicViewController.m */; };
 		2640F06A232771760015F7A6 /* LDTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2640F069232771760015F7A6 /* LDTagView.m */; };
 		2640F106232793950015F7A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2640F105232793950015F7A6 /* Assets.xcassets */; };
 		2643A0AB239CA7C40055B320 /* LDTagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2643A0A9239CA7C40055B320 /* LDTagCell.m */; };
@@ -219,6 +221,10 @@
 		2638A5C72351791500D4DC55 /* MKRequestManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKRequestManager.m; sourceTree = "<group>"; };
 		2638A5C923517ADC00D4DC55 /* LDAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDAPI.h; sourceTree = "<group>"; };
 		2638A5CA23517ADC00D4DC55 /* LDAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDAPI.m; sourceTree = "<group>"; };
+		263D100923F7D076009A6FEB /* LDDicBookCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDDicBookCell.h; sourceTree = "<group>"; };
+		263D100A23F7D076009A6FEB /* LDDicBookCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDDicBookCell.m; sourceTree = "<group>"; };
+		263D100C23F7D566009A6FEB /* LDBookDicViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDBookDicViewController.h; sourceTree = "<group>"; };
+		263D100D23F7D566009A6FEB /* LDBookDicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDBookDicViewController.m; sourceTree = "<group>"; };
 		2640F068232771760015F7A6 /* LDTagView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDTagView.h; sourceTree = "<group>"; };
 		2640F069232771760015F7A6 /* LDTagView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDTagView.m; sourceTree = "<group>"; };
 		2640F105232793950015F7A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -893,6 +899,8 @@
 				266FE34A23BF0EAB00CD23BE /* UIViewController+RotationControl.m */,
 				26E7F92023C5BD99003FE788 /* LDClassCatalogViewController.h */,
 				26E7F92123C5BD99003FE788 /* LDClassCatalogViewController.m */,
+				263D100C23F7D566009A6FEB /* LDBookDicViewController.h */,
+				263D100D23F7D566009A6FEB /* LDBookDicViewController.m */,
 			);
 			path = ViewControl;
 			sourceTree = "<group>";
@@ -937,6 +945,8 @@
 				264D626723A4B25F0015F253 /* LDCatalogCell.h */,
 				264D626823A4B25F0015F253 /* LDCatalogCell.m */,
 				264D626923A4B25F0015F253 /* LDCatalogCell.xib */,
+				263D100923F7D076009A6FEB /* LDDicBookCell.h */,
+				263D100A23F7D076009A6FEB /* LDDicBookCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1378,6 +1388,7 @@
 				265CB93C2320A2F400883FE2 /* ViewController.m in Sources */,
 				26C8469D233895C900500B3F /* LDSmallClassDetailViewController.m in Sources */,
 				2657FBE8233CA66700D316E3 /* LDRechargeCell.m in Sources */,
+				263D100B23F7D076009A6FEB /* LDDicBookCell.m in Sources */,
 				26CB9A7C2334CE2000DC12AD /* LDShoppingTableViewCell.m in Sources */,
 				26BCBDD923697A1000C568A0 /* LDNoUseView.m in Sources */,
 				268EEDF92325F1640014F971 /* ClickPickerCell.m in Sources */,
@@ -1399,6 +1410,7 @@
 				26960D7623A4808C002B1662 /* LDShoppingDetailNameViewCell.m in Sources */,
 				26CB9A742334C32C00DC12AD /* LDSmallClassViewController.m in Sources */,
 				2643A0B7239CB7300055B320 /* LDVideoListViewController.m in Sources */,
+				263D100E23F7D566009A6FEB /* LDBookDicViewController.m in Sources */,
 				2638A5CB23517ADC00D4DC55 /* LDAPI.m in Sources */,
 				26B7022B232F642500156116 /* UIView+CornerRadius.m in Sources */,
 				26CBF8822323D4A8005139EF /* LDBusinessCardView.m in Sources */,

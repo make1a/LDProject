@@ -118,7 +118,7 @@
 - (void)masLayoutSubviews {
     [self.view addSubview:self.collectionView];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.view).mas_offset(30);
+        make.top.mas_equalTo(self.view).mas_offset(0);
         make.left.right.bottom.mas_equalTo(self.view);
     }];
 }
@@ -134,7 +134,7 @@
 - (SDCycleScrollView *)cycleScrollView {
     if (!_cycleScrollView) {
         UIImage * placeholderImage = [UIImage imageNamed:@"seizeaseat_1"];
-        CGRect frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH*9/16);
+        CGRect frame = CGRectMake(0, 0, SCREEN_WIDTH, 180);
         _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:frame delegate:self placeholderImage:placeholderImage];
         _cycleScrollView.imageURLStringsGroup = self.netImages;
         _cycleScrollView.showPageControl = YES;

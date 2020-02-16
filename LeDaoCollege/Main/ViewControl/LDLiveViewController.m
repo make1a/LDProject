@@ -19,25 +19,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-//    UIView *blueView = [[UIView alloc]init];
-//    blueView.backgroundColor = [UIColor clearColor];
-    CGFloat maxY = self.cycleScrollView.frame.size.height;
-//    blueView.frame = CGRectMake(0, 0, SCREEN_WIDTH, maxY);
-//    [self.view addSubview:blueView];
-    
-    if (self.isSearchModel) {
-        maxY = 0;
-    }
-    
     self.emptyView = [[NSBundle mainBundle]loadNibNamed:@"LDEmptyViewXIB" owner:self options:nil].firstObject;
-    self.emptyView.frame = CGRectMake(0, 0, SCREEN_WIDTH, CGRectGetHeight(self.view.frame));
+    self.emptyView.frame = self.view.bounds;
     [self showEmptyView];
-    
-    if (!self.isSearchModel) {
-//        [self.view addSubview:self.cycleScrollView];
-//        [self.cycleScrollView reloadInputViews];
-    }
 }
 #pragma mark - event response
 
@@ -61,7 +45,7 @@
 - (SDCycleScrollView *)cycleScrollView {
     if (!_cycleScrollView) {
         UIImage * placeholderImage = [UIImage imageNamed:@"seizeaseat_0"];
-        CGRect frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH*9/16);
+        CGRect frame = CGRectMake(0, 0, SCREEN_WIDTH, 180);
         _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:frame delegate:self placeholderImage:placeholderImage];
         _cycleScrollView.imageURLStringsGroup = self.netImages;
         _cycleScrollView.backgroundColor = [UIColor redColor];
