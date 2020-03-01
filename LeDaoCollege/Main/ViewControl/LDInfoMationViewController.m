@@ -13,13 +13,16 @@
 #import "LDWebViewViewController.h"
 #import "DFPlayer.h"
 #import "LDVoiceTableViewCell.h"
-
+#import "LDVoiceDetailViewcontroller.h"
 @interface LDInfoMationViewController ()<SDCycleScrollViewDelegate,QMUITableViewDataSource,QMUITableViewDelegate,DFPlayerDataSource>
 {
     NSInteger currentPage;
 }
 @property (nonatomic,strong)SDCycleScrollView* cycleScrollView;
 @property (nonatomic,strong)NSArray<DFPlayerModel *> *musicArray;
+@property (nonatomic,strong)NSArray * voiceArray;
+@property (nonatomic,assign)BOOL isPlaying;
+
 @end
 
 @implementation LDInfoMationViewController
@@ -29,7 +32,8 @@
     self = [super initWithStyle:style];
     return self;
 }
-- (void)viewWillAppear:(BOOL)animated {
+
+- (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
 }
 - (void)viewDidLoad
@@ -44,27 +48,46 @@
     [self masLayoutSubviews];
     if (!self.isSearchModel) {
         [self requestDatasource];
+        [self requestMusic];
         self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
             [self requestDatasource];
+            [self requestMusic];
         }];
+        [self createPlayer];
+        
     }
     
 }
 - (void)createPlayer{
-//    [DFPlayer sharedPlayer].category    = DFPlayerModeOnlyOnce;
+    [DFPlayer sharedPlayer].dataSource  = self;
     [DFPlayer sharedPlayer].playMode = DFPlayerModeOnlyOnce;
     [DFPlayer sharedPlayer].isObserveWWAN = YES;
     [[DFPlayer sharedPlayer] df_initPlayerWithUserId:nil];
-
+    
 }
 #pragma  mark - 音频播放
 - (NSArray<DFPlayerModel *> *)df_audioDataForPlayer:(DFPlayer *)player{
     return self.musicArray;
 }
 #pragma mark - NetWork
+- (void)requestMusic{
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"audio/getaudios" requestParameters:nil requestHeader:nil success:^(id responseObject) {
+        self.voiceArray = [NSArray yy_modelArrayWithClass:[LDVoiceModel class] json:responseObject[@"data"]];
+        LDVoiceModel *model = self.voiceArray.firstObject;
+        DFPlayerModel *playModel = [[DFPlayerModel alloc] init];
+        playModel.audioId = [model.v_id intValue];
+        playModel.audioUrl = [NSURL URLWithString:model.audioUrl];
+        
+        self.musicArray = @[playModel];
+        [self.tableView reloadData];
+        [[DFPlayer sharedPlayer] df_reloadData];
+    } faild:^(NSError *error) {
+        
+    }];
+}
 - (void)requestDatasource {
     QMUITips *tip = [QMUITips showLoadingInView:self.view];
-    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"information/getlists" requestParameters:@{@"pageSize":@(1000)} requestHeader:nil success:^(id responseObject) {
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"information/getlists" requestParameters:@{@"pageSize":@(1000),@"type":@(1)} requestHeader:nil success:^(id responseObject) {
         [tip hideAnimated:YES];
         if (kCODE == 200) {
             self.dataSource = [NSArray yy_modelArrayWithClass:[LDNewsModel class] json:responseObject[@"data"][@"list"]];
@@ -103,53 +126,101 @@
 
 #pragma  mark - TableView
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;
+    return self.isSearchModel?1:2;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0) {
-        return 1;
+    if (self.isSearchModel) {
+        return self.dataSource.count;
+    }else{
+        if (section == 0) {
+            return 1;
+        }
+        return self.dataSource.count;
     }
-    return self.dataSource.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 0) {
+    
+    if (indexPath.section == 0 && self.isSearchModel == NO) {
         LDVoiceTableViewCell *cell = [LDVoiceTableViewCell dequeueReusableWithTableView:tableView];
+        if (self.voiceArray) {
+            [cell refreshWithModel:self.voiceArray.firstObject];
+            cell.playButton.selected = self.isPlaying;
+            cell.didSelectPlayMusicActionBlock = ^(BOOL Play) {
+                LDVoiceModel *m = self.voiceArray.firstObject;
+                m.isPlaying = NO;
+                if (Play) { //正在播放
+                    [[DFPlayer sharedPlayer]df_pause];
+                    self.isPlaying = NO;
+                } else {
+                    [[DFPlayer sharedPlayer] df_playWithAudioId:0];
+                    self.isPlaying = YES;
+                }
+            };
+        }
+        
+        return cell;
+    }else{
+        LDNewsTableViewCell *cell = [LDNewsTableViewCell dequeueReusableWithTableView:tableView];
+        [cell refreshWithModel:self.dataSource[indexPath.row]];
         return cell;
     }
-    LDNewsTableViewCell *cell = [LDNewsTableViewCell dequeueReusableWithTableView:tableView];
-    [cell refreshWithModel:self.dataSource[indexPath.row]];
-    return cell;
+    
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    if (indexPath.section == 0) {
-        
+    if (indexPath.section == 0 && self.isSearchModel == NO) {
+        LDVoiceModel *model = self.dataSource[indexPath.row];
+        LDVoiceDetailViewcontroller * vc = [LDVoiceDetailViewcontroller new];
+        vc.title = model.title;
+        vc.urlStrng = [NSString stringWithFormat:@"%@?id=%@&token=%@",model.contentUrl,model.v_id,[LDUserManager userID]];
+        vc.s_id = model.v_id;
+        vc.isCollection = [model.collectionFlag isEqualToString:@"Y"]?YES:NO;
+        vc.collectionType = @"2";
+        vc.didRefreshCollectionStateBlock = ^(BOOL isCollection) {
+            model.collectionFlag = isCollection?@"Y":@"N";
+            [tableView reloadData];
+        };
+        vc.didRefreshPlayStateBlock = ^(BOOL isPlaying) {
+            model.isPlaying = isPlaying;
+            [tableView reloadData];
+        };
+        vc.isPlaying = model.isPlaying;
+        if (model.isPlaying == NO) {
+            for ( LDVoiceModel *m in self.dataSource) {
+                m.isPlaying = NO;
+            }
+            model.isPlaying = YES;
+            [tableView reloadData];
+        }
+        [self.navigationController pushViewController:vc animated:YES];
         return;
+    }else {
+        LDNewsModel *model = self.dataSource[indexPath.row];
+        LDWebViewViewController * vc = [LDWebViewViewController new];
+        vc.urlStrng = [NSString stringWithFormat:@"%@?id=%@&token=%@",model.contentUrl,model.newsId,[LDUserManager userID]];
+        vc.s_id = model.newsId;
+        vc.isCollection = [model.collectionFlag isEqualToString:@"Y"]?YES:NO;
+        vc.collectionType = @"1";
+        vc.title = model.title;
+        vc.didRefreshCollectionStateBlock = ^(BOOL isCollection) {
+            model.collectionFlag = isCollection?@"Y":@"N";
+        };
+        [self.navigationController pushViewController:vc animated:YES];
     }
-    LDNewsModel *model = self.dataSource[indexPath.row];
-    LDWebViewViewController * vc = [LDWebViewViewController new];
-    vc.urlStrng = [NSString stringWithFormat:@"%@?id=%@&token=%@",model.contentUrl,model.newsId,[LDUserManager userID]];
-    vc.s_id = model.newsId;
-    vc.isCollection = [model.collectionFlag isEqualToString:@"Y"]?YES:NO;
-    vc.collectionType = @"1";
-    vc.title = model.title;
-    vc.didRefreshCollectionStateBlock = ^(BOOL isCollection) {
-        model.collectionFlag = isCollection?@"Y":@"N";
-    };
-    [self.navigationController pushViewController:vc animated:YES];
 }
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         return 90;
     }
-    return 120;
+    
+    return kTableViewCellHeight;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
     view.backgroundColor = [UIColor whiteColor];
     UILabel *label = [[UILabel alloc]init];
     if (section == 0) {
-    label.text = @"每日播报";
+        label.text = @"每日播报";
     }else{
         label.text = @"聚合资讯";
     }

@@ -23,6 +23,8 @@ target 'LeDaoCollege' do
     pod 'UMCShare/Social/WeChat'
     pod 'UMCShare/Social/ReducedSina'
     
+    pod 'JXPagingView/Pager'
+    pod 'JXCategoryView'
     pod 'SJVideoPlayer'
     pod 'MJRefresh'
 end

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "LDStoreModel.h"
 NS_ASSUME_NONNULL_BEGIN
 extern NSString *const kLDDicBookCellIdentifier;
 
@@ -22,7 +22,7 @@ extern NSString *const kLDDicBookCellIdentifier;
 + (instancetype)dequeueReusableWithTableView:(UITableView *)tableView;
 
 - (void)masLayoutSubview;
-//- (void)refreshWithModel:(LDNewsModel *)model;
+- (void)refreshWithModel:(LDStoreModel *)model;
 @end
 
 NS_ASSUME_NONNULL_END

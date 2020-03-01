@@ -14,6 +14,7 @@
 #import "LDLiveViewController.h"
 #import "LDSearchViewController.h"
 #import "LDBookDicViewController.h"
+#import "LDLoginViewController.h"
 @interface LDMainViewController ()<VTMagicViewDelegate,VTMagicViewDataSource>
 
 @property (nonatomic, strong)VTMagicController *magicController;
@@ -98,12 +99,18 @@
 }
 #pragma  mark - Touch Action
 - (void)clickSearchAction:(UIButton *)sender {
+    if (![LDUserManager isLogin]) {
+        LDLoginViewController *vc = [LDLoginViewController new];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+        return;
+    }
     LDSearchViewController *vc = [LDSearchViewController new];
     [self.navigationController pushViewController:vc animated:YES];
 }
 #pragma mark - VTMagicViewDelegate
 - (NSArray<__kindof NSString *> *)menuTitlesForMagicView:(VTMagicView *)magicView{
-    return @[@"资讯",@"视频",@"直播",@"宝典"];
+    return @[@"资讯",@"微课",@"直播",@"宝典"];
 }
 
 - (void)magicView:(VTMagicView *)magicView didSelectItemAtIndex:(NSUInteger)itemIndex

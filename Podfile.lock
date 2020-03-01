@@ -18,6 +18,8 @@ PODS:
     - CYLTabBarController/Core (= 1.28.4)
   - CYLTabBarController/Core (1.28.4)
   - IQKeyboardManager (6.5.4)
+  - JXCategoryView (1.5.2)
+  - JXPagingView/Pager (2.0.1)
   - LookinServer (1.0.0)
   - Masonry (1.1.0)
   - MJRefresh (3.2.3)
@@ -394,6 +396,8 @@ DEPENDENCIES:
   - AFNetworking
   - CYLTabBarController
   - IQKeyboardManager
+  - JXCategoryView
+  - JXPagingView/Pager
   - LookinServer
   - MJRefresh
   - QMUIKit
@@ -414,6 +418,8 @@ SPEC REPOS:
     - AFNetworking
     - CYLTabBarController
     - IQKeyboardManager
+    - JXCategoryView
+    - JXPagingView
     - LookinServer
     - Masonry
     - MJRefresh
@@ -435,6 +441,8 @@ SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   CYLTabBarController: d7160abd77b3a94626cff123fdfaa4f3badde20d
   IQKeyboardManager: 72b359cd7e777e3a984cedbe05f8da45320cbb63
+  JXCategoryView: b284d35a7a8772eada05dd78642233e1eb763ea8
+  JXPagingView: cacaf7512d223e21133bd71ca245126acc5f535a
   LookinServer: 0002891cd3cec5e082a910e897dfe71b4f06b89e
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJRefresh: 2b1214a2dc8f4df4c5dcb028ea2ad4e245425fb7
@@ -452,6 +460,6 @@ SPEC CHECKSUMS:
   VTMagic: b49e5f456dbcbfd9a3588ba92417233a105bc193
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: 972fcab3c3f744e91a474a8aa40941c8711eb27f
+PODFILE CHECKSUM: 42fc253a75107e872f72a00c3ea4c0f3773a2e32
 
 COCOAPODS: 1.8.4

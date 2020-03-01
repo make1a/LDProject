@@ -18,8 +18,8 @@
 #pragma mark - life cycle
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = NO;
     [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
-
 }
 - (void)viewDidLoad
 {
@@ -31,9 +31,7 @@
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self requestData];
     }];
-    
 }
-
 - (void)configUI {
     self.tableView.separatorInset = UIEdgeInsetsMake(0,0, 0, 0);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;

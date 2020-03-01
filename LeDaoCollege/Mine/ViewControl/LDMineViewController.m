@@ -18,6 +18,7 @@
 #import "LDScoreViewController.h"
 #import "LDCustomManagerListViewController.h"
 #import "LDMyIconViewController.h"
+#import "LDCollegeViewController.h"
 
 @interface LDMineViewController () <QMUITableViewDelegate,QMUITableViewDataSource>
 @property (nonatomic,strong)QMUITableView * tableView;
@@ -104,19 +105,25 @@
         return;
     }
     switch (indexPath.row) {
-        case 0:
+            case 0:
         {
-            LDCustomManagerListViewController *vc = [LDCustomManagerListViewController new];
+            LDCollegeViewController *vc = [LDCollegeViewController new];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         case 1:
         {
-            LDCollectViewController *vc = [LDCollectViewController new];
+            LDCustomManagerListViewController *vc = [LDCustomManagerListViewController new];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         case 2:
+        {
+            LDCollectViewController *vc = [LDCollectViewController new];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 3:
         {
             LDFinishOrderViewController *vc = [LDFinishOrderViewController new];
             [self.navigationController pushViewController:vc animated:YES];
@@ -129,20 +136,20 @@
 //
 //        }
             break;
-        case 3:
+        case 4:
         {
             LDBookRackViewController *vc = [LDBookRackViewController new];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
-        case 4:
+        case 5:
         {
             LDScoreViewController *vc = [LDScoreViewController new];
             vc.allScore = self.headView.scoreLabel.text;
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
-        case 5:
+        case 6:
         {
             LDMyIconViewController *vc = [[LDMyIconViewController alloc]initWithNibName:@"LDMyIconViewController" bundle:nil];
             [self.navigationController pushViewController:vc animated:YES];
@@ -164,13 +171,13 @@
 }
 - (NSArray *)titlesArray {
     if (!_titlesArray) {
-        _titlesArray = @[@[@"我的管理",@"我的收藏",@"我的订单",@"我的书架",@"我的积分",@"我的乐币"],@[@"设置"]];
+        _titlesArray = @[@[@"我的大学",@"我的管理",@"我的收藏",@"我的订单",@"我的智库",@"我的积分",@"我的乐币"],@[@"设置"]];
     }
     return _titlesArray;
 }
 - (NSArray *)imagesArray {
     if (!_imagesArray) {
-        _imagesArray = @[@[@"mine_manage_list",@"mine_collect_list",@"mine_list_daily",@"mine_shoppingcart_list",@"mine_integral_list",@"mine_coin_list"],@[@"mine_set_list"]];
+        _imagesArray = @[@[@"nav_button_xueyuan_pre2",@"mine_manage_list",@"mine_collect_list",@"mine_list_daily",@"mine_shoppingcart_list",@"mine_integral_list",@"mine_coin_list"],@[@"mine_set_list"]];
     }
     return _imagesArray;
 }

@@ -311,7 +311,7 @@
         _logoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_logoutButton setTitle:@"退出登录" forState:UIControlStateNormal];
         [_logoutButton setCornerRadius:PtHeight(20)];
-        _logoutButton.backgroundColor = UIColorFromHEXA(0x69B681, 1);
+        _logoutButton.backgroundColor = MainThemeColor;
         [_logoutButton addTarget:self action:@selector(logOutAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _logoutButton;

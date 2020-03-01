@@ -7,7 +7,7 @@
 //
 
 #import "LDNavigationController.h"
-
+#import "LDLoginViewController.h"
 @interface LDNavigationController ()<UIGestureRecognizerDelegate>
 
 @end

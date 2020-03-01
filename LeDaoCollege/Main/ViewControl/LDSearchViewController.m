@@ -12,7 +12,7 @@
 #import "LDVoiceListViewController.h"
 #import "LDVideoListViewController.h"
 #import "LDLiveViewController.h"
-
+#import "LDBookDicViewController.h"
 @interface LDSearchViewController ()
 
 @property(nonatomic, strong) NSArray<NSString *> *keywords;
@@ -45,7 +45,7 @@
 }
 
 - (NSArray *)menueBarTitles {
-    return @[@"资讯",@"音频",@"视频",@"直播"];
+    return @[@"资讯",@"视频",@"直播",@"宝典"];
 }
 - (void)requestTag {
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"academic/search" requestParameters:nil requestHeader:nil success:^(id responseObject) {
@@ -76,9 +76,9 @@
     [self.magicController.magicView reloadData];
 }
 - (void)addSearchBar{
+    self.searchBar.frame = CGRectMake(40, -5, 300, 32);
+    [self.searchBar sizeToFit];
     [self.navigationController.navigationBar addSubview:self.searchBar];
-    self.searchBar.frame = CGRectMake((375-280)/2, 5, 280, PtHeight(32));
-    
 }
 - (void)addHistoryView {
     [self.view addSubview:self.historyView];
@@ -135,15 +135,15 @@
             break;
         case 1:
         {
-            static NSString *identifier = @"LDVoiceViewController.identifier";
-            LDVoiceListViewController *vc = [magicView dequeueReusablePageWithIdentifier:identifier];
+            static NSString *identifier = @"LDVideoViewController.identifier";
+            LDVideoListViewController *vc = [magicView dequeueReusablePageWithIdentifier:identifier];
             if (!vc)
             {
-                vc = [[LDVoiceListViewController alloc] init];
+                vc = [[LDVideoListViewController alloc] init];
                 vc.isSearchModel = YES;
             }
             [vc requestSource:self.searchTitle mark:@"" back:^(NSInteger count) {
-                weakself.noticeView.titleLabel.text = [NSString stringWithFormat:@"共找到%ld个相关内容",vc.dataSource.count];
+                weakself.noticeView.titleLabel.text = [NSString stringWithFormat:@"共找到%lu个相关内容",(unsigned long)vc.dataSource.count];
                 [vc.tableView qmui_scrollToTop];
                 vc.tableView.tableHeaderView = self.noticeView;
                 [vc.tableView qmui_scrollToTop];
@@ -154,13 +154,13 @@
             return vc;
         }
             break;
-        case 2:
+        case 3:
         {
-            static NSString *identifier = @"LDVideoViewController.identifier";
-            LDVideoListViewController *vc = [magicView dequeueReusablePageWithIdentifier:identifier];
+            static NSString *identifier = @"LDBookDicViewController.identifier";
+            LDBookDicViewController *vc = [magicView dequeueReusablePageWithIdentifier:identifier];
             if (!vc)
             {
-                vc = [[LDVideoListViewController alloc] init];
+                vc = [[LDBookDicViewController alloc] init];
                 vc.isSearchModel = YES;
             }
             [vc requestSource:self.searchTitle mark:@"" back:^(NSInteger count) {

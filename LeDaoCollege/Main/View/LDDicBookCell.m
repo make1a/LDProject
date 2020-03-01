@@ -44,16 +44,16 @@ NSString *const kLDDicBookCellIdentifier = @"kLDDicBookCellIdentifier";
     }
     return self;
 }
-//- (void)refreshWithModel:(LDNewsModel *)model {
-//    if ([model.coverImg containsString:@"http"]) {
-//        [self.bigImageVIew sd_setImageWithURL:[NSURL URLWithString:model.coverImg] placeholderImage:[UIImage imageNamed:@"seizeaseat_0"]];
-//    }else{
-//        [self.bigImageVIew sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@img/%@",BaseAPI,model.coverImg]] placeholderImage:[UIImage imageNamed:@"seizeaseat_0"]];
-//    }
-//    self.authorLabel.text = model.author;
-//    self.titleLabel.text = model.title;
-//    self.watchLabel.text = [NSString stringWithFormat:@"%@人已看",model.numOfVisiter];
-//}
+- (void)refreshWithModel:(LDStoreModel *)model {
+    if ([model.coverImg containsString:@"http"]) {
+        [self.bigImageVIew sd_setImageWithURL:[NSURL URLWithString:model.coverImg] placeholderImage:[UIImage imageNamed:@"seizeaseat_0"]];
+    }else{
+        [self.bigImageVIew sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@img/%@",BaseAPI,model.coverImg]] placeholderImage:[UIImage imageNamed:@"seizeaseat_0"]];
+    }
+    self.authorLabel.text = model.author;
+    self.titleLabel.text = model.title;
+    self.watchLabel.text = [NSString stringWithFormat:@"%@人已看",model.numOfVisiter];
+}
 
 #pragma  mark - masLayoutSuviews
 - (void)masLayoutSubview
@@ -72,7 +72,7 @@ NSString *const kLDDicBookCellIdentifier = @"kLDDicBookCellIdentifier";
     
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.bigImageVIew.mas_right).mas_offset(PtWidth(17));
-        make.top.equalTo(self.bigImageVIew);
+        make.top.equalTo(self.bigImageVIew).mas_offset(5);
         make.right.mas_equalTo(self).mas_offset(PtWidth(-14));
     }];
     

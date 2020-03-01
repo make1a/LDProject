@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LDAllshoppingViewController : QMUICommonTableViewController
+@interface LDAllshoppingViewController : QMUICommonTableViewController<JXPagerViewListViewDelegate>
 @property (nonatomic,assign)BOOL isSearchModel;
 @property (nonatomic,strong)NSArray * dataSource;
 

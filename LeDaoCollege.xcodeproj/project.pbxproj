@@ -20,6 +20,7 @@
 		2633EA562372C13500F78BFB /* LDCustomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2633EA552372C13500F78BFB /* LDCustomModel.m */; };
 		2638A5C82351791500D4DC55 /* MKRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2638A5C72351791500D4DC55 /* MKRequestManager.m */; };
 		2638A5CB23517ADC00D4DC55 /* LDAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 2638A5CA23517ADC00D4DC55 /* LDAPI.m */; };
+		2638C805240950B300FE84BF /* LDBookListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2638C804240950B300FE84BF /* LDBookListViewController.m */; };
 		263D100B23F7D076009A6FEB /* LDDicBookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 263D100A23F7D076009A6FEB /* LDDicBookCell.m */; };
 		263D100E23F7D566009A6FEB /* LDBookDicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 263D100D23F7D566009A6FEB /* LDBookDicViewController.m */; };
 		2640F06A232771760015F7A6 /* LDTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2640F069232771760015F7A6 /* LDTagView.m */; };
@@ -86,6 +87,7 @@
 		2698FFA3237949AD00883FE7 /* LDSmallClassSectionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2698FFA2237949AD00883FE7 /* LDSmallClassSectionDetailViewController.m */; };
 		26AAE4E22334DD8B00B9C5D3 /* LDShoppingTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26AAE4E02334DD8B00B9C5D3 /* LDShoppingTitleCell.m */; };
 		26AAE4E32334DD8B00B9C5D3 /* LDShoppingTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26AAE4E12334DD8B00B9C5D3 /* LDShoppingTitleCell.xib */; };
+		26AFEE20240016BD00559C88 /* LDCollegeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26AFEE1F240016BD00559C88 /* LDCollegeViewController.m */; };
 		26B0D4DF2356B9400064205B /* LDNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B0D4DE2356B9400064205B /* LDNewsModel.m */; };
 		26B0D4E22356BEEA0064205B /* LDUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B0D4E12356BEEA0064205B /* LDUserModel.m */; };
 		26B0D4E52356C1B60064205B /* LDUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B0D4E42356C1B60064205B /* LDUserManager.m */; };
@@ -151,6 +153,13 @@
 		26D93F8123372E2700B31DAB /* LDShoppingImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26D93F7F23372E2700B31DAB /* LDShoppingImageCell.xib */; };
 		26D93F8423372F1300B31DAB /* LDShoppingDetailFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = 26D93F8323372F1300B31DAB /* LDShoppingDetailFootView.m */; };
 		26D93F8623372F2B00B31DAB /* LDShoppingDetailFootView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26D93F8523372F2B00B31DAB /* LDShoppingDetailFootView.xib */; };
+		26DCE02423F97FA0004A1A75 /* LDShoppingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26DCE02323F97FA0004A1A75 /* LDShoppingViewController.m */; };
+		26DCE02723FCD978004A1A75 /* LDShopClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26DCE02623FCD978004A1A75 /* LDShopClassViewController.m */; };
+		26DCE02A23FCDBBD004A1A75 /* LDShopProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26DCE02923FCDBBD004A1A75 /* LDShopProjectViewController.m */; };
+		26DCE02D23FCDBF9004A1A75 /* LDShopSkillViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26DCE02C23FCDBF9004A1A75 /* LDShopSkillViewController.m */; };
+		26DCE03023FCDC0A004A1A75 /* LDShopBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26DCE02F23FCDC0A004A1A75 /* LDShopBookViewController.m */; };
+		26DCE03323FCDC2A004A1A75 /* LDShopPlatformViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26DCE03223FCDC29004A1A75 /* LDShopPlatformViewController.m */; };
+		26DCE03623FCDC3D004A1A75 /* LDShopResourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26DCE03523FCDC3D004A1A75 /* LDShopResourceViewController.m */; };
 		26DD09842333600400E1B5E2 /* LDNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 26DD09832333600400E1B5E2 /* LDNoticeView.m */; };
 		26DD09862333602000E1B5E2 /* LDNoticeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26DD09852333602000E1B5E2 /* LDNoticeView.xib */; };
 		26DD0989233368A500E1B5E2 /* LDStoreSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26DD0988233368A500E1B5E2 /* LDStoreSearchViewController.m */; };
@@ -221,6 +230,8 @@
 		2638A5C72351791500D4DC55 /* MKRequestManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKRequestManager.m; sourceTree = "<group>"; };
 		2638A5C923517ADC00D4DC55 /* LDAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDAPI.h; sourceTree = "<group>"; };
 		2638A5CA23517ADC00D4DC55 /* LDAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDAPI.m; sourceTree = "<group>"; };
+		2638C803240950B300FE84BF /* LDBookListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDBookListViewController.h; sourceTree = "<group>"; };
+		2638C804240950B300FE84BF /* LDBookListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDBookListViewController.m; sourceTree = "<group>"; };
 		263D100923F7D076009A6FEB /* LDDicBookCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDDicBookCell.h; sourceTree = "<group>"; };
 		263D100A23F7D076009A6FEB /* LDDicBookCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDDicBookCell.m; sourceTree = "<group>"; };
 		263D100C23F7D566009A6FEB /* LDBookDicViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDBookDicViewController.h; sourceTree = "<group>"; };
@@ -345,6 +356,8 @@
 		26AAE4DF2334DD8B00B9C5D3 /* LDShoppingTitleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDShoppingTitleCell.h; sourceTree = "<group>"; };
 		26AAE4E02334DD8B00B9C5D3 /* LDShoppingTitleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDShoppingTitleCell.m; sourceTree = "<group>"; };
 		26AAE4E12334DD8B00B9C5D3 /* LDShoppingTitleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LDShoppingTitleCell.xib; sourceTree = "<group>"; };
+		26AFEE1E240016BD00559C88 /* LDCollegeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDCollegeViewController.h; sourceTree = "<group>"; };
+		26AFEE1F240016BD00559C88 /* LDCollegeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDCollegeViewController.m; sourceTree = "<group>"; };
 		26B0D4DD2356B9400064205B /* LDNewsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDNewsModel.h; sourceTree = "<group>"; };
 		26B0D4DE2356B9400064205B /* LDNewsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDNewsModel.m; sourceTree = "<group>"; };
 		26B0D4E02356BEEA0064205B /* LDUserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDUserModel.h; sourceTree = "<group>"; };
@@ -464,6 +477,20 @@
 		26D93F8223372F1300B31DAB /* LDShoppingDetailFootView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDShoppingDetailFootView.h; sourceTree = "<group>"; };
 		26D93F8323372F1300B31DAB /* LDShoppingDetailFootView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDShoppingDetailFootView.m; sourceTree = "<group>"; };
 		26D93F8523372F2B00B31DAB /* LDShoppingDetailFootView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LDShoppingDetailFootView.xib; sourceTree = "<group>"; };
+		26DCE02223F97FA0004A1A75 /* LDShoppingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDShoppingViewController.h; sourceTree = "<group>"; };
+		26DCE02323F97FA0004A1A75 /* LDShoppingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDShoppingViewController.m; sourceTree = "<group>"; };
+		26DCE02523FCD977004A1A75 /* LDShopClassViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDShopClassViewController.h; sourceTree = "<group>"; };
+		26DCE02623FCD978004A1A75 /* LDShopClassViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDShopClassViewController.m; sourceTree = "<group>"; };
+		26DCE02823FCDBBD004A1A75 /* LDShopProjectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDShopProjectViewController.h; sourceTree = "<group>"; };
+		26DCE02923FCDBBD004A1A75 /* LDShopProjectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDShopProjectViewController.m; sourceTree = "<group>"; };
+		26DCE02B23FCDBF9004A1A75 /* LDShopSkillViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDShopSkillViewController.h; sourceTree = "<group>"; };
+		26DCE02C23FCDBF9004A1A75 /* LDShopSkillViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDShopSkillViewController.m; sourceTree = "<group>"; };
+		26DCE02E23FCDC0A004A1A75 /* LDShopBookViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDShopBookViewController.h; sourceTree = "<group>"; };
+		26DCE02F23FCDC0A004A1A75 /* LDShopBookViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDShopBookViewController.m; sourceTree = "<group>"; };
+		26DCE03123FCDC29004A1A75 /* LDShopPlatformViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDShopPlatformViewController.h; sourceTree = "<group>"; };
+		26DCE03223FCDC29004A1A75 /* LDShopPlatformViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDShopPlatformViewController.m; sourceTree = "<group>"; };
+		26DCE03423FCDC3D004A1A75 /* LDShopResourceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDShopResourceViewController.h; sourceTree = "<group>"; };
+		26DCE03523FCDC3D004A1A75 /* LDShopResourceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDShopResourceViewController.m; sourceTree = "<group>"; };
 		26DD09822333600400E1B5E2 /* LDNoticeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDNoticeView.h; sourceTree = "<group>"; };
 		26DD09832333600400E1B5E2 /* LDNoticeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDNoticeView.m; sourceTree = "<group>"; };
 		26DD09852333602000E1B5E2 /* LDNoticeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LDNoticeView.xib; sourceTree = "<group>"; };
@@ -706,6 +733,8 @@
 				266DC86923740BD30036A767 /* LDBookDetailViewController.xib */,
 				2698FFA1237949AD00883FE7 /* LDSmallClassSectionDetailViewController.h */,
 				2698FFA2237949AD00883FE7 /* LDSmallClassSectionDetailViewController.m */,
+				26AFEE1E240016BD00559C88 /* LDCollegeViewController.h */,
+				26AFEE1F240016BD00559C88 /* LDCollegeViewController.m */,
 			);
 			path = ViewControl;
 			sourceTree = "<group>";
@@ -815,6 +844,22 @@
 				26C846AE2338CAEE00500B3F /* LDCommitBuyViewController.h */,
 				26C846AF2338CAEE00500B3F /* LDCommitBuyViewController.m */,
 				26C846B02338CAEE00500B3F /* LDCommitBuyViewController.xib */,
+				26DCE02223F97FA0004A1A75 /* LDShoppingViewController.h */,
+				26DCE02323F97FA0004A1A75 /* LDShoppingViewController.m */,
+				26DCE02523FCD977004A1A75 /* LDShopClassViewController.h */,
+				26DCE02623FCD978004A1A75 /* LDShopClassViewController.m */,
+				26DCE02823FCDBBD004A1A75 /* LDShopProjectViewController.h */,
+				26DCE02923FCDBBD004A1A75 /* LDShopProjectViewController.m */,
+				26DCE02B23FCDBF9004A1A75 /* LDShopSkillViewController.h */,
+				26DCE02C23FCDBF9004A1A75 /* LDShopSkillViewController.m */,
+				26DCE02E23FCDC0A004A1A75 /* LDShopBookViewController.h */,
+				26DCE02F23FCDC0A004A1A75 /* LDShopBookViewController.m */,
+				26DCE03123FCDC29004A1A75 /* LDShopPlatformViewController.h */,
+				26DCE03223FCDC29004A1A75 /* LDShopPlatformViewController.m */,
+				26DCE03423FCDC3D004A1A75 /* LDShopResourceViewController.h */,
+				26DCE03523FCDC3D004A1A75 /* LDShopResourceViewController.m */,
+				2638C803240950B300FE84BF /* LDBookListViewController.h */,
+				2638C804240950B300FE84BF /* LDBookListViewController.m */,
 			);
 			path = ViewControl;
 			sourceTree = "<group>";
@@ -860,7 +905,6 @@
 			children = (
 				2690FE6C23A1DBCC003DF77D /* Tool */,
 				265CB9572320A37100883FE2 /* ViewControl */,
-				265CB9582320A37100883FE2 /* Model */,
 				265CB9592320A37100883FE2 /* View */,
 			);
 			path = Main;
@@ -901,6 +945,7 @@
 				26E7F92123C5BD99003FE788 /* LDClassCatalogViewController.m */,
 				263D100C23F7D566009A6FEB /* LDBookDicViewController.h */,
 				263D100D23F7D566009A6FEB /* LDBookDicViewController.m */,
+				265CB9582320A37100883FE2 /* Model */,
 			);
 			path = ViewControl;
 			sourceTree = "<group>";
@@ -1369,6 +1414,7 @@
 				26CBF8712323BC6E005139EF /* NSString+PinYin4Cocoa.m in Sources */,
 				2690FE8D23A1DBD9003DF77D /* DFPlayer.m in Sources */,
 				2698FFA3237949AD00883FE7 /* LDSmallClassSectionDetailViewController.m in Sources */,
+				26DCE03323FCDC2A004A1A75 /* LDShopPlatformViewController.m in Sources */,
 				26CBF8752323BC6E005139EF /* HanyuPinyinOutputFormat.m in Sources */,
 				268543662373C445003083EE /* LDChargeModel.m in Sources */,
 				268EEDFC2325F2670014F971 /* LDHeadImageCell.m in Sources */,
@@ -1377,12 +1423,14 @@
 				26BF746123700A70008D4F24 /* LDOrderModel.m in Sources */,
 				26CBF88E23252566005139EF /* LDLoginViewController.m in Sources */,
 				26B6CD5B233A07FA00E94520 /* LDEmptyView.m in Sources */,
+				2638C805240950B300FE84BF /* LDBookListViewController.m in Sources */,
 				26F3BB932330B44B001A645C /* LDScoreCell.m in Sources */,
 				26CBF8912325275C005139EF /* LoginEnableButton.m in Sources */,
 				265CB95F2320A96100883FE2 /* MYConstansManager.m in Sources */,
 				261CBB53237179EA00134E6D /* LDAlterPhoneViewController.m in Sources */,
 				26CB9A712334C31F00DC12AD /* LDToolBooksViewController.m in Sources */,
 				26E7F92223C5BD99003FE788 /* LDClassCatalogViewController.m in Sources */,
+				26DCE02A23FCDBBD004A1A75 /* LDShopProjectViewController.m in Sources */,
 				26E816302332267400CECCE3 /* LDMineCustomHead.m in Sources */,
 				26E8162D23321FAC00CECCE3 /* LDVideoTableViewCell.m in Sources */,
 				265CB93C2320A2F400883FE2 /* ViewController.m in Sources */,
@@ -1391,6 +1439,7 @@
 				263D100B23F7D076009A6FEB /* LDDicBookCell.m in Sources */,
 				26CB9A7C2334CE2000DC12AD /* LDShoppingTableViewCell.m in Sources */,
 				26BCBDD923697A1000C568A0 /* LDNoUseView.m in Sources */,
+				26DCE02423F97FA0004A1A75 /* LDShoppingViewController.m in Sources */,
 				268EEDF92325F1640014F971 /* ClickPickerCell.m in Sources */,
 				26B70237232F858E00156116 /* LDShoppingCartPaymentView.m in Sources */,
 				26C846B12338CAEE00500B3F /* LDCommitBuyViewController.m in Sources */,
@@ -1406,6 +1455,7 @@
 				268EEDF02325EDFC0014F971 /* LDConfigTableViewController.m in Sources */,
 				26960D6D23A4745C002B1662 /* LDCatalogViewController.m in Sources */,
 				26F67A2A2375611D00B1D71C /* IAPShare.m in Sources */,
+				26DCE03623FCDC3D004A1A75 /* LDShopResourceViewController.m in Sources */,
 				268EEDF72325F1640014F971 /* DatePickerCell.m in Sources */,
 				26960D7623A4808C002B1662 /* LDShoppingDetailNameViewCell.m in Sources */,
 				26CB9A742334C32C00DC12AD /* LDSmallClassViewController.m in Sources */,
@@ -1436,15 +1486,18 @@
 				26F67A272375611D00B1D71C /* IAPHelper.m in Sources */,
 				2658F0FD232CAEBF00F4C37A /* MKIndexView.m in Sources */,
 				265BE25E232684EA0093E60A /* LDAlterNameViewController.m in Sources */,
+				26DCE02723FCD978004A1A75 /* LDShopClassViewController.m in Sources */,
 				26E816352332395100CECCE3 /* LDNavigationController.m in Sources */,
 				2633E3D8235D53D8002DEA26 /* LDVideoModel.m in Sources */,
 				2638A5C82351791500D4DC55 /* MKRequestManager.m in Sources */,
+				26DCE03023FCDC0A004A1A75 /* LDShopBookViewController.m in Sources */,
 				2690FE6B23A1DAEB003DF77D /* LDVoiceDetailViewcontroller.m in Sources */,
 				26BA0655232735E200992FFD /* LDAlterNameViewController.m in Sources */,
 				266DC86A23740BD30036A767 /* LDBookDetailViewController.m in Sources */,
 				266FE34B23BF0EAB00CD23BE /* UIViewController+RotationControl.m in Sources */,
 				26CBF8792323BC6E005139EF /* PinYinForObjc.m in Sources */,
 				26EE3ED4233B5A64003FEA7B /* LDMyIconViewController.m in Sources */,
+				26AFEE20240016BD00559C88 /* LDCollegeViewController.m in Sources */,
 				26960D7923A4CEF7002B1662 /* LDVoiceListViewController.m in Sources */,
 				2633EA4F2372649E00F78BFB /* LDFirstLoginViewController.m in Sources */,
 				26F67A292375611D00B1D71C /* SFHFKeychainUtils.m in Sources */,
@@ -1483,6 +1536,7 @@
 				2613781123225DA300228261 /* LDSearchHistoryView.m in Sources */,
 				265CB9962320B2AA00883FE2 /* LDMineViewController.m in Sources */,
 				26F3BB7F2330AD54001A645C /* LJCollectionViewFlowLayout.m in Sources */,
+				26DCE02D23FCDBF9004A1A75 /* LDShopSkillViewController.m in Sources */,
 				26B6CD64233A172C00E94520 /* LDEmptyViewController.m in Sources */,
 				265CB9392320A2F400883FE2 /* AppDelegate.m in Sources */,
 				26B38DAC236EE51B00578D89 /* LDWebViewViewController.m in Sources */,
@@ -1632,7 +1686,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = Q94RAKWUSW;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/LeDaoCollege/GlobalTool/PrefixHeader.pch";
@@ -1704,7 +1758,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = Q94RAKWUSW;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/LeDaoCollege/GlobalTool/PrefixHeader.pch";

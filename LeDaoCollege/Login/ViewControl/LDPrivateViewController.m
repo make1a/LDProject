@@ -22,7 +22,7 @@
     self.title = @"隐私政策条款";
     UIWebView *webView = [[UIWebView alloc]initWithFrame:self.view.bounds];
     [self.view addSubview:webView];
-    NSURL *url = [NSURL URLWithString:@"https://ledaoapp.com/privacy/privacy.html"];
+    NSURL *url = [NSURL URLWithString:@"https://www.maaiting.com"];
     [webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
 

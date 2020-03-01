@@ -25,7 +25,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [UIApplication sharedApplication].statusBarHidden = NO;
     // 设置主窗口,并设置根控制器
-//    sleep(3);
+    sleep(3);
     self.window = [[UIWindow alloc] init];
     self.window.frame = [UIScreen mainScreen].bounds;
     [self.window makeKeyAndVisible];
@@ -53,20 +53,15 @@
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Sina appKey:WBAPPKEY  appSecret:WBAPPSecret redirectURL:BaseAPI];
 }
 - (void)configMainView{
-    
-    LDTabBarController *rootViewController = [[LDTabBarController alloc] init];
-    AppDelegate  *delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
-    delegate.window.rootViewController = rootViewController;
-    
-//    if ([LDUserManager isLogin]) {
-//        LDTabBarController *rootViewController = [[LDTabBarController alloc] init];
-//        AppDelegate  *delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
-//        delegate.window.rootViewController = rootViewController;
-//    }else {
-//        LDLoginViewController *vc = [LDLoginViewController new];
-//        LDNavigationController *nav = [[LDNavigationController alloc]initWithRootViewController:vc];
-//        [self.window setRootViewController:nav];
-//    }
+    if ([LDUserManager isLogin]) {
+        LDTabBarController *rootViewController = [[LDTabBarController alloc] init];
+        AppDelegate  *delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
+        delegate.window.rootViewController = rootViewController;
+    }else {
+        LDLoginViewController *vc = [LDLoginViewController new];
+        LDNavigationController *nav = [[LDNavigationController alloc]initWithRootViewController:vc];
+        [self.window setRootViewController:nav];
+    }
 }
 - (void)configIQKeyboard {
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
@@ -89,14 +84,14 @@
                 delegate.window.rootViewController = rootViewController;
             }
         }else {
-//            LDLoginViewController *vc = [LDLoginViewController new];
-//            LDNavigationController *nav = [[LDNavigationController alloc]initWithRootViewController:vc];
-//            [self.window setRootViewController:nav];
+            LDLoginViewController *vc = [LDLoginViewController new];
+            LDNavigationController *nav = [[LDNavigationController alloc]initWithRootViewController:vc];
+            [self.window setRootViewController:nav];
         }
     } faild:^(NSError *error) {
-//        LDLoginViewController *vc = [LDLoginViewController new];
-//        LDNavigationController *nav = [[LDNavigationController alloc]initWithRootViewController:vc];
-//        [self.window setRootViewController:nav];
+        LDLoginViewController *vc = [LDLoginViewController new];
+        LDNavigationController *nav = [[LDNavigationController alloc]initWithRootViewController:vc];
+        [self.window setRootViewController:nav];
     }];
 }
 - (void)recharge{

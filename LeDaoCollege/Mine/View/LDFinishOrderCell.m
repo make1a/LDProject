@@ -48,8 +48,8 @@ NSString *const kLDFinishOrderCellIdentifier = @"kLDFinishOrderCellIdentifier";
         self.tagLabel.text = @"微课";
     }
     
-    self.priceLabel.text = [NSString stringWithFormat:@"%@",model.originalPrice];
-    self.safePriceLabel.text = [NSString stringWithFormat:@"%@",model.discount];
+    self.priceLabel.text = [NSString stringWithFormat:@"%@金币",model.originalPrice];
+    self.safePriceLabel.text = [NSString stringWithFormat:@"%@金币",model.discount];
     self.timeLabel.text = model.createDate;
 }
 - (void)masLayoutSubview
@@ -87,7 +87,7 @@ NSString *const kLDFinishOrderCellIdentifier = @"kLDFinishOrderCellIdentifier";
         make.right.mas_equalTo(self.contentView).mas_offset(-PtWidth(12));
         make.top.mas_equalTo(self.tagLabel.mas_bottom).mas_offset(8);
     }];
-
+    
     [self.contentView addSubview:self.timeLabel];
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(self.mas_bottom).mas_offset(-5);
@@ -119,15 +119,17 @@ NSString *const kLDFinishOrderCellIdentifier = @"kLDFinishOrderCellIdentifier";
         
         // 赋值
         _priceLabel.attributedText = attribtStr;
-        _priceLabel.textColor = [UIColor darkGrayColor];
-        _priceLabel.font = [UIFont systemFontOfSize:PtHeight(13)];
+        _priceLabel.font = [UIFont systemFontOfSize:13];
+        _priceLabel.text = @"100金币";
+        _priceLabel.textColor = UIColorMakeWithHex(@"##A1A1A1");
     }
     return _priceLabel;
 }
 - (QMUILabel *)safePriceLabel {
     if (!_safePriceLabel) {
         _safePriceLabel = [[QMUILabel alloc]qmui_initWithFont:[UIFont systemFontOfSize:PtHeight(15)] textColor:[UIColor redColor]];
-        _safePriceLabel.text = @"18.88";
+        _safePriceLabel.textColor = UIColorMakeWithHex(@"#EEC64A");
+        _safePriceLabel.font = [UIFont systemFontOfSize:13];
     }
     return _safePriceLabel;
 }

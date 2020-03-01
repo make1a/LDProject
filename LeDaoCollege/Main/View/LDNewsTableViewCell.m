@@ -46,6 +46,7 @@ NSString *const kLDNewsTableViewCellIdentifier = @"kLDNewsTableViewCellIdentifie
     }
     return self;
 }
+
 - (void)refreshWithModel:(LDNewsModel *)model {
     if ([model.coverImg containsString:@"http"]) {
         [self.bigImageVIew sd_setImageWithURL:[NSURL URLWithString:model.coverImg] placeholderImage:[UIImage imageNamed:@"seizeaseat_0"]];
@@ -89,7 +90,7 @@ NSString *const kLDNewsTableViewCellIdentifier = @"kLDNewsTableViewCellIdentifie
     }];
 }
 
-- (void)addFreeLabel{
+- (void)addFreeLabel {
     [self.contentView addSubview:self.freeLabel];
     [self.freeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.contentView.mas_right).mas_offset(-PtWidth(10));

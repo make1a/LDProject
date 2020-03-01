@@ -11,6 +11,14 @@
 #import "LDToolBooksViewController.h"
 #import "LDSmallClassViewController.h"
 
+#import "LDShopClassViewController.h"
+#import "LDShopProjectViewController.h"
+#import "LDShopSkillViewController.h"
+#import "LDShopBookViewController.h"
+#import "LDShopPlatformViewController.h"
+#import "LDShopResourceViewController.h"
+
+#import "LDVideoDetailViewController.h"
 @interface LDStoreSearchViewController ()
 
 @end
@@ -25,10 +33,10 @@
 }
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-
+    
 }
 - (NSArray *)menueBarTitles {
-    return @[@"全部商品",@"工具书",@"微课"];
+    return @[@"课程",@"项目",@"技术",@"书刊",@"平台",@"资源"];
 }
 - (void)requestTag {
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"academic/search" requestParameters:nil requestHeader:nil success:^(id responseObject) {
@@ -40,7 +48,7 @@
                 }
                 self.historyView.histroyArray = historyArray;
             }
-
+            
             if (responseObject[@"data"][@"hotSearch"] != [NSNull null]) {
                 NSArray *hotArray = responseObject[@"data"][@"hotSearch"];
                 self.historyView.advanceArray = hotArray;
@@ -58,11 +66,11 @@
     switch (pageIndex) {
         case 0:
         {
-            static NSString *identifier = @"LDAllshoppingViewController.identifier";
-            LDAllshoppingViewController *vc = [magicView dequeueReusablePageWithIdentifier:identifier];
+            static NSString *identifier = @"LDShopClassViewController.identifier";
+            LDShopClassViewController *vc = [magicView dequeueReusablePageWithIdentifier:identifier];
             if (!vc)
             {
-                vc = [[LDAllshoppingViewController alloc] init];
+                vc = [[LDShopClassViewController alloc] init];
                 vc.isSearchModel = YES;
             }
             [vc requestSource:self.searchTitle back:^(NSInteger count) {
@@ -79,11 +87,11 @@
             break;
         case 1:
         {
-            static NSString *identifier = @"LDToolBooksViewController.identifier";
-            LDToolBooksViewController *vc = [magicView dequeueReusablePageWithIdentifier:identifier];
+            static NSString *identifier = @"LDShopProjectViewController.identifier";
+            LDShopProjectViewController *vc = [magicView dequeueReusablePageWithIdentifier:identifier];
             if (!vc)
             {
-                vc = [[LDToolBooksViewController alloc] init];
+                vc = [[LDShopProjectViewController alloc] init];
                 vc.isSearchModel = YES;
             }
             [vc requestSource:self.searchTitle back:^(NSInteger count) {
@@ -100,11 +108,74 @@
             break;
         case 2:
         {
-            static NSString *identifier = @"LDSmallClassViewController.identifier";
-            LDSmallClassViewController *vc = [magicView dequeueReusablePageWithIdentifier:identifier];
+            static NSString *identifier = @"LDShopSkillViewController.identifier";
+            LDShopSkillViewController *vc = [magicView dequeueReusablePageWithIdentifier:identifier];
             if (!vc)
             {
-                vc = [[LDSmallClassViewController alloc] init];
+                vc = [[LDShopSkillViewController alloc] init];
+                vc.isSearchModel = YES;
+            }
+            [vc requestSource:self.searchTitle back:^(NSInteger count) {
+                weakself.noticeView.titleLabel.text = [NSString stringWithFormat:@"共找到%lu个相关内容",(unsigned long)vc.dataSource.count];
+                [vc.tableView qmui_scrollToTop];
+                vc.tableView.tableHeaderView = self.noticeView;
+                [vc.tableView qmui_scrollToTop];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    vc.tableView.tableHeaderView = nil;
+                });
+            }];
+            return vc;
+        }
+            break;
+        case 3:
+        {
+            static NSString *identifier = @"LDShopBookViewController.identifier";
+            LDShopBookViewController *vc = [magicView dequeueReusablePageWithIdentifier:identifier];
+            if (!vc)
+            {
+                vc = [[LDShopBookViewController alloc] init];
+                vc.isSearchModel = YES;
+            }
+            [vc requestSource:self.searchTitle back:^(NSInteger count) {
+                weakself.noticeView.titleLabel.text = [NSString stringWithFormat:@"共找到%lu个相关内容",(unsigned long)vc.dataSource.count];
+                [vc.tableView qmui_scrollToTop];
+                vc.tableView.tableHeaderView = self.noticeView;
+                [vc.tableView qmui_scrollToTop];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    vc.tableView.tableHeaderView = nil;
+                });
+            }];
+            return vc;
+        }
+            break;
+        case 4:
+        {
+            static NSString *identifier = @"LDShopPlatformViewController.identifier";
+            LDShopPlatformViewController *vc = [magicView dequeueReusablePageWithIdentifier:identifier];
+            if (!vc)
+            {
+                vc = [[LDShopPlatformViewController alloc] init];
+                vc.isSearchModel = YES;
+            }
+            [vc requestSource:self.searchTitle back:^(NSInteger count) {
+                weakself.noticeView.titleLabel.text = [NSString stringWithFormat:@"共找到%lu个相关内容",(unsigned long)vc.dataSource.count];
+                [vc.tableView qmui_scrollToTop];
+                vc.tableView.tableHeaderView = self.noticeView;
+                [vc.tableView qmui_scrollToTop];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    vc.tableView.tableHeaderView = nil;
+                });
+            }];
+            return vc;
+        }
+            break;
+        case 5:
+        {
+            static NSString *identifier = @"LDShopSkillViewController.identifier";
+            LDShopResourceViewController *vc = [magicView dequeueReusablePageWithIdentifier:identifier];
+            if (!vc)
+            {
+                vc = [[LDShopResourceViewController alloc] init];
                 vc.isSearchModel = YES;
             }
             [vc requestSource:self.searchTitle back:^(NSInteger count) {

@@ -21,7 +21,7 @@
 #import "LDShujiaModel.h"
 #import "LDShoppingTableViewCell.h"
 #import "LDVideoDetailViewController.h"
-
+#import "LDDicBookCell.h"
 @interface LDBookRackViewController () <QMUITableViewDataSource, QMUITableViewDelegate>
 
 @property (nonatomic, strong) QMUITableView *leftTableView;
@@ -58,7 +58,7 @@
 - (void)reqeustDataSource{
     //        商品类型 1 书籍 2微课
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"bookshelf/goods" requestParameters:@{@"goodsType":@"1",@"page":@"1",@"pageSize":@"1000"} requestHeader:nil success:^(id responseObject) {
-        self.bookArray = [NSArray yy_modelArrayWithClass:[LDShujiaModel class] json:responseObject[@"data"][@"list"]];
+        self.bookArray = [NSArray yy_modelArrayWithClass:[LDStoreModel class] json:responseObject[@"data"][@"list"]];
         self.dataSource = self.bookArray;
         [self.rightTableView reloadData];
     } faild:^(NSError *error) {
@@ -68,7 +68,7 @@
 }
 - (void)requestClassDataSource{
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"bookshelf/goods" requestParameters:@{@"goodsType":@"2",@"page":@"1",@"pageSize":@"1000"} requestHeader:nil success:^(id responseObject) {
-        self.smallClassArray = [NSArray yy_modelArrayWithClass:[LDShujiaModel class] json:responseObject[@"data"][@"list"]];
+        self.smallClassArray = [NSArray yy_modelArrayWithClass:[LDStoreModel class] json:responseObject[@"data"][@"list"]];
         self.dataSource = self.smallClassArray;
         [self.rightTableView reloadData];
     } faild:^(NSError *error) {
@@ -86,21 +86,20 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     if (tableView == self.leftTableView) {
         LeftTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier_Left];
         cell.name.text = self.leftTitles[indexPath.row];
         return cell;
     } else {
         if (self.dataSource == self.bookArray) {
-            LDShoppingTableViewCell *cell = [LDShoppingTableViewCell dequeueReusableWithTableView:tableView];
+            LDDicBookCell *cell = [LDDicBookCell dequeueReusableWithTableView:tableView];
             [cell refreshWithModel:self.dataSource[indexPath.row]];
-            [cell.bigImageView mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.left.mas_equalTo(cell.contentView).mas_offset(PtWidth(18));
-            }];
+//            [cell.bigImageView mas_updateConstraints:^(MASConstraintMaker *make) {
+//                make.left.mas_equalTo(cell.contentView).mas_offset(PtWidth(18));
+//            }];
             return cell;
         }else {
-            LDShoppingTableViewCell *cell = [LDShoppingTableViewCell dequeueReusableWithTableView:tableView];
+            LDDicBookCell *cell = [LDDicBookCell dequeueReusableWithTableView:tableView];
             [cell refreshWithModel:self.dataSource[indexPath.row]];
             return cell;
         }
@@ -113,7 +112,7 @@
     if (tableView == self.leftTableView) {
         return PtHeight(100);
     } else {
-        return PtHeight(80);
+        return kTableViewCellHeight;
     }
 }
 
@@ -148,13 +147,13 @@
         [tableView deselectRowAtIndexPath:indexPath animated:NO];
         if (self.dataSource == self.bookArray) {
             LDBookDetailViewController *vc = [[LDBookDetailViewController alloc]initWithNibName:@"LDBookDetailViewController" bundle:[NSBundle mainBundle]];
-            LDShujiaModel *model =self.bookArray[indexPath.item];
-            vc.bookID = model.goodsId;
+            LDStoreModel *model =self.bookArray[indexPath.item];
+            vc.bookID = model.s_id;
             [self.navigationController pushViewController:vc animated:YES];
         } else {
-            LDSmallClassDetailViewController *vc = [LDSmallClassDetailViewController new];
-            LDShujiaModel *model =self.smallClassArray[indexPath.item];
-            vc.videoID = model.goodsId;
+            LDVideoDetailViewController *vc = [LDVideoDetailViewController new];
+            LDStoreModel *model =self.smallClassArray[indexPath.item];
+            vc.videoID = model.s_id;
             [self.navigationController pushViewController:vc animated:YES];
         }
     }

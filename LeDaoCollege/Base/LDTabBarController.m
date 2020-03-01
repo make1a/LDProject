@@ -11,6 +11,7 @@
 #import "LDStoreViewController.h"
 #import "LDMineViewController.h"
 #import "LDNavigationController.h"
+#import "LDShoppingViewController.h"
 @interface LDTabBarController ()
 
 @end
@@ -37,9 +38,9 @@
     firstNavigationController.navigationBar.hidden = YES;
     [homeVC cyl_setHideNavigationBarSeparator:YES];
     
-    UIViewController *storeVC = [[LDStoreViewController alloc] init];
+    UIViewController *storeVC = [[LDShoppingViewController alloc] init];
     LDNavigationController *secondNavigationController = [[LDNavigationController alloc] initWithRootViewController:storeVC];
-    secondNavigationController.navigationBar.hidden = YES;
+//    secondNavigationController.navigationBar.hidden = YES;
     [storeVC cyl_setHideNavigationBarSeparator:YES];
     
     UIViewController *mineVC = [[LDMineViewController alloc] init];

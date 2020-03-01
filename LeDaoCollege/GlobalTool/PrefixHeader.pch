@@ -33,6 +33,7 @@
 #import "UIButton+EnlargeEdge.h"
 #import <VTMagic/VTMagic.h>
 #import <MJRefresh.h>
+#import <JXPagerView.h>
 #endif
 #endif /* PrefixHeader_pch */
 

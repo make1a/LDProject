@@ -13,20 +13,23 @@
 #import "LDSmallClassDetailViewController.h"
 #import "LDStoreViewController.h"
 #import "LDVideoDetailViewController.h"
+#import "LDDicBookCell.h"
 
 @interface LDAllshoppingViewController ()<UIScrollViewDelegate>
 {
     NSInteger page;
-    
 }
-
+@property (nonatomic, copy) void(^scrollCallback)(UIScrollView *scrollView);
 @end
 
 @implementation LDAllshoppingViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
+
     if (!self.isSearchModel) {
         [self requestAllStore];
         self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -76,9 +79,9 @@
     return self.dataSource.count;
 }
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    LDShoppingTableViewCell *cell = [LDShoppingTableViewCell dequeueReusableWithTableView:tableView];
-    LDStoreModel *model = self.dataSource[indexPath.row];
-    [cell refreshWithModel: model];
+    LDDicBookCell *cell = [LDDicBookCell dequeueReusableWithTableView:tableView];
+//    LDStoreModel *model = self.dataSource[indexPath.row];
+//    [cell refreshWithModel: model];
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -95,9 +98,40 @@
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
-- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return PtHeight(80);
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return kTableViewCellHeight;
 }
 #pragma  mark - Scrollview
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    !self.scrollCallback ?: self.scrollCallback(scrollView);
+}
+#pragma mark - JXPagingViewListViewDelegate
 
+- (UIView *)listView {
+    return self.view;
+}
+
+- (UIScrollView *)listScrollView {
+    return self.tableView;
+}
+
+- (void)listViewDidScrollCallback:(void (^)(UIScrollView *))callback {
+    self.scrollCallback = callback;
+}
+
+- (void)listWillAppear {
+    NSLog(@"%@:%@", self.title, NSStringFromSelector(_cmd));
+}
+
+- (void)listDidAppear {
+    NSLog(@"%@:%@", self.title, NSStringFromSelector(_cmd));
+}
+
+- (void)listWillDisappear {
+    NSLog(@"%@:%@", self.title, NSStringFromSelector(_cmd));
+}
+
+- (void)listDidDisappear {
+    NSLog(@"%@:%@", self.title, NSStringFromSelector(_cmd));
+}
 @end

@@ -102,7 +102,7 @@ NSString * const DFPlaybackLikelyToKeepUpKey    = @"playbackLikelyToKeepUp";
     _netGroupQueue  = dispatch_group_create();
     _dataGroupQueue = dispatch_group_create();
     
-    [self addNetObserver];
+//    [self addNetObserver];
     
     [self addPlayerObserver];
     

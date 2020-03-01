@@ -25,6 +25,8 @@
 @property (nonatomic,strong)UIButton * WXLoginButton;
 @property (nonatomic,strong)UIButton * registerAgreeBtn;
 @property (nonatomic,strong)UIButton * AgreeBtn;
+@property (nonatomic,strong)UIButton * backButton;
+@property (nonatomic,strong)UIButton * visitorButton;
 @end
 
 @implementation LDLoginViewController
@@ -42,7 +44,6 @@
 - (void)countDownAction{
     [_vfButton countDownButtonHandler:^(JKCountDownButton*sender, NSInteger tag) {
         sender.enabled = NO;
-        
         [sender startCountDownWithSecond:60];
         [self sendCode];
         
@@ -53,15 +54,56 @@
         [sender countDownFinished:^NSString *(JKCountDownButton *countDownButton, NSUInteger second) {
             countDownButton.enabled = YES;
             return @"重新获取";
-            
         }];
         
     }];
+}
+- (void)visitorLoginAction:(UIButton *)sender{
+    QMUIDialogViewController *dialogViewController = [[QMUIDialogViewController alloc] init];
+    dialogViewController.title = @"提示";
+    dialogViewController.headerViewBackgroundColor = MainThemeColor;
+    UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 100)];
+    contentView.backgroundColor = UIColorWhite;
+    UILabel *label = [[UILabel alloc] qmui_initWithFont:UIFontMake(14) textColor:UIColorBlack];
+    label.text = @"游客模式下购买的商品只能在本机使用哦,\n是否继续使用游客模式?";
+    label.numberOfLines = 0;
+    label.textAlignment = NSTextAlignmentCenter;
+    [label sizeToFit];
+    label.center = CGPointMake(CGRectGetWidth(contentView.bounds) / 2.0, CGRectGetHeight(contentView.bounds) / 2.0);
+    [contentView addSubview:label];
+    dialogViewController.contentView = contentView;
+    [dialogViewController addCancelButtonWithText:@"否" block:nil];
+    [dialogViewController addSubmitButtonWithText:@"是" block:^(QMUIDialogViewController *aDialogViewController) {
+        [aDialogViewController hide];
+        [self visitorLogin];
+    }];
+    [dialogViewController show];
+}
+- (void)clickBackAction:(UIButton *)sender{
+    if (self.navigationController.viewControllers.count >1) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }else{
+        [self pushMain];
+    }
 }
 - (void)clickRegisterAction:(UIButton*)sender {
     LDLoginViewController *vc = [LDLoginViewController new];
     vc.currentPageType = LDCurrentPageIsRegister;
     [self presentViewController:vc animated:YES completion:nil];
+}
+- (void)visitorLogin{
+    NSString *uuid = [[NSUUID UUID] UUIDString];
+    
+    NSString *str = [NSString stringWithFormat:@"visitorLogin/%@",uuid];
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:str requestParameters:@{@"phone":uuid} requestHeader:nil success:^(id responseObject) {
+        if (kCODE == 200) {
+            LDUserModel *model = [LDUserModel yy_modelWithDictionary:responseObject[@"data"][@"user"]];
+            [LDUserManager shareInstance].currentUser = model;
+            [self pushMain];
+        }
+    } faild:^(NSError *error) {
+        
+    }];
 }
 - (void)agreeButClick:(UIButton *)sender{
     sender.selected = !sender.selected;
@@ -87,20 +129,19 @@
 - (void)clickBackButton:(UIButton *)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-- (void)clickPushAgreeAction{
+- (void)clickPushAgreeAction:(UIButton *)sender{
     LDPrivateViewController *vc = [[LDPrivateViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
-//    [self presentViewController:vc animated:YES completion:nil];
 }
 #pragma  mark - Private
 - (void)sendCode {
     NSString *phone = self.nameTextField.text;
-
+    
     if (phone.length != 11) {
         [QMUITips showError:@"请输入正确的手机号"];
         return;
     }
-
+    
     NSDictionary *dic = @{@"phone":phone,@"bizType":@"1"};
     NSString *url = [NSString stringWithFormat:@"msg/sendmsg/%@/%@",phone,@"1"];
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:url requestParameters:dic requestHeader:nil success:^(id responseObject) {
@@ -112,7 +153,7 @@
     } faild:^(NSError *error) {
         
     }];
-
+    
 }
 //登录
 - (void)loginApp {
@@ -182,7 +223,7 @@
             [QMUITips showError:responseObject[@"returnMsg"]];
         }
     } faild:^(NSError *error) {
-[QMUITips showError:error.localizedDescription];
+        [QMUITips showError:error.localizedDescription];
     }];
 }
 - (void)regiserAPP {
@@ -213,7 +254,7 @@
             }];
         }
     } faild:^(NSError *error) {
-[QMUITips showError:error.localizedDescription];
+        [QMUITips showError:error.localizedDescription];
     }];
 }
 - (void)pushMain{
@@ -231,15 +272,15 @@
             NSDictionary *dic = @{@"openId":resp.openid};
             NSString *api = [NSString stringWithFormat:@"wxlogin/login/%@",resp.openid];
             self.WXInfoDic = @{@"openid":resp.openid,@"access_token":resp.accessToken}.mutableCopy;
-        
+            
             [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:api requestParameters:dic requestHeader:nil success:^(id responseObject) {
                 if (kCODE == 200) {
                     NSDictionary *da = responseObject[@"data"];
                     if ([da isEqual:[NSNull null]]) {
-                           LDLoginViewController *vc = [LDLoginViewController new];
-                       vc.currentPageType = LDCurrentPageIsBindPhone;
+                        LDLoginViewController *vc = [LDLoginViewController new];
+                        vc.currentPageType = LDCurrentPageIsBindPhone;
                         vc.WXInfoDic = self.WXInfoDic;
-                       [self presentViewController:vc animated:YES completion:nil];
+                        [self presentViewController:vc animated:YES completion:nil];
                     } else {
                         LDUserModel *model = [LDUserModel yy_modelWithDictionary:responseObject[@"data"][@"user"]];
                         [LDUserManager shareInstance].currentUser = model;
@@ -257,11 +298,11 @@
     switch (self.currentPageType) {
         case LDCurrentPageIsRegister:
         {
-            UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom]     ;
-            [backButton setImage:[UIImage imageNamed:@"nav_black"] forState:UIControlStateNormal];
-            [backButton addTarget:self action:@selector(clickBackButton:) forControlEvents:UIControlEventTouchUpInside];
-            [self.view addSubview:backButton];
-            backButton.frame = CGRectMake(15, kSTATUSBAR_HEIGHT+20, 20, 20);
+            //            UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom]     ;
+            //            [backButton setImage:[UIImage imageNamed:@"nav_black"] forState:UIControlStateNormal];
+            //            [backButton addTarget:self action:@selector(clickBackButton:) forControlEvents:UIControlEventTouchUpInside];
+            //            [self.view addSubview:backButton];
+            //            backButton.frame = CGRectMake(15, kSTATUSBAR_HEIGHT+20, 20, 20);
             
             self.titleLabel.text  = @"注册";
             [self.loginButton setTitle:@"完成注册并登录" forState:UIControlStateNormal];
@@ -269,11 +310,11 @@
             break;
         case LDCurrentPageIsBindPhone:
         {
-            UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-            [backButton setImage:[UIImage imageNamed:@"nav_black"] forState:UIControlStateNormal];
-            [backButton addTarget:self action:@selector(clickBackButton:) forControlEvents:UIControlEventTouchUpInside];
-            [self.view addSubview:backButton];
-            backButton.frame = CGRectMake(15, kSTATUSBAR_HEIGHT+20, 20, 20);
+            //            UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            //            [backButton setImage:[UIImage imageNamed:@"nav_black"] forState:UIControlStateNormal];
+            //            [backButton addTarget:self action:@selector(clickBackButton:) forControlEvents:UIControlEventTouchUpInside];
+            //            [self.view addSubview:backButton];
+            //            backButton.frame = CGRectMake(15, kSTATUSBAR_HEIGHT+20, 20, 20);
             
             self.titleLabel.text  = @"绑定手机号";
             [self.loginButton setTitle:@"完成注册并登录" forState:UIControlStateNormal];
@@ -292,14 +333,23 @@
     [self.view addSubview:self.nameTextField];
     [self.view addSubview:self.pwdTextField];
     [self.view addSubview:self.loginButton];
+    [self.view addSubview:self.visitorButton];
     [self.view addSubview:self.vfButton];
     [self.view addSubview:self.bottomLabel];
     [self.view addSubview:self.wxButton];
-//    [self.view addSubview:self.registerButton];
+    //    [self.view addSubview:self.registerButton];
     [self.view addSubview:self.AgreeBtn];
     [self.view addSubview:self.registerAgreeBtn];
+    //    [self.view addSubview:self.backButton];
     
-    
+    //    [self.backButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    //        make.left.mas_equalTo(self.view).mas_offset(12);
+    //        if (@available(iOS 11.0, *)) {
+    //            make.top.mas_equalTo(self.view.mas_safeAreaLayoutGuideTop).mas_offset(12);
+    //        } else {
+    //            make.top.mas_equalTo(self.view.mas_safeAreaLayoutGuideTop).mas_offset(12);
+    //        }
+    //    }];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.view);
         make.top.mas_equalTo(self.view).mas_offset(PtHeight(76));
@@ -323,6 +373,12 @@
         make.top.mas_equalTo(self.pwdTextField.mas_bottom).mas_offset(98);
         make.centerX.mas_equalTo(self.view);
     }];
+    [self.visitorButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(self.nameTextField);
+        make.height.mas_equalTo(PtHeight(40));
+        make.top.mas_equalTo(self.loginButton.mas_bottom).mas_offset(10);
+        make.centerX.mas_equalTo(self.view);
+    }];
     [self.vfButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.pwdTextField);
         make.height.mas_equalTo(PtHeight(29));
@@ -338,14 +394,14 @@
         make.left.mas_equalTo(self.AgreeBtn.mas_right).mas_offset(5);
         make.centerY.mas_equalTo(self.AgreeBtn);
     }];
-//    [self.registerButton mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.right.mas_equalTo(self.view).mas_offset(-10);
-//        if (@available(iOS 11.0, *)) {
-//            make.top.mas_equalTo(self.view.mas_safeAreaLayoutGuideTop).mas_offset(10);
-//        } else {
-//            make.top.mas_equalTo(self.view).mas_offset(10);
-//        }
-//    }];
+    //    [self.registerButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    //        make.right.mas_equalTo(self.view).mas_offset(-10);
+    //        if (@available(iOS 11.0, *)) {
+    //            make.top.mas_equalTo(self.view.mas_safeAreaLayoutGuideTop).mas_offset(10);
+    //        } else {
+    //            make.top.mas_equalTo(self.view).mas_offset(10);
+    //        }
+    //    }];
     
     if (self.currentPageType == LDCurrentPageIsLogin) {
         [self.view addSubview:self.WXLoginButton];
@@ -431,7 +487,17 @@
     }
     return _loginButton;
 }
-
+- (UIButton *)visitorButton{
+    if (!_visitorButton) {
+        _visitorButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _visitorButton.backgroundColor = MainThemeColor;
+        [_visitorButton addTarget:self action:@selector(visitorLoginAction:) forControlEvents:UIControlEventTouchUpInside];
+        _visitorButton.layer.masksToBounds = YES;
+        _visitorButton.layer.cornerRadius = PtHeight(20);
+        [_visitorButton setTitle:@"游客模式" forState:UIControlStateNormal];
+    }
+    return _visitorButton;
+}
 - (QMUILabel *)bottomLabel{
     if (!_bottomLabel) {
         _bottomLabel = [[QMUILabel alloc]init];
@@ -493,11 +559,21 @@
         [_registerAgreeBtn setTitleColor:UIColorFromHEXA(0x999999, 1.0) forState:UIControlStateNormal];
         _registerAgreeBtn.titleLabel.font = [UIFont systemFontOfSize:12];
         
-        [_registerAgreeBtn addTarget:self action:@selector(clickPushAgreeAction) forControlEvents:UIControlEventTouchUpInside];
         NSAttributedString *string = [HNTools getAttributedString:allString withStringAttributedDic:@{NSForegroundColorAttributeName : UIColorFromHEXA(0x999999, 1.0)} withSubString:agreeString withSubStringAttributeDic:@{NSForegroundColorAttributeName : [UIColor redColor],NSUnderlineStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]}];
         [_registerAgreeBtn setAttributedTitle:string forState:UIControlStateNormal];
+        
+        
+        [_registerAgreeBtn addTarget:self action:@selector(clickPushAgreeAction:) forControlEvents:UIControlEventTouchUpInside];
+        
     }
     return _registerAgreeBtn;
 }
-
+- (UIButton *)backButton {
+    if (!_backButton) {
+        _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_backButton setImage:[UIImage imageNamed:@"nav_black"] forState:UIControlStateNormal];
+        [_backButton addTarget:self action:@selector(clickBackAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _backButton;
+}
 @end

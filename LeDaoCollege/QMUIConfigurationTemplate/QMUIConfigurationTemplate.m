@@ -86,7 +86,7 @@
     QMUICMI.navBarButtonFontBold = nil;                                         // NavBarButtonFontBold : QMUINavigationButtonTypeBold 的字体
     QMUICMI.navBarBackgroundImage = nil;                                        // NavBarBackgroundImage : UINavigationBar 的背景图
     QMUICMI.navBarShadowImage = [UIImage qmui_imageWithColor:[UIColor clearColor]];                                            // NavBarShadowImage : UINavigationBar.shadowImage，也即导航栏底部那条分隔线
-    QMUICMI.navBarBarTintColor = UIColorFromHEXA(0x69B681, 1);                          // NavBarBarTintColor : UINavigationBar.barTintColor，也即背景色
+    QMUICMI.navBarBarTintColor = MainThemeColor;                          // NavBarBarTintColor : UINavigationBar.barTintColor，也即背景色
     QMUICMI.navBarTintColor = [UIColor whiteColor];                             // NavBarBarTintColor :;                                              // NavBarTintColor : QMUINavigationController.navigationBar 的 tintColor，也即导航栏上面的按钮颜色，由于 tintColor 不支持 appearance，所以这里只支持 QMUINavigationController
     QMUICMI.navBarTitleColor = nil;                                             // NavBarTitleColor : UINavigationBar 的标题颜色，以及 QMUINavigationTitleView 的默认文字颜色
     QMUICMI.navBarTitleFont = nil;                                              // NavBarTitleFont : UINavigationBar 的标题字体，以及 QMUINavigationTitleView 的默认字体

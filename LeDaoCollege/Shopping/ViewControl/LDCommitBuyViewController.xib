@@ -44,7 +44,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" red="0.48368191719999998" green="0.70686835049999996" blue="0.52192550900000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <color key="backgroundColor" red="0.15074861049999999" green="0.52390378709999996" blue="0.91835767030000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="fe1-UF-YaX" firstAttribute="leading" secondItem="F3T-0x-Vhm" secondAttribute="leading" constant="17" id="5Xt-l0-Ho8"/>
                         <constraint firstAttribute="trailing" secondItem="Vyh-0c-G3i" secondAttribute="trailing" constant="17" id="BkL-vl-yDA"/>
@@ -88,7 +88,7 @@
                                 <constraint firstAttribute="height" constant="18" id="KbA-fx-8XZ"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                            <color key="textColor" red="0.29690977931022644" green="0.63623136281967163" blue="0.45134854316711426" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="textColor" red="0.15074861049999999" green="0.52390378709999996" blue="0.91835767030000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>

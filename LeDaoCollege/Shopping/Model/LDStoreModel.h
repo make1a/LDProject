@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy) NSString *isPayFlag;
 @property(nonatomic,copy) NSString *bookId;
 @property(nonatomic,copy) NSString *courseId;
-
+@property(nonatomic,copy) NSString *author;
 @property (nonatomic,copy)NSString * numOfVisiter;
 
 @end
