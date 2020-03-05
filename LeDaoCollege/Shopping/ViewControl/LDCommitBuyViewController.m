@@ -51,7 +51,7 @@
 }
 
 - (void)configInfo {
-    
+//
     if ([self.currentModel isKindOfClass:[LDVideoModel class]]) {
         self.typeLabel.text = @" 视频 ";
     }else {
