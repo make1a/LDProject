@@ -10,7 +10,7 @@
 #import "LDTabBarController.h"
 #import <IQKeyboardManager.h>
 #import "LDLoginViewController.h"
-#import "LDFirstLoginViewController.h"
+
 #import "IAPShare.h"
 #import <UMShare/UMShare.h>
 #import <UMCommon/UMCommon.h>
@@ -25,7 +25,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [UIApplication sharedApplication].statusBarHidden = NO;
     // 设置主窗口,并设置根控制器
-    sleep(3);
+//    sleep(3);
     self.window = [[UIWindow alloc] init];
     self.window.frame = [UIScreen mainScreen].bounds;
     [self.window makeKeyAndVisible];
@@ -74,14 +74,11 @@
             LDUserModel *model = [LDUserModel yy_modelWithDictionary:responseObject[@"data"][@"user"]];
             [LDUserManager shareInstance].currentUser = model;
             NSString *f = responseObject[@"data"][@"firstLogin"];
-            if ([f isEqualToString:@"Y"]) { //第一次登录
-                LDFirstLoginViewController *vc = [LDFirstLoginViewController new];
-                AppDelegate  *delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
-                delegate.window.rootViewController = vc;
-            }else {
                 LDTabBarController *rootViewController = [[LDTabBarController alloc] init];
                 AppDelegate  *delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
                 delegate.window.rootViewController = rootViewController;
+            if ([f isEqualToString:@"Y"]) { //第一次登录
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"LDFirstLoginNotify" object:nil];
             }
         }else {
             LDLoginViewController *vc = [LDLoginViewController new];

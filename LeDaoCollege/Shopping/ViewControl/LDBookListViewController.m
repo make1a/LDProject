@@ -29,7 +29,7 @@
 - (void)requestDataSource{
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"book/books" requestParameters:@{@"type":@(self.type)} requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {
-            self.dataSource = [NSArray yy_modelArrayWithClass:[LDStoreModel class] json:responseObject[@"data"]];
+            self.dataSource = [NSArray yy_modelArrayWithClass:[LDStoreModel class] json:responseObject[@"data"][@"list"]];
 
             [self.tableView reloadData];
         

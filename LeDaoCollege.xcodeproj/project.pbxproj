@@ -14,8 +14,6 @@
 		262E4A0B232A3387000A6B0B /* LDReadPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 262E4A0A232A3387000A6B0B /* LDReadPDFViewController.m */; };
 		2633E3D5235D48C6002DEA26 /* LDVoiceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2633E3D4235D48C6002DEA26 /* LDVoiceModel.m */; };
 		2633E3D8235D53D8002DEA26 /* LDVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2633E3D7235D53D8002DEA26 /* LDVideoModel.m */; };
-		2633EA4F2372649E00F78BFB /* LDFirstLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2633EA4D2372649E00F78BFB /* LDFirstLoginViewController.m */; };
-		2633EA502372649E00F78BFB /* LDFirstLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2633EA4E2372649E00F78BFB /* LDFirstLoginViewController.xib */; };
 		2633EA532372A92100F78BFB /* LDScoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2633EA522372A92100F78BFB /* LDScoreModel.m */; };
 		2633EA562372C13500F78BFB /* LDCustomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2633EA552372C13500F78BFB /* LDCustomModel.m */; };
 		2638A5C82351791500D4DC55 /* MKRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2638A5C72351791500D4DC55 /* MKRequestManager.m */; };
@@ -153,6 +151,8 @@
 		26D93F8123372E2700B31DAB /* LDShoppingImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26D93F7F23372E2700B31DAB /* LDShoppingImageCell.xib */; };
 		26D93F8423372F1300B31DAB /* LDShoppingDetailFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = 26D93F8323372F1300B31DAB /* LDShoppingDetailFootView.m */; };
 		26D93F8623372F2B00B31DAB /* LDShoppingDetailFootView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26D93F8523372F2B00B31DAB /* LDShoppingDetailFootView.xib */; };
+		26DCA0F6240DFA8E002F1D28 /* LDFirstView.m in Sources */ = {isa = PBXBuildFile; fileRef = 26DCA0F5240DFA8E002F1D28 /* LDFirstView.m */; };
+		26DCA0FA240DFABC002F1D28 /* LDFirstView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26DCA0F9240DFABC002F1D28 /* LDFirstView.xib */; };
 		26DCE02423F97FA0004A1A75 /* LDShoppingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26DCE02323F97FA0004A1A75 /* LDShoppingViewController.m */; };
 		26DCE02723FCD978004A1A75 /* LDShopClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26DCE02623FCD978004A1A75 /* LDShopClassViewController.m */; };
 		26DCE02A23FCDBBD004A1A75 /* LDShopProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26DCE02923FCDBBD004A1A75 /* LDShopProjectViewController.m */; };
@@ -219,9 +219,6 @@
 		2633E3D4235D48C6002DEA26 /* LDVoiceModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDVoiceModel.m; sourceTree = "<group>"; };
 		2633E3D6235D53D8002DEA26 /* LDVideoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDVideoModel.h; sourceTree = "<group>"; };
 		2633E3D7235D53D8002DEA26 /* LDVideoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDVideoModel.m; sourceTree = "<group>"; };
-		2633EA4C2372649E00F78BFB /* LDFirstLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDFirstLoginViewController.h; sourceTree = "<group>"; };
-		2633EA4D2372649E00F78BFB /* LDFirstLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDFirstLoginViewController.m; sourceTree = "<group>"; };
-		2633EA4E2372649E00F78BFB /* LDFirstLoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LDFirstLoginViewController.xib; sourceTree = "<group>"; };
 		2633EA512372A92100F78BFB /* LDScoreModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDScoreModel.h; sourceTree = "<group>"; };
 		2633EA522372A92100F78BFB /* LDScoreModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDScoreModel.m; sourceTree = "<group>"; };
 		2633EA542372C13500F78BFB /* LDCustomModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDCustomModel.h; sourceTree = "<group>"; };
@@ -477,6 +474,9 @@
 		26D93F8223372F1300B31DAB /* LDShoppingDetailFootView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDShoppingDetailFootView.h; sourceTree = "<group>"; };
 		26D93F8323372F1300B31DAB /* LDShoppingDetailFootView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDShoppingDetailFootView.m; sourceTree = "<group>"; };
 		26D93F8523372F2B00B31DAB /* LDShoppingDetailFootView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LDShoppingDetailFootView.xib; sourceTree = "<group>"; };
+		26DCA0F4240DFA8E002F1D28 /* LDFirstView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDFirstView.h; sourceTree = "<group>"; };
+		26DCA0F5240DFA8E002F1D28 /* LDFirstView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDFirstView.m; sourceTree = "<group>"; };
+		26DCA0F9240DFABC002F1D28 /* LDFirstView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LDFirstView.xib; sourceTree = "<group>"; };
 		26DCE02223F97FA0004A1A75 /* LDShoppingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDShoppingViewController.h; sourceTree = "<group>"; };
 		26DCE02323F97FA0004A1A75 /* LDShoppingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDShoppingViewController.m; sourceTree = "<group>"; };
 		26DCE02523FCD977004A1A75 /* LDShopClassViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDShopClassViewController.h; sourceTree = "<group>"; };
@@ -1154,9 +1154,6 @@
 			children = (
 				26CBF88C23252566005139EF /* LDLoginViewController.h */,
 				26CBF88D23252566005139EF /* LDLoginViewController.m */,
-				2633EA4C2372649E00F78BFB /* LDFirstLoginViewController.h */,
-				2633EA4D2372649E00F78BFB /* LDFirstLoginViewController.m */,
-				2633EA4E2372649E00F78BFB /* LDFirstLoginViewController.xib */,
 				265FCA5023EE8652000497CE /* LDPrivateViewController.h */,
 				265FCA5123EE8652000497CE /* LDPrivateViewController.m */,
 			);
@@ -1166,6 +1163,9 @@
 		26CBF88B23252553005139EF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				26DCA0F4240DFA8E002F1D28 /* LDFirstView.h */,
+				26DCA0F5240DFA8E002F1D28 /* LDFirstView.m */,
+				26DCA0F9240DFABC002F1D28 /* LDFirstView.xib */,
 				26CBF89223252A97005139EF /* JKCountDownButton.h */,
 				26CBF89323252A97005139EF /* JKCountDownButton.m */,
 				26CBF8902325275C005139EF /* LoginEnableButton.h */,
@@ -1305,10 +1305,10 @@
 				26C846A22338990C00500B3F /* LDSmallClassDetailHeadView.xib in Resources */,
 				26C846B22338CAEE00500B3F /* LDCommitBuyViewController.xib in Resources */,
 				26E816322332268800CECCE3 /* LDMineCustomHead.xib in Resources */,
+				26DCA0FA240DFABC002F1D28 /* LDFirstView.xib in Resources */,
 				2643A0AC239CA7C40055B320 /* LDTagCell.xib in Resources */,
 				2640F106232793950015F7A6 /* Assets.xcassets in Resources */,
 				266DC86B23740BD30036A767 /* LDBookDetailViewController.xib in Resources */,
-				2633EA502372649E00F78BFB /* LDFirstLoginViewController.xib in Resources */,
 				265CB93F2320A2F400883FE2 /* Main.storyboard in Resources */,
 				26C846AD2338B73F00500B3F /* LDSmallClassLessonCell.xib in Resources */,
 			);
@@ -1483,6 +1483,7 @@
 				26F5581D23263E48006D826D /* LDNameCell.m in Sources */,
 				26F3BB8A2330AEF1001A645C /* NSObject+Property.m in Sources */,
 				2690FE8B23A1DBD9003DF77D /* DFPlayerFileManager.m in Sources */,
+				26DCA0F6240DFA8E002F1D28 /* LDFirstView.m in Sources */,
 				26F67A272375611D00B1D71C /* IAPHelper.m in Sources */,
 				2658F0FD232CAEBF00F4C37A /* MKIndexView.m in Sources */,
 				265BE25E232684EA0093E60A /* LDAlterNameViewController.m in Sources */,
@@ -1499,7 +1500,6 @@
 				26EE3ED4233B5A64003FEA7B /* LDMyIconViewController.m in Sources */,
 				26AFEE20240016BD00559C88 /* LDCollegeViewController.m in Sources */,
 				26960D7923A4CEF7002B1662 /* LDVoiceListViewController.m in Sources */,
-				2633EA4F2372649E00F78BFB /* LDFirstLoginViewController.m in Sources */,
 				26F67A292375611D00B1D71C /* SFHFKeychainUtils.m in Sources */,
 				26EE3ECF233B0923003FEA7B /* LDAddressBookCell.m in Sources */,
 				26F3BB732330ACF4001A645C /* LDBookRackViewController.m in Sources */,
@@ -1686,7 +1686,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = Q94RAKWUSW;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/LeDaoCollege/GlobalTool/PrefixHeader.pch";
@@ -1758,7 +1758,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = Q94RAKWUSW;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/LeDaoCollege/GlobalTool/PrefixHeader.pch";

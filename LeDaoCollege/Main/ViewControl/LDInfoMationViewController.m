@@ -72,7 +72,7 @@
 #pragma mark - NetWork
 - (void)requestMusic{
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"audio/getaudios" requestParameters:nil requestHeader:nil success:^(id responseObject) {
-        self.voiceArray = [NSArray yy_modelArrayWithClass:[LDVoiceModel class] json:responseObject[@"data"]];
+        self.voiceArray = [NSArray yy_modelArrayWithClass:[LDVoiceModel class] json:responseObject[@"data"][@"list"]];
         LDVoiceModel *model = self.voiceArray.firstObject;
         DFPlayerModel *playModel = [[DFPlayerModel alloc] init];
         playModel.audioId = [model.v_id intValue];
@@ -219,7 +219,7 @@
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
     view.backgroundColor = [UIColor whiteColor];
     UILabel *label = [[UILabel alloc]init];
-    if (section == 0) {
+    if (section == 0 && self.isSearchModel == NO) {
         label.text = @"每日播报";
     }else{
         label.text = @"聚合资讯";

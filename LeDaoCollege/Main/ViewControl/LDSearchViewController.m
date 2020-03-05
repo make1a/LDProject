@@ -243,7 +243,7 @@
         _searchBar.searchBarStyle = UISearchBarStyleMinimal;
         _searchBar.delegate = self;
         _searchBar.backgroundColor = [UIColor clearColor];
-        UIImage *image = [UIImage qmui_imageWithColor:[UIColor whiteColor] size:CGSizeMake(200, 32) cornerRadius:0];
+        UIImage *image = [UIImage qmui_imageWithColor:UIColorFromHEXA(0xE8E8E8, 1) size:CGSizeMake(200, 32) cornerRadius:0];
         [_searchBar setBackgroundImage:image];
         [_searchBar setBackgroundColor:[UIColor clearColor]];
         [_searchBar setSearchFieldBackgroundImage:image forState:UIControlStateNormal];

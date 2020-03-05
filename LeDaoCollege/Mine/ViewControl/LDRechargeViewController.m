@@ -340,7 +340,7 @@
     if (!_payButton) {
         _payButton = [QMUIButton buttonWithType:UIButtonTypeCustom];
         [_payButton setTitle:@"立即支付" forState:UIControlStateNormal];
-        [_payButton setBackgroundImage:[UIImage imageNamed:@"recharge_paymentbutton"] forState:UIControlStateNormal];
+        [_payButton setBackgroundColor:MainThemeColor];
         [_payButton setTitleColor:UIColorFromHEXA(0x865701, 1) forState:UIControlStateNormal];
         [_payButton setCornerRadius:PtHeight(20)];
         [_payButton addTarget:self action:@selector(clickPayAction) forControlEvents:UIControlEventTouchUpInside];

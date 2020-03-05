@@ -12,7 +12,7 @@
 #import "LDVideoModel.h"
 #import "LDVideoDetailViewController.h"
 #import "LDBookRackViewController.h"
-#import "LDBookDetailViewController.h"
+#import "LDBookDetailViewController.h"ø
 #import "LDClassModel.h"
 #import "LDSmallClassDetailViewController.h"
 @interface LDCommitBuyViewController ()

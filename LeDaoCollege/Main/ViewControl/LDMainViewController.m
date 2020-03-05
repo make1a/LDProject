@@ -15,6 +15,8 @@
 #import "LDSearchViewController.h"
 #import "LDBookDicViewController.h"
 #import "LDLoginViewController.h"
+
+#import "LDFirstView.h"
 @interface LDMainViewController ()<VTMagicViewDelegate,VTMagicViewDataSource>
 
 @property (nonatomic, strong)VTMagicController *magicController;
@@ -34,6 +36,8 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.bgView];
     [self masLayoutSubviews];
+
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(showFirstLogin) name:@"LDFirstLoginNotify" object:nil];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self requestBannerList];
     });
@@ -42,7 +46,15 @@
     [super viewDidAppear:animated];
     [self configMagicController];
 }
+- (void)showFirstLogin{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        LDFirstView *view = [[NSBundle mainBundle]loadNibNamed:@"LDFirstView" owner:self options:nil].firstObject;
+    view.frame = self.view.bounds;
+    [[AppDelegate cyl_sharedAppDelegate].window addSubview:view];
+        view.backgroundColor = [UIColor colorWithWhite:0.4 alpha:0.4];
 
+    });
+}
 #pragma  mark - ConfigUI
 - (void)configMagicController{
     [self addChildViewController:self.magicController];
@@ -200,10 +212,9 @@
     UIButton *menuItem = [magicView dequeueReusableItemWithIdentifier:itemIdentifier];
     if (!menuItem) {
         menuItem = [UIButton buttonWithType:UIButtonTypeCustom];
-        [menuItem setTitleColor:UIColorFromRGBA(145, 226, 192, 1) forState:UIControlStateNormal];
+        [menuItem setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
         [menuItem setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
         menuItem.titleLabel.font = [UIFont boldSystemFontOfSize:18];
-//        menuItem.titleLabel.font = [UIFont systemFontOfSize:18];
     }
     return menuItem;
 }
@@ -216,7 +227,7 @@
         _magicController.magicView.navigationHeight = PtHeight(40);
         _magicController.magicView.sliderHidden = YES;
 //        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, PtWidth(20), 5)];
-//        view.backgroundColor = [UIColor whiteColor];
+//        view.backgroundColor = MainThemeColor;
 //        [view setCornerRadius:5.0/2];
 //        [_magicController.magicView setSliderView:view];
 //        _magicController.magicView.sliderWidth = PtWidth(20);
@@ -242,7 +253,7 @@
 - (UIButton *)searchButton {
     if (!_searchButton) {
         _searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _searchButton.backgroundColor = UIColorFromHEXA(0xFBFBFB, 1);
+        _searchButton.backgroundColor = UIColorFromHEXA(0xE8E8E8, 1);
         _searchButton.layer.masksToBounds = YES;
         _searchButton.layer.cornerRadius = 32/2;
         [_searchButton setTitle:@"搜索" forState:UIControlStateNormal];
@@ -258,7 +269,7 @@
 - (UIView *)bgView {
     if (!_bgView) {
         _bgView = [[UIView alloc]init];
-        _bgView.backgroundColor = MainThemeColor;
+        _bgView.backgroundColor = [UIColor whiteColor];
         CGFloat h = 0;
         if (iPhoneX) {
             h = PtHeight(149);

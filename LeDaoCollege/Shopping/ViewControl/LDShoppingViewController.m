@@ -71,8 +71,11 @@
     self.categoryView.titles = self.titles;
     self.categoryView.backgroundColor = [UIColor whiteColor];
     self.categoryView.delegate = self;
-    self.categoryView.titleSelectedColor = [UIColor colorWithRed:105/255.0 green:144/255.0 blue:239/255.0 alpha:1];
-    self.categoryView.titleColor = [UIColor blackColor];
+    
+    self.categoryView.titleSelectedColor = [UIColor blackColor];
+    self.categoryView.titleColor =[UIColor darkGrayColor];
+    
+    self.categoryView.titleFont = [UIFont boldSystemFontOfSize:18];
     self.categoryView.titleColorGradientEnabled = YES;
     self.categoryView.titleLabelZoomEnabled = YES;
     self.categoryView.contentScrollViewClickTransitionAnimationEnabled = NO;
@@ -243,7 +246,7 @@
     if (!_searchButton) {
         _searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _searchButton.frame = CGRectMake(12, 0, 306, 32);
-        _searchButton.backgroundColor = UIColorFromHEXA(0xFBFBFB, 1);
+        _searchButton.backgroundColor = UIColorFromHEXA(0xE8E8E8, 1);
         _searchButton.layer.masksToBounds = YES;
         _searchButton.layer.cornerRadius = 32/2;
         [_searchButton setTitle:@"搜索" forState:UIControlStateNormal];

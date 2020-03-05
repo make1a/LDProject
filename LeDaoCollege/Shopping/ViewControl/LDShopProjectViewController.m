@@ -8,6 +8,8 @@
 
 #import "LDShopProjectViewController.h"
 
+#import "LDWebViewViewController.h"
+
 @interface LDShopProjectViewController ()
 
 @end
@@ -20,19 +22,21 @@
 - (void)updateType{
     type = 2;
 }
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-//    LDNewsModel *model = self.dataSource[indexPath.row];
-//    LDWebViewViewController * vc = [LDWebViewViewController new];
-//    vc.urlStrng = [NSString stringWithFormat:@"%@?id=%@&token=%@",model.contentUrl,model.newsId,[LDUserManager userID]];
-//    vc.s_id = model.newsId;
-//    vc.isCollection = [model.collectionFlag isEqualToString:@"Y"]?YES:NO;
-//    vc.collectionType = @"1";
-//    vc.title = model.title;
-//    vc.didRefreshCollectionStateBlock = ^(BOOL isCollection) {
-//        model.collectionFlag = isCollection?@"Y":@"N";
-//    };
-//    [self.navigationController pushViewController:vc animated:YES];
+    LDStoreModel *model = self.dataSource[indexPath.row];
+    LDWebViewViewController * vc = [LDWebViewViewController new];
+
+    vc.urlStrng = [NSString stringWithFormat:@"%@?id=%@&token=%@",model.contentUrl,model.s_id,[LDUserManager userID]];
+    vc.s_id = model.s_id;
+    vc.isCollection = [model.collectionFlag isEqualToString:@"Y"]?YES:NO;
+    vc.collectionType = @"1";
+    vc.title = model.title;
+    vc.didRefreshCollectionStateBlock = ^(BOOL isCollection) {
+        model.collectionFlag = isCollection?@"Y":@"N";
+    };
+    [self.navigationController pushViewController:vc animated:YES];
 }
 /*
 #pragma mark - Navigation

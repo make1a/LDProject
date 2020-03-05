@@ -80,13 +80,14 @@
     return cell;
 }
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return PtHeight(87);
+    return kTableViewCellHeight;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     LDVideoModel *model = self.dataSource[indexPath.row];
     LDVideoDetailViewController *vc = [[LDVideoDetailViewController alloc]init];
     vc.videoID = model.v_id;
+    vc.isSmallClass = NO;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

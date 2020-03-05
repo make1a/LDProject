@@ -25,7 +25,7 @@
     [super pushViewController:viewController animated:animated];
 }
 - (UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleLightContent;
+    return UIStatusBarStyleDefault;
 }
 
 - (UIViewController *)childViewControllerForStatusBarHidden {

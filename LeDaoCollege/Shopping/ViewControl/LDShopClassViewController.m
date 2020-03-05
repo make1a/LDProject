@@ -8,7 +8,7 @@
 
 #import "LDShopClassViewController.h"
 #import "LDDicBookCell.h"
-
+#import "LDSmallClassDetailViewController.h"
 #import "LDVideoDetailViewController.h"
 @interface LDShopClassViewController ()<UIScrollViewDelegate>
 
@@ -71,10 +71,10 @@
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-LDVideoDetailViewController *vc = [[LDVideoDetailViewController alloc]init];
-    LDStoreModel *model = self.dataSource[indexPath.row];
-vc.videoID = model.s_id;
-[self.navigationController pushViewController:vc animated:YES];
+LDSmallClassDetailViewController *vc = [LDSmallClassDetailViewController new];
+ LDStoreModel *model = self.dataSource[indexPath.row];
+ vc.videoID = model.s_id;
+ [self.navigationController pushViewController:vc animated:YES];
 
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

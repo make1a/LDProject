@@ -32,16 +32,15 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
+    [self reload];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[DFPlayer sharedPlayer]df_deallocPlayer];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"playerPause" object:nil];
     self.view.backgroundColor = [UIColor whiteColor];
-    [self configPlayer];
     [self createMagic];
     [self createFootView];
-    [self requestDataSource];
 }
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
@@ -133,8 +132,8 @@
             LDVideoDetailModel *detailMdel = self.currentModel.detailArray.firstObject;
             if (detailMdel) {
                 if (![self.currentModel.isPayFlag isEqualToString:@"Y"] ) {
-
-self.freeLabel.hidden = NO;
+                    
+                    self.freeLabel.hidden = NO;
                     if ([detailMdel.isFreeFlag isEqualToString:@"Y"]) {
                         SJVideoPlayerURLAsset *asset1 = [[SJVideoPlayerURLAsset alloc] initWithURL:[NSURL URLWithString:detailMdel.sectionContent]];
                         self.player.URLAsset = asset1;
@@ -157,32 +156,32 @@ self.freeLabel.hidden = NO;
 }
 #pragma  mark - ACtion
 - (void)shareAction{
-     QMUIMoreOperationController *moreOperationController = [[QMUIMoreOperationController alloc] init];
-     moreOperationController.view.backgroundColor = [UIColor whiteColor];
-     NSMutableArray *array = @[].mutableCopy;
-     
+    QMUIMoreOperationController *moreOperationController = [[QMUIMoreOperationController alloc] init];
+    moreOperationController.view.backgroundColor = [UIColor whiteColor];
+    NSMutableArray *array = @[].mutableCopy;
+    
     QMUIMoreOperationItemView *wx = [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"wechat") title:@"分享给微信好友" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
-         [self share:UMSocialPlatformType_WechatSession];
-         [moreOperationController hideToBottom];
-     }];
+        [self share:UMSocialPlatformType_WechatSession];
+        [moreOperationController hideToBottom];
+    }];
     QMUIMoreOperationItemView *wxp = [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"pyq") title:@"分享到朋友圈" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
-         [self share:UMSocialPlatformType_WechatTimeLine];
-         [moreOperationController hideToBottom];
-     }];
+        [self share:UMSocialPlatformType_WechatTimeLine];
+        [moreOperationController hideToBottom];
+    }];
     QMUIMoreOperationItemView *sina = [QMUIMoreOperationItemView itemViewWithImage:UIImageMake(@"weibo") title:@"分享到微博" handler:^(QMUIMoreOperationController *moreOperationController, QMUIMoreOperationItemView *itemView) {
-         [self share:UMSocialPlatformType_Sina];
-         [moreOperationController hideToBottom];
-     }];
-     if ([[UMSocialManager defaultManager]isInstall:UMSocialPlatformType_WechatSession]) {
-         [array addObject:wx];
-         [array addObject:wxp];
-     }
-     if ([[UMSocialManager defaultManager]isInstall:UMSocialPlatformType_Sina]) {
-         [array addObject:sina];
-     }
-     moreOperationController.items = @[array];
-     [moreOperationController showFromBottom];
-
+        [self share:UMSocialPlatformType_Sina];
+        [moreOperationController hideToBottom];
+    }];
+    if ([[UMSocialManager defaultManager]isInstall:UMSocialPlatformType_WechatSession]) {
+        [array addObject:wx];
+        [array addObject:wxp];
+    }
+    if ([[UMSocialManager defaultManager]isInstall:UMSocialPlatformType_Sina]) {
+        [array addObject:sina];
+    }
+    moreOperationController.items = @[array];
+    [moreOperationController showFromBottom];
+    
 }
 - (void)clickBuyAction:(id)sender {
     LDCommitBuyViewController *vc = [[LDCommitBuyViewController alloc]initWithNibName:@"LDCommitBuyViewController" bundle:[NSBundle mainBundle]];
@@ -198,7 +197,7 @@ self.freeLabel.hidden = NO;
 }
 - (void)clickCollectionAction:(UIButton *)sender{
     sender.selected = !sender.selected;
-    [self collectionAction];    
+    [self collectionAction];
 }
 - (void)collectionAction{
     

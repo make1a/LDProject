@@ -7,7 +7,7 @@
 //
 
 #import "LDShopResourceViewController.h"
-#import "LDBookDetailViewController.h"
+#import "LDShoppingDetailViewController.h"
 
 @interface LDShopResourceViewController ()
 
@@ -28,10 +28,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    LDBookDetailViewController *vc = [LDBookDetailViewController new];
+    LDShoppingDetailViewController *vc = [LDShoppingDetailViewController new];
     LDStoreModel *model = self.dataSource[indexPath.row];
-      vc.bookID = model.s_id;
-      [self.navigationController pushViewController:vc animated:YES];
+    vc.shopID = model.s_id;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 /*
 #pragma mark - Navigation
