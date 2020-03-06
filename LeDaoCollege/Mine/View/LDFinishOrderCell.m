@@ -100,11 +100,11 @@ NSString *const kLDFinishOrderCellIdentifier = @"kLDFinishOrderCellIdentifier";
 #pragma  mark - GET SET
 - (QMUILabel *)tagLabel {
     if (!_tagLabel) {
-        _tagLabel = [[QMUILabel alloc]qmui_initWithFont:[UIFont systemFontOfSize:10] textColor:UIColorFromHEXA(0xFF009E65, 1)];
+        _tagLabel = [[QMUILabel alloc]qmui_initWithFont:[UIFont systemFontOfSize:10] textColor:[UIColor whiteColor]];
         _tagLabel.text = @"工具书";
         _tagLabel.layer.masksToBounds = YES;
         _tagLabel.layer.cornerRadius = PtHeight(18/2);
-        _tagLabel.backgroundColor = [UIColor colorWithRed:214/255.0 green:242/255.0 blue:232/255.0 alpha:1.0];
+        _tagLabel.backgroundColor = MainThemeColor;
         _tagLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _tagLabel;
