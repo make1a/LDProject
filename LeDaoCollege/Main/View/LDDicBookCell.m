@@ -53,8 +53,8 @@ NSString *const kLDDicBookCellIdentifier = @"kLDDicBookCellIdentifier";
     self.authorLabel.text = model.author;
     self.titleLabel.text = model.title;
     self.watchLabel.text = [NSString stringWithFormat:@"%@人已看",model.numOfVisiter];
-    self.priceLabel.text = model.discount;
-    self.originLabel.text = model.originalPrice;
+    self.priceLabel.text = [NSString stringWithFormat:@"%@金币",model.discount];
+    self.originLabel.text = [NSString stringWithFormat:@"%@金币",model.originalPrice];
 }
 
 #pragma  mark - masLayoutSuviews

@@ -51,7 +51,7 @@
 #pragma  mark - GET SET
 - (NSArray *)titlesArray {
     if (!_titlesArray) {
-        _titlesArray = @[@"部门/岗位",@"必修课程",@"选修课程",@"选修课程",@"配套测试题",@"考试通关",@"学业积分",@"成果发布"];
+        _titlesArray = @[@"部门/岗位",@"必修课程",@"选修课程",@"配套试题",@"考试通关",@"学业积分",@"成果发布",@"结业晋级"];
     }
     return _titlesArray;
 }

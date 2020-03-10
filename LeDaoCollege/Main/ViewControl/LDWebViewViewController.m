@@ -65,7 +65,7 @@
 - (void)share:(UMSocialPlatformType)shareType{
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
     UIImage *image = [UIImage imageNamed:@"ledao_logo_2"];
-    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"乐道分享" descr:nil thumImage:image];
+    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:self.title descr:self.title thumImage:image];
     //设置网页地址
     shareObject.webpageUrl = self.urlStrng;
     messageObject.shareObject = shareObject;

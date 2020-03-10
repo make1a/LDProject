@@ -45,7 +45,7 @@
 }
 
 - (NSArray *)menueBarTitles {
-    return @[@"资讯",@"视频",@"直播",@"宝典"];
+    return @[@"资讯",@"微课",@"直播",@"宝典"];
 }
 - (void)requestTag {
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"academic/search" requestParameters:nil requestHeader:nil success:^(id responseObject) {
@@ -239,7 +239,7 @@
 - (QMUISearchBar *)searchBar {
     if (!_searchBar) {
         _searchBar = [[QMUISearchBar alloc]init];
-        _searchBar.placeholder = @"搜索";
+        _searchBar.placeholder = @"银行小百度";
         _searchBar.searchBarStyle = UISearchBarStyleMinimal;
         _searchBar.delegate = self;
         _searchBar.backgroundColor = [UIColor clearColor];

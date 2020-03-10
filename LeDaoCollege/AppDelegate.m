@@ -16,7 +16,9 @@
 #import <UMCommon/UMCommon.h>
 #import "LDNavigationController.h"
 @interface AppDelegate ()
-
+{
+    LDTabBarController *_tabbarController;
+}
 @end
 
 @implementation AppDelegate
@@ -25,7 +27,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [UIApplication sharedApplication].statusBarHidden = NO;
     // 设置主窗口,并设置根控制器
-//    sleep(3);
+    sleep(3);
     self.window = [[UIWindow alloc] init];
     self.window.frame = [UIScreen mainScreen].bounds;
     [self.window makeKeyAndVisible];
@@ -57,11 +59,13 @@
         LDTabBarController *rootViewController = [[LDTabBarController alloc] init];
         AppDelegate  *delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
         delegate.window.rootViewController = rootViewController;
+        _tabbarController = rootViewController;
     }else {
         LDLoginViewController *vc = [LDLoginViewController new];
         LDNavigationController *nav = [[LDNavigationController alloc]initWithRootViewController:vc];
         [self.window setRootViewController:nav];
     }
+
 }
 - (void)configIQKeyboard {
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
@@ -75,6 +79,7 @@
             [LDUserManager shareInstance].currentUser = model;
             NSString *f = responseObject[@"data"][@"firstLogin"];
                 LDTabBarController *rootViewController = [[LDTabBarController alloc] init];
+            self->_tabbarController = rootViewController;
                 AppDelegate  *delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
                 delegate.window.rootViewController = rootViewController;
             if ([f isEqualToString:@"Y"]) { //第一次登录

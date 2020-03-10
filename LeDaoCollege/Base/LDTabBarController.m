@@ -29,6 +29,27 @@
                                                                                              context: nil];
     self = (LDTabBarController *)tabBarController;
     [self setTintColor:UIColorFromHEXA(0x2686EA, 1)];
+    if (@available(iOS 13.0, *)) {
+        UITabBarAppearance *appearance = UITabBarAppearance.new;
+        NSMutableParagraphStyle *par = [[NSMutableParagraphStyle alloc]init];
+        par.alignment = NSTextAlignmentCenter;
+        
+        UITabBarItemStateAppearance *normal = appearance.stackedLayoutAppearance.normal;
+        if (normal) {
+            normal.titleTextAttributes =    @{NSFontAttributeName : [UIFont systemFontOfSize:15]};
+        }
+        
+        UITabBarItemStateAppearance *selected = appearance.stackedLayoutAppearance.selected;
+        if (selected) {
+            selected.titleTextAttributes =  @{NSFontAttributeName : [UIFont systemFontOfSize:15]};
+        }
+        
+        self.tabBar.standardAppearance = appearance;
+    } else {
+                            [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:15], NSFontAttributeName, nil] forState:UIControlStateNormal];
+
+    }
+
     return self;
 }
 
@@ -59,6 +80,8 @@
         CYLTabBarItemTitle : @"院",
         CYLTabBarItemImage : @"nav_button_xueyuan_pre",
         CYLTabBarItemSelectedImage : @"nav_button_xueyuan_pre 2",
+        NSFontAttributeName: [UIFont systemFontOfSize:20],
+//        [NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:20], NSFontAttributeName, nil]
     };
     NSDictionary *secondTabBarItemsAttributes = @{
         CYLTabBarItemTitle : @"城",
@@ -79,4 +102,5 @@
     ];
     return tabBarItemsAttributes;
 }
+
 @end

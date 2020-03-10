@@ -17,11 +17,11 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QSO-pb-MhX" customClass="QMUIButton">
-                            <rect key="frame" x="38" y="26" width="113" height="17"/>
+                            <rect key="frame" x="38" y="26" width="85" height="17"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.94901973009109497" green="0.94901973009109497" blue="0.94901961088180542" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <state key="normal" title="请输入搜索内容" image="nav_search_searchpage">
+                            <state key="normal" title="银行小百度" image="nav_search_searchpage">
                                 <color key="titleColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                         </button>
@@ -64,7 +64,7 @@
     </objects>
     <resources>
         <image name="I" width="16" height="16"/>
-        <image name="mall_nav_order" width="17" height="17"/>
+        <image name="mall_nav_order" width="30" height="30"/>
         <image name="nav_search_searchpage" width="12.5" height="12"/>
     </resources>
 </document>

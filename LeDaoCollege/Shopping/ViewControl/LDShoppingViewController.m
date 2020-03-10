@@ -25,6 +25,9 @@
 #import "LDLoginViewController.h"
 
 @interface LDShoppingViewController ()<JXPagerViewDelegate, JXPagerMainTableViewGestureDelegate,JXCategoryViewDelegate,SDCycleScrollViewDelegate>
+{
+    UIView * _bannerView;
+}
 @property (nonatomic,strong)NSMutableArray * netImages;
 @property (nonatomic,strong)SDCycleScrollView * cycleScrollView;
 @property (nonatomic,strong)LDShoppingHeadView * headView;
@@ -43,6 +46,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UIView *bannerView = [UIView new];
+    bannerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 200);
+    [bannerView addSubview:self.cycleScrollView];
+    _bannerView = bannerView;
+    
     self.navigationController.navigationBar.translucent = NO;
     self.tabBarController.tabBar.backgroundColor = [UIColor whiteColor];
     self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -53,6 +61,7 @@
     
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [rightButton setImage:[UIImage imageNamed:@"mall_nav_order"] forState:UIControlStateNormal];
+    rightButton.frame= CGRectMake(0, 0, 25, 25);
     [rightButton addTarget:self action:@selector(clickRightButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = item;
@@ -85,6 +94,9 @@
     [self.view addSubview:self.pagerView];
     
     self.categoryView.listContainer = (id<JXCategoryViewListContainer>)self.pagerView.listContainerView;
+    
+
+    
 }
 - (void)clickSearchAction:(UIButton *)sender{
     if (![LDUserManager isLogin]) {
@@ -128,7 +140,7 @@
 #pragma mark - JXPagerViewDelegate
 
 - (UIView *)tableHeaderViewInPagerView:(JXPagerView *)pagerView {
-    return self.cycleScrollView;
+    return _bannerView;
 }
 
 - (NSUInteger)tableHeaderViewHeightInPagerView:(JXPagerView *)pagerView {
@@ -245,11 +257,15 @@
 - (UIButton *)searchButton {
     if (!_searchButton) {
         _searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _searchButton.frame = CGRectMake(12, 0, 306, 32);
+        if (iPhoneX) {
+           _searchButton.frame = CGRectMake(12, 0, 306, 32);
+        }else{
+           _searchButton.frame = CGRectMake(12, 7, 306, 32);
+        }
         _searchButton.backgroundColor = UIColorFromHEXA(0xE8E8E8, 1);
         _searchButton.layer.masksToBounds = YES;
         _searchButton.layer.cornerRadius = 32/2;
-        [_searchButton setTitle:@"搜索" forState:UIControlStateNormal];
+        [_searchButton setTitle:@"银行小百度" forState:UIControlStateNormal];
         [_searchButton setImage:[UIImage imageNamed:@"nav_search"] forState:UIControlStateNormal];
         [_searchButton setTitleColor:UIColorFromRGBA(165, 165, 165, 1) forState:UIControlStateNormal];
         _searchButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
@@ -262,12 +278,13 @@
 - (SDCycleScrollView *)cycleScrollView {
     if (!_cycleScrollView) {
         UIImage * placeholderImage = [UIImage imageNamed:@"seizeaseat_1"];
-        CGRect frame = CGRectMake(0, 0, SCREEN_WIDTH, 180);
+        CGRect frame = CGRectMake(2, 0, SCREEN_WIDTH-4, 200);
         _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:frame delegate:self placeholderImage:placeholderImage];
         _cycleScrollView.imageURLStringsGroup = self.netImages;
         _cycleScrollView.showPageControl = YES;
         _cycleScrollView.currentPageDotColor = MainThemeColor;
         _cycleScrollView.pageDotColor = [UIColor whiteColor];
+        [_cycleScrollView setCornerRadius:10];
     }
     return _cycleScrollView;
 }

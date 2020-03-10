@@ -46,7 +46,7 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"我的书架";
+    self.title = @"我的智库";
     [self leftTableView];
     [self rightTableView];
     

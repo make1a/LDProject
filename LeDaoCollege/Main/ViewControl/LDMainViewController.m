@@ -66,7 +66,7 @@
     [self.view addSubview:self.logoImageView];
     
     [self.searchButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view).mas_offset(48.5);
+        make.left.mas_equalTo(self.logoImageView.mas_right).mas_offset(10);
         make.right.mas_equalTo(self.view).mas_offset(-20);
         if (@available(iOS 11.0, *)) {
             if (iPhoneX) {
@@ -82,7 +82,8 @@
     
     [self.logoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self.searchButton);
-        make.height.width.mas_equalTo(30);
+        make.height.mas_equalTo(20);
+        make.width.mas_equalTo(60);
         make.left.mas_equalTo(self.view).mas_offset(10);
     }];
 }
@@ -256,7 +257,7 @@
         _searchButton.backgroundColor = UIColorFromHEXA(0xE8E8E8, 1);
         _searchButton.layer.masksToBounds = YES;
         _searchButton.layer.cornerRadius = 32/2;
-        [_searchButton setTitle:@"搜索" forState:UIControlStateNormal];
+        [_searchButton setTitle:@"银行小百度" forState:UIControlStateNormal];
         [_searchButton setImage:[UIImage imageNamed:@"nav_search"] forState:UIControlStateNormal];
         [_searchButton setTitleColor:UIColorFromRGBA(165, 165, 165, 1) forState:UIControlStateNormal];
         _searchButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
