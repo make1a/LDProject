@@ -12,6 +12,7 @@
 #import "LDCustomerDetailViewController.h"
 #import "LDAddressBookCell.h"
 #import "LDCustomModel.h"
+#import "LDAddCustomViewController.h"
 @interface LDCustomerManagerViewController ()<UISearchResultsUpdating>
 @property (strong, nonatomic) UISearchController *searchController;
 @property (strong, nonatomic) NSArray *dataSource;/**<排序前的整个数据源*/
@@ -29,13 +30,21 @@
     self.tableView.tableFooterView = [UIView new];
     
     
-    NSMutableDictionary * dict =[NSMutableDictionary dictionaryWithObjects:@[[UIColor whiteColor]]forKeys:@[NSForegroundColorAttributeName]];
+//    NSMutableDictionary * dict =[NSMutableDictionary dictionaryWithObjects:@[[UIColor whiteColor]]forKeys:@[NSForegroundColorAttributeName]];
 
-    [self.navigationController.navigationBar setTitleTextAttributes:dict];
+//    [self.navigationController.navigationBar setTitleTextAttributes:dict];
 
-    self.navigationController.navigationBar.barTintColor = MainThemeColor;
+//    self.navigationController.navigationBar.barTintColor = MainThemeColor;
     
     self.tableView.tableHeaderView = self.searchController.searchBar;
+    
+    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [rightButton setImage:[UIImage imageNamed:@"add_icon"] forState:UIControlStateNormal];
+    rightButton.frame= CGRectMake(0, 0, 25, 25);
+    [rightButton addTarget:self action:@selector(pushAddcustom) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:rightButton];
+    self.navigationItem.rightBarButtonItem = item;
+    
     [self requestData];
 }
 
@@ -46,7 +55,10 @@
 - (void)dealloc {
     _searchController = nil;
 }
-
+- (void)pushAddcustom{
+    LDAddCustomViewController *vc = [LDAddCustomViewController new];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 - (void)requestData{
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"customer/getcustomer" requestParameters:nil requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {

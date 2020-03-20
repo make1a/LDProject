@@ -169,7 +169,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     if (indexPath.section == 0 && self.isSearchModel == NO) {
-        LDVoiceModel *model = self.dataSource[indexPath.row];
+        LDVoiceModel *model = self.voiceArray[indexPath.row];
         LDVoiceDetailViewcontroller * vc = [LDVoiceDetailViewcontroller new];
         vc.title = model.title;
         vc.urlStrng = [NSString stringWithFormat:@"%@?id=%@&token=%@",model.contentUrl,model.v_id,[LDUserManager userID]];
@@ -186,7 +186,7 @@
         };
         vc.isPlaying = model.isPlaying;
         if (model.isPlaying == NO) {
-            for ( LDVoiceModel *m in self.dataSource) {
+            for ( LDVoiceModel *m in self.voiceArray) {
                 m.isPlaying = NO;
             }
             model.isPlaying = YES;

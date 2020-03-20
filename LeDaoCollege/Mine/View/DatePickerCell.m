@@ -40,8 +40,8 @@ NSString *const kDataPickerCellIdentifier = @"kDataPickerCellIdentifier";
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.contentView.backgroundColor = [UIColor clearColor];
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        self.textLabel.text = @"生日";
-        self.detailTextLabel.text = @"保密";
+        self.textLabel.text = @"   生日";
+        self.detailTextLabel.text = @"";
         [self masLayoutSubview];
     }
     return self;
@@ -89,7 +89,7 @@ NSString *const kDataPickerCellIdentifier = @"kDataPickerCellIdentifier";
     if (!_inputAccessoryView) {
         _inputAccessoryView = [[UIToolbar alloc]initWithFrame:(CGRect){0,0,self.frame.size.width,40}];
 //        _inputAccessoryView.barTintColor = [UIColor orangeColor];
-        UIBarButtonItem *cancel = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:nil action:@selector(resignFirstResponder)];
+        UIBarButtonItem *cancel = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(resignFirstResponder)];
         UIBarButtonItem *space = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
         UIBarButtonItem *finish = [[UIBarButtonItem alloc]initWithTitle:@"完成" style:UIBarButtonItemStyleDone target:self action:@selector(done)];
         [_inputAccessoryView setItems:@[cancel,space,finish]];

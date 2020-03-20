@@ -39,8 +39,8 @@ NSString *const kSexPickerCellIdentifier = @"kSexPickerCellIdentifier";
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.contentView.backgroundColor = [UIColor clearColor];
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        self.textLabel.text = @"性别";
-        self.detailTextLabel.text = @"🐒🐒";
+        [self setNameText:@"* 性别"];
+        self.detailTextLabel.text = @"";
     }
     return self;
 }
@@ -51,6 +51,14 @@ NSString *const kSexPickerCellIdentifier = @"kSexPickerCellIdentifier";
 }
 - (void)setDetailTitle:(NSString *)title{
     self.detailTextLabel.text = title;
+}
+
+- (void)setNameText:(NSString *)title{
+    NSString *allString = title;
+    NSString *agreeString = [NSString stringWithFormat:@"*"];
+    
+    NSAttributedString *string = [HNTools getAttributedString:allString withStringAttributedDic:@{NSForegroundColorAttributeName : [UIColor blackColor]} withSubString:agreeString withSubStringAttributeDic:@{NSForegroundColorAttributeName : [UIColor redColor]}];
+    [self.textLabel setAttributedText:string];
 }
 #pragma  mark - action
 

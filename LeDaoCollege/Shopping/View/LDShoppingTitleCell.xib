@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,9 +17,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weike_goodsdetails_tittleornamental" translatesAutoresizingMaskIntoConstraints="NO" id="rG8-2Q-NwO">
-                        <rect key="frame" x="132" y="9.5" width="56.5" height="25.5"/>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="详情" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhr-Pe-Hdt">
                         <rect key="frame" x="144.5" y="13" width="31" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -29,8 +26,6 @@
                 </subviews>
                 <color key="backgroundColor" red="0.97647064924240112" green="0.97647064924240112" blue="0.97647064924240112" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                 <constraints>
-                    <constraint firstItem="rG8-2Q-NwO" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="6zg-GZ-GNA"/>
-                    <constraint firstItem="rG8-2Q-NwO" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="PaF-1M-6KV"/>
                     <constraint firstItem="uhr-Pe-Hdt" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="X7i-ml-hL6"/>
                     <constraint firstItem="uhr-Pe-Hdt" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="gcD-fa-GRn"/>
                 </constraints>
@@ -39,7 +34,4 @@
             <point key="canvasLocation" x="103" y="143"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="weike_goodsdetails_tittleornamental" width="56.5" height="25.5"/>
-    </resources>
 </document>

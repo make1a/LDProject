@@ -60,6 +60,7 @@
 		26869C3E232106A9001DEDBA /* LDVoiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26869C3D232106A9001DEDBA /* LDVoiceViewController.m */; };
 		26869C41232106F6001DEDBA /* LDVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26869C40232106F6001DEDBA /* LDVideoViewController.m */; };
 		26869C4723210879001DEDBA /* LDLiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26869C4623210879001DEDBA /* LDLiveViewController.m */; };
+		26898FED24230B4000138512 /* LDAddCustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26898FEC24230B4000138512 /* LDAddCustomViewController.m */; };
 		268A9BBF2320D82B00B4D756 /* LDNormalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 268A9BBD2320D82B00B4D756 /* LDNormalTableViewCell.m */; };
 		268EEDF02325EDFC0014F971 /* LDConfigTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 268EEDEF2325EDFC0014F971 /* LDConfigTableViewController.m */; };
 		268EEDF72325F1640014F971 /* DatePickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 268EEDF32325F1630014F971 /* DatePickerCell.m */; };
@@ -146,6 +147,7 @@
 		26CBF8912325275C005139EF /* LoginEnableButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CBF88F2325275C005139EF /* LoginEnableButton.m */; };
 		26CBF89423252A98005139EF /* JKCountDownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CBF89323252A97005139EF /* JKCountDownButton.m */; };
 		26CDCBA3239A42AB005E924D /* UIButton+EnlargeEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CDCBA2239A42AB005E924D /* UIButton+EnlargeEdge.m */; };
+		26D02D5824231AA00005BA8B /* LDAddNameTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26D02D5724231AA00005BA8B /* LDAddNameTableViewCell.m */; };
 		26D2F86E23A381BE00EB7347 /* LDVideoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26D2F86D23A381BD00EB7347 /* LDVideoDetailViewController.m */; };
 		26D93F8023372E2700B31DAB /* LDShoppingImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26D93F7E23372E2700B31DAB /* LDShoppingImageCell.m */; };
 		26D93F8123372E2700B31DAB /* LDShoppingImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26D93F7F23372E2700B31DAB /* LDShoppingImageCell.xib */; };
@@ -307,6 +309,8 @@
 		26869C40232106F6001DEDBA /* LDVideoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDVideoViewController.m; sourceTree = "<group>"; };
 		26869C4523210879001DEDBA /* LDLiveViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDLiveViewController.h; sourceTree = "<group>"; };
 		26869C4623210879001DEDBA /* LDLiveViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDLiveViewController.m; sourceTree = "<group>"; };
+		26898FEB24230B4000138512 /* LDAddCustomViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDAddCustomViewController.h; sourceTree = "<group>"; };
+		26898FEC24230B4000138512 /* LDAddCustomViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDAddCustomViewController.m; sourceTree = "<group>"; };
 		268A9BBC2320D82B00B4D756 /* LDNormalTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDNormalTableViewCell.h; sourceTree = "<group>"; };
 		268A9BBD2320D82B00B4D756 /* LDNormalTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDNormalTableViewCell.m; sourceTree = "<group>"; };
 		268EEDEE2325EDFC0014F971 /* LDConfigTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDConfigTableViewController.h; sourceTree = "<group>"; };
@@ -466,6 +470,8 @@
 		26CBF89323252A97005139EF /* JKCountDownButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKCountDownButton.m; sourceTree = "<group>"; };
 		26CDCBA1239A42AA005E924D /* UIButton+EnlargeEdge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+EnlargeEdge.h"; sourceTree = "<group>"; };
 		26CDCBA2239A42AB005E924D /* UIButton+EnlargeEdge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+EnlargeEdge.m"; sourceTree = "<group>"; };
+		26D02D5624231AA00005BA8B /* LDAddNameTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDAddNameTableViewCell.h; sourceTree = "<group>"; };
+		26D02D5724231AA00005BA8B /* LDAddNameTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDAddNameTableViewCell.m; sourceTree = "<group>"; };
 		26D2F86C23A381BD00EB7347 /* LDVideoDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDVideoDetailViewController.h; sourceTree = "<group>"; };
 		26D2F86D23A381BD00EB7347 /* LDVideoDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDVideoDetailViewController.m; sourceTree = "<group>"; };
 		26D93F7D23372E2700B31DAB /* LDShoppingImageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDShoppingImageCell.h; sourceTree = "<group>"; };
@@ -735,6 +741,8 @@
 				2698FFA2237949AD00883FE7 /* LDSmallClassSectionDetailViewController.m */,
 				26AFEE1E240016BD00559C88 /* LDCollegeViewController.h */,
 				26AFEE1F240016BD00559C88 /* LDCollegeViewController.m */,
+				26898FEB24230B4000138512 /* LDAddCustomViewController.h */,
+				26898FEC24230B4000138512 /* LDAddCustomViewController.m */,
 			);
 			path = ViewControl;
 			sourceTree = "<group>";
@@ -810,6 +818,8 @@
 				2657FBE5233CA66700D316E3 /* LDRechargeCell.h */,
 				2657FBE6233CA66700D316E3 /* LDRechargeCell.m */,
 				2657FBE7233CA66700D316E3 /* LDRechargeCell.xib */,
+				26D02D5624231AA00005BA8B /* LDAddNameTableViewCell.h */,
+				26D02D5724231AA00005BA8B /* LDAddNameTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1425,6 +1435,7 @@
 				26B6CD5B233A07FA00E94520 /* LDEmptyView.m in Sources */,
 				2638C805240950B300FE84BF /* LDBookListViewController.m in Sources */,
 				26F3BB932330B44B001A645C /* LDScoreCell.m in Sources */,
+				26898FED24230B4000138512 /* LDAddCustomViewController.m in Sources */,
 				26CBF8912325275C005139EF /* LoginEnableButton.m in Sources */,
 				265CB95F2320A96100883FE2 /* MYConstansManager.m in Sources */,
 				261CBB53237179EA00134E6D /* LDAlterPhoneViewController.m in Sources */,
@@ -1475,6 +1486,7 @@
 				26F558142325F6A8006D826D /* HNAlertView.m in Sources */,
 				2658F0F4232BF5EA00F4C37A /* MKPdfViewController.m in Sources */,
 				262E4A0B232A3387000A6B0B /* LDReadPDFViewController.m in Sources */,
+				26D02D5824231AA00005BA8B /* LDAddNameTableViewCell.m in Sources */,
 				2658F0E8232A99DA00F4C37A /* LDCustomNavBar.m in Sources */,
 				2613780E2322448300228261 /* LDSearchViewController.m in Sources */,
 				2690FE8423A1DBD9003DF77D /* DFPlayerControlManager.m in Sources */,
@@ -1696,7 +1708,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",
@@ -1769,7 +1781,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
