@@ -31,34 +31,34 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "5D172DED-A997-4BA8-8725-CA05127E7B77 - c334e9460ee40078"
+                  uuid = "5D172DED-A997-4BA8-8725-CA05127E7B77 - 4d5e641ad6df4527"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "-[QMUIConfiguration setTabBarItemTitleColorSelected:]"
                   moduleName = "&#x884c;&#x77e9;&#x9635;"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/make/Desktop/LeDaoCollege/Pods/QMUIKit/QMUIKit/QMUICore/QMUIConfiguration.m"
+                  urlString = "file:///Users/make/Documents/GitHub/LDProject/Pods/QMUIKit/QMUIKit/QMUICore/QMUIConfiguration.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "663"
                   endingLineNumber = "663"
-                  offsetFromSymbolStart = "587">
+                  offsetFromSymbolStart = "612">
                </Location>
                <Location
-                  uuid = "5D172DED-A997-4BA8-8725-CA05127E7B77 - dfccbf259c459519"
+                  uuid = "5D172DED-A997-4BA8-8725-CA05127E7B77 - 51a63279447ed046"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "__53-[QMUIConfiguration setTabBarItemTitleColorSelected:]_block_invoke_2"
                   moduleName = "&#x884c;&#x77e9;&#x9635;"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/make/Desktop/LeDaoCollege/Pods/QMUIKit/QMUIKit/QMUICore/QMUIConfiguration.m"
+                  urlString = "file:///Users/make/Documents/GitHub/LDProject/Pods/QMUIKit/QMUIKit/QMUICore/QMUIConfiguration.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "663"
                   endingLineNumber = "663"
-                  offsetFromSymbolStart = "15">
+                  offsetFromSymbolStart = "16">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -76,6 +76,22 @@
             startingLineNumber = "176"
             endingLineNumber = "176"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2C140FB8-BB3E-4D37-A5C6-B36C576DD695"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LeDaoCollege/Main/ViewControl/LDVideoDetailViewController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "-requestDataSource"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

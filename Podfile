@@ -18,6 +18,7 @@ target 'LeDaoCollege' do
     pod 'MJRefresh'
     
     pod 'UMCCommon'
+     pod 'UMCAnalytics'
     pod 'UMCSecurityPlugins'
     pod 'UMCShare/UI'
     pod 'UMCShare/Social/WeChat'

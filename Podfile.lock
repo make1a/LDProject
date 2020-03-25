@@ -370,6 +370,8 @@ PODS:
     - SJVideoPlayer/Common
   - SJVideoPlayer/ResourceLoader (3.1.1):
     - SJBaseVideoPlayer (>= 3.1.7)
+  - UMCAnalytics (6.0.5):
+    - UMCCommon
   - UMCCommon (2.1.1)
   - UMCSecurityPlugins (1.0.6)
   - UMCShare/Core (6.9.6):
@@ -405,6 +407,7 @@ DEPENDENCIES:
   - SDCycleScrollView
   - SDWebImage
   - SJVideoPlayer
+  - UMCAnalytics
   - UMCCommon
   - UMCSecurityPlugins
   - UMCShare/Social/ReducedSina
@@ -431,6 +434,7 @@ SPEC REPOS:
     - SJBaseVideoPlayer
     - SJUIKit
     - SJVideoPlayer
+    - UMCAnalytics
     - UMCCommon
     - UMCSecurityPlugins
     - UMCShare
@@ -454,12 +458,13 @@ SPEC CHECKSUMS:
   SJBaseVideoPlayer: 9e18423fd106835ce84a882e7ac65959a2dec212
   SJUIKit: 5479a150083e606937a796801ecaae6317e046f5
   SJVideoPlayer: 02bafffeb014806167be201f2860462fdc4d9e87
+  UMCAnalytics: 045be2cd1ec05aa95ad62405a850757f932e2d59
   UMCCommon: 971f324a5a99c9d662ae040a815e7e3d7ef8b2a8
   UMCSecurityPlugins: 0831a08f3988f3cea9f1d3a7626cd9bee4fef150
   UMCShare: e0cef55c0fd6051254c8cda1d0630eb578b27bad
   VTMagic: b49e5f456dbcbfd9a3588ba92417233a105bc193
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: 42fc253a75107e872f72a00c3ea4c0f3773a2e32
+PODFILE CHECKSUM: 948480a753128578ff897b07c9d7f25b9ca40d66
 
 COCOAPODS: 1.8.4

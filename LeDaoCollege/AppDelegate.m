@@ -15,6 +15,7 @@
 #import <UMShare/UMShare.h>
 #import <UMCommon/UMCommon.h>
 #import "LDNavigationController.h"
+#import <UMAnalytics/MobClick.h>
 @interface AppDelegate ()
 {
     LDTabBarController *_tabbarController;
@@ -48,11 +49,14 @@
 - (void)setUMdata
 {
     //设置友盟appkey
+//      [UMCommonLogManager setUpUMCommonLogManager];
     [UMConfigure initWithAppkey:UMengAppkey channel:nil];
     //设置微信的appKey和appSecret
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:WXAPPKEY appSecret:WXAPPSecret redirectURL:BaseAPI];
     //设置新浪的appKey和appSecret
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Sina appKey:WBAPPKEY  appSecret:WBAPPSecret redirectURL:BaseAPI];
+    
+    [MobClick setScenarioType:E_UM_NORMAL];
 }
 - (void)configMainView{
     if ([LDUserManager isLogin]) {
