@@ -41,7 +41,7 @@
 - (void)requestTag {
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"academic/search" requestParameters:nil requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {
-            NSArray *historyArray = [NSArray arrayWithObject:responseObject[@"data"][@"historySearch"]];
+            NSArray *historyArray = responseObject[@"data"][@"historySearch"];
             if (responseObject[@"data"][@"historySearch"] != [NSNull null]) {
                 if (historyArray.count>20) {
                     historyArray = [historyArray subarrayWithRange:NSMakeRange(0, 20)];

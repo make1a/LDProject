@@ -12,6 +12,8 @@
 #import "LDStoreModel.h"
 #import "LDShoppingDetailViewController.h"
 #import "LDBookListViewController.h"
+#import "LDBannerModel.h"
+
 @interface LDBookDicViewController ()<SDCycleScrollViewDelegate>
 @property (nonatomic,strong)NSArray * titleArray;
 @property (nonatomic,strong)SDCycleScrollView* cycleScrollView;
@@ -19,6 +21,9 @@
 @property (nonatomic,strong)NSMutableArray * dataSource1;
 @property (nonatomic,strong)NSMutableArray * dataSource2;
 @property (nonatomic,strong)NSMutableArray * dataSource3;
+
+@property (nonatomic,strong)NSArray * bannerArray;
+@property (nonatomic,strong)NSMutableArray * imageArray;
 @end
 
 @implementation LDBookDicViewController
@@ -31,11 +36,16 @@
     [super viewDidLoad];
     [self configUI];
     if (!self.isSearchModel) {
-        [self requestSource:nil mark:nil back:nil];
+        [self requestSource:nil mark:nil back:^(NSInteger count) {
+            
+        }];
         typeof(self)weakSelf = self;
         self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-            [weakSelf requestSource:nil mark:nil back:nil];
+            [weakSelf requestSource:nil mark:nil back:^(NSInteger count) {
+                
+            }];
         }];
+        [self requestBannerList];
     }
 }
 - (void)configUI{
@@ -45,7 +55,7 @@
     self.tableView.separatorColor = [UIColor clearColor];
 }
 
-- (void)requestSource:(NSString *)title mark:(NSString *)mark back:(backSourceCountBlock)blcok{
+- (void)requestSource:(NSString * _Nullable )title mark:(NSString * _Nullable)mark back:(backSourceCountBlock)blcok{
     NSDictionary *dic;
     if (title) {
         dic = @{@"title":title};
@@ -76,6 +86,30 @@
         [self.tableView.mj_header endRefreshing];
     } faild:^(NSError *error) {
         [self.tableView.mj_header endRefreshing];
+    }];
+}
+- (void)requestBannerList {
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"banner/getbytype/1" requestParameters:@{@"type":@"1"} requestHeader:nil success:^(id responseObject) {
+        if (kCODE == 200) {
+            NSArray *array = responseObject[@"data"];
+            if (![responseObject[@"data"] isKindOfClass:[NSArray class]]) {
+                return ;
+            }
+           self.bannerArray = [NSArray yy_modelArrayWithClass:[LDBannerModel class] json:responseObject[@"data"]];
+            self.imageArray = @[].mutableCopy;
+            for (NSDictionary *dic in array) {
+                NSString *url = dic[@"imgUrl"];
+                if ([url containsString:@"http"]) {
+                    [self.imageArray addObject:url];
+                }else{
+                    url = [NSString stringWithFormat:@"%@img/%@",BaseAPI,url];
+                    [self.imageArray addObject:url];
+                }
+            }
+            self.netImages = self.imageArray;
+        }
+    } faild:^(NSError *error) {
+        
     }];
 }
 - (void)clickShowMore:(UIButton *)sender{

@@ -71,7 +71,7 @@
 
 - (NSArray *)titles{
     if (!_titles) {
-        _titles = @[@"项目管理",@"绩效管理",@"客户管理日志"];
+        _titles = @[@"项目管理",@"绩效管理",@"客户管理"];
     }
     return _titles;
 }

@@ -15,7 +15,7 @@
 #import "LDSearchViewController.h"
 #import "LDBookDicViewController.h"
 #import "LDLoginViewController.h"
-
+#import "LDBannerModel.h"
 #import "LDFirstView.h"
 @interface LDMainViewController ()<VTMagicViewDelegate,VTMagicViewDataSource>
 
@@ -24,6 +24,7 @@
 @property (nonatomic,strong)UIView * bgView;
 @property (nonatomic,strong)NSMutableArray * imageArray;
 @property (nonatomic,strong)UIImageView * logoImageView;
+
 @end
 
 @implementation LDMainViewController
@@ -38,9 +39,6 @@
     [self masLayoutSubviews];
 
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(showFirstLogin) name:@"LDFirstLoginNotify" object:nil];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self requestBannerList];
-    });
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -87,29 +85,30 @@
         make.left.mas_equalTo(self.view).mas_offset(10);
     }];
 }
-- (void)requestBannerList {
-    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"banner/getbytype/1" requestParameters:@{@"type":@"1"} requestHeader:nil success:^(id responseObject) {
-        if (kCODE == 200) {
-            NSArray *array = responseObject[@"data"];
-            if (![responseObject[@"data"] isKindOfClass:[NSArray class]]) {
-                return ;
-            }
-            self.imageArray = @[].mutableCopy;
-            for (NSDictionary *dic in array) {
-                NSString *url = dic[@"imgUrl"];
-                if ([url containsString:@"http"]) {
-                    [self.imageArray addObject:url];
-                }else{
-                    url = [NSString stringWithFormat:@"%@img/%@",BaseAPI,url];
-                    [self.imageArray addObject:url];
-                }
-            }
-            [self.magicController.magicView reloadData];
-        }
-    } faild:^(NSError *error) {
-        
-    }];
-}
+//- (void)requestBannerList {
+//    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"banner/getbytype/1" requestParameters:@{@"type":@"1"} requestHeader:nil success:^(id responseObject) {
+//        if (kCODE == 200) {
+//            NSArray *array = responseObject[@"data"];
+//            if (![responseObject[@"data"] isKindOfClass:[NSArray class]]) {
+//                return ;
+//            }
+//           self.bannerArray = [NSArray yy_modelArrayWithClass:[LDBannerModel class] json:responseObject[@"data"]];
+//            self.imageArray = @[].mutableCopy;
+//            for (NSDictionary *dic in array) {
+//                NSString *url = dic[@"imgUrl"];
+//                if ([url containsString:@"http"]) {
+//                    [self.imageArray addObject:url];
+//                }else{
+//                    url = [NSString stringWithFormat:@"%@img/%@",BaseAPI,url];
+//                    [self.imageArray addObject:url];
+//                }
+//            }
+//            [self.magicController.magicView reloadData];
+//        }
+//    } faild:^(NSError *error) {
+//        
+//    }];
+//}
 #pragma  mark - Touch Action
 - (void)clickSearchAction:(UIButton *)sender {
     if (![LDUserManager isLogin]) {
@@ -143,9 +142,9 @@
             {
                 vc = [[LDInfoMationViewController alloc] init];
             }
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                vc.netImages = self.imageArray;
-            });
+//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                vc.netImages = self.imageArray;
+//            });
             return vc;
         }
             break;
@@ -185,9 +184,6 @@
             {
                 vc = [[LDBookDicViewController alloc] init];
             }
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                vc.netImages = self.imageArray;
-            });
             return vc;
         }
             break;

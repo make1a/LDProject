@@ -43,7 +43,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "663"
                   endingLineNumber = "663"
-                  offsetFromSymbolStart = "612">
+                  offsetFromSymbolStart = "587">
                </Location>
                <Location
                   uuid = "5D172DED-A997-4BA8-8725-CA05127E7B77 - 51a63279447ed046"
@@ -58,7 +58,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "663"
                   endingLineNumber = "663"
-                  offsetFromSymbolStart = "16">
+                  offsetFromSymbolStart = "15">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -66,32 +66,96 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0A941814-7562-4575-9E6C-33D29F4712D2"
+            uuid = "2B7443A4-C301-439F-B336-0993FE1D97AD"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LeDaoCollege/Main/ViewControl/LDInfoMationViewController.m"
+            filePath = "LeDaoCollege/Shopping/ViewControl/LDShoppingDetailViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "176"
-            endingLineNumber = "176"
-            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "-requestDataSource"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2B7443A4-C301-439F-B336-0993FE1D97AD - 326d7d5b732164b7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[LDShoppingDetailViewController requestDataSource]"
+                  moduleName = "&#x884c;&#x77e9;&#x9635;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/make/Documents/GitHub/LDProject/LeDaoCollege/Shopping/ViewControl/LDShoppingDetailViewController.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "64"
+                  endingLineNumber = "64"
+                  offsetFromSymbolStart = "324">
+               </Location>
+               <Location
+                  uuid = "2B7443A4-C301-439F-B336-0993FE1D97AD - 1a7adf269f394e01"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__51-[LDShoppingDetailViewController requestDataSource]_block_invoke"
+                  moduleName = "&#x884c;&#x77e9;&#x9635;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/make/Documents/GitHub/LDProject/LeDaoCollege/Shopping/ViewControl/LDShoppingDetailViewController.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "65"
+                  endingLineNumber = "65"
+                  offsetFromSymbolStart = "86">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "01C52C1F-BB88-4D52-8A6E-703E4D81EFD6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LeDaoCollege/Shopping/ViewControl/LDShoppingDetailViewController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "-requestDataSource"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "2C140FB8-BB3E-4D37-A5C6-B36C576DD695"
+            uuid = "C8F1BBD0-8B09-49FA-A842-64988C7EA0A4"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LeDaoCollege/Main/ViewControl/LDVideoDetailViewController.m"
+            filePath = "LeDaoCollege/Shopping/ViewControl/LDShoppingDetailViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
             landmarkName = "-requestDataSource"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EFC360FF-8822-4888-B74A-02DB0B771956"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LeDaoCollege/Main/ViewControl/LDVideoListViewController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

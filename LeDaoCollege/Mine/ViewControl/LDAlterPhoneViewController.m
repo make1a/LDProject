@@ -22,6 +22,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
     [self masLayoutsubview];
+    self.title= @"修改手机号";
     [self countDownAction];
 }
 

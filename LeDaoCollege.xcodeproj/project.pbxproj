@@ -28,6 +28,7 @@
 		2643A0B0239CAB500055B320 /* LDHeadCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2643A0AE239CAB500055B320 /* LDHeadCollectionReusableView.m */; };
 		2643A0B1239CAB500055B320 /* LDHeadCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2643A0AF239CAB500055B320 /* LDHeadCollectionReusableView.xib */; };
 		2643A0B7239CB7300055B320 /* LDVideoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2643A0B6239CB7300055B320 /* LDVideoListViewController.m */; };
+		2643A9F0246035E20022E5C7 /* LDBannerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2643A9EF246035E10022E5C7 /* LDBannerModel.m */; };
 		264D626A23A4B25F0015F253 /* LDCatalogCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 264D626823A4B25F0015F253 /* LDCatalogCell.m */; };
 		264D626B23A4B25F0015F253 /* LDCatalogCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 264D626923A4B25F0015F253 /* LDCatalogCell.xib */; };
 		2657FBE8233CA66700D316E3 /* LDRechargeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2657FBE6233CA66700D316E3 /* LDRechargeCell.m */; };
@@ -247,6 +248,8 @@
 		2643A0B2239CB0060055B320 /* LDVoiceListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDVoiceListViewController.h; sourceTree = "<group>"; };
 		2643A0B5239CB7300055B320 /* LDVideoListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDVideoListViewController.h; sourceTree = "<group>"; };
 		2643A0B6239CB7300055B320 /* LDVideoListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDVideoListViewController.m; sourceTree = "<group>"; };
+		2643A9EE246035E10022E5C7 /* LDBannerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDBannerModel.h; sourceTree = "<group>"; };
+		2643A9EF246035E10022E5C7 /* LDBannerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDBannerModel.m; sourceTree = "<group>"; };
 		264D626723A4B25F0015F253 /* LDCatalogCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDCatalogCell.h; sourceTree = "<group>"; };
 		264D626823A4B25F0015F253 /* LDCatalogCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDCatalogCell.m; sourceTree = "<group>"; };
 		264D626923A4B25F0015F253 /* LDCatalogCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LDCatalogCell.xib; sourceTree = "<group>"; };
@@ -971,6 +974,8 @@
 				2633E3D4235D48C6002DEA26 /* LDVoiceModel.m */,
 				2633E3D6235D53D8002DEA26 /* LDVideoModel.h */,
 				2633E3D7235D53D8002DEA26 /* LDVideoModel.m */,
+				2643A9EE246035E10022E5C7 /* LDBannerModel.h */,
+				2643A9EF246035E10022E5C7 /* LDBannerModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1544,6 +1549,7 @@
 				26869C3E232106A9001DEDBA /* LDVoiceViewController.m in Sources */,
 				2643A0AB239CA7C40055B320 /* LDTagCell.m in Sources */,
 				26E8162A23321BD100CECCE3 /* LDVoiceTableViewCell.m in Sources */,
+				2643A9F0246035E20022E5C7 /* LDBannerModel.m in Sources */,
 				26CBF8852323E0FB005139EF /* LDTextViewViewController.m in Sources */,
 				2613781123225DA300228261 /* LDSearchHistoryView.m in Sources */,
 				265CB9962320B2AA00883FE2 /* LDMineViewController.m in Sources */,

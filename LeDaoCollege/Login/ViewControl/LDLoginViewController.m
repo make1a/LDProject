@@ -100,6 +100,8 @@
             LDUserModel *model = [LDUserModel yy_modelWithDictionary:responseObject[@"data"][@"user"]];
             [LDUserManager shareInstance].currentUser = model;
             [self pushMain];
+        }else{
+            [QMUITips showError:@"网络错误,请稍微再试"];
         }
     } faild:^(NSError *error) {
         
@@ -182,8 +184,10 @@
                     [QMUITips showError:responseObject[@"returnMsg"]];
                 }
             } faild:^(NSError * _Nonnull error) {
-                DLog(@"%@",error);
+                [QMUITips showError:responseObject[@"网络错误请稍后再试"]];
             }];
+        }else {
+            [QMUITips showError:responseObject[@"returnMsg"]];
         }
     } faild:^(NSError *error) {
         [QMUITips showError:error.localizedDescription];
@@ -286,6 +290,8 @@
                         [LDUserManager shareInstance].currentUser = model;
                         [self pushMain];
                     }
+                }else{
+                    [QMUITips showError:@"网络错误,请稍微再试"];
                 }
             } faild:^(NSError *error) {
                 [QMUITips showError:error.localizedDescription];

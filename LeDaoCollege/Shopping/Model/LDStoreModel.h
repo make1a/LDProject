@@ -32,9 +32,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy)NSString * numOfVisiter;
 @property (nonatomic,copy)NSString *contentUrl;
 @property (nonatomic,copy)NSString *collectionFlag;
+@property (nonatomic,copy)NSString *courseType;
 @end
 
 @interface LDBookModel : NSObject
+@property(nonatomic,strong) NSString *isChange;
 /** <#Description#> **/
 @property(nonatomic,strong) NSString *b_id;
 /** <#Description#> **/

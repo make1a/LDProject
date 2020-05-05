@@ -30,6 +30,7 @@
 
 #define ShowMsgInfo [QMUITips showSucceed:responseObject[@"returnMsg"]]
 #define _weakself __weak typeof(self) weakself = self
+#define _strongself  __strong typeof(weakself) strongself = weakself;
 
 #define kRequestFailMsg    @"充值失败,请稍后再试"
 
@@ -49,7 +50,7 @@
 #define kTableViewCellHeight 120
 // app主色调
 #define MainThemeColor [UIColor colorWithRed:38/255.0 green:134/255.0 blue:234/255.0 alpha:1.0]
-#define DisableMainThmeColor UIColorFromHEXA(0xC1E1CB, 1.0)
+#define DisableMainThmeColor UIColorFromHEXA(0x67B1FD, 1.0)
 #define SCREEN_WIDTH  ([[UIScreen mainScreen] bounds].size.width)
 #define SCREEN_HEIGHT ([[UIScreen mainScreen] bounds].size.height)
 

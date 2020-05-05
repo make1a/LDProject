@@ -5,6 +5,9 @@
 //  Created by ihoudf on 2017/7/18.
 //  Copyright © 2017年 ihoudf. All rights reserved.
 //
+//
+//  DFPlayer当前版本：2.0.2
+//
 
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
@@ -93,9 +96,8 @@ typedef NS_ENUM(NSUInteger, DFPlayerStatusCode) {
  
  @param player DFPlayer
  @param bufferProgress 缓冲进度
- @param totalTime 音频总时长
  */
-- (void)df_player:(DFPlayer *)player bufferProgress:(CGFloat)bufferProgress totalTime:(CGFloat)totalTime;
+- (void)df_player:(DFPlayer *)player bufferProgress:(CGFloat)bufferProgress;
 
 /**
  代理4：播放进度代理 （属性isObserveProgress(默认YES)为YES时有效）
@@ -103,9 +105,8 @@ typedef NS_ENUM(NSUInteger, DFPlayerStatusCode) {
  @param player DFPlayer
  @param progress 播放进度
  @param currentTime 当前播放到的时间
- @param totalTime 音频总时长
  */
-- (void)df_player:(DFPlayer *)player progress:(CGFloat)progress currentTime:(CGFloat)currentTime totalTime:(CGFloat)totalTime;
+- (void)df_player:(DFPlayer *)player progress:(CGFloat)progress currentTime:(CGFloat)currentTime;
 
 /**
  代理5：播放结束代理
@@ -219,7 +220,7 @@ typedef NS_ENUM(NSUInteger, DFPlayerStatusCode) {
 /**
  选择audioId对应的音频开始播放。
  说明：DFPlayer通过数据源方法提前获取数据，通过df_playWithAudioId选择对应音频播放。
- 而在删除、增加音频后需要调用[[DFPlayer sharedPlayer] df_reloadData];刷新数据。
+ 而在删除、增加音频后需要调用[[DFPlayer shareInstance] df_reloadData];刷新数据。
  */
 - (void)df_playWithAudioId:(NSUInteger)audioId;
 

@@ -23,7 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"客户日志管理";
+    self.title = @"客户管理";
     self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
     [self masLayoutSubviews];
     [self requestDatsSource];

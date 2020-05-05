@@ -102,11 +102,7 @@
     } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
         NSString *caches = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
         NSString *bookName;
-        if (name.length > 0) {
-            bookName = name;
-        }else {
             bookName = response.suggestedFilename;
-        }
         bookName = [NSString stringWithFormat:@"%@.pdf",bookName];
         NSString *fullpath = [caches stringByAppendingPathComponent:bookName];
         NSURL *filePathUrl = [NSURL fileURLWithPath:fullpath];

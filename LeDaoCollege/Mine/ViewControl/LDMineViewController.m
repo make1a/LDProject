@@ -21,9 +21,12 @@
 #import "LDCollegeViewController.h"
 
 @interface LDMineViewController () <QMUITableViewDelegate,QMUITableViewDataSource>
+{
+    BOOL _iscompanymember;
+}
 @property (nonatomic,strong)QMUITableView * tableView;
-@property (nonatomic,strong)NSArray * titlesArray;
-@property (nonatomic,strong)NSArray * imagesArray;
+@property (nonatomic,strong)NSMutableArray * titlesArray;
+@property (nonatomic,strong)NSMutableArray * imagesArray;
 @property (nonatomic,strong)LDMineCustomHead * headView;
 @end
 
@@ -47,7 +50,7 @@
     [self.view addSubview:self.headView];
     [self.view addSubview:self.tableView];
     
-    self.headView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 193-151+self.headView.headHeight.constant);
+    self.headView.frame = CGRectMake(0, 0, SCREEN_WIDTH, self.headView.headHeight.constant);
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.mas_equalTo(self.view);
@@ -70,6 +73,13 @@
            NSString *level = responseObject[@"data"][@"levalDesc"];
             self.headView.levelLabel.text = [NSString stringWithFormat:@"%@",level];
             self.headView.scoreLabel.text = [NSString stringWithFormat:@"%@",point];
+           NSString *iscompanymember = responseObject[@"data"][@"iscompanymember"];
+            self->_iscompanymember = [iscompanymember isEqualToString:@"Y"]?YES:NO;
+            if (!self->_iscompanymember) {
+                [self.imagesArray[0] removeObjectAtIndex:1];
+                [self.titlesArray[0] removeObjectAtIndex:1];
+            }
+            [self.tableView reloadData];
         }
     } faild:^(NSError *error) {
         
@@ -104,6 +114,8 @@
         [self.navigationController pushViewController:vc animated:YES];
         return;
     }
+    
+    if (_iscompanymember) {
     switch (indexPath.row) {
             case 0:
         {
@@ -158,6 +170,56 @@
         default:
             break;
     }
+    }else{
+         switch (indexPath.row) {
+                    case 0:
+                {
+                    LDCollegeViewController *vc = [LDCollegeViewController new];
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
+                    break;
+                case 1:
+                {
+                    LDCollectViewController *vc = [LDCollectViewController new];
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
+                    break;
+                case 2:
+                {
+                    LDFinishOrderViewController *vc = [LDFinishOrderViewController new];
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
+                    break;
+        //        case 3:
+        //        {
+        //            LDShoppingCartViewController *vc = [LDShoppingCartViewController new];
+        //            [self.navigationController pushViewController:vc animated:YES];
+        //
+        //        }
+                    break;
+                case 3:
+                {
+                    LDBookRackViewController *vc = [LDBookRackViewController new];
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
+                    break;
+                case 4:
+                {
+                    LDScoreViewController *vc = [LDScoreViewController new];
+                    vc.allScore = self.headView.scoreLabel.text;
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
+                    break;
+                case 5:
+                {
+                    LDMyIconViewController *vc = [[LDMyIconViewController alloc]initWithNibName:@"LDMyIconViewController" bundle:nil];
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
+                    break;
+                default:
+                    break;
+            }
+    }
 }
 #pragma  mark - GET && SET
 - (QMUITableView *)tableView {
@@ -169,15 +231,15 @@
     }
     return _tableView;
 }
-- (NSArray *)titlesArray {
+- (NSMutableArray *)titlesArray {
     if (!_titlesArray) {
-        _titlesArray = @[@[@"我的大学",@"我的管理",@"我的收藏",@"我的订单",@"我的智库",@"我的积分",@"我的乐币"],@[@"设置"]];
+        _titlesArray = @[@[@"我的大学",@"我的管理",@"我的收藏",@"我的订单",@"我的智库",@"我的积分",@"我的乐币"].mutableCopy,@[@"设置"].mutableCopy].mutableCopy;
     }
     return _titlesArray;
 }
-- (NSArray *)imagesArray {
+- (NSMutableArray *)imagesArray {
     if (!_imagesArray) {
-        _imagesArray = @[@[@"nav_button_xueyuan_pre2",@"mine_manage_list",@"mine_collect_list",@"mine_list_daily",@"mine_shoppingcart_list",@"mine_integral_list",@"mine_coin_list"],@[@"mine_set_list"]];
+        _imagesArray = @[@[@"nav_button_xueyuan_pre2",@"mine_manage_list",@"mine_collect_list",@"mine_list_daily",@"mine_shoppingcart_list",@"mine_integral_list",@"mine_coin_list"].mutableCopy,@[@"mine_set_list"].mutableCopy].mutableCopy;
     }
     return _imagesArray;
 }

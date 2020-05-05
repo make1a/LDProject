@@ -31,7 +31,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configUI];
-    [self update];
 }
 
 - (void)configUI {
@@ -70,7 +69,10 @@
             NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
             CGFloat appV = [app_Version floatValue];
             if (appV < version) {
-                [self update];
+                [QMUITips showInfo:@"当前存在可以更新的版本"];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self update];
+                });
             }else{
                 [QMUITips showInfo:@"当前已是最新版本"];
             }

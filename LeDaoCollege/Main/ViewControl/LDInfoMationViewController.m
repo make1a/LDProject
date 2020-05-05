@@ -14,6 +14,7 @@
 #import "DFPlayer.h"
 #import "LDVoiceTableViewCell.h"
 #import "LDVoiceDetailViewcontroller.h"
+#import "LDBannerModel.h"
 @interface LDInfoMationViewController ()<SDCycleScrollViewDelegate,QMUITableViewDataSource,QMUITableViewDelegate,DFPlayerDataSource>
 {
     NSInteger currentPage;
@@ -22,7 +23,8 @@
 @property (nonatomic,strong)NSArray<DFPlayerModel *> *musicArray;
 @property (nonatomic,strong)NSArray * voiceArray;
 @property (nonatomic,assign)BOOL isPlaying;
-
+@property (nonatomic,strong)NSArray * bannerArray;
+@property (nonatomic,strong)NSMutableArray * imageArray;
 @end
 
 @implementation LDInfoMationViewController
@@ -49,6 +51,7 @@
     if (!self.isSearchModel) {
         [self requestDatasource];
         [self requestMusic];
+        [self requestBannerList];
         self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
             [self requestDatasource];
             [self requestMusic];
@@ -56,8 +59,9 @@
         [self createPlayer];
         
     }
-    
 }
+
+
 - (void)createPlayer{
     [DFPlayer sharedPlayer].dataSource  = self;
     [DFPlayer sharedPlayer].playMode = DFPlayerModeOnlyOnce;
@@ -75,7 +79,7 @@
         self.voiceArray = [NSArray yy_modelArrayWithClass:[LDVoiceModel class] json:responseObject[@"data"][@"list"]];
         LDVoiceModel *model = self.voiceArray.firstObject;
         DFPlayerModel *playModel = [[DFPlayerModel alloc] init];
-        playModel.audioId = [model.v_id intValue];
+        playModel.audioId = [model.v_id intValue]-1;
         playModel.audioUrl = [NSURL URLWithString:model.audioUrl];
         
         self.musicArray = @[playModel];
@@ -123,7 +127,30 @@
         [QMUITips showError:@"网络错误,请稍微再试"];
     }];
 }
-
+- (void)requestBannerList {
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"banner/getbytype/1" requestParameters:@{@"type":@"1"} requestHeader:nil success:^(id responseObject) {
+        if (kCODE == 200) {
+            NSArray *array = responseObject[@"data"];
+            if (![responseObject[@"data"] isKindOfClass:[NSArray class]]) {
+                return ;
+            }
+           self.bannerArray = [NSArray yy_modelArrayWithClass:[LDBannerModel class] json:responseObject[@"data"]];
+            self.imageArray = @[].mutableCopy;
+            for (NSDictionary *dic in array) {
+                NSString *url = dic[@"imgUrl"];
+                if ([url containsString:@"http"]) {
+                    [self.imageArray addObject:url];
+                }else{
+                    url = [NSString stringWithFormat:@"%@img/%@",BaseAPI,url];
+                    [self.imageArray addObject:url];
+                }
+            }
+            self.netImages = self.imageArray;
+        }
+    } faild:^(NSError *error) {
+        
+    }];
+}
 #pragma  mark - TableView
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView{
     return self.isSearchModel?1:2;
@@ -209,7 +236,7 @@
     }
 }
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 0) {
+    if (indexPath.section == 0 && self.isSearchModel == NO) {
         return 90;
     }
     
@@ -241,7 +268,25 @@
 #pragma  mark - SDCyclesScrollview
 /** 点击图片回调 */
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
+    LDBannerModel *model = self.bannerArray[index];
     
+    
+//    for (LDNewsModel *model in self.dataSource) {
+//        if ([model.newsId isEqualToString:banner.bID]) {
+            LDWebViewViewController * vc = [LDWebViewViewController new];
+   LDNewsModel *m = self.dataSource.firstObject;
+            vc.urlStrng = [NSString stringWithFormat:@"%@?id=%@&token=%@",m.contentUrl,model.bID,[LDUserManager userID]];
+            vc.s_id = model.bID;
+//            vc.isCollection = [model.collectionFlag isEqualToString:@"Y"]?YES:NO;
+            vc.collectionType = @"1";
+//            vc.title = model.title;
+//            vc.didRefreshCollectionStateBlock = ^(BOOL isCollection) {
+//                model.collectionFlag = isCollection?@"Y":@"N";
+//            };
+            [self.navigationController pushViewController:vc animated:YES];
+//            break;
+//        }
+//    }
 }
 
 /** 图片滚动回调 */

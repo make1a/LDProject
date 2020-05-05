@@ -51,7 +51,7 @@
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"academic/search" requestParameters:nil requestHeader:nil success:^(id responseObject) {
         DLog(@"%@",responseObject);
         if (kCODE == 200) {
-            NSArray *historyArray = [NSArray arrayWithObject:responseObject[@"data"][@"historySearch"]];
+            NSArray *historyArray = responseObject[@"data"][@"historySearch"];
             if (responseObject[@"data"][@"historySearch"] != [NSNull null]) {
                 if (historyArray.count>20) {
                     historyArray = [historyArray subarrayWithRange:NSMakeRange(0, 20)];
@@ -84,10 +84,12 @@
     [self.view addSubview:self.historyView];
     _weakself;
     self.historyView.didSelectAdvanceActionBlock = ^(NSString *title) {
-        [weakself searchAction:title];
+        _strongself;
+        [strongself searchAction:title];
     };
     self.historyView.didSelectHistoryActionBlock = ^(NSString *title) {
-        [weakself searchAction:title];
+        _strongself;
+        [strongself searchAction:title];
     };
 }
 - (void)showHistoryView:(BOOL)isShow {

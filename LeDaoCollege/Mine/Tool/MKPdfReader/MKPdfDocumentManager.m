@@ -57,7 +57,12 @@
         [NSKeyedArchiver archiveRootObject:self toFile:pathName];
     });
 }
-
+- (void)removePlist{
+    NSString * pathName = SavePDFDocumenToPlisttPath(self.name);
+    NSString * pathDataName = SavePDFDataPath(self.name);
+    [[NSFileManager defaultManager]removeItemAtURL:[NSURL URLWithString:pathName] error:nil];
+    [[NSFileManager defaultManager]removeItemAtURL:[NSURL URLWithString:pathDataName] error:nil];
+}
 
 #pragma  mark - PDF 二进制数据归档
 

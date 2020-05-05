@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign)BOOL isSearchModel;
 @property (nonatomic,strong)NSArray * dataSource;
 
-- (void)requestSource:(NSString *)title mark:(NSString *)mark back:(backSourceCountBlock)blcok;
+- (void)requestSource:(NSString * _Nullable)title mark:(NSString * _Nullable)mark back:(backSourceCountBlock)blcok;
 @end
 
 NS_ASSUME_NONNULL_END

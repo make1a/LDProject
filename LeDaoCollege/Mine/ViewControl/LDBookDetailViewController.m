@@ -11,6 +11,9 @@
 #import "MKPdfDocumentManager.h"
 #import "MKReaderViewController.h"
 @interface LDBookDetailViewController ()
+{
+    BOOL _isUpdate;
+}
 @property (weak, nonatomic) IBOutlet UIImageView *headImageView;
 @property (weak, nonatomic) IBOutlet UILabel *descLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -57,10 +60,18 @@
         
     }];
 }
-
+- (void)updateBook{
+    NSString *url = [NSString stringWithFormat:@"/book/updateIsChange/%@",self.bookID];
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:url  requestParameters:nil requestHeader:nil success:^(id responseObject) {
+        self.currentModel.isChange = @"N";
+    } faild:^(NSError *error) {
+        
+    }];
+}
 - (void)readww{
    __block  MKPdfDocumentManager *doc = [MKPdfDocumentManager getToLocalWith:self.bookID];
-        if (!doc) {
+        if (!doc || [self.currentModel.isChange isEqualToString:@"Y"]) {
+
             [MKRequestManager loadFileWith:self.currentModel.bookUrl progress:^(id responseObject) {
                 [[NSOperationQueue mainQueue]addOperationWithBlock:^{
                     [QMUITips showWithText:[NSString stringWithFormat:@"下载中...%@%%",responseObject]];
@@ -77,6 +88,7 @@
                     return;
                 }
                 [doc saveToPlist];
+                [self updateBook];
                 MKReaderViewController *vc = [[MKReaderViewController alloc]init];
                 vc.pdfInfo = doc;
                 vc.modalPresentationStyle = 0;

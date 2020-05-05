@@ -81,9 +81,13 @@
                 [self.footView.buyButton setTitle:@"查看" forState:UIControlStateNormal];
             }
             [QMUITips hideAllTips];
+        }else{
+            [QMUITips hideAllTips];
+            [QMUITips showError:@"网络错误"];
         }
     } faild:^(NSError *error) {
-        
+        [QMUITips hideAllTips];
+        [QMUITips showError:@"网络错误"];
     }];
 }
 - (void)addNouseView:(NSString *)flag {
