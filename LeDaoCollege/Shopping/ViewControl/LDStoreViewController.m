@@ -16,12 +16,17 @@
 #import "LDAllshoppingViewController.h"
 #import "LDToolBooksViewController.h"
 #import "LDSmallClassViewController.h"
-
+#import "LDBannerModel.h"
+#import "LDShoppingDetailViewController.h"
+#import "LDVideoDetailViewController.h"
+#import "LDBannerModel.h"
+#import "LDShoppingDetailViewController.h"
+#import "LDWebViewViewController.h"
 
 @interface LDStoreViewController ()<SDCycleScrollViewDelegate,VTMagicViewDelegate,VTMagicViewDataSource,UIScrollViewDelegate>
 
 @property (nonatomic,strong)NSMutableArray * netImages;
-
+@property (nonatomic,strong)NSArray * bannerArray;
 
 @end
 
@@ -84,6 +89,8 @@
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"banner/getbytype/2" requestParameters:@{@"type":@"2"} requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {
             NSArray *array = responseObject[@"data"];
+            self.bannerArray = [NSArray yy_modelArrayWithClass:[LDBannerModel class] json:responseObject[@"data"]];
+
             self.netImages = @[].mutableCopy;
             for (NSDictionary *dic in array) {
                 NSString *url = dic[@"imgUrl"];

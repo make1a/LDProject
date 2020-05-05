@@ -23,7 +23,12 @@
 
 #import "LDStoreSearchViewController.h"
 #import "LDLoginViewController.h"
+#import "LDBannerModel.h"
+#import "LDShoppingDetailViewController.h"
+#import "LDWebViewViewController.h"
+#import "LDVideoDetailViewController.h"
 
+#import "LDSmallClassDetailViewController.h"
 @interface LDShoppingViewController ()<JXPagerViewDelegate, JXPagerMainTableViewGestureDelegate,JXCategoryViewDelegate,SDCycleScrollViewDelegate>
 {
     UIView * _bannerView;
@@ -35,6 +40,7 @@
 @property (nonatomic, strong) JXPagerView *pagerView;
 @property (nonatomic, strong) NSArray <NSString *> *titles;
 @property (nonatomic,strong)UIButton * searchButton;
+@property (nonatomic,strong)NSArray * bannerArray;
 @end
 
 @implementation LDShoppingViewController
@@ -121,6 +127,8 @@
     [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypeGET requestAPI:@"banner/getbytype/2" requestParameters:@{@"type":@"2"} requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {
             NSArray *array = responseObject[@"data"];
+            self.bannerArray = [NSArray yy_modelArrayWithClass:[LDBannerModel class] json:responseObject[@"data"]];
+
             self.netImages = @[].mutableCopy;
             for (NSDictionary *dic in array) {
                 NSString *url = dic[@"imgUrl"];
@@ -230,9 +238,37 @@
 #pragma  mark - SDCyclesScrollview
 /** 点击图片回调 */
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
-    
-}
+    LDBannerModel *model = self.bannerArray[index];
+    if ([model.bannerType isEqualToString:@"1"]) {
+        LDWebViewViewController * vc = [LDWebViewViewController new];
+        vc.urlStrng = [NSString stringWithFormat:@"%@?id=%@&token=%@",model.bannerUrl,model.bannerId,[LDUserManager userID]];
+        vc.s_id = model.bannerId;
+        vc.collectionType = @"1";
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if ([model.bannerType isEqualToString:@"2"]){
+        LDShoppingDetailViewController *vc = [LDShoppingDetailViewController new];
+        vc.shopID = model.bannerId;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if ([model.bannerType isEqualToString:@"3"]){
+        
+        LDVideoDetailViewController *vc = [[LDVideoDetailViewController alloc]init];
+        vc.videoID = model.bannerId;
+        vc.isSmallClass = NO;
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }else if ([model.bannerType isEqualToString:@"4"]){
+        LDWebViewViewController * vc = [LDWebViewViewController new];
+        vc.urlStrng = [NSString stringWithFormat:@"%@?id=%@&token=%@",model.bannerUrl,model.bannerId,[LDUserManager userID]];
+        vc.s_id = model.bannerId;
+        vc.collectionType = @"1";
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        LDSmallClassDetailViewController *vc = [LDSmallClassDetailViewController new];
+        vc.videoID = model.bannerId;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 
+}
 /** 图片滚动回调 */
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index {
     

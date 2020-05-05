@@ -15,6 +15,10 @@
 #import "LDVoiceTableViewCell.h"
 #import "LDVoiceDetailViewcontroller.h"
 #import "LDBannerModel.h"
+#import "LDShoppingDetailViewController.h"
+#import "LDVideoDetailViewController.h"
+#import "LDSmallClassDetailViewController.h"
+
 @interface LDInfoMationViewController ()<SDCycleScrollViewDelegate,QMUITableViewDataSource,QMUITableViewDelegate,DFPlayerDataSource>
 {
     NSInteger currentPage;
@@ -269,24 +273,35 @@
 /** 点击图片回调 */
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
     LDBannerModel *model = self.bannerArray[index];
-    
-    
-//    for (LDNewsModel *model in self.dataSource) {
-//        if ([model.newsId isEqualToString:banner.bID]) {
-            LDWebViewViewController * vc = [LDWebViewViewController new];
-   LDNewsModel *m = self.dataSource.firstObject;
-            vc.urlStrng = [NSString stringWithFormat:@"%@?id=%@&token=%@",m.contentUrl,model.bID,[LDUserManager userID]];
-            vc.s_id = model.bID;
-//            vc.isCollection = [model.collectionFlag isEqualToString:@"Y"]?YES:NO;
-            vc.collectionType = @"1";
-//            vc.title = model.title;
-//            vc.didRefreshCollectionStateBlock = ^(BOOL isCollection) {
-//                model.collectionFlag = isCollection?@"Y":@"N";
-//            };
-            [self.navigationController pushViewController:vc animated:YES];
-//            break;
-//        }
-//    }
+    if ([model.bannerType isEqualToString:@"1"]) {
+        LDWebViewViewController * vc = [LDWebViewViewController new];
+        vc.urlStrng = [NSString stringWithFormat:@"%@?id=%@&token=%@",model.bannerUrl,model.bannerId,[LDUserManager userID]];
+        vc.s_id = model.bannerId;
+        vc.collectionType = @"1";
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if ([model.bannerType isEqualToString:@"2"]){
+        LDShoppingDetailViewController *vc = [LDShoppingDetailViewController new];
+        vc.shopID = model.bannerId;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if ([model.bannerType isEqualToString:@"3"]){
+        
+        LDVideoDetailViewController *vc = [[LDVideoDetailViewController alloc]init];
+        vc.videoID = model.bannerId;
+        vc.isSmallClass = NO;
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }else if ([model.bannerType isEqualToString:@"4"]){
+        LDWebViewViewController * vc = [LDWebViewViewController new];
+        vc.urlStrng = [NSString stringWithFormat:@"%@?id=%@&token=%@",model.bannerUrl,model.bannerId,[LDUserManager userID]];
+        vc.s_id = model.bannerId;
+        vc.collectionType = @"1";
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        LDSmallClassDetailViewController *vc = [LDSmallClassDetailViewController new];
+        vc.videoID = model.bannerId;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+
 }
 
 /** 图片滚动回调 */

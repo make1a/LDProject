@@ -30,6 +30,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy)NSString *bID;
 @property (nonatomic,copy)NSString *type;
 @property (nonatomic,copy)NSString *imgUrl;
+@property (nonatomic,copy)NSString *bannerType;
+@property (nonatomic,copy)NSString *bannerUrl;
+@property (nonatomic,copy)NSString *bannerId;
+
+
 @end
 
 NS_ASSUME_NONNULL_END
