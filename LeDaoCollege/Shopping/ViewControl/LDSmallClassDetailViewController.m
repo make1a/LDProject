@@ -168,7 +168,7 @@
     if (self.videoID.length == 0) {
         return;
     }
-    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:@"collection/addanddelete" requestParameters:@{@"collectionId":self.videoID,@"collectionType":@"5"} requestHeader:nil success:^(id responseObject) {
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:@"collection/addanddelete" requestParameters:@{@"collectionId":self.videoID,@"collectionType":@"2"} requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {
             [QMUITips showSucceed:responseObject[@"returnMsg"]];
             if ([self.currenModel.collectionFlag isEqualToString:@"N"]) {

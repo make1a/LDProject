@@ -31,6 +31,7 @@
     LDShoppingDetailViewController *vc = [LDShoppingDetailViewController new];
     LDStoreModel *model = self.dataSource[indexPath.row];
     vc.shopID = model.s_id;
+    vc.collectionType = @"5";
     [self.navigationController pushViewController:vc animated:YES];
 }
 /*

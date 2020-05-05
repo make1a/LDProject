@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LDShoppingDetailViewController : QMUICommonViewController
 @property (nonatomic,copy)NSString * shopID;
-
+@property (nonatomic,copy)NSString * collectionType;
 @end
 
 NS_ASSUME_NONNULL_END

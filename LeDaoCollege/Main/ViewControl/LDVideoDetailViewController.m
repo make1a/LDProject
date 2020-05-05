@@ -201,7 +201,7 @@
 }
 - (void)collectionAction{
     
-    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:@"collection/addanddelete" requestParameters:@{@"collectionId":self.videoID,@"collectionType":@"3"} requestHeader:nil success:^(id responseObject) {
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:@"collection/addanddelete" requestParameters:@{@"collectionId":self.videoID,@"collectionType":self.collectionType} requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {
             [QMUITips showSucceed:responseObject[@"returnMsg"]];
             if ([self.currentModel.collectionFlag isEqualToString:@"N"]) {

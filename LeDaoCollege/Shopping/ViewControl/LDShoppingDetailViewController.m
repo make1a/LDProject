@@ -41,6 +41,9 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if (self.collectionType == nil ) {
+        self.collectionType = @"5";
+    }
     if (@available(iOS 11, *)) {
         self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     }
@@ -108,7 +111,7 @@
     if (self.shopID.length == 0) {
         return;
     }
-    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:@"collection/addanddelete" requestParameters:@{@"collectionId":self.shopID,@"collectionType":@"4"} requestHeader:nil success:^(id responseObject) {
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:@"collection/addanddelete" requestParameters:@{@"collectionId":self.shopID,@"collectionType":self.collectionType} requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {
             [QMUITips showSucceed:responseObject[@"returnMsg"]];
             if ([self.currentModel.collectionFlag isEqualToString:@"N"]) {

@@ -49,7 +49,7 @@
 }
 
 - (void)requestCollection:(LDVideoModel*)model index:(NSInteger)index{
-    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:@"collection/addanddelete" requestParameters:@{@"collectionId":model.v_id,@"collectionType":@"3"} requestHeader:nil success:^(id responseObject) {
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:@"collection/addanddelete" requestParameters:@{@"collectionId":model.v_id,@"collectionType":@"2"} requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {
             [QMUITips showSucceed:responseObject[@"returnMsg"]];
             if ([model.collectionFlag isEqualToString:@"N"]) {

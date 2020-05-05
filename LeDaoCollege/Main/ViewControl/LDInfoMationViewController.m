@@ -282,6 +282,7 @@
     }else if ([model.bannerType isEqualToString:@"2"]){
         LDShoppingDetailViewController *vc = [LDShoppingDetailViewController new];
         vc.shopID = model.bannerId;
+        vc.collectionType = @"5";
         [self.navigationController pushViewController:vc animated:YES];
     }else if ([model.bannerType isEqualToString:@"3"]){
         

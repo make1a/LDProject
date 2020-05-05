@@ -93,9 +93,10 @@
         LDVideoDetailViewController *vc = [[LDVideoDetailViewController alloc]init];
         vc.videoID = model.s_id;
         vc.isSmallClass = NO;
+        vc.collectionType = @"2";
         [self.navigationController pushViewController:vc animated:YES];
 
-    }else{ //视频
+    }else{ //课程
         LDSmallClassDetailViewController *vc = [LDSmallClassDetailViewController new];
         vc.videoID = model.s_id;
         [self.navigationController pushViewController:vc animated:YES];

@@ -86,7 +86,7 @@
 
 #pragma  mark - Request
 - (void)requestCollection:(NSString *)collectionID collection:(BOOL)isCollection{
-    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:@"collection/addanddelete" requestParameters:@{@"collectionId":collectionID,@"collectionType":self.collectionType} requestHeader:nil success:^(id responseObject) {
+    [MKRequestManager sendRequestWithMethodType:MKRequestMethodTypePOST requestAPI:@"collection/addanddelete" requestParameters:@{@"collectionId":collectionID,@"collectionType":@"1"} requestHeader:nil success:^(id responseObject) {
         if (kCODE == 200) {
             [QMUITips showSucceed:responseObject[@"returnMsg"]];
             if (isCollection && self.didRefreshCollectionStateBlock) {

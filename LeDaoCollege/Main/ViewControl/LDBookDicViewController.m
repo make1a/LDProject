@@ -202,6 +202,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     LDShoppingDetailViewController *vc = [LDShoppingDetailViewController new];
+    vc.collectionType = @"5";
     LDStoreModel *model;
      switch (indexPath.section) {
          case 0:
@@ -214,7 +215,10 @@
             model = self.dataSource2[indexPath.row];
              break;
          default:
+         {
              model = self.dataSource3[indexPath.row];
+             vc.collectionType = @"4";
+         }
              break;
      }
     vc.shopID = model.s_id;
@@ -232,6 +236,7 @@
     }else if ([model.bannerType isEqualToString:@"2"]){
         LDShoppingDetailViewController *vc = [LDShoppingDetailViewController new];
         vc.shopID = model.bannerId;
+        vc.collectionType = @"5";
         [self.navigationController pushViewController:vc animated:YES];
     }else if ([model.bannerType isEqualToString:@"3"]){
         
